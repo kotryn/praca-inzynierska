@@ -3,3 +3,6 @@
  
 #### Run
 `mvn -U idea:idea`
+
+##### If failed, delete: 
+`/.m2/repository/com/github/eirslett`
