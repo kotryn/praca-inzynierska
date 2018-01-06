@@ -28,3 +28,20 @@ Linux:
 
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
+
+### TO DO:
+1. Post list of users
+
+### How to post new user?
+In *Advanced REST client*:
+1. Method: POST
+2. Host: `http://localhost:8080`
+3. Path: `/user`
+4. Body:``
+  {
+    "name": "Kate",
+    "surname": "Romka",
+    "age": 22
+  }
+  ``
+  5. SEND
