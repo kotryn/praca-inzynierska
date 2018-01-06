@@ -4,27 +4,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-import EmployeeList from './components/EmployeeList';
+import UsersList from './components/UsersList';
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            employees: [],
+            config: [],
         };
     }
 
     componentDidMount() {
         axios
-            .get(`/api/employees`)
-            .then(res => this.setState({ employees: res.data._embedded.employees }))
+            .get(`/users`)
+            .then(res => this.setState({ config: res.data }))
             .catch(err => console.log(err))
     }
 
     render() {
         return (
-            <EmployeeList employees={this.state.employees}/>
+            <UsersList config={this.state.config}/>
     )
     }
 }
