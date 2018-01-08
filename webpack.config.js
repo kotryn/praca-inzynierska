@@ -16,7 +16,8 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     cacheDirectory: true,
-                    presets: ['env', 'react']
+                    presets: ['env', 'react'],
+                    plugins: ['transform-object-rest-spread', 'transform-class-properties']
                 }
             }
         ]
