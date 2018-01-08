@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import Users from './Users'
 import AddUser from './AddUser'
@@ -31,6 +32,7 @@ class UsersList extends React.Component{
                     </tbody>
                 </table>
                 <AddUser />
+                <Link to='/book'>Book list</Link>
             </div>
         )
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
-import { addNewUser } from '../actions/user'
+import { addNewUser } from '../../actions/user'
 
 class AddUser extends React.Component {
 

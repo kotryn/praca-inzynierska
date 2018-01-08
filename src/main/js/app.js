@@ -2,11 +2,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 import axios from 'axios';
 import { Provider } from 'react-redux'
 
 import store from './createStore'
-import UsersList from './components/UsersList';
+import Routes from './Routes';
 
 class App extends React.Component {
 
@@ -33,14 +34,16 @@ class App extends React.Component {
             return <div>loading...</div>
         }
         return (
-            <UsersList config={this.state.config}/>
+            <Routes config={this.state.config}/>
     )
     }
 }
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('app')
 );
