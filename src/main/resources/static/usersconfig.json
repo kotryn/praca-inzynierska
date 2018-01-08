@@ -1,0 +1,23 @@
+{
+  "title": "Users list",
+  "table": {
+    "type": "users",
+    "title": ["Name", "Surname", "Age"],
+    "data": {
+      "url": "/users"
+    }
+  },
+  "form": {
+    "input": ["Name", "Surname", "Age"],
+    "button": {
+      "title": "Submit",
+      "type": "post",
+      "url": "/user"
+    }
+  },
+  "button":{
+    "title": "Next Page",
+    "url": "/book",
+    "type": "link"
+  }
+}

@@ -7,20 +7,10 @@ class Book extends React.Component{
 
     render() {
         return (
-            <table>
-                <tbody>
-                <tr>
-                    <th>Book name</th>
-                    <th>Date</th>
-                </tr>
-                <td>
-                    First book
-                </td>
-                <td>
-                    2012
-                </td>
-                </tbody>
-            </table>
+            <tr>
+                <td>{this.props.books.name}</td>
+                <td>{this.props.books.date}</td>
+            </tr>
         )
     }
 }

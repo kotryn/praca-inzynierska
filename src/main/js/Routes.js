@@ -1,15 +1,17 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Book from './components/Book/Book'
-import Users from './components/User/UsersList'
+import Main from './components/Main'
 
-const Routes = ({config}) => (
+const Routes = () => (
     <main>
         <Switch>
-            <Route exact path={'/'} render={(props) => (
-                <Users {...props} config={config} />
+            <Route key={1} exact path={'/'} render={(props) => (
+                <Main {...props} url={'/usersconfig.json'} />
             )} />
-            <Route exact path='/book' component={Book}/>
+            <Route key={2} path={'/book'} render={(props) => (
+                <Main {...props} url={'/bookconfig.json'} />
+            )} />
         </Switch>
     </main>
 )

@@ -1,36 +1,69 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 import Users from './Users'
 import AddUser from './AddUser'
 
 class UsersList extends React.Component{
+
     constructor(props) {
         super(props);
+        this.state = {
+            config: [],
+            data: [],
+            loading: true
+        };
+    }
+
+    componentDidMount() {
+        axios
+            .get(`/usersconfig.json`)
+            .then(res => {
+                this.setState({config: res.data,/*loading: false*/});
+                axios.get(res.data.data.url)
+                    .then(res => {
+                        this.setState({data: res.data,loading: false});
+                    })
+                    .catch(error => console.log(error))
+            })
+            .catch(error => console.log(error))
     }
 
     render() {
-        const users = this.props.config.map(users =>
+        if(this.state.loading){
+            return <div>loading...</div>
+        }
+
+        const users = this.state.data.map(users =>
             <Users key={users.id} users={users}/>
         );
 
         const newUser = this.props.query.map((element, index) =>
             <Users key={index} users={element}/>
         );
+
+        let table = {};
+        if(this.state.config.table){
+            const title = this.state.config.table && this.state.config.table.title.map((item, index)=>
+                <th>{item}</th>
+            )
+            table = (
+                <table>
+                <tbody>
+                    <tr>
+                        {title}
+                    </tr>
+                    {users}
+                    {newUser}
+                </tbody>
+            </table>);
+        }
+
         return (
             <div>
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                    </tr>
-                        {users}
-                        {newUser}
-                    </tbody>
-                </table>
+                {table}
                 <AddUser />
                 <Link to='/book'>Book list</Link>
             </div>

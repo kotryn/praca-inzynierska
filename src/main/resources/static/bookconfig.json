@@ -1,0 +1,15 @@
+{
+  "title": "Book list",
+  "table": {
+    "type": "books",
+    "title": ["Book name", "Date"],
+    "data": {
+      "url": "/books.json"
+    }
+  },
+  "button":{
+    "title": "Back",
+    "url": "/",
+    "type": "link"
+  }
+}

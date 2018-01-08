@@ -1,4 +1,4 @@
-import {ADD_NEW_USER} from './../actions/user'
+import {ADD_NEW_USER, CLEAR} from './../actions/user'
 
 const defaultState = {
     query: [],
@@ -11,6 +11,11 @@ function userReducer(state = defaultState, action) {
             return {
                 ...state,
                 query: newQuery,
+            }
+        case CLEAR:
+            return {
+                ...state,
+                query: [],
             }
         default:
             return state;
