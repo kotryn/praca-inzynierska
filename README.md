@@ -17,20 +17,14 @@ Linux:
 ### Running project
 
 #### Intellij Idea
-1. Configure mvn install to execute *before build*.
+1. Configure mvn install (or compile) to execute *before build*.
 2. Run
- 
-#### Terminal 
-1. Install 
-`mvn install`
-2. Run
-???
 
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
 
 ### TO DO:
-1. Post list of users
+1. ...
 
 ### How to post new user?
 In *Advanced REST client*:
