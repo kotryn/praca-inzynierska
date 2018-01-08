@@ -24,14 +24,23 @@ class AddUser extends React.Component {
     addUser(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        const postData = {
-            name: this.state.name,
-            surname: this.state.surname,
-            age: this.state.age
+        if(this.state.name && this.state.surname && this.state.age){
+            const postData = {
+                name: this.state.name,
+                surname: this.state.surname,
+                age: this.state.age
+            }
+            axios.post('/user', postData)
+                .then(response => {
+                    console.log(response);
+                    this.props.addNewUser(postData);
+                    this.clearInputValues();
+                })
+                .catch(error => console.log(error))
+        }else{
+            window.alert('Complete all fields!')
         }
-        axios.post('/user', postData)
-            .then(response => {console.log(response); this.props.addNewUser(postData)})
-            .catch(error => console.log(error))
+
     }
 
     handleNameChange(e) {
@@ -41,22 +50,33 @@ class AddUser extends React.Component {
         this.setState({surname: e.target.value});
     }
     handleAgeChange(e) {
-        this.setState({age: e.target.value});
+        const age = e.target.validity.valid ? e.target.value : this.state.age;
+        this.setState({age: age});
+    }
+    clearInputValues(){
+        this.setState({name: ''});
+        this.setState({surname: ''});
+        this.setState({age: ''});
     }
 
     render() {
         return (
-            <form onSubmit={this.addUser}>
+            <form onSubmit={this.addUser} className={'form-text'}>
                 <label>
-                    Name: <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange.bind(this)} />
+                    <div>Name:</div>
+                     <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange.bind(this)} />
                 </label>
                 <label>
-                    Surname: <input type="text" name="surname" value={this.state.surname} onChange={this.handleSurnameChange.bind(this)} />
+                    <div>Surname:</div>
+                    <input type="text" name="surname" value={this.state.surname} onChange={this.handleSurnameChange.bind(this)} />
                 </label>
                 <label>
-                    Age: <input type="text" name="age" value={this.state.age} onChange={this.handleAgeChange.bind(this)} />
+                    <div>Age:</div>
+                    <input type="text" pattern="[0-9]*" name="age" value={this.state.age} onChange={this.handleAgeChange.bind(this)} />
                 </label>
-                <input type="submit" value="Submit" />
+                <div className={'parent'}>
+                    <div className={'right'}><input type="submit" value="Submit" /></div>
+                </div>
             </form>
         )
     }

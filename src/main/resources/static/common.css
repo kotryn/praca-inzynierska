@@ -4,6 +4,27 @@ th {
 td {
     padding: 5px 20px;
 }
-form {
+form.form-text {
     margin: 5px 20px;
+    width: 320px;
+}
+form.form-text label {
+    display: block;
+    padding: 2%;
+}
+form.form-text label div{
+    width: 30%;
+    display: inline-block;
+}
+form.form-text label input{
+    width: 68%;
+}
+.parent{
+    position: relative;
+    width: 100%;
+}
+.right{
+    position: absolute;
+    top:0;
+    right:0;
 }
