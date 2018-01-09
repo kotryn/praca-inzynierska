@@ -8,8 +8,8 @@
     }
   },
   "button":{
-    "title": "Back",
-    "url": "/",
+    "title": "Next page",
+    "url": "/films",
     "type": "link"
   }
 }

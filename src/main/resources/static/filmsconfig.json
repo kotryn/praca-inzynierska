@@ -1,0 +1,14 @@
+{
+  "title": "OSCAR WINNERS 2017",
+  "table": {
+    "type": "article",
+    "data": {
+      "url": "/films.json"
+    }
+  },
+  "button":{
+    "title": "Next Page",
+    "url": "/",
+    "type": "link"
+  }
+}

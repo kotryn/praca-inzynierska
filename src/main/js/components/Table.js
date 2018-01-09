@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Users from './User/Users'
 import Books from './Book/Book'
+import Films from './Film/Films'
 
 class Table extends React.Component{
 
@@ -50,11 +51,16 @@ class Table extends React.Component{
                     <Books key={item.id} books={item}/>
                 );
                 break;
+            case "article":
+                items = data.map(item =>
+                    <Films key={item.id} film={item}/>
+                );
+                break;
             default:
                 return <div>ERROR</div>
         }
 
-        const title = table.title.map((item, index)=>
+        const title = table.title && table.title.map((item, index)=>
             <th key={index}>{item}</th>
         );
 

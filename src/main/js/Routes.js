@@ -1,6 +1,5 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Book from './components/Book/Book'
 import Main from './components/Main'
 
 const Routes = () => (
@@ -11,6 +10,9 @@ const Routes = () => (
             )} />
             <Route key={2} path={'/book'} render={(props) => (
                 <Main {...props} url={'/bookconfig.json'} />
+            )} />
+            <Route key={3} path={'/films'} render={(props) => (
+                <Main {...props} url={'/filmsconfig.json'} />
             )} />
         </Switch>
     </main>
