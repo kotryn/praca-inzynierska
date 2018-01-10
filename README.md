@@ -1,4 +1,4 @@
-# Praca inzynierska
+# Praca inzynierska :honeybee:
 Interfejs użytkownika oparty na koncepcji REST (representational state transfer) dla systemu wyboru odpornego portfela inwestycyjnego
 
 ## Getting Started
