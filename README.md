@@ -62,11 +62,12 @@ In *Advanced REST client*:
 1. Method: POST
 2. Host: `http://localhost:8080`
 3. Path: `/user`
-4. Body:``
+4. Body:
+```
   {
     "name": "Kate",
     "surname": "Romka",
     "age": 22
   }
-  ``
+```
   5. SEND
