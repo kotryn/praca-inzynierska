@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
-import { addNewUser, clear } from '../actions/inputData'
+import { addNewInputData, clear } from '../actions/inputData'
 
-class Form extends React.Component {
+class FormComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,9 +16,9 @@ class Form extends React.Component {
         this.addUser = this.addUser.bind(this);
     }
 
-     componentWillUnmount(){
-         this.props.clear();
-     }
+    componentWillUnmount(){
+        this.props.clear();
+    }
 
     addUser(event) {
         event.preventDefault();
@@ -32,7 +32,7 @@ class Form extends React.Component {
             axios.post('/user', postData)
                 .then(response => {
                     console.log(response);
-                    this.props.addNewUser(postData);
+                    this.props.addNewInputData(postData);
                     this.clearInputValues();
                 })
                 .catch(error => console.log(error))
@@ -82,9 +82,9 @@ class Form extends React.Component {
 
 }
 
-Form = connect(
-    state =>  state.user,
-    { addNewUser, clear }
-)(Form)
+FormComponent = connect(
+    state =>  state.inputData,
+    { addNewInputData, clear }
+)(FormComponent)
 
-export default Form;
+export default FormComponent;

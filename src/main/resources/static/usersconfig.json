@@ -1,23 +1,108 @@
 {
-  "title": "Users list",
-  "table": {
-    "type": "users",
-    "title": ["Name", "Surname", "Age"],
-    "data": {
-      "url": "/users"
-    }
+  "head": {
+    "title": "book"
   },
-  "form": {
-    "input": ["Name", "Surname", "Age"],
-    "button": {
-      "title": "Submit",
-      "type": "post",
-      "url": "/user"
-    }
-  },
-  "button":{
-    "title": "Next Page",
-    "url": "/book",
-    "type": "link"
+  "body": {
+    "style": {
+      "border": "none",
+      "background": "#646464"
+    },
+    "items": [
+      {
+        "type": "title",
+        "text": "Users list",
+        "style": {}
+      },
+      {
+        "type": "table",
+        "title": [
+          "Name",
+          "Surname",
+          "Age"
+        ],
+        "data": {
+          "url": "/users",
+          "names": ["name", "surname", "age"]
+        }
+      },
+      {
+        "type": "form",
+        "data": [
+          {
+            "name": "Name",
+            "postName": "name",
+            "formStyle": {
+              "margin": "5px 20px",
+              "width": "320px"
+            },
+            "labelStyle": {
+              "display": "block",
+              "padding": "2%"
+            },
+            "nameStyle": {
+              "width": "30%",
+              "display": "inline-block"
+            },
+            "inputStyle": {
+              "width": "68%"
+            }
+          },
+          {
+            "name": "Surname",
+            "postName": "surname",
+            "form-style": {
+              "margin": "5px 20px",
+              "width": "320px"
+            },
+            "label-style": {
+              "display": "block",
+              "padding": "2%"
+            },
+            "name-style": {
+              "width": "30%",
+              "display": "inline-block"
+            },
+            "input-style": {
+              "width": "68%"
+            }
+          },
+          {
+            "name": "Age",
+            "postName": "age",
+            "form-style": {
+              "margin": "5px 20px",
+              "width": "320px"
+            },
+            "label-style": {
+              "display": "block",
+              "padding": "2%"
+            },
+            "name-style": {
+              "width": "30%",
+              "display": "inline-block"
+            },
+            "input-style": {
+              "width": "68%"
+            }
+          }
+        ],
+        "button": {
+          "title": "Submit",
+          "url": "/user"
+        }
+      },
+      {
+        "type": "button",
+        "name": "Next Page",
+        "url": "/book",
+        "style": {
+          "padding": "20px",
+          "font-size": "1.5em",
+          "color": "green",
+          "position": "relative",
+          "left": "20px"
+        }
+      }
+    ]
   }
 }

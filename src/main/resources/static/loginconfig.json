@@ -1,0 +1,56 @@
+{
+  "head": {
+    "title": "login"
+  },
+  "body": {
+    "style": {
+      "border": "none",
+      "background": "#646464"
+    },
+    "items": [
+      {
+        "type": "text",
+        "text": "Hello World!",
+        "style": {
+          "font-size": "20px",
+          "padding": "20px",
+          "color": "blue"
+        }
+      },
+      {
+        "type": "line",
+        "style": {
+          "font-size": "20px",
+          "margin": "20px",
+          "width": "200px",
+          "background-color": "red",
+          "display": "block",
+          "height": "1px",
+          "border": "0",
+          "border-top": "1px solid red",
+          "padding": "0"
+        }
+      },
+      {
+        "type": "text",
+        "text": "How are you?",
+        "style": {
+          "font-size": "20px",
+          "padding": "20px"
+        }
+      },
+      {
+        "type": "button",
+        "name": "Next",
+        "url": "/",
+        "style":{
+          "padding": "20px",
+          "font-size": "1.5em",
+          "color": "green",
+          "position": "relative",
+          "left": "20px"
+        }
+      }
+    ]
+  }
+}

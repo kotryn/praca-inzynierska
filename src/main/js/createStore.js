@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import userReducer from './reducers/user'
+import inputDataReducer from './reducers/inputData'
 
 const rootReducer = combineReducers({
-    user: userReducer,
-})
+    inputData: inputDataReducer,
+});
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default createStore(
     rootReducer,

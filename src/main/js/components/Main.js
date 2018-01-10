@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
-import Title from './Title'
-import Table from './Table'
-import Form from './Form'
-import Button from './Button'
+import TextComponent from './TextComponent'
+import LineComponent from './LineComponent'
+import ButtonComponent from './ButtonComponent'
+import TableComponent from './TableComponent'
+import TitleComponent from './TitleComponent'
+import FormComponent from './FormComponent'
 
 class Main extends React.Component{
 
@@ -29,28 +31,47 @@ class Main extends React.Component{
         if(this.state.loading){
             return <div>loading...</div>
         }
-        const {title, table, form, button} = this.state.config;
-        let titleComponent = "", tableComponent = "", formComponent = "", buttonComponent = "";
 
-        if(title){
-            titleComponent = <Title title={title}/>
+        let components = [];
+        function setComponentType(element){
+            switch(element.type){
+                case "title":
+                    components.push(<TitleComponent config={element}/>);
+                    break;
+                case "text":
+                    components.push(<TextComponent config={element}/>);
+                    break;
+                case "line":
+                    components.push(<LineComponent config={element}/>);
+                    break;
+                case "button":
+                    components.push(<ButtonComponent config={element}/>);
+                    break;
+                case "table":
+                    components.push(<TableComponent config={element}/>);
+                    break;
+                case "form":
+                    components.push(<FormComponent config={element}/>);
+                    break;
+                default:
+                    console.log('error');
+                    break;
+            }
         }
-        if(table){
-            tableComponent = <Table table={table} />
-        }
-        if(form){
-            formComponent = <Form form={form} />
-        }
-        if(button){
-            buttonComponent = <Button button={button} />
-        }
+
+        this.state.config.body.items.map((element)=>{
+            setComponentType(element);
+        });
+
+        const Body = components.map((element, index) => (
+            <div key={index}>
+                {element}
+            </div>
+        ));
 
         return (
             <div>
-                {titleComponent}
-                {tableComponent}
-                {formComponent}
-                {buttonComponent}
+                {Body}
             </div>
         )
     }

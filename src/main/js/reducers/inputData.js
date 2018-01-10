@@ -1,12 +1,12 @@
-import {ADD_NEW_USER, CLEAR} from './../actions/user'
+import {ADD_NEW_INPUT_DATA, CLEAR} from '../actions/inputData'
 
 const defaultState = {
     query: [],
 };
 
-function userReducer(state = defaultState, action) {
+function inputDataReducer(state = defaultState, action) {
     switch (action.type) {
-        case ADD_NEW_USER:
+        case ADD_NEW_INPUT_DATA:
             let newQuery = state.query.concat([action.query]);
             return {
                 ...state,
@@ -22,4 +22,4 @@ function userReducer(state = defaultState, action) {
     }
 }
 
-export default userReducer
+export default inputDataReducer

@@ -1,15 +1,38 @@
 {
-  "title": "Book list",
-  "table": {
-    "type": "books",
-    "title": ["Book name", "Date"],
-    "data": {
-      "url": "/books.json"
-    }
+  "head": {
+    "title": "book"
   },
-  "button":{
-    "title": "Next page",
-    "url": "/films",
-    "type": "link"
+  "body": {
+    "style": {
+      "border": "none",
+      "background": "#646464"
+    },
+    "items": [
+      {
+        "type": "title",
+        "text": "Book list",
+        "style": {}
+      },
+      {
+        "type": "table",
+        "title": ["Book name", "Date"],
+        "data": {
+          "url": "/books.json",
+          "names": ["name", "date"]
+        }
+      },
+      {
+        "type": "button",
+        "name": "Next page",
+        "url": "/login",
+        "style":{
+          "padding": "20px",
+          "font-size": "1.5em",
+          "color": "green",
+          "position": "relative",
+          "left": "20px"
+        }
+      }
+    ]
   }
 }

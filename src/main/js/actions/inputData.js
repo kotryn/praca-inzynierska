@@ -1,7 +1,7 @@
-export const ADD_NEW_USER = 'ADD_NEW_USER'
-export function addNewUser(query) {
+export const ADD_NEW_INPUT_DATA = 'ADD_NEW_INPUT_DATA'
+export function addNewInputData(query) {
     return {
-        type: ADD_NEW_USER,
+        type: ADD_NEW_INPUT_DATA,
         query: query
     }
 }
