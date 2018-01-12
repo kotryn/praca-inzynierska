@@ -21,8 +21,7 @@
           "Age"
         ],
         "data": {
-          "url": "/users",
-          "names": ["name", "surname", "age"]
+          "url": "/users"
         }
       },
       {

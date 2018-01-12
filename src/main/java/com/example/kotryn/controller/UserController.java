@@ -4,6 +4,7 @@ import com.example.kotryn.entity.request.AddUserRequest;
 import com.example.kotryn.entity.User;
 import com.example.kotryn.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public void addNewWebUser(@RequestBody AddUserRequest addUserRequest) {
         User user = new User();
         user.setName(addUserRequest.getName());
@@ -33,6 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public void addNewListOfWebUsers(@RequestBody List<User> addUsersRequest) {
         for (User addUser : addUsersRequest) {

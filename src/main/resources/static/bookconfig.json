@@ -17,8 +17,7 @@
         "type": "table",
         "title": ["Book name", "Date"],
         "data": {
-          "url": "/books.json",
-          "names": ["name", "date"]
+          "url": "/books.json"
         }
       },
       {
