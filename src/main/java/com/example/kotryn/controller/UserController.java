@@ -1,6 +1,5 @@
 package com.example.kotryn.controller;
 
-import com.example.kotryn.entity.request.AddUserRequest;
 import com.example.kotryn.entity.User;
 import com.example.kotryn.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addNewWebUser(@RequestBody AddUserRequest addUserRequest) {
+    public void addNewWebUser(@RequestBody User addUserRequest) {
         User user = new User();
         user.setName(addUserRequest.getName());
         user.setSurname(addUserRequest.getSurname());
