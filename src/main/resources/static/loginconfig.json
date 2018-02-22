@@ -10,46 +10,19 @@
     "items": [
       {
         "type": "text",
-        "text": "Hello World!",
-        "style": {
-          "font-size": "20px",
-          "padding": "20px",
-          "color": "blue"
-        }
+        "text": "Hello World!"
       },
       {
-        "type": "line",
-        "style": {
-          "font-size": "20px",
-          "margin": "20px",
-          "width": "200px",
-          "background-color": "red",
-          "display": "block",
-          "height": "1px",
-          "border": "0",
-          "border-top": "1px solid red",
-          "padding": "0"
-        }
+        "type": "line"
       },
       {
         "type": "text",
-        "text": "How are you?",
-        "style": {
-          "font-size": "20px",
-          "padding": "20px"
-        }
+        "text": "How are you?"
       },
       {
         "type": "button",
         "name": "Next",
-        "url": "/",
-        "style":{
-          "padding": "20px",
-          "font-size": "1.5em",
-          "color": "green",
-          "position": "relative",
-          "left": "20px"
-        }
+        "url": "/"
       }
     ]
   }

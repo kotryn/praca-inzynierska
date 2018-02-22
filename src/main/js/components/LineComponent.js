@@ -1,7 +1,7 @@
 import React from 'react';
 
 function LineComponent ({config}){
-    return <hr style={config.style} />
+    return <hr />
 }
 
 export default LineComponent;

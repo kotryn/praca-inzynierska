@@ -1,8 +1,38 @@
+body {
+    border: none;
+    background: #fff;
+}
 th {
     padding: 5px 20px;
 }
 td {
     padding: 5px 20px;
+}
+button {
+    padding: 20px;
+    font-size: 1.5em;
+    color: green;
+    position: relative;
+    left: 20px;
+}
+
+a {
+    top: 30px;
+    font-size: 1.5em;
+    color: green;
+    position: relative;
+    left: 20px;
+}
+hr {
+    font-size: 20px;
+    margin: 20px;
+    width: 200px;
+    background-color: red;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid red;
+    padding: 0;
 }
 form.form-text {
     margin: 5px 20px;
@@ -42,10 +72,8 @@ tr.article{
     font-size: 1em;
     display: block;
 }
-/*a {
+.text {
+    font-size: 20px;
     padding: 20px;
-    font-size: 1.5em;
-    color: green;
-    position: absolute;
-    left: 20px;
-}*/
+    color: blue;
+}

@@ -3,15 +3,10 @@
     "title": "book"
   },
   "body": {
-    "style": {
-      "border": "none",
-      "background": "#646464"
-    },
     "items": [
       {
         "type": "title",
-        "text": "Book list",
-        "style": {}
+        "text": "Book list"
       },
       {
         "type": "table",
@@ -23,14 +18,7 @@
       {
         "type": "button",
         "name": "Next page",
-        "url": "/login",
-        "style":{
-          "padding": "20px",
-          "font-size": "1.5em",
-          "color": "green",
-          "position": "relative",
-          "left": "20px"
-        }
+        "url": "/login"
       }
     ]
   }

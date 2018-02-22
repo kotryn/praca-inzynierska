@@ -3,15 +3,10 @@
     "title": "book"
   },
   "body": {
-    "style": {
-      "border": "none",
-      "background": "#646464"
-    },
     "items": [
       {
         "type": "title",
-        "text": "Users list",
-        "style": {}
+        "text": "Users list"
       },
       {
         "type": "table",
@@ -29,60 +24,15 @@
         "data": [
           {
             "name": "Name",
-            "postName": "name",
-            "formStyle": {
-              "margin": "5px 20px",
-              "width": "320px"
-            },
-            "labelStyle": {
-              "display": "block",
-              "padding": "2%"
-            },
-            "nameStyle": {
-              "width": "30%",
-              "display": "inline-block"
-            },
-            "inputStyle": {
-              "width": "68%"
-            }
+            "postName": "name"
           },
           {
             "name": "Surname",
-            "postName": "surname",
-            "form-style": {
-              "margin": "5px 20px",
-              "width": "320px"
-            },
-            "label-style": {
-              "display": "block",
-              "padding": "2%"
-            },
-            "name-style": {
-              "width": "30%",
-              "display": "inline-block"
-            },
-            "input-style": {
-              "width": "68%"
-            }
+            "postName": "surname"
           },
           {
             "name": "Age",
-            "postName": "age",
-            "form-style": {
-              "margin": "5px 20px",
-              "width": "320px"
-            },
-            "label-style": {
-              "display": "block",
-              "padding": "2%"
-            },
-            "name-style": {
-              "width": "30%",
-              "display": "inline-block"
-            },
-            "input-style": {
-              "width": "68%"
-            }
+            "postName": "age"
           }
         ],
         "button": {
@@ -93,14 +43,7 @@
       {
         "type": "button",
         "name": "Next Page",
-        "url": "/book",
-        "style": {
-          "padding": "20px",
-          "font-size": "1.5em",
-          "color": "green",
-          "position": "relative",
-          "left": "20px"
-        }
+        "url": "/book"
       }
     ]
   }

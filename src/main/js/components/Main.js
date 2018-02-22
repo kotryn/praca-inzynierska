@@ -20,7 +20,11 @@ class Main extends React.Component{
 
     componentDidMount() {
         axios
-            .get(this.props.url)
+            .get(this.props.url, {
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
             .then(res => {
                 this.setState({config: res.data, loading: false});
             })
@@ -63,17 +67,7 @@ class Main extends React.Component{
             setComponentType(element);
         });
 
-        const Body = components.map((element, index) => (
-            <div key={index}>
-                {element}
-            </div>
-        ));
-
-        return (
-            <div>
-                {Body}
-            </div>
-        )
+        return <main>{components}</main>
     }
 }
 
