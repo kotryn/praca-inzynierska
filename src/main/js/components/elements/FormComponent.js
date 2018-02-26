@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
-import { addNewInputData, clear } from '../actions/inputData'
+import { addNewInputData, clear } from '../../actions/inputFormData'
 
 class FormComponent extends React.Component {
 
@@ -83,7 +83,7 @@ class FormComponent extends React.Component {
 }
 
 FormComponent = connect(
-    state =>  state.inputData,
+    state =>  state.inputFormData,
     { addNewInputData, clear }
 )(FormComponent)
 

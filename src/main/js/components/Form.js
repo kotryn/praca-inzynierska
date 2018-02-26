@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
-import { addNewUser, clear } from '../actions/inputData'
+import { addNewUser, clear } from '../actions/inputFormData'
 
 class Form extends React.Component {
 

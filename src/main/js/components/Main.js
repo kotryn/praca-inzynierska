@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
-import TextComponent from './TextComponent'
+import TextComponent from './elements/TextComponent'
 import LineComponent from './LineComponent'
-import ButtonComponent from './ButtonComponent'
-import TableComponent from './TableComponent'
-import TitleComponent from './TitleComponent'
-import FormComponent from './FormComponent'
+import ButtonComponent from './elements/ButtonComponent'
+import TableComponent from './elements/TableComponent'
+import TitleComponent from './elements/TitleComponent'
+import FormInputComponent from "./elements/FormInputComponent";
 
 class Main extends React.Component{
 
@@ -49,16 +49,16 @@ class Main extends React.Component{
                     components.push(<LineComponent config={element}/>);
                     break;
                 case "button":
-                    components.push(<ButtonComponent config={element}/>);
+                    components.push(<ButtonComponent name={element.name} url={element.url} fnc={null}/>);
                     break;
                 case "table":
                     components.push(<TableComponent config={element}/>);
                     break;
                 case "form":
-                    components.push(<FormComponent config={element}/>);
+                    components.push(<FormInputComponent config={element}/>);
                     break;
                 default:
-                    console.log('error');
+                    console.log('unknown type of component');
                     break;
             }
         }

@@ -16,6 +16,26 @@
         }
       },
       {
+        "type": "form",
+        "button":{
+          "name": "submit",
+          "requestUrl": "/user",
+          "pageUrl": "/login"
+        },
+        "input":{
+          "values":[
+            "name",
+            "surname",
+            "age"
+          ],
+          "names": [
+            "Name:",
+            "Surname:",
+            "Age:"
+          ]
+        }
+      },
+      {
         "type": "button",
         "name": "Next page",
         "url": "/login"

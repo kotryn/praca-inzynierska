@@ -68,7 +68,7 @@ class TableComponent extends React.Component{
 }
 
 TableComponent = connect(
-    state =>  state.inputData,
+    state =>  state.inputFormData,
     null
 )(TableComponent)
 
