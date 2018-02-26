@@ -24,38 +24,8 @@ Linux:
 `/.m2/repository/com/github/eirslett`
 
 ### TO DO:
-1. Uszczegółowić json
-2. Zmiana statusu odpowiedzi (201)
-3. Lista książek (jak users)
-4. Elementy na stronie w tej samej kolejności co w json
-    1. Jakiś *Main.js* który ustawia kolejność
-    2. *Type* - komponent, który w zależności od parametrów wyświetla na stronie. Ile różnych unikatowych *type* tyle komponentów do stworzenia.
-    3. Przykład (pseudokod):
-  ```
-  "items": [
-    {
-      "type": "text",
-      "text": "Hello World!",
-      "style": {
-        "font-size": "16px",
-        "padding": "20px"
-      }
-    },
-    {
-      "type": "space",
-       "height": "10px" 
-    },
-    {
-      "type": "button",
-      "name": "Next",
-      "url": "/next-page",
-      "style":{
-        "padding": "10px 20px",
-        "text-align": "center"
-      }    
-    },
-  ]
-  ```
+1. Przy przejściu na następną stronę -> POST. Jeżeli 201 -> idź dalej
+2. Pobierz dane. Jeżeli 200 -> wyświetl.
 
 ### How to post new user?
 In *Advanced REST client*:
