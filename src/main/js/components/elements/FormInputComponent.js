@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
 
@@ -10,6 +11,9 @@ class FormInputComponent extends React.Component{
 
     constructor(props) {
         super(props);
+        this.state = ({
+            redirect: false
+        })
         this.add = this.add.bind(this);
     }
 
@@ -27,9 +31,6 @@ class FormInputComponent extends React.Component{
         event.preventDefault();
         const {button, input} = this.props.config;
 
-        /*let output2 = {};
-        output2[values[0]] = this.props.value;*/
-
         let output = {};
         this.props.values.forEach((e, i)=>{
             output[input.values[i]] = e
@@ -39,7 +40,10 @@ class FormInputComponent extends React.Component{
         console.log( postData );
         axios.post(button.requestUrl, postData)
             .then(response => {
-                console.log(response);
+                if(response.status === 201){
+                    console.log(response);
+                    this.setState({redirect: true});
+                }
             })
             .catch(error => console.log(error))
     }
@@ -51,10 +55,14 @@ class FormInputComponent extends React.Component{
             <InputComponent  key={index} name={element} id={index} />
         ));
 
+        if (this.state.redirect) {
+            return <Redirect to={button.pageUrl} />
+        }
+
         return (
             <form className={'form-text'}>
                 {component}
-                <button onClick={this.add}>{button.name}</button>
+                <button onClick={this.add}>{button.title}</button>
             </form>
         );
     }
@@ -66,5 +74,3 @@ FormInputComponent = connect(
 )(FormInputComponent)
 
 export default FormInputComponent;
-
-//<ButtonComponent name={button.name} url={"/login"} fnc={this.add}/>

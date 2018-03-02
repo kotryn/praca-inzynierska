@@ -1,7 +1,4 @@
 {
-  "head": {
-    "title": "book"
-  },
   "body": {
     "items": [
       {
@@ -21,29 +18,23 @@
       },
       {
         "type": "form",
-        "data": [
-          {
-            "name": "Name",
-            "postName": "name"
-          },
-          {
-            "name": "Surname",
-            "postName": "surname"
-          },
-          {
-            "name": "Age",
-            "postName": "age"
-          }
-        ],
-        "button": {
+        "button":{
           "title": "Submit",
-          "url": "/user"
+          "requestUrl": "/user",
+          "pageUrl": "/books"
+        },
+        "input":{
+          "values":[
+            "name",
+            "surname",
+            "age"
+          ],
+          "names": [
+            "Name:",
+            "Surname:",
+            "Age:"
+          ]
         }
-      },
-      {
-        "type": "button",
-        "name": "Next Page",
-        "url": "/book"
       }
     ]
   }

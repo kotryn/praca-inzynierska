@@ -1,7 +1,4 @@
 {
-  "head": {
-    "title": "book"
-  },
   "body": {
     "items": [
       {
@@ -10,35 +7,31 @@
       },
       {
         "type": "table",
-        "title": ["Book name", "Date"],
+        "title": [
+          "Author",
+          "Title"
+        ],
         "data": {
-          "url": "/books.json"
+          "url": "/books"
         }
       },
       {
         "type": "form",
         "button":{
-          "name": "submit",
-          "requestUrl": "/user",
-          "pageUrl": "/login"
+          "title": "submit",
+          "requestUrl": "/book",
+          "pageUrl": "/students"
         },
         "input":{
           "values":[
-            "name",
-            "surname",
-            "age"
+            "authorName",
+            "bookName"
           ],
           "names": [
-            "Name:",
-            "Surname:",
-            "Age:"
+            "Author name:",
+            "Book title:"
           ]
         }
-      },
-      {
-        "type": "button",
-        "name": "Next page",
-        "url": "/login"
       }
     ]
   }

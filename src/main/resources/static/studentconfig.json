@@ -1,0 +1,45 @@
+{
+  "body": {
+    "style": {
+      "border": "none",
+      "background": "#646464"
+    },
+    "items": [
+      {
+        "type": "text",
+        "text": "Students List"
+      },
+      {
+        "type": "line"
+      },
+      {
+        "type": "table",
+        "title": [
+          "Name"
+        ],
+        "data": {
+          "url": "/students"
+        }
+      },
+      {
+        "type": "line"
+      },
+      {
+        "type": "form",
+        "button": {
+          "title": "submit",
+          "requestUrl": "/student",
+          "pageUrl": "/"
+        },
+        "input": {
+          "values": [
+            "name"
+          ],
+          "names": [
+            "Name:"
+          ]
+        }
+      }
+    ]
+  }
+}
