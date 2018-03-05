@@ -5,6 +5,9 @@ import com.example.kotryn.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Random;
 
 import java.util.List;
 
@@ -45,5 +48,36 @@ public class UserController {
             user.setAge(addUser.getAge());
             userRepository.save(user);
         }
+    }
+
+    /*@RequestMapping(value = "/data", method = RequestMethod.GET)
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }*/
+
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    RedirectView redirect()  {
+        RedirectView redirectView = new RedirectView();
+        /*if (userRepository.count() > 0) {
+            redirectView.setUrl("/students");
+        } else {
+            redirectView.setUrl("/lecture");
+        }*/
+        Random rand = new Random();
+        int  n = rand.nextInt(3) + 1;
+        switch(n){
+            case 1:
+                redirectView.setUrl("/bookconfig.json");
+                break;
+            case 2:
+                redirectView.setUrl("/usersconfig.json");
+                break;
+            case 3:
+                redirectView.setUrl("/studentconfig.json");
+                break;
+            default:
+                redirectView.setUrl("/bookconfig.json");
+        }
+        return redirectView;
     }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
 
+import { update, getPageDataInfo } from '../../actions/data'
 import { createInputData, clear } from "../../actions/inputData";
 import InputComponent from "./InputComponent"
 import ButtonComponent from './ButtonComponent'
@@ -41,8 +41,7 @@ class FormInputComponent extends React.Component{
         axios.post(button.requestUrl, postData)
             .then(response => {
                 if(response.status === 201){
-                    console.log(response);
-                    this.setState({redirect: true});
+                    this.props.getPageDataInfo();
                 }
             })
             .catch(error => console.log(error))
@@ -55,10 +54,6 @@ class FormInputComponent extends React.Component{
             <InputComponent  key={index} name={element} id={index} />
         ));
 
-        if (this.state.redirect) {
-            return <Redirect to={button.pageUrl} />
-        }
-
         return (
             <form className={'form-text'}>
                 {component}
@@ -70,7 +65,7 @@ class FormInputComponent extends React.Component{
 
 FormInputComponent = connect(
     state =>  state.inputData,
-    { createInputData, clear }
+    { createInputData, clear, update, getPageDataInfo }
 )(FormInputComponent)
 
 export default FormInputComponent;

@@ -3,10 +3,12 @@ import thunk from 'redux-thunk'
 
 import inputDataFormReducer from './reducers/inputFormData'
 import inputDataReducer from './reducers/inputData'
+import dataReducer from './reducers/data'
 
 const rootReducer = combineReducers({
     inputFormData: inputDataFormReducer,
-    inputData: inputDataReducer
+    inputData: inputDataReducer,
+    pageData: dataReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
