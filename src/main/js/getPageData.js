@@ -2,7 +2,7 @@ import axios from "axios/index";
 
 export function getPageData(){
     return axios
-        .get('/redirect', {
+        .get('/data', {
             headers: {
                 'Content-type': 'application/json'
             }

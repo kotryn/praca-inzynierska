@@ -55,7 +55,13 @@ public class UserController {
         return userRepository.findAll();
     }*/
 
-    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void prevPage() {
+
+    }
+
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
     RedirectView redirect()  {
         RedirectView redirectView = new RedirectView();
         /*if (userRepository.count() > 0) {
@@ -64,7 +70,7 @@ public class UserController {
             redirectView.setUrl("/lecture");
         }*/
         Random rand = new Random();
-        int  n = rand.nextInt(3) + 1;
+        int  n = rand.nextInt(4) + 1;
         switch(n){
             case 1:
                 redirectView.setUrl("/bookconfig.json");
@@ -76,7 +82,7 @@ public class UserController {
                 redirectView.setUrl("/studentconfig.json");
                 break;
             default:
-                redirectView.setUrl("/bookconfig.json");
+                redirectView.setUrl("/imageconfig.json");
         }
         return redirectView;
     }

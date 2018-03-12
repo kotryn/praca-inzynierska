@@ -7,7 +7,8 @@ import LineComponent from './elements/LineComponent'
 import ButtonComponent from './elements/ButtonComponent'
 import TableComponent from './elements/TableComponent'
 import TitleComponent from './elements/TitleComponent'
-import FormInputComponent from "./elements/FormInputComponent";
+import FormComponent from "./elements/FormComponent";
+import ImageComponent from "./elements/ImageComponent"
 
 class Main extends React.Component{
 
@@ -39,13 +40,16 @@ class Main extends React.Component{
                     components.push(<LineComponent config={element}/>);
                     break;
                 case "button":
-                    components.push(<ButtonComponent name={element.name} url={element.url} fnc={null}/>);
+                    components.push(<ButtonComponent config={element} />);
                     break;
                 case "table":
                     components.push(<TableComponent config={element}/>);
                     break;
                 case "form":
-                    components.push(<FormInputComponent config={element}/>);
+                    components.push(<FormComponent config={element}/>);
+                    break;
+                case "image":
+                    components.push(<ImageComponent config={element} />);
                     break;
                 default:
                     console.log('unknown type of component');

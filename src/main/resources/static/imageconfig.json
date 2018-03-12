@@ -1,0 +1,19 @@
+{
+  "body": {
+    "items": [
+      {
+        "type": "text",
+        "text": "Tulipany"
+      },
+      {
+        "type": "image",
+        "src": "/tulipan.jpg"
+      },
+      {
+        "type": "button",
+        "name": "click",
+        "url": "/"
+      }
+    ]
+  }
+}
