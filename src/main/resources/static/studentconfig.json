@@ -27,9 +27,8 @@
       {
         "type": "form",
         "button": {
-          "title": "submit",
-          "requestUrl": "/student",
-          "pageUrl": "/"
+          "title": "next",
+          "url": "/student"
         },
         "input": {
           "values": [
@@ -39,6 +38,11 @@
             "Name:"
           ]
         }
+      },
+      {
+        "type": "button-back",
+        "title": "back",
+        "url": "/"
       }
     ]
   }

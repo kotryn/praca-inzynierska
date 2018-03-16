@@ -18,9 +18,8 @@
       {
         "type": "form",
         "button":{
-          "title": "submit",
-          "requestUrl": "/book",
-          "pageUrl": "/students"
+          "title": "next",
+          "url": "/book"
         },
         "input":{
           "values":[
@@ -32,6 +31,11 @@
             "Book title:"
           ]
         }
+      },
+      {
+        "type": "button-back",
+        "title": "back",
+        "url": "/"
       }
     ]
   }

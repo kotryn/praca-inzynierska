@@ -19,9 +19,8 @@
       {
         "type": "form",
         "button":{
-          "title": "Submit",
-          "requestUrl": "/user",
-          "pageUrl": "/books"
+          "title": "next",
+          "url": "/user"
         },
         "input":{
           "values":[
@@ -35,6 +34,11 @@
             "Age:"
           ]
         }
+      },
+      {
+        "type": "button-back",
+        "title": "back",
+        "url": "/"
       }
     ]
   }

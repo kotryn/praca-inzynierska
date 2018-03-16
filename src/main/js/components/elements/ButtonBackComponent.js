@@ -25,12 +25,12 @@ class ButtonComponent extends React.Component{
     }
 
     render() {
-        const {name} = this.props.config;
+        const {title} = this.props.config;
 
         return (
-            <form className={'form-text'}>
-                <button onClick={this.next}>{name}</button>
-            </form>
+            <div className={'button'}>
+                <button onClick={this.next}>{title}</button>
+            </div>
         );
     }
 }

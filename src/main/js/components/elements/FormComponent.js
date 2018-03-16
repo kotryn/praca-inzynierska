@@ -5,7 +5,7 @@ import axios from 'axios';
 import { getPageDataInfo } from '../../actions/data'
 import { createInputData, clear } from "../../actions/inputData";
 import InputComponent from "./InputComponent"
-import ButtonComponent from './ButtonComponent'
+import ButtonComponent from './ButtonBackComponent'
 
 class FormComponent extends React.Component{
 
@@ -24,18 +24,21 @@ class FormComponent extends React.Component{
         this.props.clear();
     }
 
-    add(event) {
-        event.preventDefault();
-        const {button, input} = this.props.config;
-
+    createOutputData(){
+        const {input} = this.props.config;
         let output = {};
         this.props.values.forEach((e, i)=>{
             output[input.values[i]] = e
         });
 
-        let postData = JSON.parse(JSON.stringify(output));
-        console.log( postData );
-        axios.post(button.requestUrl, postData)
+        return JSON.parse(JSON.stringify(output));
+    }
+
+    add(event) {
+        event.preventDefault();
+        const {button} = this.props.config;
+
+        axios.post(button.url, this.createOutputData())
             .then(response => {
                 if(response.status === 201){
                     this.props.getPageDataInfo();

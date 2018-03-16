@@ -10,8 +10,8 @@
         "src": "/tulipan.jpg"
       },
       {
-        "type": "button",
-        "name": "click",
+        "type": "button-back",
+        "title": "back",
         "url": "/"
       }
     ]
