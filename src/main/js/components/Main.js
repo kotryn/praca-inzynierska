@@ -58,7 +58,7 @@ class Main extends React.Component{
         }
 
         config.body.items.map((element)=>{
-            setComponentType(element);
+            setComponentType(element.item);
         });
 
         return <main>{components}</main>

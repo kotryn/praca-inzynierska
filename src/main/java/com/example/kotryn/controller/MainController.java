@@ -15,6 +15,14 @@ public class MainController {
 
     }
 
+   /* private BodyService bodyService;
+
+    @JsonView(View.Summary.class)
+    @RequestMapping("/body")
+    public List<Body> getAllBodies() {
+        return bodyService.getAll();
+    }*/
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void prevPage() {
@@ -32,7 +40,7 @@ public class MainController {
         Random rand = new Random();
         int  n = rand.nextInt(4) + 1;
         switch(n){
-            case 1:
+            /*case 1:
                 redirectView.setUrl("/bookconfig.json");
                 break;
             case 2:
@@ -40,9 +48,9 @@ public class MainController {
                 break;
             case 3:
                 redirectView.setUrl("/studentconfig.json");
-                break;
+                break;*/
             default:
-                redirectView.setUrl("/imageconfig.json");
+                redirectView.setUrl("/page/0");
         }
         return redirectView;
     }
