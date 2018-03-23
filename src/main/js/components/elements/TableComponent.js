@@ -14,7 +14,7 @@ class TableComponent extends React.Component{
 
     componentDidMount() {
         axios
-            .get(this.props.config.data.url)
+            .get(this.props.config.url)
             .then(res => {
                 this.setState({
                     data: res.data,

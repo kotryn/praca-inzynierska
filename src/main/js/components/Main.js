@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {getPageDataInfo} from './../actions/data'
 import TextComponent from './elements/TextComponent'
 import LineComponent from './elements/LineComponent'
+import ButtonComponent from './elements/ButtonComponent'
 import ButtonBackComponent from './elements/ButtonBackComponent'
 import TableComponent from './elements/TableComponent'
 import TitleComponent from './elements/TitleComponent'
@@ -39,6 +40,9 @@ class Main extends React.Component{
                 case "line":
                     components.push(<LineComponent config={element}/>);
                     break;
+                case "button":
+                    components.push(<ButtonComponent config={element} />);
+                    break;
                 case "button-back":
                     components.push(<ButtonBackComponent config={element} />);
                     break;
@@ -61,7 +65,7 @@ class Main extends React.Component{
             setComponentType(element.item);
         });
 
-        return <main>{components}</main>
+        return <main className={'container'}>{components}</main>
     }
 }
 

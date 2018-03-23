@@ -2,13 +2,19 @@ body {
     border: none;
     background: #fff;
 }
+main {
+    text-align: center;
+}
+.my-button{
+    display: inline-block;
+}
 th {
     padding: 5px 20px;
 }
 td {
     padding: 5px 20px;
 }
-button {
+.my-button {
     padding: 5px 10px;
     font-size: 18px;
     color: green;

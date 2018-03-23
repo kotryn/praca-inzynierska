@@ -10,12 +10,7 @@ public class Page {
     @JsonView(View.Summary.class)
     private Body body;
 
-    public Page() {
-
-    }
-
     public Page(Long id, Body body) {
-        this();
         this.id = id;
         this.body = body;
     }

@@ -37,21 +37,22 @@ public class MainController {
         } else {
             redirectView.setUrl("/lecture");
         }*/
-        Random rand = new Random();
-        int  n = rand.nextInt(4) + 1;
-        switch(n){
-            /*case 1:
-                redirectView.setUrl("/bookconfig.json");
-                break;
-            case 2:
+        //Random rand = new Random();
+        //int  n = rand.nextInt(2) + 1;
+        //switch(n){
+            //case 1:
+               // redirectView.setUrl("/page/1");
+               // break;
+            /*case 2:
                 redirectView.setUrl("/usersconfig.json");
                 break;
             case 3:
-                redirectView.setUrl("/studentconfig.json");
+                redirectView.setUrl("/bookconfig.json");
                 break;*/
-            default:
-                redirectView.setUrl("/page/0");
-        }
+            //default:
+                //redirectView.setUrl("/page/0");
+        //}
+        redirectView.setUrl("/page/2");
         return redirectView;
     }
 }

@@ -1,6 +1,8 @@
 package com.example.kotryn.controller;
 
-import com.example.kotryn.entity.Job;
+import com.example.kotryn.entity.Job.NewJob;
+import com.example.kotryn.entity.Job.Job;
+import com.example.kotryn.entity.Job.OldJob;
 import com.example.kotryn.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,10 +14,27 @@ import java.util.List;
 public class JobController {
 
     private JobRepository jobRepository;
+    private Job job;
 
     @Autowired
     public JobController(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
+    }
+
+    @RequestMapping(value = "/newJob", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void beginNewJob() {
+        Job job = new Job(/*new NewJob()*/);
+        jobRepository.save(job);
+        job.connect();
+    }
+
+    @RequestMapping(value = "/oldJob", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void connectToJob() {
+        Job job = jobRepository.findOne(1L);
+        job.setState(new OldJob());
+        job.connect();
     }
 
     @RequestMapping(value = "/jobs", method = RequestMethod.GET)
@@ -25,7 +44,6 @@ public class JobController {
 
     @RequestMapping(value = "/job/{id}", method = RequestMethod.GET)
     public Job getJobById(@PathVariable long id) {
-        //System.out.println(jobRepository.getOne(id));
         return jobRepository.findOne(id);
     }
 
@@ -50,9 +68,4 @@ public class JobController {
             jobRepository.save(job);
         }
     }
-
-    /*@RequestMapping(value = "/data", method = RequestMethod.GET)
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
-    }*/
 }

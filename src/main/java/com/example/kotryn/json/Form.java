@@ -2,19 +2,20 @@ package com.example.kotryn.json;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-public class Button {
+public class Form {
+
     @JsonView(View.Summary.class)
     private String type;
 
     @JsonView(View.Summary.class)
-    private String url;
+    private Input input;
 
     @JsonView(View.Summary.class)
-    private String title;
+    private Button button;
 
-    public Button(String type, String url, String title) {
+    public Form(String type, Input input, Button button) {
         this.type = type;
-        this.url = url;
-        this.title = title;
+        this.input = input;
+        this.button = button;
     }
 }
