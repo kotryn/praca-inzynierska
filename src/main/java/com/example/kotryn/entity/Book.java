@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Book {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String authorName;
     private String bookName;
 
@@ -16,7 +16,7 @@ public class Book {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

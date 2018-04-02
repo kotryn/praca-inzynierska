@@ -1,5 +1,6 @@
 package com.example.kotryn.entity.Job;
 
+import com.example.kotryn.json.Page;
 import com.example.kotryn.states.JobState;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ public class Job {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String startDate;
     private String endDate;
 
@@ -21,7 +22,7 @@ public class Job {
     public Job(){
         this.startDate = "not set";
         this.endDate = "not set";
-        this.state = new NewJob(this);
+        this.state = new NewJob();
     }
 
     public Job(JobState state){
@@ -30,11 +31,11 @@ public class Job {
         this.state = state;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,19 +55,43 @@ public class Job {
         this.endDate = endDate;
     }
 
+    @Transient
     public void setState(JobState state) {
         this.state = state;
     }
 
+    @Transient
     public JobState getState() {
         return state;
     }
 
-    public void connect() {
+    @Transient
+    public String connect() {
         if (state != null) {
-            state.connect(this);
+            return state.connect(this);
         } else {
             System.out.println("status unknown");
+            return null;
+        }
+    }
+
+    @Transient
+    public Page getConnectPage(){
+        if (state != null) {
+            return state.getConnectPage(this.id);
+        } else {
+            System.out.println("status unknown");
+            return null;
+        }
+    }
+
+    @Transient
+    public Page getSupplyPeriodPage(){
+        if (state != null) {
+            return state.getSupplyPeriodPage(this);
+        } else {
+            System.out.println("status unknown");
+            return null;
         }
     }
 }

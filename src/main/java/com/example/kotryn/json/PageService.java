@@ -53,6 +53,9 @@ public class PageService {
 
         pages.add(loginPage);
 
+        /*New Job*/
+        //Text jobId = new Text("text", "Your job ID is: "+ 1);
+
 
     }
 

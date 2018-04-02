@@ -8,14 +8,14 @@ import javax.persistence.Id;
 public class Student {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String name;
 
     public Student() {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
