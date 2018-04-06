@@ -25,15 +25,15 @@ public class JobController {
     @RequestMapping(value = "/jobConnectPage/{id}", method = RequestMethod.GET)
     public Page getJobConnectPage(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        //return job.getConnectPage();
-        return null;
+        return job.getConnectPage();
+        //return null;
     }
 
     @RequestMapping(value = "/jobConfirmConnectPage/{id}", method = RequestMethod.GET)
     public Page getJobConfirmPage(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        //return job.getSupplyPeriodPage();
-        return null;
+        return job.getSupplyPeriodPage();
+        //return null;
     }
 
     @RequestMapping(value = "/newJob", method = RequestMethod.POST)
