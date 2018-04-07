@@ -3,21 +3,12 @@ package com.example.kotryn.entity.Job;
 import com.example.kotryn.json.*;
 
 public class NewJob implements JobState {
-    private Job job;
-
-    public NewJob(){
-    }
-
-    public NewJob(Job job){
-        this.job=job;
-    }
 
     public Page getJobId(){
         return null;
     }
 
     public Page getConnectPage(Long id) {
-        System.out.println("PAGE NEW : "+id);
 
         Text text = new Text("text", "New job id: "+ id);
         Button btnConnect = new Button("button", "/connectJob/"+id, "connect");

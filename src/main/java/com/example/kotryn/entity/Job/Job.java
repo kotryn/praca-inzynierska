@@ -14,22 +14,16 @@ public class Job {
     private String startDate;
     private String endDate;
     private String state;
-    private List<String> availableStocks;
-    private List<String> selectedStocks;
 
     public Job(){
         this.startDate = "not set";
         this.endDate = "not set";
-        this.availableStocks = null;
-        this.selectedStocks = null;
         this.state = "new";
     }
 
     public Job(String state){
         this.startDate = "not set";
         this.endDate = "not set";
-        this.availableStocks = null;
-        this.selectedStocks = null;
         this.state = state;
     }
 
@@ -64,21 +58,5 @@ public class Job {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public List<String> getAvailableStocks() {
-        return availableStocks;
-    }
-
-    public void setAvailableStocks(List<String> availableStocks) {
-        this.availableStocks = availableStocks;
-    }
-
-    public List<String> getSelectedStocks() {
-        return selectedStocks;
-    }
-
-    public void setSelectedStocks(List<String> selectedStocks) {
-        this.selectedStocks = selectedStocks;
     }
 }

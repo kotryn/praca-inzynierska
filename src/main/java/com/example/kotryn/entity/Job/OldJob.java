@@ -4,15 +4,6 @@ import com.example.kotryn.json.*;
 
 public class OldJob implements JobState{
 
-    private Job job;
-
-    public OldJob(){
-    }
-
-    public OldJob(Job job){
-        this.job=job;
-    }
-
     public Page getJobId() {
         Button btnForm = new Button("button", "/setJob", "submit");
         Input inputForm = new Input(new String[]{"id"}, new String[]{"Supply job ID:"});
