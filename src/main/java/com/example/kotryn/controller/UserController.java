@@ -38,7 +38,6 @@ public class UserController {
     @ResponseBody
     public void addNewListOfWebUsers(@RequestBody List<User> addUsersRequest) {
         for (User addUser : addUsersRequest) {
-            System.out.println(addUsersRequest);
             User user = new User();
             user.setName(addUser.getName());
             user.setSurname(addUser.getSurname());

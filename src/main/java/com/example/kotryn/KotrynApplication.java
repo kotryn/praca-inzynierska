@@ -14,11 +14,11 @@ public class KotrynApplication {
 		SpringApplication.run(KotrynApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public Jackson2ObjectMapperBuilder jacksonBuilder() {
 		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
 		builder.indentOutput(true);
 		builder.dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
 		return builder;
-	}
+	}*/
 }

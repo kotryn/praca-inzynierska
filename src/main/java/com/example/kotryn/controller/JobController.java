@@ -1,5 +1,6 @@
 package com.example.kotryn.controller;
 
+import com.example.kotryn.entity.Job.JobFunction;
 import com.example.kotryn.entity.Job.NewJob;
 import com.example.kotryn.entity.Job.Job;
 import com.example.kotryn.entity.Job.OldJob;
@@ -16,55 +17,78 @@ public class JobController {
 
     private JobRepository jobRepository;
     protected String url = null;
+    private JobFunction jobFunction = new JobFunction();
 
     @Autowired
     public JobController(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
     }
 
-    @RequestMapping(value = "/jobConnectPage/{id}", method = RequestMethod.GET)
-    public Page getJobConnectPage(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        return job.getConnectPage();
-        //return null;
-    }
-
-    @RequestMapping(value = "/jobConfirmConnectPage/{id}", method = RequestMethod.GET)
-    public Page getJobConfirmPage(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        return job.getSupplyPeriodPage();
-        //return null;
-    }
-
     @RequestMapping(value = "/newJob", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void beginNewJob() {
-        Job job = new Job(/*new NewJob()*/);
+        Job job = new Job();
         jobRepository.save(job);
-        //job.connect(); connectNewJob
         this.url = "/jobConnectPage/"+job.getId();
-    }
-
-    @RequestMapping(value = "/connectNewJob/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void connectNewJob(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        //job.connect(); connectNewJob
-        this.url = "/jobConfirmConnectPage/"+job.getId();
     }
 
     @RequestMapping(value = "/oldJob", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void connectToJob() {
-        Job job = jobRepository.findOne(1L);
-        //job.setState(new OldJob());
-        //this.url = job.connect();
+        jobFunction.setState("old");
+        this.url = "/getJobId";
+    }
+
+    @RequestMapping(value = "/getJobId", method = RequestMethod.GET)
+    public Page getJobConnectPage() {
+        return jobFunction.getJobId();
+    }
+
+    @RequestMapping(value = "/setJob", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void setJob(@RequestBody Job requestJob) {
+        Job job = jobRepository.findOne(requestJob.getId());
+        job.setState("old");
+        jobRepository.save(job);
         this.url = "/jobConnectPage/"+job.getId();
+    }
+
+    @RequestMapping(value = "/jobConnectPage/{id}", method = RequestMethod.GET)
+    public Page getJobConnectPage(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        jobFunction.setJob(job);
+        jobFunction.setState(job.getState());
+        jobRepository.save(job);
+        return jobFunction.getConnectPage(job);
+    }
+
+    @RequestMapping(value = "/jobConfirmConnectPage/{id}", method = RequestMethod.GET)
+    public Page getJobConfirmPage(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        jobFunction.setJob(job);
+        jobFunction.setState(job.getState());
+        return jobFunction.getSupplyPeriodPage(job);
+    }
+
+    @RequestMapping(value = "/connectJob/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void connectJob(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        this.url = "/jobConfirmConnectPage/"+job.getId();
     }
 
     @RequestMapping(value = "/jobs", method = RequestMethod.GET)
     public List<Job> findAllJob() {
         return jobRepository.findAll();
+    }
+
+    @RequestMapping(value = "/job/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void modifyJob(@PathVariable Long id, @RequestBody Job addJobRequest) {
+        Job job = jobRepository.findOne(id);
+        job.setStartDate(addJobRequest.getStartDate());
+        job.setEndDate(addJobRequest.getEndDate());
+        jobRepository.save(job);
     }
 
     @RequestMapping(value = "/job/{id}", method = RequestMethod.GET)
@@ -86,7 +110,6 @@ public class JobController {
     @ResponseBody
     public void addNewListOfJobs(@RequestBody List<Job> addJobRequest) {
         for (Job addJob : addJobRequest) {
-            System.out.println(addJobRequest);
             Job job = new Job();
             job.setStartDate(addJob.getStartDate());
             job.setEndDate(addJob.getEndDate());
@@ -94,13 +117,4 @@ public class JobController {
         }
     }
 
-   /* @RequestMapping(value = "/data", method = RequestMethod.GET)
-    private RedirectView redirect()  {
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/page/2");
-        if(this.url != null){
-            redirectView.setUrl(this.url);
-        }
-        return redirectView;
-    }*/
 }

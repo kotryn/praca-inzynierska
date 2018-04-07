@@ -1,9 +1,7 @@
 package com.example.kotryn.entity.Job;
 
-import com.example.kotryn.json.Page;
-import com.example.kotryn.states.JobState;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 //@Table
@@ -15,19 +13,23 @@ public class Job {
     private Long id;
     private String startDate;
     private String endDate;
-
-    @Transient
-    private JobState state;
+    private String state;
+    private List<String> availableStocks;
+    private List<String> selectedStocks;
 
     public Job(){
         this.startDate = "not set";
         this.endDate = "not set";
-        this.state = new NewJob();
+        this.availableStocks = null;
+        this.selectedStocks = null;
+        this.state = "new";
     }
 
-    public Job(JobState state){
+    public Job(String state){
         this.startDate = "not set";
         this.endDate = "not set";
+        this.availableStocks = null;
+        this.selectedStocks = null;
         this.state = state;
     }
 
@@ -55,43 +57,28 @@ public class Job {
         this.endDate = endDate;
     }
 
-    @Transient
-    public void setState(JobState state) {
-        this.state = state;
-    }
 
-    @Transient
-    public JobState getState() {
+    public String getState() {
         return state;
     }
 
-    @Transient
-    public String connect() {
-        if (state != null) {
-            return state.connect(this);
-        } else {
-            System.out.println("status unknown");
-            return null;
-        }
+    public void setState(String state) {
+        this.state = state;
     }
 
-    @Transient
-    public Page getConnectPage(){
-        if (state != null) {
-            return state.getConnectPage(this.id);
-        } else {
-            System.out.println("status unknown");
-            return null;
-        }
+    public List<String> getAvailableStocks() {
+        return availableStocks;
     }
 
-    @Transient
-    public Page getSupplyPeriodPage(){
-        if (state != null) {
-            return state.getSupplyPeriodPage(this);
-        } else {
-            System.out.println("status unknown");
-            return null;
-        }
+    public void setAvailableStocks(List<String> availableStocks) {
+        this.availableStocks = availableStocks;
+    }
+
+    public List<String> getSelectedStocks() {
+        return selectedStocks;
+    }
+
+    public void setSelectedStocks(List<String> selectedStocks) {
+        this.selectedStocks = selectedStocks;
     }
 }
