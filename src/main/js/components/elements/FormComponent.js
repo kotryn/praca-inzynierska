@@ -57,7 +57,7 @@ class FormComponent extends React.Component{
         return (
             <form className={'form-text'}>
                 {component}
-                <button onClick={this.add}>{button.title}</button>
+                <button className={'btn btn-success'} onClick={this.add}>{button.title}</button>
             </form>
         );
     }

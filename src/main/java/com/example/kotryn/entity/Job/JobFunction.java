@@ -66,8 +66,7 @@ public class JobFunction {
         }
     }
 
-    public Page getSupplyPeriodPage(Job job) {
-        List<Page> pages = new ArrayList<>();
+    public Page getSupplyPeriodPage() {
 
         Text text = new Text("text", "Supply the period of analysis");
 
@@ -78,19 +77,35 @@ public class JobFunction {
         Input inputForm = new Input(new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
         Form form = new Form("form", inputForm, btnForm);
 
-        Button btnNext = new Button("button", "/", "back");
         Button btnBack = new Button("button-back", "/", "back");
+        Button btnNext= new Button("button", "/getJobParameters/"+job.getId(), "Next");
 
         Item<Text> item = new Item<>(text);
         Item<Text> item2 = new Item<>(text1);
         Item<Text> item3 = new Item<>(text2);
         Item<Form> item4 = new Item<>(form);
         Item<Button> item5 = new Item<>(btnBack);
+        Item<Button> item6 = new Item<>(btnNext);
 
-        Body body = new Body(item, item2, item3, item4, item5);
-        Page page = new Page(job.getId(), body);
-        pages.add(page);
-        return pages.get(0);
+        Body body = new Body(item, item2, item3, item4, item5, item6);
+
+        return new Page(job.getId(), body);
+    }
+
+    public Page getParametersPage() {
+
+        Button back = new Button("button-back", "/", "back");
+        Button delete = new Button("button-delete", "/job/"+job.getId(), "Delete job");
+        //Button next = new Button("button", "/getJobParameters/"+job.getId(), "Next");
+
+
+        Item<Button> item = new Item<>(back);
+        Item<Button> item2 = new Item<>(delete);
+        //Item<Button> item3 = new Item<>(next);
+
+        Body body = new Body(item, item2);
+
+        return  new Page(job.getId(), body);
     }
 
 }

@@ -9,16 +9,17 @@ public class OldJob implements JobState{
         Input inputForm = new Input(new String[]{"id"}, new String[]{"Supply job ID:"});
         Form form = new Form("form", inputForm, btnForm);
 
-        Item<Form> item = new Item<>(form);
+        Button btnBack = new Button("button-back", "/", "back");
 
-        Body body = new Body(item);
+        Item<Form> item = new Item<>(form);
+        Item<Button> item2 = new Item<>(btnBack);
+
+        Body body = new Body(item, item2);
 
         return new Page(1L, body);
     }
 
     public Page getConnectPage(Long id) {
-        System.out.println("PAGE OLD : "+id);
-
         Text text = new Text("text", "Job id: "+ id);
         Button btnConnect = new Button("button", "/connectJob/"+id, "connect");
         Button btnBack = new Button("button-back", "/", "back");

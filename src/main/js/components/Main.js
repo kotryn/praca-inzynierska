@@ -6,6 +6,7 @@ import TextComponent from './elements/TextComponent'
 import LineComponent from './elements/LineComponent'
 import ButtonComponent from './elements/ButtonComponent'
 import ButtonBackComponent from './elements/ButtonBackComponent'
+import ButtonDeleteComponent from './elements/ButtonDeleteComponent'
 import TableComponent from './elements/TableComponent'
 import TitleComponent from './elements/TitleComponent'
 import FormComponent from "./elements/FormComponent";
@@ -45,6 +46,9 @@ class Main extends React.Component{
                     break;
                 case "button-back":
                     components.push(<ButtonBackComponent config={element} />);
+                    break;
+                case "button-delete":
+                    components.push(<ButtonDeleteComponent config={element} />);
                     break;
                 case "table":
                     components.push(<TableComponent config={element}/>);

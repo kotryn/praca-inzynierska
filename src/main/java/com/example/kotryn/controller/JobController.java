@@ -8,6 +8,7 @@ import com.example.kotryn.json.Page;
 import com.example.kotryn.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public class JobController {
         Job job = jobRepository.findOne(id);
         jobFunction.setJob(job);
         jobFunction.setState(job.getState());
-        return jobFunction.getSupplyPeriodPage(job);
+        return jobFunction.getSupplyPeriodPage();
     }
 
     @RequestMapping(value = "/connectJob/{id}", method = RequestMethod.POST)
@@ -75,6 +76,21 @@ public class JobController {
     public void connectJob(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         this.url = "/jobConfirmConnectPage/"+job.getId();
+    }
+
+    @RequestMapping(value = "/getJobParameters/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void getJobParameters(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        this.url = "/jobParametersPage/"+job.getId();
+    }
+
+    @RequestMapping(value = "/jobParametersPage/{id}", method = RequestMethod.GET)
+    public Page getJobParametersPage(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        jobFunction.setJob(job);
+        jobFunction.setState(job.getState());
+        return jobFunction.getParametersPage();
     }
 
     @RequestMapping(value = "/jobs", method = RequestMethod.GET)
@@ -115,6 +131,13 @@ public class JobController {
             job.setEndDate(addJob.getEndDate());
             jobRepository.save(job);
         }
+    }
+
+    @RequestMapping(value="job/{id}", method=RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteJob(@PathVariable Long id) {
+        jobRepository.delete(id);
+        this.url = "/page/2";
     }
 
 }
