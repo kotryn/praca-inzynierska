@@ -2,9 +2,6 @@ package com.example.kotryn.entity.Job;
 
 import com.example.kotryn.json.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class OldJob implements JobState{
 
     private Job job;

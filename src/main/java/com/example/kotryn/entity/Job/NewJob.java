@@ -30,8 +30,4 @@ public class NewJob implements JobState {
         return new Page(id, body);
     }
 
-   /* public Page connect() {
-        return null;
-    }*/
-
 }

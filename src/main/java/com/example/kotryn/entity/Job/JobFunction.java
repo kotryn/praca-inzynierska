@@ -50,15 +50,6 @@ public class JobFunction {
         return state;
     }
 
-    /*public Page connect() {
-        if (state != null) {
-            return state.connect();
-        } else {
-            System.out.println("status unknown");
-            return null;
-        }
-    }*/
-
     public Page getConnectPage(Job job){
         if (state != null) {
             return state.getConnectPage(job.getId());
