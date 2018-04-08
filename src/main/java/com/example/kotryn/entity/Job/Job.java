@@ -4,15 +4,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Table
-//(name = "app_user")
 public class Job {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column
     private String startDate;
+
+    @Column
     private String endDate;
+
     private String state;
     @ElementCollection
     private List<String> availableStocks;

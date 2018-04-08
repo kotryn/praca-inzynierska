@@ -1,9 +1,7 @@
 package com.example.kotryn.controller;
 
 import com.example.kotryn.entity.Job.JobFunction;
-import com.example.kotryn.entity.Job.NewJob;
 import com.example.kotryn.entity.Job.Job;
-import com.example.kotryn.entity.Job.OldJob;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import java.util.List;
 public class JobController {
 
     private JobRepository jobRepository;
+
     protected String url = null;
     private JobFunction jobFunction = new JobFunction();
 
@@ -49,6 +48,7 @@ public class JobController {
     @ResponseStatus(HttpStatus.CREATED)
     public void setJob(@RequestBody Job requestJob) {
         Job job = jobRepository.findOne(requestJob.getId());
+        System.out.println(job);
         job.setState("old");
         jobRepository.save(job);
         this.url = "/jobConnectPage/"+job.getId();
@@ -66,6 +66,11 @@ public class JobController {
     @RequestMapping(value = "/jobConfirmConnectPage/{id}", method = RequestMethod.GET)
     public Page getJobConfirmPage(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
+        if(job == null){
+            new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+            return null;
+            //return jobFunction.getSupplyPeriodPage();
+        }
         jobFunction.setJob(job);
         jobFunction.setState(job.getState());
         return jobFunction.getSupplyPeriodPage();
