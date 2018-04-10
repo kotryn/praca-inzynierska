@@ -2,9 +2,9 @@ package com.example.kotryn.controller;
 
 import com.example.kotryn.entity.Job.JobFunction;
 import com.example.kotryn.entity.Job.Job;
+import com.example.kotryn.entity.Job.State;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.repository.JobRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +16,35 @@ public class JobController {
 
     private JobRepository jobRepository;
 
-    protected String url = null;
+    private String url = null;
+
     private JobFunction jobFunction = new JobFunction();
 
-    @Autowired
     public JobController(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
+    }
+
+    protected void setUrl(String url){
+        this.url = url;
+    }
+
+    protected String getUrl(){
+        return url;
     }
 
     @RequestMapping(value = "/newJob", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void beginNewJob() {
         Job job = new Job();
-        jobRepository.save(job);
+        job = jobRepository.save(job);
+        jobFunction.setState(State.NEW);
         this.url = "/jobConnectPage/"+job.getId();
     }
 
     @RequestMapping(value = "/oldJob", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void connectToJob() {
-        jobFunction.setState("old");
+        jobFunction.setState(State.OLD);
         this.url = "/getJobId";
     }
 
@@ -48,9 +57,8 @@ public class JobController {
     @ResponseStatus(HttpStatus.CREATED)
     public void setJob(@RequestBody Job requestJob) {
         Job job = jobRepository.findOne(requestJob.getId());
-        System.out.println(job);
-        job.setState("old");
-        jobRepository.save(job);
+        //job.setState(jobFunction.getEnumState());
+        job = jobRepository.save(job);
         this.url = "/jobConnectPage/"+job.getId();
     }
 
@@ -58,11 +66,12 @@ public class JobController {
     public Page getJobConnectPage(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         jobFunction.setJob(job);
-        jobFunction.setState(job.getState());
-        jobRepository.save(job);
+        //jobFunction.setState(job.getState());
+        job = jobRepository.save(job);
         return jobFunction.getConnectPage(job);
     }
 
+    //TODO SPYTAC!!!
     @RequestMapping(value = "/jobConfirmConnectPage/{id}", method = RequestMethod.GET)
     public Page getJobConfirmPage(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
@@ -72,7 +81,7 @@ public class JobController {
             //return jobFunction.getSupplyPeriodPage();
         }
         jobFunction.setJob(job);
-        jobFunction.setState(job.getState());
+        //jobFunction.setState(job.getState());
         return jobFunction.getSupplyPeriodPage();
     }
 
@@ -94,8 +103,25 @@ public class JobController {
     public Page getJobParametersPage(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         jobFunction.setJob(job);
-        jobFunction.setState(job.getState());
+        //jobFunction.setState(job.getState());
         return jobFunction.getParametersPage();
+    }
+
+    @RequestMapping(value = "/searchJobInfo/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void searchJobInfo(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        long n = 1;
+        //Thread.sleep(100);
+        this.url = "/searchJobInfoPage/"+job.getId();
+    }
+
+    @RequestMapping(value = "/searchJobInfoPage/{id}", method = RequestMethod.GET)
+    public Page searchJobInfoPage(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        jobFunction.setJob(job);
+        //jobFunction.setState(job.getState());
+        return jobFunction.searchJobInfoPage();
     }
 
     @RequestMapping(value = "/jobs", method = RequestMethod.GET)
@@ -142,7 +168,7 @@ public class JobController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteJob(@PathVariable Long id) {
         jobRepository.delete(id);
-        this.url = "/page/2";
+        this.url = "/pages/2";
     }
 
 }

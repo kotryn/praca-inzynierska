@@ -9,14 +9,9 @@ public class Job {
     @Id
     @GeneratedValue
     private Long id;
-
-    @Column
     private String startDate;
-
-    @Column
     private String endDate;
 
-    private String state;
     @ElementCollection
     private List<String> availableStocks;
     @ElementCollection
@@ -27,15 +22,6 @@ public class Job {
         this.endDate = "not set";
         this.availableStocks = null;
         this.selectedStocks = null;
-        this.state = "new";
-    }
-
-    public Job(String state){
-        this.startDate = "not set";
-        this.endDate = "not set";
-        this.availableStocks = null;
-        this.selectedStocks = null;
-        this.state = state;
     }
 
     public Long getId() {
@@ -60,15 +46,6 @@ public class Job {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }
-
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public List<String> getAvailableStocks() {

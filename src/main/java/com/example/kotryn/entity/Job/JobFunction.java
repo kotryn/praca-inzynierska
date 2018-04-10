@@ -2,9 +2,6 @@ package com.example.kotryn.entity.Job;
 
 import com.example.kotryn.json.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class JobFunction {
 
     private Job job;
@@ -15,16 +12,6 @@ public class JobFunction {
         this.state = null;
     }
 
-    public JobFunction(Job job){
-        this.job = job;
-        this.state = new NewJob();
-    }
-
-    public JobFunction(String state, Job job){
-        this.job = job;
-        this.setState(state);
-    }
-
     public void setJob(Job job) {
         this.job = job;
     }
@@ -33,16 +20,13 @@ public class JobFunction {
         return job;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         switch(state){
-            case "new":
+            case NEW:
                 this.state = new NewJob();
                 break;
-            case "old":
+            case OLD:
                 this.state = new OldJob();
-                break;
-            default:
-                this.state = null;
         }
     }
 
@@ -89,23 +73,40 @@ public class JobFunction {
 
         Body body = new Body(item, item2, item3, item4, item5, item6);
 
-        return new Page(job.getId(), body);
+        return new Page(body);
     }
 
     public Page getParametersPage() {
 
         Button back = new Button("button-back", "/", "back");
         Button delete = new Button("button-delete", "/job/"+job.getId(), "Delete job");
-        //Button next = new Button("button", "/getJobParameters/"+job.getId(), "Next");
+        Button next = new Button("button", "/searchJobInfo/"+job.getId(), "Next");
 
 
         Item<Button> item = new Item<>(back);
         Item<Button> item2 = new Item<>(delete);
-        //Item<Button> item3 = new Item<>(next);
+        Item<Button> item3 = new Item<>(next);
 
-        Body body = new Body(item, item2);
+        Body body = new Body(item, item2, item3);
 
-        return  new Page(job.getId(), body);
+        return new Page(body);
+    }
+
+    public Page searchJobInfoPage() {
+
+        Text text = new Text("text", "Searching for stocks");
+
+        Button back = new Button("button-back", "/", "back");
+        Button refresh = new Button("button", "/searchJobInfo/"+job.getId(), "Refresh");
+
+
+        Item<Button> item = new Item<>(back);
+        Item<Button> item2 = new Item<>(refresh);
+        Item<Text> item3 = new Item<>(text);
+
+        Body body = new Body(item3, item, item2);
+
+        return new Page(body);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.kotryn.entity.Job;
 
+import com.example.kotryn.entity.Job.JobState;
 import com.example.kotryn.json.*;
 
 public class NewJob implements JobState {
@@ -18,7 +19,7 @@ public class NewJob implements JobState {
         Item<Button> item3 = new Item<>(btnBack);
         Body body = new Body(item, item2, item3);
 
-        return new Page(id, body);
+        return new Page(body);
     }
 
 }

@@ -20,7 +20,7 @@ public class PageService {
         Item<Button> btnBackI = new Item<>(btnBack);
 
         Body graph = new Body(item, item6, btnBackI);
-        Page graphPage = new Page(0L, graph);
+        Page graphPage = new Page(graph);
 
         pages.add(graphPage);
 
@@ -37,7 +37,7 @@ public class PageService {
         Item<Form> formItem1 = new Item<>(form);
         Item<Table> formTable = new Item<>(tableForm);
         Body formBody = new Body(formTitle, formTable, formItem1, btnBackI);
-        Page formPage = new Page(1L, formBody);
+        Page formPage = new Page(formBody);
 
         pages.add(formPage);
 
@@ -49,7 +49,7 @@ public class PageService {
         Item<Button> connectJobI = new Item<>(connectJob);
 
         Body loginBody = new Body(newJobI, connectJobI);
-        Page loginPage = new Page(2L, loginBody);
+        Page loginPage = new Page(loginBody);
 
         pages.add(loginPage);
 
@@ -68,7 +68,4 @@ public class PageService {
         return pages;
     }
 
-    public Page getPage(Long id) {
-        return this.pages.stream().filter((m) -> m.getId() == id).findFirst().get();
-    }
 }
