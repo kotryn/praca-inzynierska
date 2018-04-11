@@ -20,7 +20,7 @@ public class WebPageBeginJob extends WebPageBase {
         switchToJobsGET(view.nextInt(), jobId, controller);*/
 
         Text text = new Text("text", "New job id: "+ jobId);
-        Button btnConnect = new Button("button", "/connectJob/"+jobId, "connect");
+        Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         Button btnBack = new Button("button-back", "/", "back");
         Item<Text> item = new Item<>(text);
         Item<Button> item2 = new Item<>(btnConnect);

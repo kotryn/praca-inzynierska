@@ -18,8 +18,9 @@ public class StateSearchingForStocksFailed extends StateBase implements IState {
     }
 
     @Override
-    public void redirectToWebPage(Context context, MainController controller) {
+    public String redirectToWebPage(Context context, MainController controller) {
         controller.searchingForStocksFailedGET(context.getJobId());
+        return null;
     }
 
     private void saveEmptySetOfStocks(WebDataSearchingForStocksFailed input) {

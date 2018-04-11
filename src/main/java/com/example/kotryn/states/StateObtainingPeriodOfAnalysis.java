@@ -21,8 +21,9 @@ public class StateObtainingPeriodOfAnalysis extends StateBase implements IState 
     }
 
     @Override
-    public void redirectToWebPage(Context context, MainController controller) {
-        controller.obtainingPeriodOfAnalysisGET(context.getJobId());
+    public String redirectToWebPage(Context context, MainController controller) {
+        //controller.obtainingPeriodOfAnalysisGET(context.getJobId());
+        return "period_of_analysis/"+context.getJobId();
     }
 
     private void savePeriodOfAnalysis(WebDataObtainingPeriodOfAnalysis input) {

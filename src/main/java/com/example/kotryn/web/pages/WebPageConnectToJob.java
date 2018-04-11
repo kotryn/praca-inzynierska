@@ -18,7 +18,7 @@ public class WebPageConnectToJob extends WebPageBase {
         view.println("1. Submit (link)");
         view.println("2. Exit");
         switchToJobsGET(view.nextInt(), jobId, controller);*/
-        Button btnForm = new Button("button", "/setJob", "submit");
+        Button btnForm = new Button("button", "/jobsPOST", "submit");
         Input inputForm = new Input(new String[]{"id"}, new String[]{"Supply job ID:"});
         Form form = new Form("form", inputForm, btnForm);
 

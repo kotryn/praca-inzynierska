@@ -18,8 +18,10 @@ public class StateSearchingForStocksInProgress extends StateBase implements ISta
     }
 
     @Override
-    public void redirectToWebPage(Context context, MainController controller) {
+    public String redirectToWebPage(Context context, MainController controller) {
         controller.searchingForStocksInProgressGET(context.getJobId());
+        //return "period_of_analysis/"+context.getJobId();
+        return null;
     }
 
     private void ifSearchingDoneMoveToNextStateAndSave(Context context) {

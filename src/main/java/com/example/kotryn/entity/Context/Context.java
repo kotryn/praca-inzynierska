@@ -18,6 +18,11 @@ public class Context {
     private final long jobId;
     private State state;
 
+    public Context() {
+        this.jobId = 0;
+        this.state = State.UNKNOWN;
+    }
+
     public Context(long jobId) {
         this.jobId = jobId;
         this.state = State.UNKNOWN;
@@ -35,9 +40,9 @@ public class Context {
         return state;
     }
 
-    public void redirectToWebPage(MainController controller) {
+    public String redirectToWebPage(MainController controller) {
         IState stateObject = StateFactory.getState(state);
-        stateObject.redirectToWebPage(this, controller);
+        return stateObject.redirectToWebPage(this, controller);
     }
 
     /*public void handle(IWebData webData) {

@@ -18,8 +18,9 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
     }
 
     @Override
-    public void redirectToWebPage(Context context, MainController controller) {
+    public String redirectToWebPage(Context context, MainController controller) {
         controller.searchingForStocksCompletedGET(context.getJobId());
+        return null;
     }
 
     private void saveSelectedStocks(WebDataSearchingForStocksCompleted input) {
