@@ -166,6 +166,18 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void jobsDELETE(@PathVariable Long id) {
+        jobRepository.delete(id);
+        jobRepository.flush();
+        contextRepository.delete(id);
+        contextRepository.flush();
+        processDescriptorRepository.delete(id);
+        processDescriptorRepository.flush();
+        this.url = "/prompt_user";
+    }
+
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
         WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, this, jobRepository, processDescriptorRepository);

@@ -4,6 +4,7 @@ body {
 }
 main {
     text-align: center;
+    margin-top: 50px;
 }
 .my-button{
     display: inline-block;
@@ -42,6 +43,7 @@ hr {
 form.form-text {
     width: 100%;
     text-align: left;
+    margin-top: 40px;
 }
 form.form-text label {
     display: block;
@@ -78,7 +80,6 @@ tr.article{
     display: block;
 }
 .text {
-    font-size: 20px;
-    padding: 20px;
-    color: blue;
+    font-size: 18px;
+    text-align: left;
 }
