@@ -1,6 +1,6 @@
 package com.example.kotryn.web.data;
 
 public interface IWebData {
-    long getJobId();
+    Long getJobId();
     Action getAction();
 }

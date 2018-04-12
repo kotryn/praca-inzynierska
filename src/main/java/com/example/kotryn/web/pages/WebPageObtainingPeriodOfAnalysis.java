@@ -12,10 +12,10 @@ import static java.lang.System.exit;
 public class WebPageObtainingPeriodOfAnalysis {
 
     private final JobRepository jobRepository;
-    private final long jobId;
+    private final Long jobId;
     private final MainController controller;
 
-    public WebPageObtainingPeriodOfAnalysis(long jobId, MainController controller, JobRepository jobRepository) {
+    public WebPageObtainingPeriodOfAnalysis(Long jobId, MainController controller, JobRepository jobRepository) {
         this.jobRepository = jobRepository;
         this.jobId = jobId;
         this.controller = controller;

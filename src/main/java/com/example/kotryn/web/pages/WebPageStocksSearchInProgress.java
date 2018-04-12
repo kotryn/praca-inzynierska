@@ -5,10 +5,10 @@ import com.example.kotryn.json.Page;
 
 public class WebPageStocksSearchInProgress {
 
-    private final long jobId;
+    private final Long jobId;
     private final MainController controller;
 
-    public WebPageStocksSearchInProgress(long jobId, MainController controller) {
+    public WebPageStocksSearchInProgress(Long jobId, MainController controller) {
         this.jobId = jobId;
         this.controller = controller;
     }

@@ -1,6 +1,9 @@
 package com.example.kotryn.entity.Context;
 
 import com.example.kotryn.controller.MainController;
+import com.example.kotryn.repository.ContextRepository;
+import com.example.kotryn.repository.JobRepository;
+import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.states.IState;
 import com.example.kotryn.states.State;
 import com.example.kotryn.states.StateFactory;
@@ -16,20 +19,20 @@ public class Context {
     @GeneratedValue
     private Long id;
 
-    private final long jobId;
+    private final Long jobId;
     private State state;
 
     public Context() {
-        this.jobId = 0;
+        this.jobId = 0L;
         this.state = State.UNKNOWN;
     }
 
-    public Context(long jobId) {
+    public Context(Long jobId) {
         this.jobId = jobId;
         this.state = State.UNKNOWN;
     }
 
-    public long getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 
@@ -41,13 +44,13 @@ public class Context {
         return state;
     }
 
-    public String redirectToWebPage(MainController controller) {
-        IState stateObject = StateFactory.getState(state);
+    public String redirectToWebPage(MainController controller, JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
+        IState stateObject = StateFactory.getState(state, jobRepository, contextRepository, processDescriptorRepository);
         return stateObject.redirectToWebPage(this, controller);
     }
 
-    public void handle(IWebData webData) {
-        IState stateObject = StateFactory.getState(state);
+    public void handle(IWebData webData, JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
+        IState stateObject = StateFactory.getState(state, jobRepository, contextRepository, processDescriptorRepository);
         stateObject.handle(this, webData);
     }
 }

@@ -14,7 +14,7 @@ public class WebPageConnectToJob extends WebPageBase {
 
     public Page show() {
         /*view.println("Supply job ID:");
-        long jobId = view.nextInt();
+        Long jobId = view.nextInt();
         view.println("1. Submit (link)");
         view.println("2. Exit");
         switchToJobsGET(view.nextInt(), jobId, controller);*/

@@ -4,9 +4,7 @@ import com.example.kotryn.processes.ProcessState;
 import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.processes.SystemType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.Duration;
 
 @Entity
@@ -15,7 +13,7 @@ public class ProcessDescriptor {
     @GeneratedValue
     private Long id;
 
-    private final long jobId;
+    private final Long jobId;
     private ProcessType processType;
     private String host;
     private SystemType systemType;
@@ -24,7 +22,18 @@ public class ProcessDescriptor {
     private Duration duration;
     private String errorMessage;
 
-    public ProcessDescriptor(long jobId) {
+    public ProcessDescriptor() {
+        this.jobId = 0L;
+        processType = ProcessType.UNKNOWN;
+        host = "unknown";
+        systemType = SystemType.UNKNOWN;
+        state = ProcessState.UNKNOWN;
+        pid = -1;
+        duration = Duration.ofSeconds(0);
+        errorMessage = "unset";
+    }
+
+    public ProcessDescriptor(Long jobId) {
         this.jobId = jobId;
         processType = ProcessType.UNKNOWN;
         host = "unknown";
@@ -43,7 +52,7 @@ public class ProcessDescriptor {
         this.id = id;
     }
 
-    public long getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 

@@ -23,21 +23,23 @@ class StateBase {
         contextRepository.saveAndFlush(context);
     }
 
-    void createProcessDescriptorAndSave(ProcessType processType, long jobId,
+    void createProcessDescriptorAndSave(ProcessType processType, Long jobId,
                                         ProcessDescriptorRepository processDescriptorRepository) {
-        ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
+
+        ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
+
         processDescriptor.setProcessType(processType);
         processDescriptor.setProcessState(ProcessState.STARTING_UP);
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
-    void startProcess(long jobId) {
+    void startProcess(Long jobId) {
         IProcessFactory processFactory = AbstractProcessFactory.getFactory();
         IProcess process = processFactory.getProcess(jobId);
         process.start();
     }
 
-    void verifyProcessType(ProcessType processType, long jobId,
+    void verifyProcessType(ProcessType processType, Long jobId,
                            ProcessDescriptorRepository processDescriptorRepository) {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
         if (processDescriptor.getProcessType() != processType) {

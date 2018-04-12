@@ -1,5 +1,7 @@
 package com.example.kotryn;
 
+import com.example.kotryn.processes.AbstractProcessFactory;
+import com.example.kotryn.processes.ProcessFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

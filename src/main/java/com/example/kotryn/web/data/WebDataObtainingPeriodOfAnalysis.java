@@ -2,18 +2,18 @@ package com.example.kotryn.web.data;
 
 public class WebDataObtainingPeriodOfAnalysis implements IWebData {
 
-    private final long jobId;
+    private final Long jobId;
     private final Action action;
     private String startDate;
     private String endDate;
 
-    public WebDataObtainingPeriodOfAnalysis(long jobId) {
+    public WebDataObtainingPeriodOfAnalysis(Long jobId) {
         this.jobId = jobId;
         action = Action.NEXT;
     }
 
     @Override
-    public long getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 

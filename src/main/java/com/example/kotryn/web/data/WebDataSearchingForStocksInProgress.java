@@ -2,16 +2,16 @@ package com.example.kotryn.web.data;
 
 public class WebDataSearchingForStocksInProgress implements IWebData {
 
-    private final long jobId;
+    private final Long jobId;
     private Action action;
 
-    public WebDataSearchingForStocksInProgress(long jobId) {
+    public WebDataSearchingForStocksInProgress(Long jobId) {
         this.jobId = jobId;
         action = Action.UNKNOWN;
     }
 
     @Override
-    public long getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 

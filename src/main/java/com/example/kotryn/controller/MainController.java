@@ -4,11 +4,11 @@ import com.example.kotryn.entity.Context.Context;
 import com.example.kotryn.entity.Job.Job;
 import com.example.kotryn.entity.Process.ProcessDescriptor;
 import com.example.kotryn.json.Page;
+import com.example.kotryn.processes.AbstractProcessFactory;
+import com.example.kotryn.processes.ProcessFactory;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.states.IState;
-import com.example.kotryn.states.StateFactory;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
 import com.example.kotryn.web.pages.*;
@@ -30,6 +30,7 @@ public class MainController {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
+        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -66,7 +67,7 @@ public class MainController {
         return page.show();
     }
 
-    private void setInitialState(long jobId) {
+    private void setInitialState(Long jobId) {
         Context context = contextRepository.findOne(jobId);
         context.setState(State.OBTAINING_PERIOD_OF_ANALYSIS);
         contextRepository.save(context);
@@ -97,20 +98,20 @@ public class MainController {
     @ResponseStatus(HttpStatus.CREATED)
     public void jobsPOST(@RequestBody Job requestJob) {
         Context context = contextRepository.getOne(requestJob.getId());
-        url = context.redirectToWebPage(this);
+        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void jobsPOST(@PathVariable Long id) {
         Context context = contextRepository.getOne(id);
-        url = context.redirectToWebPage(this);
+        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
     @RequestMapping(value = "/jobsGET/{id}", method = RequestMethod.GET)
     public void jobsGET(@PathVariable Long id) {
         Context context = contextRepository.getOne(id);
-        url = context.redirectToWebPage(this);
+        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
     /* 5 */
@@ -138,10 +139,9 @@ public class MainController {
     }
 
     private void processJob(IWebData webData) {
-        Context context = contextRepository.getOne(webData.getJobId()); //jobid = 1
-        //context id = null, jobid = 0, state = unknown !!!!
+        Context context = contextRepository.getOne(webData.getJobId());
         if (context != null) {
-            context.handle(webData);
+            context.handle(webData, jobRepository, contextRepository, processDescriptorRepository);
         } else {
             throw new RuntimeException("Invalid jobId");
         }
@@ -155,13 +155,13 @@ public class MainController {
     }
 
     @RequestMapping(value = "/stocks_search_failed", params = "jobid", method = RequestMethod.GET)
-    public Page searchingForStocksFailedGET(long jobId) {
+    public Page searchingForStocksFailedGET(Long jobId) {
         WebPageStocksSearchFailed page = new WebPageStocksSearchFailed(jobId,this, processDescriptorRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/stocks_search_in_progress", params = "jobid", method = RequestMethod.GET)
-    public Page searchingForStocksInProgressGET(long jobId) {
+    public Page searchingForStocksInProgressGET(Long jobId) {
         WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(jobId, this);
         return page.show();
     }

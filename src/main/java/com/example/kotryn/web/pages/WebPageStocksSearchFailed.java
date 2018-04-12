@@ -9,10 +9,10 @@ import static java.lang.System.exit;
 public class WebPageStocksSearchFailed {
 
     private final ProcessDescriptorRepository processDescriptorRepository;
-    private final long jobId;
+    private final Long jobId;
     private final MainController controller;
 
-    public WebPageStocksSearchFailed(long jobId, MainController controller, ProcessDescriptorRepository processDescriptorRepository) {
+    public WebPageStocksSearchFailed(Long jobId, MainController controller, ProcessDescriptorRepository processDescriptorRepository) {
         this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
         this.controller = controller;

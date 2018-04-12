@@ -8,7 +8,7 @@ import com.example.kotryn.json.Page;
 
 class WebPageBase {
 
-    Page switchToJobsGET(int selection, long jobId, MainController controller) {
+    Page switchToJobsGET(int selection, Long jobId, MainController controller) {
         /*switch (selection) {
             case 1:
                 controller.jobsGET(jobId);

@@ -111,7 +111,6 @@ public class JobController {
     @ResponseStatus(HttpStatus.OK)
     public void searchJobInfo(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        long n = 1;
         //Thread.sleep(100);
         this.url = "/searchJobInfoPage/"+job.getId();
     }

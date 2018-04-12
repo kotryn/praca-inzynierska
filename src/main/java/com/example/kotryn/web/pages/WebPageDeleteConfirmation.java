@@ -6,10 +6,10 @@ import static java.lang.System.exit;
 
 public class WebPageDeleteConfirmation {
 
-    private final long jobId;
+    private final Long jobId;
     private final MainController controller;
 
-    public WebPageDeleteConfirmation(long jobId, MainController controller) {
+    public WebPageDeleteConfirmation(Long jobId, MainController controller) {
         this.jobId = jobId;
         this.controller = controller;
         show();

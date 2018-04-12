@@ -15,15 +15,17 @@ public class ProcessSearchingForStocks implements IProcess {
 
     private JobRepository jobRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
-    private final long jobId;
+    private final Long jobId;
 
-    public ProcessSearchingForStocks(long jobId) {
+    public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
+        this.jobRepository = jobRepository;
+        this.processDescriptorRepository = processDescriptorRepository;
     }
 
     public void toBeDoneInsideProcessAtBegin() {
         // update processDescriptorRepository
-        ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
+        ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.IN_PROGRESS);
         processDescriptor.setPid(1234);
         processDescriptorRepository.saveAndFlush(processDescriptor);
@@ -31,13 +33,13 @@ public class ProcessSearchingForStocks implements IProcess {
 
     public void toBeDoneInsideProcessAtEndWhenSuccess() {
         // update jobRepository
-        Job job = jobRepository.getOne(jobId);
+        Job job = jobRepository.findOne(jobId);
         job.setAvailableStocks(Arrays.asList("Microsoft Corporation (MSFT)",
                 "International Business Machines Corporation (IBM)",
                 "Oracle Corporation (ORCL)"));
         jobRepository.saveAndFlush(job);
         // update processDescriptorRepository
-        ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
+        ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.COMPLETED_SUCCESS);
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 40, 10);
@@ -47,7 +49,7 @@ public class ProcessSearchingForStocks implements IProcess {
 
     public void toBeDoneInsideProcessAtEndWhenFailure() {
         // update processDescriptorRepository
-        ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
+        ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.COMPLETED_FAILURE);
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 30, 15);
@@ -61,7 +63,7 @@ public class ProcessSearchingForStocks implements IProcess {
         // launching should be done in a separate thread so as not to block UI
         new Thread(() -> {
             try {
-                ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
+                ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
                 processDescriptor.setHost("localhost");
                 //processDescriptor.setSystemType(SystemType.WINDOWS);
                 //String command = "cmd.exe /c start /w cmd.exe /c \"echo Searching for stocks for job ID: "

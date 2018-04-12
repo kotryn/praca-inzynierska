@@ -5,10 +5,10 @@ import com.example.kotryn.json.*;
 
 public class WebPageBeginJob extends WebPageBase {
 
-    private final long jobId;
+    private final Long jobId;
     private final MainController controller;
 
-    public WebPageBeginJob(long jobId, MainController controller) {
+    public WebPageBeginJob(Long jobId, MainController controller) {
         this.jobId = jobId;
         this.controller = controller;
     }

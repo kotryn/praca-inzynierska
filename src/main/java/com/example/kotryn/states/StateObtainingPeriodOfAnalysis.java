@@ -10,7 +10,9 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.Action;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StateObtainingPeriodOfAnalysis extends StateBase implements IState {
 
     private JobRepository jobRepository;
@@ -31,7 +33,6 @@ public class StateObtainingPeriodOfAnalysis extends StateBase implements IState 
 
     //all repository -> null
     private void savePeriodOfAnalysis(WebDataObtainingPeriodOfAnalysis input) {
-        System.out.println(input.getJobId()+" "+input.getStartDate());
         Job job = jobRepository.getOne(input.getJobId());
         job.setStartDate(input.getStartDate());
         job.setEndDate(input.getEndDate());
@@ -40,12 +41,11 @@ public class StateObtainingPeriodOfAnalysis extends StateBase implements IState 
 
     @Override
     public void handle(Context context, IWebData webData) {
-        //juz context dobry, id = 1, jobid = 1, state = obtaining_period_of_analysis
         WebDataObtainingPeriodOfAnalysis input = getInput(webData);
         if (input.getAction() == Action.NEXT) {
             savePeriodOfAnalysis(input);
             createProcessDescriptorAndSave(ProcessType.SEARCHING_FOR_STOCKS, input.getJobId(),
-                    processDescriptorRepository); //processDescriptorRepository -> null
+                    processDescriptorRepository);
             // always set the state first
             moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_IN_PROGRESS, context, contextRepository);
             // then start the process

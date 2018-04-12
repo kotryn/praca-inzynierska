@@ -9,10 +9,10 @@ public class WebPageStocksSearchCompleted {
 
     private JobRepository jobRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
-    private final long jobId;
+    private final Long jobId;
     private MainController controller;
 
-    public WebPageStocksSearchCompleted(long jobId, MainController controller, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public WebPageStocksSearchCompleted(Long jobId, MainController controller, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;

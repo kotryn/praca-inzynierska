@@ -4,17 +4,17 @@ import java.util.List;
 
 public class WebDataSearchingForStocksCompleted implements IWebData {
 
-    private final long jobId;
+    private final Long jobId;
     private Action action;
     private List<String> selectedStocks;
 
-    public WebDataSearchingForStocksCompleted(long jobId) {
+    public WebDataSearchingForStocksCompleted(Long jobId) {
         this.jobId = jobId;
         action = Action.UNKNOWN;
     }
 
     @Override
-    public long getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 
