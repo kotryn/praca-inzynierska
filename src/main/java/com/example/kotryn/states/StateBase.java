@@ -5,8 +5,18 @@ import com.example.kotryn.entity.Process.ProcessDescriptor;
 import com.example.kotryn.processes.*;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+import com.example.kotryn.web.data.IWebData;
 
 class StateBase {
+
+    @SuppressWarnings("unchecked")
+    <T> T getInput(IWebData webData) {
+        try {
+            return (T) webData;
+        } catch (ClassCastException e) {
+            throw new RuntimeException("Unknown webData");
+        }
+    }
 
     void moveToNextStateAndSave(State state, Context context, ContextRepository contextRepository) {
         context.setState(state);

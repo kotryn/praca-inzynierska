@@ -5,6 +5,7 @@ import com.example.kotryn.entity.Context.Context;
 import com.example.kotryn.entity.Job.Job;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
+import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataSearchingForStocksCompleted;
 
 public class StateSearchingForStocksCompleted extends StateBase implements IState {
@@ -29,7 +30,7 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
         jobRepository.saveAndFlush(job);
     }
 
-    /*@Override
+    @Override
     public void handle(Context context, IWebData webData) {
         WebDataSearchingForStocksCompleted input = getInput(webData);
         switch (input.getAction()) {
@@ -44,5 +45,5 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
             default:
                 throw new RuntimeException("Undefined action");
         }
-    }*/
+    }
 }

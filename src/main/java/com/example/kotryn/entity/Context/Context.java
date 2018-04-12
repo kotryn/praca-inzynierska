@@ -4,6 +4,7 @@ import com.example.kotryn.controller.MainController;
 import com.example.kotryn.states.IState;
 import com.example.kotryn.states.State;
 import com.example.kotryn.states.StateFactory;
+import com.example.kotryn.web.data.IWebData;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,8 +46,8 @@ public class Context {
         return stateObject.redirectToWebPage(this, controller);
     }
 
-    /*public void handle(IWebData webData) {
+    public void handle(IWebData webData) {
         IState stateObject = StateFactory.getState(state);
         stateObject.handle(this, webData);
-    }*/
+    }
 }

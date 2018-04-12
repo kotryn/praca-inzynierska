@@ -4,8 +4,11 @@ import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context.Context;
 import com.example.kotryn.entity.Process.ProcessDescriptor;
 import com.example.kotryn.processes.ProcessState;
+import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+import com.example.kotryn.web.data.IWebData;
+import com.example.kotryn.web.data.WebDataSearchingForStocksInProgress;
 
 public class StateSearchingForStocksInProgress extends StateBase implements IState {
 
@@ -33,7 +36,7 @@ public class StateSearchingForStocksInProgress extends StateBase implements ISta
         }
     }
 
-    /*@Override
+    @Override
     public void handle(Context context, IWebData webData) {
         WebDataSearchingForStocksInProgress input = getInput(webData);
         switch (input.getAction()) {
@@ -46,5 +49,5 @@ public class StateSearchingForStocksInProgress extends StateBase implements ISta
             default:
                 throw new RuntimeException("Undefined action");
         }
-    }*/
+    }
 }

@@ -71,7 +71,8 @@ public class WebPageObtainingPeriodOfAnalysis {
         Form form = new Form("form", inputForm, btnForm);
 
         Button btnBack = new Button("button-back", "/", "back");
-        Button btnNext= new Button("button", "/getJobParameters/"+job.getId(), "Next");
+        Button btnNext= new Button("button", "/period_of_analysis/"+job.getId(), "Next");
+        Button btnDelete = new Button("button-delete", "/", "Delete");
 
         Item<Text> item = new Item<>(text);
         Item<Text> item2 = new Item<>(text1);
@@ -79,8 +80,9 @@ public class WebPageObtainingPeriodOfAnalysis {
         Item<Form> item4 = new Item<>(form);
         Item<Button> item5 = new Item<>(btnBack);
         Item<Button> item6 = new Item<>(btnNext);
+        Item<Button> item7 = new Item<>(btnDelete);
 
-        Body body = new Body(item, item2, item3, item4, item5, item6);
+        Body body = new Body(item, item2, item3, item4, item5, item6, item7);
 
         return new Page(body);
     }

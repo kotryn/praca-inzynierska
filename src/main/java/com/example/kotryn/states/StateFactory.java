@@ -4,7 +4,7 @@ import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
-public class StateFactory {
+public class StateFactory  {
     private static JobRepository jobRepository;
     private static ContextRepository contextRepository;
     private static ProcessDescriptorRepository processDescriptorRepository;

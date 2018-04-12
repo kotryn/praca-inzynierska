@@ -9,6 +9,8 @@ import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.states.IState;
 import com.example.kotryn.states.StateFactory;
+import com.example.kotryn.web.data.IWebData;
+import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
 import com.example.kotryn.web.pages.*;
 import com.example.kotryn.states.State;
 import org.springframework.http.HttpStatus;
@@ -18,15 +20,13 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class MainController {
 
-    private JobController jobController;
     private JobRepository jobRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private ContextRepository contextRepository;
 
     private String url = "/prompt_user";
 
-    public MainController(JobController jobController, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository) {
-        this.jobController = jobController;
+    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
@@ -107,6 +107,12 @@ public class MainController {
         url = context.redirectToWebPage(this);
     }
 
+    @RequestMapping(value = "/jobsGET/{id}", method = RequestMethod.GET)
+    public void jobsGET(@PathVariable Long id) {
+        Context context = contextRepository.getOne(id);
+        url = context.redirectToWebPage(this);
+    }
+
     /* 5 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.GET)
     public Page obtainingPeriodOfAnalysisGET(@PathVariable Long id) {
@@ -114,7 +120,32 @@ public class MainController {
         return page.show();
     }
 
+    /* 6 */
+    @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void obtainingPeriodOfAnalysisPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataObtainingPeriodOfAnalysis webData = new WebDataObtainingPeriodOfAnalysis(job.getId());
+        webData.setStartDate(job.getStartDate());
+        webData.setEndDate(job.getEndDate());
 
+        processJob(webData);
+        // once 201 is received for POST, browser connects:
+        url = "/jobsGET/"+id;
+
+
+
+    }
+
+    private void processJob(IWebData webData) {
+        Context context = contextRepository.getOne(webData.getJobId()); //jobid = 1
+        //context id = null, jobid = 0, state = unknown !!!!
+        if (context != null) {
+            context.handle(webData);
+        } else {
+            throw new RuntimeException("Invalid jobId");
+        }
+    }
 
 
     @RequestMapping(value = "/stocks_search_completed", params = "jobid", method = RequestMethod.GET)
