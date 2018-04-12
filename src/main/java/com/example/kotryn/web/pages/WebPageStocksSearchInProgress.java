@@ -1,7 +1,7 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.controller.MainController;
-import com.example.kotryn.json.Page;
+import com.example.kotryn.json.*;
 
 public class WebPageStocksSearchInProgress {
 
@@ -38,6 +38,15 @@ public class WebPageStocksSearchInProgress {
             default:
                 throw new RuntimeException("Undefined option");
         }*/
-       return null;
+        Text text = new Text("text", "Searching for stocks in progress");
+        //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
+        Button refresh = new Button("button", "/", "refresh");
+        Button btnBack = new Button("button-back", "/", "back");
+        Item<Text> item = new Item<>(text);
+        Item<Button> item2 = new Item<>(refresh);
+        Item<Button> item3 = new Item<>(btnBack);
+        Body body = new Body(item, item2, item3);
+
+        return new Page(body);
     }
 }

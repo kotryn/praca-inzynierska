@@ -108,10 +108,17 @@ public class MainController {
         url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
-    @RequestMapping(value = "/jobsGET/{id}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/jobsGET/{id}", method = RequestMethod.GET)
     public void jobsGET(@PathVariable Long id) {
         Context context = contextRepository.getOne(id);
         url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
+        System.out.println(url);
+    }*/
+
+    private String jobsGET(Long id) {
+        Context context = contextRepository.getOne(id);
+        return context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
+
     }
 
     /* 5 */
@@ -123,7 +130,7 @@ public class MainController {
 
     /* 6 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public void obtainingPeriodOfAnalysisPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataObtainingPeriodOfAnalysis webData = new WebDataObtainingPeriodOfAnalysis(job.getId());
@@ -132,10 +139,7 @@ public class MainController {
 
         processJob(webData);
         // once 201 is received for POST, browser connects:
-        url = "/jobsGET/"+id;
-
-
-
+        url = this.jobsGET(job.getId());
     }
 
     private void processJob(IWebData webData) {
@@ -160,9 +164,9 @@ public class MainController {
         return page.show();
     }
 
-    @RequestMapping(value = "/stocks_search_in_progress", params = "jobid", method = RequestMethod.GET)
-    public Page searchingForStocksInProgressGET(Long jobId) {
-        WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(jobId, this);
+    @RequestMapping(value = "/stocks_search_in_progress/{id}", method = RequestMethod.GET)
+    public Page searchingForStocksInProgressGET(@PathVariable Long id) {
+        WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(id, this);
         return page.show();
     }
 }

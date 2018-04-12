@@ -29,6 +29,8 @@ class Main extends React.Component{
             return <div>loading...</div>
         }
 
+        console.log(this.props);
+
         let components = [];
         function setComponentType(element){
             switch(element.type){
