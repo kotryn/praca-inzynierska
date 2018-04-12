@@ -9,8 +9,10 @@ import com.example.kotryn.processes.ProcessFactory;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+import com.example.kotryn.web.data.Action;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
+import com.example.kotryn.web.data.WebDataSearchingForStocksInProgress;
 import com.example.kotryn.web.pages.*;
 import com.example.kotryn.states.State;
 import org.springframework.http.HttpStatus;
@@ -151,16 +153,28 @@ public class MainController {
         }
     }
 
+    @RequestMapping(value = "/stocks_search_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void searchingForStocksInProgressPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
+        webData.setAction(Action.REFRESH);
 
-    @RequestMapping(value = "/stocks_search_completed", params = "jobid", method = RequestMethod.GET)
-    public Page searchingForStocksCompletedGET(Long jobId) {
-        WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(jobId, this, jobRepository, processDescriptorRepository);
+        processJob(webData);
+
+        // once 201 is received for POST, browser connects:
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
+    public Page searchingForStocksCompletedGET(@PathVariable Long id) {
+        WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, this, jobRepository, processDescriptorRepository);
         return page.show();
     }
 
-    @RequestMapping(value = "/stocks_search_failed", params = "jobid", method = RequestMethod.GET)
-    public Page searchingForStocksFailedGET(Long jobId) {
-        WebPageStocksSearchFailed page = new WebPageStocksSearchFailed(jobId,this, processDescriptorRepository);
+    @RequestMapping(value = "/stocks_search_failed/{id}", method = RequestMethod.GET)
+    public Page searchingForStocksFailedGET(@PathVariable Long id) {
+        WebPageStocksSearchFailed page = new WebPageStocksSearchFailed(id,this, processDescriptorRepository);
         return page.show();
     }
 

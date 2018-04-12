@@ -22,15 +22,8 @@ public class StateSearchingForStocksInProgress extends StateBase implements ISta
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        //controller.searchingForStocksInProgressGET(context.getJobId());
-        //return "period_of_analysis/"+context.getJobId();
         return "stocks_search_in_progress/"+context.getJobId();
     }
-
-    /*@Override
-    public void redirectToWebPage(Context context, Controller controller) {
-        controller.searchingForStocksInProgressGET(context.getJobId());
-    }*/
 
     private void ifSearchingDoneMoveToNextStateAndSave(Context context) {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(context.getJobId());

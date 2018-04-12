@@ -40,7 +40,7 @@ public class WebPageStocksSearchInProgress {
         }*/
         Text text = new Text("text", "Searching for stocks in progress");
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
-        Button refresh = new Button("button", "/", "refresh");
+        Button refresh = new Button("button", "/stocks_search_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/", "back");
         Item<Text> item = new Item<>(text);
         Item<Button> item2 = new Item<>(refresh);
