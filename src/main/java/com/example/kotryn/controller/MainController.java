@@ -96,19 +96,21 @@ public class MainController {
     }
 
     /* 4 */
-    /*@RequestMapping(value = "/jobsPOST", method = RequestMethod.POST)
+    @RequestMapping(value = "/jobsPOST", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void jobsPOST(@RequestBody Job requestJob) {
-        /*Context context = contextRepository.getOne(requestJob.getId());
-        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);*/
-       /* url = this.jobsGET(requestJob.getId());
-    }*/
+        Context context = contextRepository.getOne(requestJob.getId());
 
-   /* private String jobsGET(Long id) {
-        Context context = contextRepository.getOne(id);
-        return context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
+        if(context.getState() == State.SEARCHING_FOR_STOCKS_IN_PROGRESS){
+            WebDataSearchingForStocksInProgress webData =
+                    new WebDataSearchingForStocksInProgress(requestJob.getId());
+            webData.setAction(Action.REFRESH);
 
-    }*/
+            processJob(webData);
+        }
+        url = context.redirectToWebPage(this,
+                jobRepository, contextRepository, processDescriptorRepository);
+    }
 
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -158,24 +160,6 @@ public class MainController {
         } else {
             throw new RuntimeException("Invalid jobId");
         }
-    }
-
-    /*del*/
-    @RequestMapping(value = "/jobsPOST", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void jobsPOST(@RequestBody Job requestJob) {
-        Context context = contextRepository.getOne(requestJob.getId());
-
-        if(context.getState() == State.SEARCHING_FOR_STOCKS_IN_PROGRESS){
-            WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(requestJob.getId());
-            webData.setAction(Action.REFRESH);
-
-            processJob(webData);
-        }
-
-
-        //url = this.jobsGET(requestJob.getId());
-        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
     @RequestMapping(value = "/stocks_search_in_progress/{id}", method = RequestMethod.POST)
