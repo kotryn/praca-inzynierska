@@ -28,6 +28,7 @@ public class MainController {
     private ContextRepository contextRepository;
 
     private String url = "/prompt_user";
+    private String error = null;
 
     public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository) {
         this.jobRepository = jobRepository;
@@ -39,7 +40,15 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void prevPage() {
+        error = null;
         url = "/prompt_user";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void startPageDELETE() {
+        error = null;
+        this.url = "/prompt_user";
     }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
@@ -66,7 +75,7 @@ public class MainController {
 
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.GET)
     public Page connectToJobGET() {
-        WebPageConnectToJob page = new WebPageConnectToJob();
+        WebPageConnectToJob page = new WebPageConnectToJob(error);
         return page.show();
     }
 
@@ -95,21 +104,27 @@ public class MainController {
     @RequestMapping(value = "/jobsPOST", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void jobsPOST(@RequestBody Job requestJob) {
-        Context context = contextRepository.getOne(requestJob.getId());
-
-        if(context.getState() ==  SEARCHING_FOR_STOCKS_IN_PROGRESS){
-            WebDataSearchingForStocksInProgress webData =
-                    new WebDataSearchingForStocksInProgress(requestJob.getId());
-            webData.setAction(Action.REFRESH);
-
-            processJob(webData);
+        if(!contextRepository.exists(requestJob.getId())){
+            error = "Job with id "+requestJob.getId()+" not exist";
+            url = "/connect_to_job";
         }else{
-            context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
-            contextRepository.save(context);
-        }
+            Context context = contextRepository.getOne(requestJob.getId());
+            error = null;
 
-        url = context.redirectToWebPage(this,
-                jobRepository, contextRepository, processDescriptorRepository);
+            if(context.getState() ==  SEARCHING_FOR_STOCKS_IN_PROGRESS){
+                WebDataSearchingForStocksInProgress webData =
+                        new WebDataSearchingForStocksInProgress(requestJob.getId());
+                webData.setAction(Action.REFRESH);
+
+                processJob(webData);
+            }else{
+                context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
+                contextRepository.save(context);
+            }
+
+            url = context.redirectToWebPage(this,
+                    jobRepository, contextRepository, processDescriptorRepository);
+        }
     }
 
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)
@@ -177,12 +192,6 @@ public class MainController {
 
         // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.OK)
-    public void startPageDELETE() {
-        this.url = "/prompt_user";
     }
 
     @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)

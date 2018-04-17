@@ -4,7 +4,10 @@ import com.example.kotryn.json.*;
 
 public class WebPageConnectToJob {
 
-    public WebPageConnectToJob() {
+    private String error;
+
+    public WebPageConnectToJob(String error) {
+        this.error = error;
     }
 
     public Page show() {
@@ -18,6 +21,14 @@ public class WebPageConnectToJob {
         Item<Form> item = new Item<>(form);
         Item<Button> item2 = new Item<>(btnDelete);
         Item<Button> item3 = new Item<>(btnBack);
+
+        if(error != null){
+            Text errorText = new Text("text", error);
+            Item<Text> error = new Item<>(errorText);
+            Body body = new Body(error, item, item3, item2);
+
+            return new Page(body);
+        }
 
         Body body = new Body(item, item3, item2);
 
