@@ -1,8 +1,8 @@
 package com.example.kotryn.controller;
 
-import com.example.kotryn.entity.Context.Context;
-import com.example.kotryn.entity.Job.Job;
-import com.example.kotryn.entity.Process.ProcessDescriptor;
+import com.example.kotryn.entity.Context;
+import com.example.kotryn.entity.Job;
+import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.processes.AbstractProcessFactory;
 import com.example.kotryn.processes.ProcessFactory;
@@ -14,10 +14,11 @@ import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
 import com.example.kotryn.web.data.WebDataSearchingForStocksInProgress;
 import com.example.kotryn.web.pages.*;
-import com.example.kotryn.states.State;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import static com.example.kotryn.states.State.*;
 
 @RestController
 public class MainController {
@@ -53,7 +54,7 @@ public class MainController {
     /* 1 */
     @RequestMapping(value = "/prompt_user", method = RequestMethod.GET)
     public Page promptUserGET() {
-        WebPagePromptUser page = new WebPagePromptUser(this);
+        WebPagePromptUser page = new WebPagePromptUser();
         return page.show();
     }
 
@@ -65,15 +66,10 @@ public class MainController {
 
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.GET)
     public Page connectToJobGET() {
-        WebPageConnectToJob page = new WebPageConnectToJob(this);
+        WebPageConnectToJob page = new WebPageConnectToJob();
         return page.show();
     }
 
-    private void setInitialState(Long jobId) {
-        Context context = contextRepository.findOne(jobId);
-        context.setState(State.OBTAINING_PERIOD_OF_ANALYSIS);
-        contextRepository.save(context);
-    }
 
     /* 2 */
     @RequestMapping(value = "/begin_job", method = RequestMethod.POST)
@@ -81,9 +77,10 @@ public class MainController {
     public void beginJobPOST() {
         Job job = new Job();
         job = jobRepository.save(job);
-        contextRepository.save(new Context(job.getId()));
+        Context context = new Context(job.getId());
+        context.setState(SET_JOB_ID);
+        context = contextRepository.save(context);
         processDescriptorRepository.save(new ProcessDescriptor(job.getId()));
-        setInitialState(job.getId());
         url = "/begin_job/"+job.getId();
     }
 
@@ -91,7 +88,7 @@ public class MainController {
     @RequestMapping(value = "/begin_job/{id}", method = RequestMethod.GET)
     public Page beginJobGET(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        WebPageBeginJob page = new WebPageBeginJob(job.getId(), this);
+        WebPageBeginJob page = new WebPageBeginJob(job.getId());
         return page.show();
     }
 
@@ -101,30 +98,50 @@ public class MainController {
     public void jobsPOST(@RequestBody Job requestJob) {
         Context context = contextRepository.getOne(requestJob.getId());
 
-        if(context.getState() == State.SEARCHING_FOR_STOCKS_IN_PROGRESS){
-            WebDataSearchingForStocksInProgress webData =
-                    new WebDataSearchingForStocksInProgress(requestJob.getId());
-            webData.setAction(Action.REFRESH);
+        switch (context.getState()) {
+            case SET_JOB_ID:
+                context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
+                contextRepository.save(context);
+                break;
+            case SEARCHING_FOR_STOCKS_IN_PROGRESS:
+                WebDataSearchingForStocksInProgress webData =
+                        new WebDataSearchingForStocksInProgress(requestJob.getId());
+                webData.setAction(Action.REFRESH);
 
-            processJob(webData);
+                processJob(webData);
+                break;
+            default:
+                throw new RuntimeException("Undefined state");
         }
+
         url = context.redirectToWebPage(this,
                 jobRepository, contextRepository, processDescriptorRepository);
+    }
+
+    @RequestMapping(value = "/jobsBackPOST/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void jobsBackPOST(@PathVariable Long id) {
+        Context context = contextRepository.getOne(id);
+        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void jobsPOST(@PathVariable Long id) {
         Context context = contextRepository.getOne(id);
+        context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
+        contextRepository.save(context);
         url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
-    /*@RequestMapping(value = "/jobsGET/{id}", method = RequestMethod.GET)
-    public void jobsGET(@PathVariable Long id) {
-        Context context = contextRepository.getOne(id);
-        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
-        System.out.println(url);
-    }*/
+    @RequestMapping(value = "/jobSetDate/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void jobSetDatePOST(@PathVariable Long id, @RequestBody Job addJobRequest) {
+        Job job = jobRepository.findOne(id);
+        job.setStartDate(addJobRequest.getStartDate());
+        job.setEndDate(addJobRequest.getEndDate());
+        jobRepository.save(job);
+    }
 
     private String jobsGET(Long id) {
         Context context = contextRepository.getOne(id);
@@ -135,7 +152,7 @@ public class MainController {
     /* 5 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.GET)
     public Page obtainingPeriodOfAnalysisGET(@PathVariable Long id) {
-        WebPageObtainingPeriodOfAnalysis page = new WebPageObtainingPeriodOfAnalysis(id, this, jobRepository);
+        WebPageObtainingPeriodOfAnalysis page = new WebPageObtainingPeriodOfAnalysis(id, jobRepository);
         return page.show();
     }
 
@@ -175,6 +192,12 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void startPageDELETE() {
+        this.url = "/prompt_user";
+    }
+
     @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void jobsDELETE(@PathVariable Long id) {
@@ -189,19 +212,19 @@ public class MainController {
 
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
-        WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, this, jobRepository, processDescriptorRepository);
+        WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, jobRepository, processDescriptorRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/stocks_search_failed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksFailedGET(@PathVariable Long id) {
-        WebPageStocksSearchFailed page = new WebPageStocksSearchFailed(id,this, processDescriptorRepository);
+        WebPageStocksSearchFailed page = new WebPageStocksSearchFailed(id, processDescriptorRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/stocks_search_in_progress/{id}", method = RequestMethod.GET)
     public Page searchingForStocksInProgressGET(@PathVariable Long id) {
-        WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(id, this);
+        WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(id);
         return page.show();
     }
 }

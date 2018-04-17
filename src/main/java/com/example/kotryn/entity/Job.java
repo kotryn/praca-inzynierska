@@ -1,4 +1,4 @@
-package com.example.kotryn.entity.Job;
+package com.example.kotryn.entity;
 
 import javax.persistence.*;
 import java.util.List;

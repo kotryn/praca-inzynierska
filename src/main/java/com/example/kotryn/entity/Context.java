@@ -1,4 +1,4 @@
-package com.example.kotryn.entity.Context;
+package com.example.kotryn.entity;
 
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.repository.ContextRepository;

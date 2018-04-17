@@ -1,4 +1,4 @@
-package com.example.kotryn.entity.Process;
+package com.example.kotryn.entity;
 
 import com.example.kotryn.processes.ProcessState;
 import com.example.kotryn.processes.ProcessType;

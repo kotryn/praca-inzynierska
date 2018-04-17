@@ -11,6 +11,7 @@ import TableComponent from './elements/TableComponent'
 import TitleComponent from './elements/TitleComponent'
 import FormComponent from "./elements/FormComponent";
 import ImageComponent from "./elements/ImageComponent"
+import CheckboxComponent from "./elements/CheckboxComponent"
 
 class Main extends React.Component{
 
@@ -60,6 +61,9 @@ class Main extends React.Component{
                     break;
                 case "image":
                     components.push(<ImageComponent config={element} />);
+                    break;
+                case "checkbox":
+                    components.push(<CheckboxComponent config={element} />);
                     break;
                 default:
                     console.log('unknown type of component');

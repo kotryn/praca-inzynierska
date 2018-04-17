@@ -1,6 +1,6 @@
 package com.example.kotryn.processes;
 
-import com.example.kotryn.entity.Process.ProcessDescriptor;
+import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 

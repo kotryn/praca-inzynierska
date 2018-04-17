@@ -6,11 +6,6 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 
 public class StateFactory  {
 
-    //private static JobRepository jobRepository;
-    //private static ContextRepository contextRepository;
-    //private static ProcessDescriptorRepository processDescriptorRepository;
-
-
     public static IState getState(State state, JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
         switch(state) {
             case CALCULATING_SAMPLE_COUNT_COMPLETED:

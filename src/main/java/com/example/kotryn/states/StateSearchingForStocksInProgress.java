@@ -1,8 +1,8 @@
 package com.example.kotryn.states;
 
 import com.example.kotryn.controller.MainController;
-import com.example.kotryn.entity.Context.Context;
-import com.example.kotryn.entity.Process.ProcessDescriptor;
+import com.example.kotryn.entity.Context;
+import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.processes.ProcessState;
 import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
