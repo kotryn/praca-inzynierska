@@ -103,6 +103,9 @@ public class MainController {
             webData.setAction(Action.REFRESH);
 
             processJob(webData);
+        }else{
+            context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
+            contextRepository.save(context);
         }
 
         url = context.redirectToWebPage(this,
