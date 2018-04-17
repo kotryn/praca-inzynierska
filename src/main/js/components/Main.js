@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import {getPageDataInfo} from './../actions/data'
-import TextComponent from './elements/TextComponent'
-import LineComponent from './elements/LineComponent'
-import ButtonComponent from './elements/ButtonComponent'
-import ButtonBackComponent from './elements/ButtonBackComponent'
-import ButtonDeleteComponent from './elements/ButtonDeleteComponent'
-import TableComponent from './elements/TableComponent'
-import TitleComponent from './elements/TitleComponent'
-import FormComponent from "./elements/FormComponent";
-import ImageComponent from "./elements/ImageComponent"
-import CheckboxComponent from "./elements/CheckboxComponent"
+import Text from './elements/Text'
+import Line from './elements/Line'
+import Button from './elements/Button'
+import ButtonBack from './elements/ButtonBack'
+import ButtonDelete from './elements/ButtonDelete'
+import Table from './elements/Table'
+import Title from './elements/Title'
+import Form from "./elements/Form";
+import Image from "./elements/Image"
+import Checkbox from "./elements/Checkbox"
 
 class Main extends React.Component{
 
@@ -36,34 +36,34 @@ class Main extends React.Component{
         function setComponentType(element){
             switch(element.type){
                 case "title":
-                    components.push(<TitleComponent config={element}/>);
+                    components.push(<Title config={element}/>);
                     break;
                 case "text":
-                    components.push(<TextComponent config={element}/>);
+                    components.push(<Text config={element}/>);
                     break;
                 case "line":
-                    components.push(<LineComponent config={element}/>);
+                    components.push(<Line config={element}/>);
                     break;
                 case "button":
-                    components.push(<ButtonComponent config={element} />);
+                    components.push(<Button config={element} />);
                     break;
                 case "button-back":
-                    components.push(<ButtonBackComponent config={element} />);
+                    components.push(<ButtonBack config={element} />);
                     break;
                 case "button-delete":
-                    components.push(<ButtonDeleteComponent config={element} />);
+                    components.push(<ButtonDelete config={element} />);
                     break;
                 case "table":
-                    components.push(<TableComponent config={element}/>);
+                    components.push(<Table config={element}/>);
                     break;
                 case "form":
-                    components.push(<FormComponent config={element}/>);
+                    components.push(<Form config={element}/>);
                     break;
                 case "image":
-                    components.push(<ImageComponent config={element} />);
+                    components.push(<Image config={element} />);
                     break;
                 case "checkbox":
-                    components.push(<CheckboxComponent config={element} />);
+                    components.push(<Checkbox config={element} />);
                     break;
                 default:
                     console.log('unknown type of component');

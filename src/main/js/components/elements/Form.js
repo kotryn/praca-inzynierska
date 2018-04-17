@@ -4,10 +4,10 @@ import axios from 'axios';
 
 import { getPageDataInfo } from '../../actions/data'
 import { createInputData, clear } from "../../actions/inputData";
-import InputComponent from "./InputComponent"
-import ButtonComponent from './ButtonBackComponent'
+import InputComponent from "./Input"
+import ButtonComponent from './ButtonBack'
 
-class FormComponent extends React.Component{
+class Form extends React.Component{
 
     constructor(props) {
         super(props);
@@ -63,9 +63,9 @@ class FormComponent extends React.Component{
     }
 }
 
-FormComponent = connect(
+Form = connect(
     state =>  state.inputData,
     { createInputData, clear, getPageDataInfo }
-)(FormComponent)
+)(Form)
 
-export default FormComponent;
+export default Form;

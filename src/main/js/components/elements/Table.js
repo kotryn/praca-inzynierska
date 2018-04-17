@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios';
 
-class TableComponent extends React.Component{
+class Table extends React.Component{
 
     constructor(props) {
         super(props);
@@ -67,10 +67,10 @@ class TableComponent extends React.Component{
     }
 }
 
-TableComponent = connect(
+Table = connect(
     state =>  state.inputFormData,
     null
-)(TableComponent)
+)(Table)
 
 
-export default TableComponent;
+export default Table;

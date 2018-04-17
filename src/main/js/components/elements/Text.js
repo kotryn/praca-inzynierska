@@ -1,7 +1,7 @@
 import React from 'react';
 
-function TextComponent({config}){
+function Text({config}){
     return <div className={"text"}>{config.text}</div>
 }
 
-export default TextComponent;
+export default Text;

@@ -78,7 +78,6 @@ public class MainController {
         Job job = new Job();
         job = jobRepository.save(job);
         Context context = new Context(job.getId());
-        context.setState(SET_JOB_ID);
         context = contextRepository.save(context);
         processDescriptorRepository.save(new ProcessDescriptor(job.getId()));
         url = "/begin_job/"+job.getId();
@@ -98,31 +97,16 @@ public class MainController {
     public void jobsPOST(@RequestBody Job requestJob) {
         Context context = contextRepository.getOne(requestJob.getId());
 
-        switch (context.getState()) {
-            case SET_JOB_ID:
-                context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
-                contextRepository.save(context);
-                break;
-            case SEARCHING_FOR_STOCKS_IN_PROGRESS:
-                WebDataSearchingForStocksInProgress webData =
-                        new WebDataSearchingForStocksInProgress(requestJob.getId());
-                webData.setAction(Action.REFRESH);
+        if(context.getState() ==  SEARCHING_FOR_STOCKS_IN_PROGRESS){
+            WebDataSearchingForStocksInProgress webData =
+                    new WebDataSearchingForStocksInProgress(requestJob.getId());
+            webData.setAction(Action.REFRESH);
 
-                processJob(webData);
-                break;
-            default:
-                throw new RuntimeException("Undefined state");
+            processJob(webData);
         }
 
         url = context.redirectToWebPage(this,
                 jobRepository, contextRepository, processDescriptorRepository);
-    }
-
-    @RequestMapping(value = "/jobsBackPOST/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void jobsBackPOST(@PathVariable Long id) {
-        Context context = contextRepository.getOne(id);
-        url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)

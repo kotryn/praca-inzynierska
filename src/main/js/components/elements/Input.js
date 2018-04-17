@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import {editInputValue} from "../../actions/inputData";
 
-class InputComponent extends React.Component{
+class Input extends React.Component{
 
     constructor(props) {
         super(props);
@@ -26,9 +26,9 @@ class InputComponent extends React.Component{
     }
 }
 
-InputComponent = connect(
+Input = connect(
     state =>  state.inputData,
     { editInputValue }
-)(InputComponent)
+)(Input)
 
-export default InputComponent;
+export default Input;

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { getPageDataInfo } from '../../actions/data'
 
-class ButtonComponent extends React.Component{
+class ButtonBack extends React.Component{
 
     constructor(props) {
         super(props);
@@ -33,9 +33,9 @@ class ButtonComponent extends React.Component{
     }
 }
 
-ButtonComponent = connect(
+ButtonBack = connect(
     null,
     { getPageDataInfo }
-)(ButtonComponent)
+)(ButtonBack)
 
-export default ButtonComponent;
+export default ButtonBack;

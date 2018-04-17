@@ -4,18 +4,18 @@ import axios from 'axios';
 
 import { getPageDataInfo } from '../../actions/data'
 
-class ButtonDeleteComponent extends React.Component{
+class Button extends React.Component{
 
     constructor(props) {
         super(props);
-        this.delete = this.delete.bind(this);
+        this.next = this.next.bind(this);
     }
 
-    delete(event) {
+    next(event) {
         event.preventDefault();
         const {url} = this.props.config;
 
-        axios.delete(url)
+        axios.post(url, '')
             .then(response => {
                 if(response.status === 200){
                     this.props.getPageDataInfo();
@@ -29,15 +29,15 @@ class ButtonDeleteComponent extends React.Component{
 
         return (
             <div className={'my-button'}>
-                <button className={"btn btn-danger"} onClick={this.delete}>{title}</button>
+                <button className={"btn btn-primary"} onClick={this.next}>{title}</button>
             </div>
         );
     }
 }
 
-ButtonDeleteComponent = connect(
+Button = connect(
     null,
     { getPageDataInfo }
-)(ButtonDeleteComponent)
+)(Button)
 
-export default ButtonDeleteComponent;
+export default Button;
