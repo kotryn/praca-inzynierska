@@ -21,7 +21,7 @@ public class WebPageObtainingPeriodOfAnalysis {
         Text textStartDate = new Text("text", "Previous start date: " + job.getStartDate());
         Text textEndDate = new Text("text", "Previous end date: " + job.getEndDate());
 
-        Form form = new Form("form", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
+        Input input = new Input("input", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
 
         Button btnBack = new Button("button-back", "/", "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
@@ -31,7 +31,7 @@ public class WebPageObtainingPeriodOfAnalysis {
         Item<Text> itemText = new Item<>(text);
         Item<Text> itemTextStartDate = new Item<>(textStartDate);
         Item<Text> itemTextEndDate = new Item<>(textEndDate);
-        Item<Form> itemForm = new Item<>(form);
+        Item<Input> itemForm = new Item<>(input);
 
         Item<Button> itemBtnBack = new Item<>(btnBack);
         Item<Button> itemBtnNext = new Item<>(btnNext);

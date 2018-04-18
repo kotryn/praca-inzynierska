@@ -32,6 +32,7 @@ function formDataReducer(state = defaultState, action) {
             return {
                 ...state,
                 values: [],
+                jsonData: {}
             }
         default:
             return state;

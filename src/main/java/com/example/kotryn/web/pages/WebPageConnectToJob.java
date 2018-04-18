@@ -11,13 +11,13 @@ public class WebPageConnectToJob {
     }
 
     public Page show() {
-        Form form = new Form("form", new String[]{"id"}, new String[]{"Supply job ID:"});
+        Input input = new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"});
 
         Button btnBack = new Button("button-back", "/", "back");
         Button btnDelete = new Button("button-delete", "/", "Start page");
         Button btnForm = new Button("button-form", "/jobsPOST", "submit");
 
-        Item<Form> itemForm = new Item<>(form);
+        Item<Input> itemForm = new Item<>(input);
 
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
         Item<Button> itemBtnBack = new Item<>(btnBack);

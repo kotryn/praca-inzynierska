@@ -29,21 +29,8 @@ public class WebPageStocksSearchCompleted {
         Job job = jobRepository.findOne(jobId);
 
         List<String> availableStocks = Optional.ofNullable(job.getAvailableStocks()).orElse(Collections.singletonList("none"));
+
         List<String> previouslySelectedStocks = Optional.ofNullable(job.getSelectedStocks()).orElse(Collections.singletonList("none"));
-
-        List<String> selectedStocks = null;
-        Item<Text> itemt5;
-        if (!availableStocks.isEmpty()) {
-            Text text5 = new Text("text", "Enter selected stocks (use space as a separator):"); //bedzie input
-            itemt5 = new Item<>(text5);
-
-            //String input = view.nextLine();
-            //selectedStocks = Arrays.asList(input.split("\\s+"));
-        }else{
-            Text text5 = new Text("text", "No stocks available");
-            itemt5 = new Item<>(text5);
-        }
-
 
         Text text = new Text("text", "Searching for stocks completed successfully");
         Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
@@ -52,7 +39,6 @@ public class WebPageStocksSearchCompleted {
 
         Checkbox checkbox = new Checkbox("checkbox", availableStocks, availableStocks);
 
-        //Button refresh = new Button("button", "/stocks_search_in_progress/"+jobId, "refresh");
         //Button btnBack = new Button("button-back", "/", "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
         Item<Text> item = new Item<>(text);
@@ -60,9 +46,8 @@ public class WebPageStocksSearchCompleted {
         Item<Text> itemt3 = new Item<>(text3);
         Item<Text> itemt4 = new Item<>(text4);
         Item<Checkbox> checkboxItem = new Item<>(checkbox);
-        //Item<Button> item2 = new Item<>(refresh);
         Item<Button> item3 = new Item<>(btnDelete);
-        Body body = new Body(item, itemt2, itemt3, checkboxItem, itemt4, itemt5, item3);
+        Body body = new Body(item, itemt2, itemt3, checkboxItem, itemt4, item3);
 
         return new Page(body);
     }

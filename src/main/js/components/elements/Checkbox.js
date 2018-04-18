@@ -1,47 +1,35 @@
 import React from 'react';
+import {editInputValue} from "../../actions/formData";
+import {connect} from "react-redux";
 
 class Checkbox extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            isCheck: false
-        }
-        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
+    handle(event) {
+        this.props.editInputValue( event.target.checked,  this.props.id);
     }
 
     render() {
-        const {values, names} = this.props.config;
-
-        const component = values.map((element, index) => (
-            <div key={index}>
-                <label>
-                    <input
-                        name={element}
-                        type="checkbox"
-                        checked={this.state.isCheck}
-                        onChange={this.handleInputChange} />
-                        {names[index]}
-                </label>
-            </div>
-        ));
+        const {name, id} = this.props;
 
         return (
-            <form className={"form-checkbox"}>
-                {component}
-            </form>
+            <label className={'checkbox'}>
+                <input
+                    type="checkbox"
+                    checked={this.props.values[id]}
+                    onChange={this.handle.bind(this)} />
+                {name}
+            </label>
         );
     }
 }
+
+Checkbox = connect(
+    state =>  state.formData,
+    { editInputValue }
+)(Checkbox)
 
 export default Checkbox;

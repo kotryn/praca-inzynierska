@@ -12,7 +12,7 @@ class ButtonForm extends React.Component{
     }
 
     componentWillMount(){
-        console.log(this.props.config, "btn-form");
+        console.log(this.props.config, "btn-input");
     }
 
     add(event) {

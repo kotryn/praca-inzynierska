@@ -86,3 +86,6 @@ tr.article{
 .form-checkbox{
     text-align: left;
 }
+.checkbox{
+    display: block;
+}

@@ -1,14 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux'
 
+import Checkbox from './Checkbox'
+import {connect} from "react-redux";
 import { createInputData, clear, createOutputData } from "../../actions/formData";
-import InputComponent from "./Input"
 
-class Form extends React.Component{
+class Checkboxes extends React.Component{
 
     constructor(props) {
         super(props);
-        let formData = this.props.config.values.map(()=> "");
+        let formData = this.props.config.values.map(()=> false);
         this.props.createInputData(formData);
     }
 
@@ -38,20 +38,20 @@ class Form extends React.Component{
         const {names} = this.props.config;
 
         const component = names.map((element, index) => (
-            <InputComponent  key={index} name={element} id={index} />
+                <Checkbox key={index} name={element} id={index}/>
         ));
 
         return (
-            <form className={'form-text'}>
+            <form className={"form-checkbox"}>
                 {component}
             </form>
         );
     }
 }
 
-Form = connect(
+Checkboxes = connect(
     state =>  state.formData,
     { createInputData, clear, createOutputData }
-)(Form)
+)(Checkboxes)
 
-export default Form;
+export default Checkboxes;
