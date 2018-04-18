@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 import inputDataFormReducer from './reducers/inputFormData'
-import inputDataReducer from './reducers/inputData'
+import formDataReducer from './reducers/formData'
 import dataReducer from './reducers/data'
 
 const rootReducer = combineReducers({
     inputFormData: inputDataFormReducer,
-    inputData: inputDataReducer,
+    formData: formDataReducer,
     pageData: dataReducer
 });
 

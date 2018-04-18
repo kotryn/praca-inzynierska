@@ -29,3 +29,12 @@ export function clear() {
         type: CLEAR
     }
 }
+
+export const CREATE_OUTPUT_DATA = 'CREATE_OUTPUT_DATA'
+export function createOutputData(jsonData) {
+    return {
+        type: CREATE_OUTPUT_DATA,
+        jsonData: jsonData
+    }
+}
+

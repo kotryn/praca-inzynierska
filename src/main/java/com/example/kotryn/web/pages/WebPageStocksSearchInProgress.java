@@ -12,16 +12,17 @@ public class WebPageStocksSearchInProgress {
 
     public Page show() {
         Text text = new Text("text", "Searching for stocks in progress");
-        //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
-        Button refresh = new Button("button", "/stocks_search_in_progress/"+jobId, "refresh");
+
+        Button btnRefresh = new Button("button", "/stocks_search_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
-        Item<Text> item = new Item<>(text);
-        Item<Button> item2 = new Item<>(refresh);
-        Item<Button> item3 = new Item<>(btnDelete);
-        Item<Button> item4 = new Item<>(btnBack);
-        Body body = new Body(item, item4, item2, item3);
 
-        return new Page(body);
+        Item<Text> itemText = new Item<>(text);
+
+        Item<Button> itemBtnRefresh = new Item<>(btnRefresh);
+        Item<Button> itemBtnDelete = new Item<>(btnDelete);
+        Item<Button> itemBtnBack = new Item<>(btnBack);
+
+        return new Page(new Body(itemText, itemBtnBack, itemBtnRefresh, itemBtnDelete));
     }
 }

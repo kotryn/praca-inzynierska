@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-import {editInputValue} from "../../actions/inputData";
+import {editInputValue} from "../../actions/formData";
 
 class Input extends React.Component{
 
@@ -27,7 +27,7 @@ class Input extends React.Component{
 }
 
 Input = connect(
-    state =>  state.inputData,
+    state =>  state.formData,
     { editInputValue }
 )(Input)
 

@@ -18,28 +18,26 @@ public class WebPageObtainingPeriodOfAnalysis {
         Job job = jobRepository.getOne(jobId);
 
         Text text = new Text("text", "Supply the period of analysis");
+        Text textStartDate = new Text("text", "Previous start date: " + job.getStartDate());
+        Text textEndDate = new Text("text", "Previous end date: " + job.getEndDate());
 
-        Text text1 = new Text("text", "Previous start date: " + job.getStartDate());
-        Text text2 = new Text("text", "Previous end date: " + job.getEndDate());
-
-        Button btnForm = new Button("button", "/jobSetDate/"+jobId, "submit");
-        Input inputForm = new Input(new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
-        Form form = new Form("form", inputForm, btnForm);
+        Form form = new Form("form", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
 
         Button btnBack = new Button("button-back", "/", "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
         Button btnNext= new Button("button", "/period_of_analysis/"+jobId, "Next");
+        Button btnForm = new Button("button-form", "/jobSetDate/"+jobId, "submit");
 
-        Item<Text> item = new Item<>(text);
-        Item<Text> item2 = new Item<>(text1);
-        Item<Text> item3 = new Item<>(text2);
-        Item<Form> item4 = new Item<>(form);
-        Item<Button> item5 = new Item<>(btnBack);
-        Item<Button> item6 = new Item<>(btnNext);
-        Item<Button> item7 = new Item<>(btnDelete);
+        Item<Text> itemText = new Item<>(text);
+        Item<Text> itemTextStartDate = new Item<>(textStartDate);
+        Item<Text> itemTextEndDate = new Item<>(textEndDate);
+        Item<Form> itemForm = new Item<>(form);
 
-        Body body = new Body(item, item2, item3, item4, item5, item6, item7);
+        Item<Button> itemBtnBack = new Item<>(btnBack);
+        Item<Button> itemBtnNext = new Item<>(btnNext);
+        Item<Button> itemBtnDelete = new Item<>(btnDelete);
+        Item<Button> itemBtnForm = new Item<>(btnForm);
 
-        return new Page(body);
+        return new Page(new Body(itemText, itemTextStartDate, itemTextEndDate, itemForm, itemBtnForm, itemBtnBack, itemBtnNext, itemBtnDelete));
     }
 }

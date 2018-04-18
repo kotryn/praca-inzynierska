@@ -9,14 +9,12 @@ public class WebPagePromptUser {
     }
 
     public Page show() {
-        Button newJob = new Button("button", "/begin_job", "Begin a new job");
-        Button connectJob = new Button("button", "/connect_to_job", "Connect to a job");
+        Button btnNewJob = new Button("button", "/begin_job", "Begin a new job");
+        Button btnConnectJob = new Button("button", "/connect_to_job", "Connect to a job");
 
-        Item<Button> newJobI = new Item<>(newJob);
-        Item<Button> connectJobI = new Item<>(connectJob);
+        Item<Button> itemBtnNewJob = new Item<>(btnNewJob);
+        Item<Button> itemBtnConnectJob = new Item<>(btnConnectJob);
 
-        Body loginBody = new Body(newJobI, connectJobI);
-
-        return new Page(loginBody);
+        return new Page(new Body(itemBtnNewJob, itemBtnConnectJob));
     }
 }

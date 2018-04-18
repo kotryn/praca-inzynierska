@@ -8,14 +8,15 @@ public class Form {
     private String type;
 
     @JsonView(View.Summary.class)
-    private Input input;
+    private String[] values;
 
     @JsonView(View.Summary.class)
-    private Button button;
+    private String[] names;
 
-    public Form(String type, Input input, Button button) {
+
+    public Form(String type, String[] values, String[] names) {
+        this.values = values;
+        this.names = names;
         this.type = type;
-        this.input = input;
-        this.button = button;
     }
 }

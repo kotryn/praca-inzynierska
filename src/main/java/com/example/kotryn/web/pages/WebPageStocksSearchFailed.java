@@ -22,13 +22,15 @@ public class WebPageStocksSearchFailed {
         Text text = new Text("text", "Searching for stocks failed. Reason: " + processDescriptor.getErrorMessage());
         Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
 
-        //Button btnBack = new Button("button-back", "/", "back");
+        Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
-        Item<Text> item = new Item<>(text);
-        Item<Text> item2 = new Item<>(text2);
-        Item<Button> item3 = new Item<>(btnDelete);
-        Body body = new Body(item, item2, item3);
 
-        return new Page(body);
+        Item<Text> itemText = new Item<>(text);
+        Item<Text> itemText2 = new Item<>(text2);
+
+        Item<Button> itemBtnDelete = new Item<>(btnDelete);
+        Item<Button> itemBtnBack = new Item<>(btnBack);
+
+        return new Page(new Body(itemText, itemText2, itemBtnBack, itemBtnDelete));
     }
 }

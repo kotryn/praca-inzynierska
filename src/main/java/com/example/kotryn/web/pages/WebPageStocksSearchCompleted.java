@@ -29,7 +29,6 @@ public class WebPageStocksSearchCompleted {
         Job job = jobRepository.findOne(jobId);
 
         List<String> availableStocks = Optional.ofNullable(job.getAvailableStocks()).orElse(Collections.singletonList("none"));
-
         List<String> previouslySelectedStocks = Optional.ofNullable(job.getSelectedStocks()).orElse(Collections.singletonList("none"));
 
         List<String> selectedStocks = null;

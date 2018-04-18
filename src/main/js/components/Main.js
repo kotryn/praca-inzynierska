@@ -7,6 +7,7 @@ import Line from './elements/Line'
 import Button from './elements/Button'
 import ButtonBack from './elements/ButtonBack'
 import ButtonDelete from './elements/ButtonDelete'
+import ButtonForm from './elements/ButtonForm'
 import Table from './elements/Table'
 import Title from './elements/Title'
 import Form from "./elements/Form";
@@ -26,11 +27,12 @@ class Main extends React.Component{
     render() {
         const {fetching, error, config, status} = this.props;
         if(fetching){
-            //console.log(this.props, fetching, error, config, status);
             return <div>loading...</div>
         }
 
-        console.log(this.props);
+        if(error){
+            return <div>{status}</div>
+        }
 
         let components = [];
         function setComponentType(element){
@@ -52,6 +54,9 @@ class Main extends React.Component{
                     break;
                 case "button-delete":
                     components.push(<ButtonDelete config={element} />);
+                    break;
+                case "button-form":
+                    components.push(<ButtonForm config={element} />);
                     break;
                 case "table":
                     components.push(<Table config={element}/>);

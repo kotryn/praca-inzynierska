@@ -1,16 +1,22 @@
-import {ADD_NEW_INPUT_VALUE, EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA} from '../actions/inputData'
+import {ADD_NEW_INPUT_VALUE, EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA, CREATE_OUTPUT_DATA} from '../actions/formData'
 
 const defaultState = {
     values: [],
+    jsonData: {}
 };
 
-function inputDataReducer(state = defaultState, action) {
+function formDataReducer(state = defaultState, action) {
     switch (action.type) {
         case CREATE_INPUT_DATA:
             return {
                 ...state,
                 values: action.values,
             }
+        case CREATE_OUTPUT_DATA:
+            return {
+                ...state,
+                jsonData: action.jsonData,
+        }
         case EDIT_INPUT_VALUE:
             let newValues = state.values.map((e,i)=>{
                 if(i === action.id){
@@ -32,4 +38,4 @@ function inputDataReducer(state = defaultState, action) {
     }
 }
 
-export default inputDataReducer
+export default formDataReducer

@@ -1,71 +1,57 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import axios from 'axios';
 
-import { getPageDataInfo } from '../../actions/data'
-import { createInputData, clear } from "../../actions/inputData";
+import { createInputData, clear, createOutputData } from "../../actions/formData";
 import InputComponent from "./Input"
-import ButtonComponent from './ButtonBack'
 
 class Form extends React.Component{
 
     constructor(props) {
         super(props);
-        this.add = this.add.bind(this);
-    }
-
-    componentWillMount(){
-        console.log(this.props.config);
-        let inputData = this.props.config.input.values.map(()=> "");
-        this.props.createInputData(inputData);
+        let formData = this.props.config.values.map(()=> "");
+        this.props.createInputData(formData);
     }
 
     componentWillUnmount(){
         this.props.clear();
     }
 
+    shouldComponentUpdate(nextProps){
+        return nextProps.jsonData === this.props.jsonData;
+    }
+
+    componentDidUpdate(){
+        this.props.createOutputData(this.createOutputData());
+    }
+
     createOutputData(){
-        const {input} = this.props.config;
+        const {values} = this.props.config;
         let output = {};
         this.props.values.forEach((e, i)=>{
-            output[input.values[i]] = e
+            output[values[i]] = e
         });
 
         return JSON.parse(JSON.stringify(output));
     }
 
-    add(event) {
-        event.preventDefault();
-        const {button} = this.props.config;
-
-        axios.post(button.url, this.createOutputData())
-            .then(response => {
-                if(response.status === 201){
-                    this.props.getPageDataInfo();
-                }
-            })
-            .catch(error => console.log(error))
-    }
-
     render() {
-        const {input, button} = this.props.config;
+        const {names} = this.props.config;
 
-        const component = input.names.map((element, index) => (
+        const component = names.map((element, index) => (
             <InputComponent  key={index} name={element} id={index} />
         ));
 
         return (
             <form className={'form-text'}>
                 {component}
-                <button className={'btn btn-success'} onClick={this.add}>{button.title}</button>
             </form>
         );
     }
 }
 
 Form = connect(
-    state =>  state.inputData,
-    { createInputData, clear, getPageDataInfo }
+    state =>  state.formData,
+    { createInputData, clear, createOutputData }
 )(Form)
 
 export default Form;
