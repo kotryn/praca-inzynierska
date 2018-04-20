@@ -38,3 +38,11 @@ export function createOutputData(jsonData) {
     }
 }
 
+export const CHANGE_ID = 'CHANGE_ID'
+export function changeNextId(id) {
+    return {
+        type: CHANGE_ID,
+        currentId: id
+    }
+}
+

@@ -8,8 +8,8 @@ class Checkbox extends React.Component{
         super(props);
     }
 
-    handle(event) {
-        this.props.editInputValue( event.target.checked,  this.props.id);
+    handle(e) {
+        this.props.editInputValue( e.target.checked,  this.props.id);
     }
 
     render() {

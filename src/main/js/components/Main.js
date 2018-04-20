@@ -10,9 +10,9 @@ import ButtonDelete from './elements/ButtonDelete'
 import ButtonForm from './elements/ButtonForm'
 import Table from './elements/Table'
 import Title from './elements/Title'
-import Inputs from "./elements/Inputs";
 import Image from "./elements/Image"
-import Checkboxes from "./elements/Checkboxes"
+import Form from "./elements/Form"
+
 
 class Main extends React.Component{
 
@@ -62,13 +62,13 @@ class Main extends React.Component{
                     components.push(<Table config={element}/>);
                     break;
                 case "input":
-                    components.push(<Inputs config={element}/>);
+                    components.push(<Form config={element}/>);
                     break;
                 case "image":
                     components.push(<Image config={element} />);
                     break;
                 case "checkbox":
-                    components.push(<Checkboxes config={element} />);
+                    components.push(<Form config={element} />);
                     break;
                 default:
                     console.log('unknown type of component');

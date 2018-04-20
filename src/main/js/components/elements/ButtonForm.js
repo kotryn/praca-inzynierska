@@ -11,10 +11,6 @@ class ButtonForm extends React.Component{
         this.add = this.add.bind(this);
     }
 
-    componentWillMount(){
-        console.log(this.props.config, "btn-input");
-    }
-
     add(event) {
         event.preventDefault();
         const {url} = this.props.config;

@@ -9,7 +9,7 @@ class Input extends React.Component{
         super(props);
     }
 
-    handleNameChange(e) {
+    handle(e) {
         this.props.editInputValue(e.target.value,  this.props.id);
     }
 
@@ -20,7 +20,7 @@ class Input extends React.Component{
         return (
             <label>
                 <div>{name}</div>
-                <input type="text" name="value" value={this.props.values[id]} onChange={this.handleNameChange.bind(this)} />
+                <input type="text" name="value" value={this.props.values[id]} onChange={this.handle.bind(this)} />
             </label>
         );
     }

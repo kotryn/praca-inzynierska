@@ -1,17 +1,35 @@
 import React from 'react';
+import {connect} from "react-redux";
 
 import Checkbox from './Checkbox'
-import {connect} from "react-redux";
-import { createInputData, clear, createOutputData } from "../../actions/formData";
-
-/*ZMIENIC!!!*/
+import Input from "./Input"
+import { createInputData, clear, createOutputData, changeNextId } from "../../actions/formData";
 
 class Form extends React.Component{
 
     constructor(props) {
         super(props);
-        let formData = this.props.config.values.map(()=> false);
-        this.props.createInputData(formData);
+        this.state = {
+            id: this.props.currentId
+        }
+        this._setFormData(this.props.config, this.props);
+    }
+
+    _setFormData({type, values}, {createInputData, changeNextId}){
+        let formData = [];
+        switch(type){
+            case "checkbox":
+                formData = values.map(()=> false);
+                break;
+            case "input":
+                formData = values.map(()=> "");
+                break;
+            default:
+                console.log("Form: unknown type - formData!!!");
+                return;
+        }
+        createInputData(formData);
+        changeNextId(values.length);
     }
 
     componentWillUnmount(){
@@ -28,7 +46,7 @@ class Form extends React.Component{
 
     createOutputData(){
         const {values} = this.props.config;
-        let output = {};
+        let output = {values};
         this.props.values.forEach((e, i)=>{
             output[values[i]] = e
         });
@@ -37,14 +55,31 @@ class Form extends React.Component{
     }
 
     render() {
-        const {names} = this.props.config;
+        const {names, type, values} = this.props.config;
+        const id = this.state.id;
+
+        let ComponentName = "";
+        let style = "";
+        switch(type){
+            case "checkbox":
+                ComponentName = Checkbox;
+                style = "form-checkbox";
+                break;
+            case "input":
+                ComponentName = Input;
+                style = "form-text";
+                break;
+            default:
+                console.log("Form: unknown type - componentName!!!");
+                return;
+        }
 
         const component = names.map((element, index) => (
-            <Checkbox key={index} name={element} id={index}/>
+            <ComponentName key={index} name={element} id={id+index} />
         ));
 
         return (
-            <form className={"form-checkbox"}>
+            <form className={style}>
                 {component}
             </form>
         );
@@ -53,7 +88,7 @@ class Form extends React.Component{
 
 Form = connect(
     state =>  state.formData,
-    { createInputData, clear, createOutputData }
+    { createInputData, clear, createOutputData, changeNextId }
 )(Form)
 
 export default Form;
