@@ -29,25 +29,25 @@ public class WebPageStocksSearchCompleted {
         Job job = jobRepository.findOne(jobId);
 
         List<String> availableStocks = Optional.ofNullable(job.getAvailableStocks()).orElse(Collections.singletonList("none"));
-
         List<String> previouslySelectedStocks = Optional.ofNullable(job.getSelectedStocks()).orElse(Collections.singletonList("none"));
 
         Text text = new Text("text", "Searching for stocks completed successfully");
         Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
-        Text text3 = new Text("text", "Available stocks: ");//CHECKBOX
+        Text text3 = new Text("text", "Available stocks: ");
         Text text4 = new Text("text", "Previously selected stocks: " + previouslySelectedStocks);
 
         Checkbox checkbox = new Checkbox("checkbox", availableStocks, availableStocks);
 
-        //Button btnBack = new Button("button-back", "/", "back");
+        Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
-        Item<Text> item = new Item<>(text);
-        Item<Text> itemt2 = new Item<>(text2);
-        Item<Text> itemt3 = new Item<>(text3);
-        Item<Text> itemt4 = new Item<>(text4);
-        Item<Checkbox> checkboxItem = new Item<>(checkbox);
-        Item<Button> item3 = new Item<>(btnDelete);
-        Body body = new Body(item, itemt2, itemt3, checkboxItem, itemt4, item3);
+        Item<Text> itemText = new Item<>(text);
+        Item<Text> itemText2 = new Item<>(text2);
+        Item<Text> itemText3 = new Item<>(text3);
+        Item<Text> itemText4 = new Item<>(text4);
+        Item<Checkbox> itemCheckbox = new Item<>(checkbox);
+        Item<Button> itemBtnBack = new Item<>(btnBack);
+        Item<Button> itemBtnDelete = new Item<>(btnDelete);
+        Body body = new Body(itemText, itemText2, itemText3, itemCheckbox, itemText4, itemBtnBack, itemBtnDelete);
 
         return new Page(body);
     }

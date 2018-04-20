@@ -104,7 +104,7 @@ public class MainController {
     @RequestMapping(value = "/jobsPOST", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void jobsPOST(@RequestBody Job requestJob) {
-        if(!contextRepository.exists(requestJob.getId())){
+        if(requestJob.getId() == null || !contextRepository.exists(requestJob.getId())){
             error = "Job with id "+requestJob.getId()+" not exist";
             url = "/connect_to_job";
         }else{
@@ -171,6 +171,19 @@ public class MainController {
         // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
     }
+
+    /*@RequestMapping(value = "/period_of_analysis_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void obtainingPeriodOfAnalysisbackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataObtainingPeriodOfAnalysis webData = new WebDataObtainingPeriodOfAnalysis(job.getId());
+        webData.setStartDate(job.getStartDate());
+        webData.setEndDate(job.getEndDate());
+
+        processJob(webData);
+        // once 201 is received for POST, browser connects:
+        url = this.jobsGET(job.getId());
+    }*/
 
     private void processJob(IWebData webData) {
         Context context = contextRepository.getOne(webData.getJobId());
