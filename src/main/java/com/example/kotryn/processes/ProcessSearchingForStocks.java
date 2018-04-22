@@ -1,25 +1,29 @@
 package com.example.kotryn.processes;
 
+import com.example.kotryn.csv.CSVMyReader;
+import com.example.kotryn.csv.File;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+import com.example.kotryn.repository.StockRepository;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.Arrays;
 
 public class ProcessSearchingForStocks implements IProcess {
 
     private JobRepository jobRepository;
+    private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
+        this.stockRepository = stockRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -34,10 +38,15 @@ public class ProcessSearchingForStocks implements IProcess {
     public void toBeDoneInsideProcessAtEndWhenSuccess() {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
-        job.setAvailableStocks(Arrays.asList("Microsoft Corporation (MSFT)",
-                "International Business Machines Corporation (IBM)",
-                "Oracle Corporation (ORCL)"));
+
+        String csvFile = File.getFile("FIRST_STOCK");
+        CSVMyReader readFile = new CSVMyReader(csvFile, stockRepository, job);
+        readFile.csvFirstSetStocks();
+        job.setStocks(readFile.getStocksMap());
+        job.setAvailableStocks(readFile.getSymbols());
+
         jobRepository.saveAndFlush(job);
+
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.COMPLETED_SUCCESS);

@@ -2,6 +2,7 @@ package com.example.kotryn.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Job {
@@ -16,6 +17,12 @@ public class Job {
     private List<String> availableStocks;
     @ElementCollection
     private List<String> selectedStocks;
+
+    //private Map<String, List<String>> stocks;
+    @OneToMany(mappedBy="job")
+    @MapKey(name="sector")
+    private Map<String, Stock> stocks;
+
 
     public Job(){
         this.startDate = "not set";
@@ -62,5 +69,13 @@ public class Job {
 
     public void setSelectedStocks(List<String> selectedStocks) {
         this.selectedStocks = selectedStocks;
+    }
+
+    public Map<String, Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(Map<String, Stock> stocks) {
+        this.stocks = stocks;
     }
 }

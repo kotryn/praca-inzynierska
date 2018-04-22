@@ -1,0 +1,449 @@
+DD,YAHOO,E. I. du Pont de Nemours and Company,United States,Basic Materials,Agricultural Chemicals
+MON,YAHOO,Monsanto Company,United States,Basic Materials,Agricultural Chemicals
+MOS,YAHOO,The Mosaic Company,United States,Basic Materials,Agricultural Chemicals
+AA,YAHOO,Alcoa Inc.,United States,Basic Materials,Aluminum
+DOW,YAHOO,The Dow Chemical Company,United States,Basic Materials,Chemicals - Major Diversified
+EMN,YAHOO,Eastman Chemical Co.,United States,Basic Materials,Chemicals - Major Diversified
+FMC,YAHOO,FMC Corp.,United States,Basic Materials,Chemicals - Major Diversified
+PX,YAHOO,Praxair Inc.,United States,Basic Materials,Chemicals - Major Diversified
+FCX,YAHOO,Freeport-McMoRan Inc.,United States,Basic Materials,Copper
+NEM,YAHOO,Newmont Mining Corporation,United States,Basic Materials,Gold
+APA,YAHOO,Apache Corp.,United States,Basic Materials,Independent Oil & Gas
+APC,YAHOO,Anadarko Petroleum Corporation,United States,Basic Materials,Independent Oil & Gas
+CHK,YAHOO,Chesapeake Energy Corporation,United States,Basic Materials,Independent Oil & Gas
+CNX,YAHOO,CONSOL Energy Inc.,United States,Basic Materials,Independent Oil & Gas
+COG,YAHOO,Cabot Oil & Gas Corporation,United States,Basic Materials,Independent Oil & Gas
+COP,YAHOO,ConocoPhillips,United States,Basic Materials,Independent Oil & Gas
+DNR,YAHOO,Denbury Resources Inc.,United States,Basic Materials,Independent Oil & Gas
+DVN,YAHOO,Devon Energy Corporation,United States,Basic Materials,Independent Oil & Gas
+EQT,YAHOO,EQT Corporation,United States,Basic Materials,Independent Oil & Gas
+HES,YAHOO,Hess Corporation,United States,Basic Materials,Independent Oil & Gas
+MRO,YAHOO,Marathon Oil Corporation,United States,Basic Materials,Independent Oil & Gas
+MUR,YAHOO,Murphy Oil Corporation,United States,Basic Materials,Independent Oil & Gas
+NFX,YAHOO,Newfield Exploration Co.,United States,Basic Materials,Independent Oil & Gas
+OXY,YAHOO,Occidental Petroleum Corporation,United States,Basic Materials,Independent Oil & Gas
+PXD,YAHOO,Pioneer Natural Resources Co.,United States,Basic Materials,Independent Oil & Gas
+RRC,YAHOO,Range Resources Corporation,United States,Basic Materials,Independent Oil & Gas
+SWN,YAHOO,Southwestern Energy Company,United States,Basic Materials,Independent Oil & Gas
+CLF,YAHOO,Cliffs Natural Resources Inc.,United States,Basic Materials,Industrial Metals & Minerals
+CVX,YAHOO,Chevron Corporation,United States,Basic Materials,Major Integrated Oil & Gas
+XOM,YAHOO,Exxon Mobil Corporation,United States,Basic Materials,Major Integrated Oil & Gas
+NBR,YAHOO,Nabors Industries Ltd.,Bermuda,Basic Materials,Oil & Gas Drilling & Exploration
+NE,YAHOO,Noble Corporation plc,United Kingdom,Basic Materials,Oil & Gas Drilling & Exploration
+RDC,YAHOO,Rowan Companies plc,United States,Basic Materials,Oil & Gas Drilling & Exploration
+BHI,YAHOO,Baker Hughes Incorporated,United States,Basic Materials,Oil & Gas Equipment & Services
+HAL,YAHOO,Halliburton Company,United States,Basic Materials,Oil & Gas Equipment & Services
+SLB,YAHOO,Schlumberger Limited,United States,Basic Materials,Oil & Gas Equipment & Services
+SE,YAHOO,Spectra Energy Corp.,United States,Basic Materials,Oil & Gas Pipelines
+MPC,YAHOO,Marathon Petroleum Corporation,United States,Basic Materials,Oil & Gas Refining & Marketing
+SUN,YAHOO,Sunoco LP,United States,Basic Materials,Oil & Gas Refining & Marketing
+TSO,YAHOO,Tesoro Corporation,United States,Basic Materials,Oil & Gas Refining & Marketing
+VLO,YAHOO,Valero Energy Corporation,United States,Basic Materials,Oil & Gas Refining & Marketing
+IFF,YAHOO,International Flavors & Fragrances Inc.,United States,Basic Materials,Specialty Chemicals
+SHW,YAHOO,The Sherwin-Williams Company,United States,Basic Materials,Specialty Chemicals
+NUE,YAHOO,Nucor Corporation,United States,Basic Materials,Steel & Iron
+X,YAHOO,United States Steel Corp.,United States,Basic Materials,Steel & Iron
+WHR,YAHOO,Whirlpool Corp.,United States,Consumer Goods,Appliances
+F,YAHOO,Ford Motor Co.,United States,Consumer Goods,Auto Manufacturers - Major
+BWA,YAHOO,BorgWarner Inc.,United States,Consumer Goods,Auto Parts
+JCI,YAHOO,Johnson Controls International plc,United States,Consumer Goods,Auto Parts
+TAP,YAHOO,Molson Coors Brewing Company,United States,Consumer Goods,Beverages - Brewers
+CCE,YAHOO,Coca-Cola European Partners Plc,United Kingdom,Consumer Goods,Beverages - Soft Drinks
+KO,YAHOO,The Coca-Cola Company,United States,Consumer Goods,Beverages - Soft Drinks
+BF-B,YAHOO,Brown-Forman Corporation,United States,Consumer Goods,Beverages - Wineries & Distillers
+STZ,YAHOO,Constellation Brands Inc.,United States,Consumer Goods,Beverages - Wineries & Distillers
+AVY,YAHOO,Avery Dennison Corporation,United States,Consumer Goods,Business Equipment
+PBI,YAHOO,Pitney Bowes Inc.,United States,Consumer Goods,Business Equipment
+RAI,YAHOO,Reynolds American Inc.,United States,Consumer Goods,Cigarettes
+ECL,YAHOO,Ecolab Inc.,United States,Consumer Goods,Cleaning Products
+HSY,YAHOO,The Hershey Company,United States,Consumer Goods,Confectioners
+DF,YAHOO,Dean Foods Company,United States,Consumer Goods,Dairy Products
+AAPL,YAHOO,Apple Inc.,United States,Consumer Goods,Electronic Equipment
+ADM,YAHOO,Archer-Daniels-Midland Company,United States,Consumer Goods,Farm Products
+CLX,YAHOO,The Clorox Company,United States,Consumer Goods,Housewares & Accessories
+NWL,YAHOO,Newell Brands Inc.,United States,Consumer Goods,Housewares & Accessories
+HRL,YAHOO,Hormel Foods Corporation,United States,Consumer Goods,Meat Products
+BLL,YAHOO,Ball Corporation,United States,Consumer Goods,Packaging & Containers
+IP,YAHOO,International Paper Company,United States,Consumer Goods,Packaging & Containers
+SEE,YAHOO,Sealed Air Corporation,United States,Consumer Goods,Packaging & Containers
+AVP,YAHOO,Avon Products Inc.,United States,Consumer Goods,Personal Products
+CL,YAHOO,Colgate-Palmolive Co.,United States,Consumer Goods,Personal Products
+EL,YAHOO,The Est�e Lauder Companies Inc.,United States,Consumer Goods,Personal Products
+KMB,YAHOO,Kimberly-Clark Corporation,United States,Consumer Goods,Personal Products
+PG,YAHOO,The Procter & Gamble Company,United States,Consumer Goods,Personal Products
+CPB,YAHOO,Campbell Soup Company,United States,Consumer Goods,Processed & Packaged Goods
+K,YAHOO,Kellogg Company,United States,Consumer Goods,Processed & Packaged Goods
+MJN,YAHOO,Mead Johnson Nutrition Company,United States,Consumer Goods,Processed & Packaged Goods
+SJM,YAHOO,The J. M. Smucker Company,United States,Consumer Goods,Processed & Packaged Goods
+GT,YAHOO,The Goodyear Tire & Rubber Company,United States,Consumer Goods,Rubber & Plastics
+RL,YAHOO,Ralph Lauren Corporation,United States,Consumer Goods,Textile - Apparel Clothing
+VFC,YAHOO,V.F. Corporation,United States,Consumer Goods,Textile - Apparel Clothing
+HAS,YAHOO,Hasbro Inc.,United States,Consumer Goods,Toys & Games
+PCAR,YAHOO,PACCAR Inc.,United States,Consumer Goods,Trucks & Other Vehicles
+AFL,YAHOO,Aflac Incorporated,United States,Financial,Accident & Health Insurance
+UNM,YAHOO,Unum Group,United States,Financial,Accident & Health Insurance
+BK,YAHOO,The Bank of New York Mellon Corporation,United States,Financial,Asset Management
+IVZ,YAHOO,Invesco Ltd.,United States,Financial,Asset Management
+NTRS,YAHOO,Northern Trust Corporation,United States,Financial,Asset Management
+STT,YAHOO,State Street Corporation,United States,Financial,Asset Management
+AXP,YAHOO,American Express Company,United States,Financial,Credit Services
+COF,YAHOO,Capital One Financial Corporation,United States,Financial,Credit Services
+DFS,YAHOO,Discover Financial Services,United States,Financial,Credit Services
+EFX,YAHOO,Equifax Inc.,United States,Financial,Credit Services
+MA,YAHOO,Mastercard Incorporated,United States,Financial,Credit Services
+SLM,YAHOO,SLM Corporation,United States,Financial,Credit Services
+V,YAHOO,Visa Inc.,United States,Financial,Credit Services
+WU,YAHOO,The Western Union Company,United States,Financial,Credit Services
+AON,YAHOO,Aon plc,United Kingdom,Financial,Insurance Brokers
+CME,YAHOO,CME Group Inc.,United States,Financial,Investment Brokerage - National
+ETFC,YAHOO,E*TRADE Financial Corporation,United States,Financial,Investment Brokerage - National
+LUK,YAHOO,Leucadia National Corporation,United States,Financial,Investment Brokerage - National
+MS,YAHOO,Morgan Stanley,United States,Financial,Investment Brokerage - National
+SCHW,YAHOO,The Charles Schwab Corporation,United States,Financial,Investment Brokerage - National
+LNC,YAHOO,Lincoln National Corporation,United States,Financial,Life Insurance
+PFG,YAHOO,Principal Financial Group Inc.,United States,Financial,Life Insurance
+TMK,YAHOO,Torchmark Corporation,United States,Financial,Life Insurance
+BAC,YAHOO,Bank of America Corporation,United States,Financial,Money Center Banks
+C,YAHOO,Citigroup Inc.,United States,Financial,Money Center Banks
+CMA,YAHOO,Comerica Incorporated,United States,Financial,Money Center Banks
+JPM,YAHOO,JPMorgan Chase & Co.,United States,Financial,Money Center Banks
+WFC,YAHOO,Wells Fargo & Company,United States,Financial,Money Center Banks
+ALL,YAHOO,The Allstate Corporation,United States,Financial,Property & Casualty Insurance
+CB,YAHOO,Chubb Limited,Switzerland,Financial,Property & Casualty Insurance
+CINF,YAHOO,Cincinnati Financial Corp.,United States,Financial,Property & Casualty Insurance
+L,YAHOO,Loews Corporation,United States,Financial,Property & Casualty Insurance
+PGR,YAHOO,Progressive Corp.,United States,Financial,Property & Casualty Insurance
+XL,YAHOO,XL Group Ltd,Bermuda,Financial,Property & Casualty Insurance
+FITB,YAHOO,Fifth Third Bancorp,United States,Financial,Regional - Midwest Banks
+HBAN,YAHOO,Huntington Bancshares Incorporated,United States,Financial,Regional - Midwest Banks
+KEY,YAHOO,KeyCorp.,United States,Financial,Regional - Midwest Banks
+USB,YAHOO,U.S. Bancorp,United States,Financial,Regional - Midwest Banks
+MTB,YAHOO,M&T Bank Corporation,United States,Financial,Regional - Northeast Banks
+ZION,YAHOO,Zions Bancorporation,United States,Financial,Regional - Pacific Banks
+BBT,YAHOO,BB&T Corporation,United States,Financial,Regional - Southeast Banks
+FHN,YAHOO,First Horizon National Corporation,United States,Financial,Regional - Southeast Banks
+RF,YAHOO,Regions Financial Corporation,United States,Financial,Regional - Southeast Banks
+AMT,YAHOO,American Tower Corporation,United States,Financial,REIT - Diversified
+VNO,YAHOO,Vornado Realty Trust,United States,Financial,REIT - Diversified
+HCN,YAHOO,Welltower Inc.,United States,Financial,REIT - Healthcare Facilities
+PSA,YAHOO,Public Storage,United States,Financial,REIT - Industrial
+BXP,YAHOO,Boston Properties Inc.,United States,Financial,REIT - Office
+AIV,YAHOO,Apartment Investment and Management Company,United States,Financial,REIT - Residential
+EQR,YAHOO,Equity Residential,United States,Financial,REIT - Residential
+KIM,YAHOO,Kimco Realty Corporation,United States,Financial,REIT - Retail
+SPG,YAHOO,Simon Property Group Inc.,United States,Financial,REIT - Retail
+PBCT,YAHOO,People's United Financial Inc.,United States,Financial,Savings & Loans
+AMGN,YAHOO,Amgen Inc.,United States,Healthcare,Biotechnology
+BIIB,YAHOO,Biogen Inc.,United States,Healthcare,Biotechnology
+CELG,YAHOO,Celgene Corporation,United States,Healthcare,Biotechnology
+GILD,YAHOO,Gilead Sciences Inc.,United States,Healthcare,Biotechnology
+LIFE,YAHOO,aTyr Pharma Inc.,United States,Healthcare,Biotechnology
+BMY,YAHOO,Bristol-Myers Squibb Company,United States,Healthcare,Drug Manufacturers - Major
+JNJ,YAHOO,Johnson & Johnson,United States,Healthcare,Drug Manufacturers - Major
+LLY,YAHOO,Eli Lilly and Company,United States,Healthcare,Drug Manufacturers - Major
+PFE,YAHOO,Pfizer Inc.,United States,Healthcare,Drug Manufacturers - Major
+PRGO,YAHOO,Perrigo Company plc,Ireland,Healthcare,Drug Related Products
+AGN,YAHOO,Allergan plc,Ireland,Healthcare,Drugs - Generic
+MYL,YAHOO,Mylan N.V.,United Kingdom,Healthcare,Drugs - Generic
+AET,YAHOO,Aetna Inc.,United States,Healthcare,Health Care Plans
+CI,YAHOO,Cigna Corp.,United States,Healthcare,Health Care Plans
+CVS,YAHOO,CVS Health Corporation,United States,Healthcare,Health Care Plans
+ESRX,YAHOO,Express Scripts Holding Company,United States,Healthcare,Health Care Plans
+HUM,YAHOO,Humana Inc.,United States,Healthcare,Health Care Plans
+UNH,YAHOO,UnitedHealth Group Incorporated,United States,Healthcare,Health Care Plans
+THC,YAHOO,Tenet Healthcare Corp.,United States,Healthcare,Hospitals
+ABT,YAHOO,Abbott Laboratories,United States,Healthcare,Medical Appliances & Equipment
+BSX,YAHOO,Boston Scientific Corporation,United States,Healthcare,Medical Appliances & Equipment
+EW,YAHOO,Edwards Lifesciences Corp.,United States,Healthcare,Medical Appliances & Equipment
+MDT,YAHOO,Medtronic plc,Ireland,Healthcare,Medical Appliances & Equipment
+STJ,YAHOO,St. Jude Medical Inc.,United States,Healthcare,Medical Appliances & Equipment
+SYK,YAHOO,Stryker Corporation,United States,Healthcare,Medical Appliances & Equipment
+BAX,YAHOO,Baxter International Inc.,United States,Healthcare,Medical Instruments & Supplies
+BCR,YAHOO,CR Bard Inc.,United States,Healthcare,Medical Instruments & Supplies
+WAT,YAHOO,Waters Corporation,United States,Healthcare,Medical Instruments & Supplies
+DGX,YAHOO,Quest Diagnostics Inc.,United States,Healthcare,Medical Laboratories & Research
+LH,YAHOO,Laboratory Corp. of America Holdings,United States,Healthcare,Medical Laboratories & Research
+PKI,YAHOO,PerkinElmer Inc.,United States,Healthcare,Medical Laboratories & Research
+DVA,YAHOO,DaVita Inc.,United States,Healthcare,Specialized Health Services
+NOC,YAHOO,Northrop Grumman Corporation,United States,Industrial Goods,Aerospace/Defense - Major Diversified
+TXT,YAHOO,Textron Inc.,United States,Industrial Goods,Aerospace/Defense - Major Diversified
+BA,YAHOO,The Boeing Company,United States,Industrial Goods,Aerospace/Defense Products & Services
+COL,YAHOO,Rockwell Collins Inc.,United States,Industrial Goods,Aerospace/Defense Products & Services
+GD,YAHOO,General Dynamics Corporation,United States,Industrial Goods,Aerospace/Defense Products & Services
+LLL,YAHOO,L-3 Communications Holdings Inc.,United States,Industrial Goods,Aerospace/Defense Products & Services
+LMT,YAHOO,Lockheed Martin Corporation,United States,Industrial Goods,Aerospace/Defense Products & Services
+RTN,YAHOO,Raytheon Company,United States,Industrial Goods,Aerospace/Defense Products & Services
+UTX,YAHOO,United Technologies Corporation,United States,Industrial Goods,Aerospace/Defense Products & Services
+CMI,YAHOO,Cummins Inc.,United States,Industrial Goods,Diversified Machinery
+DHR,YAHOO,Danaher Corp.,United States,Industrial Goods,Diversified Machinery
+DOV,YAHOO,Dover Corporation,United States,Industrial Goods,Diversified Machinery
+ETN,YAHOO,Eaton Corporation plc,Ireland,Industrial Goods,Diversified Machinery
+FLS,YAHOO,Flowserve Corp.,United States,Industrial Goods,Diversified Machinery
+GE,YAHOO,General Electric Company,United States,Industrial Goods,Diversified Machinery
+HON,YAHOO,Honeywell International Inc.,United States,Industrial Goods,Diversified Machinery
+IR,YAHOO,Ingersoll-Rand Plc,Ireland,Industrial Goods,Diversified Machinery
+ITW,YAHOO,Illinois Tool Works Inc.,United States,Industrial Goods,Diversified Machinery
+MMM,YAHOO,3M Company,United States,Industrial Goods,Diversified Machinery
+ROK,YAHOO,Rockwell Automation Inc.,United States,Industrial Goods,Diversified Machinery
+XYL,YAHOO,Xylem Inc.,United States,Industrial Goods,Diversified Machinery
+CAT,YAHOO,Caterpillar Inc.,United States,Industrial Goods,Farm & Construction Machinery
+DE,YAHOO,Deere & Company,United States,Industrial Goods,Farm & Construction Machinery
+MAS,YAHOO,Masco Corporation,United States,Industrial Goods,General Building Materials
+VMC,YAHOO,Vulcan Materials Company,United States,Industrial Goods,General Building Materials
+FLR,YAHOO,Fluor Corporation,United States,Industrial Goods,Heavy Construction
+EMR,YAHOO,Emerson Electric Co.,United States,Industrial Goods,Industrial Electrical Equipment
+PH,YAHOO,Parker-Hannifin Corporation,United States,Industrial Goods,Industrial Equipment & Components
+WY,YAHOO,Weyerhaeuser Co.,United States,Industrial Goods,Lumber
+ATI,YAHOO,Allegheny Technologies Inc.,United States,Industrial Goods,Metal Fabrication
+DHI,YAHOO,DR Horton Inc.,United States,Industrial Goods,Residential Construction
+LEN,YAHOO,Lennar Corporation,United States,Industrial Goods,Residential Construction
+SNA,YAHOO,Snap-on Incorporated,United States,Industrial Goods,Small Tools & Accessories
+BRK-B,YAHOO,Berkshire Hathaway Inc.,United States,N/A1,N/A1
+OMC,YAHOO,Omnicom Group Inc.,United States,Services,Advertising Agencies
+CHRW,YAHOO,CH Robinson Worldwide Inc.,United States,Services,Air Delivery & Freight Services
+EXPD,YAHOO,Expeditors International of Washington Inc.,United States,Services,Air Delivery & Freight Services
+FDX,YAHOO,FedEx Corporation,United States,Services,Air Delivery & Freight Services
+ANF,YAHOO,Abercrombie & Fitch Co.,United States,Services,Apparel Stores
+JWN,YAHOO,Nordstrom Inc.,United States,Services,Apparel Stores
+ROST,YAHOO,Ross Stores Inc.,United States,Services,Apparel Stores
+URBN,YAHOO,Urban Outfitters Inc.,United States,Services,Apparel Stores
+KMX,YAHOO,CarMax Inc.,United States,Services,Auto Dealerships
+ORLY,YAHOO,O'Reilly Automotive Inc.,United States,Services,Auto Parts Stores
+CTAS,YAHOO,Cintas Corporation,United States,Services,Business Services
+MCO,YAHOO,Moody's Corporation,United States,Services,Business Services
+PCLN,YAHOO,The Priceline Group Inc.,United States,Services,Business Services
+RRD,YAHOO,R.R. Donnelley & Sons Company,United States,Services,Business Services
+KSS,YAHOO,Kohl's Corp.,United States,Services,Department Stores
+SHLD,YAHOO,Sears Holdings Corporation,United States,Services,Department Stores
+TJX,YAHOO,North Atlantic Drilling Limited,Bermuda,Services,Department Stores
+BIG,YAHOO,Big Lots Inc.,United States,Services,Discount
+COST,YAHOO,Costco Wholesale Corporation,United States,Services,Discount
+TGT,YAHOO,Target Corp.,United States,Services,Discount
+WMT,YAHOO,Wal-Mart Stores Inc.,United States,Services,Discount
+ABC,YAHOO,AmerisourceBergen Corporation,United States,Services,Drugs Wholesale
+MCK,YAHOO,McKesson Corporation,United States,Services,Drugs Wholesale
+DV,YAHOO,DeVry Education Group Inc.,United States,Services,Education & Training Services
+GME,YAHOO,GameStop Corp.,United States,Services,Electronics Stores
+CBS,YAHOO,CBS Corporation,United States,Services,Entertainment - Diversified
+CMCSA,YAHOO,Comcast Corporation,United States,Services,Entertainment - Diversified
+DIS,YAHOO,The Walt Disney Company,United States,Services,Entertainment - Diversified
+TWX,YAHOO,Time Warner Inc.,United States,Services,Entertainment - Diversified
+SYY,YAHOO,Sysco Corporation,United States,Services,Food Wholesale
+IGT,YAHOO,International Game Technology PLC,United Kingdom,Services,Gaming Activities
+KR,YAHOO,The Kroger Co.,United States,Services,Grocery Stores
+SVU,YAHOO,SUPERVALU Inc.,United States,Services,Grocery Stores
+BBBY,YAHOO,Bed Bath & Beyond Inc.,United States,Services,Home Furnishing Stores
+FAST,YAHOO,Fastenal Company,United States,Services,Industrial Equipment Wholesale
+TIF,YAHOO,Tiffany & Co.,United States,Services,Jewelry Stores
+EXPE,YAHOO,Expedia Inc.,United States,Services,Lodging
+WYN,YAHOO,Wyndham Worldwide Corporation,United States,Services,Lodging
+CSX,YAHOO,CSX Corp.,United States,Services,Railroads
+NSC,YAHOO,Norfolk Southern Corporation,United States,Services,Railroads
+UNP,YAHOO,Union Pacific Corporation,United States,Services,Railroads
+LUV,YAHOO,Southwest Airlines Co.,United States,Services,Regional Airlines
+CCL,YAHOO,Carnival Corporation,United States,Services,Resorts & Casinos
+WYNN,YAHOO,Wynn Resorts Ltd.,United States,Services,Resorts & Casinos
+MCD,YAHOO,McDonald's Corp.,United States,Services,Restaurants
+SBUX,YAHOO,Starbucks Corporation,United States,Services,Specialty Eateries
+EBAY,YAHOO,eBay Inc.,United States,Services,Specialty Retail
+GPC,YAHOO,Genuine Parts Company,United States,Services,Specialty Retail
+RHI,YAHOO,Robert Half International Inc.,United States,Services,Staffing & Outsourcing Services
+JEC,YAHOO,Jacobs Engineering Group Inc.,United States,Services,Technical Services
+ADBE,YAHOO,Adobe Systems Incorporated,United States,Technology,Application Software
+INTU,YAHOO,Intuit Inc.,United States,Technology,Application Software
+ORCL,YAHOO,Oracle Corporation,United States,Technology,Application Software
+CTSH,YAHOO,Cognizant Technology Solutions Corporation,United States,Technology,Business Software & Services
+IRM,YAHOO,Iron Mountain Incorporated,United States,Technology,Business Software & Services
+MSFT,YAHOO,Microsoft Corporation,United States,Technology,Business Software & Services
+HRS,YAHOO,Harris Corporation,United States,Technology,Communication Equipment
+QCOM,YAHOO,QUALCOMM Incorporated,United States,Technology,Communication Equipment
+VIAV,YAHOO,Viavi Solutions Inc.,United States,Technology,Communication Equipment
+LXK,YAHOO,Lexmark International Inc.,United States,Technology,Computer Based Systems
+TDC,YAHOO,Teradata Corporation,United States,Technology,Data Storage Devices
+WDC,YAHOO,Western Digital Corporation,United States,Technology,Data Storage Devices
+HPQ,YAHOO,HP Inc.,United States,Technology,Diversified Computer Systems
+APH,YAHOO,Amphenol Corporation,United States,Technology,Diversified Electronics
+GLW,YAHOO,Corning Incorporated,United States,Technology,Diversified Electronics
+TEL,YAHOO,TE Connectivity Ltd.,Switzerland,Technology,Diversified Electronics
+CERN,YAHOO,Cerner Corporation,United States,Technology,Healthcare Information Services
+DNB,YAHOO,The Dun & Bradstreet Corporation,United States,Technology,Information & Delivery Services
+ACN,YAHOO,Accenture plc,Ireland,Technology,Information Technology Services
+CSC,YAHOO,Computer Sciences Corporation,United States,Technology,Information Technology Services
+IBM,YAHOO,International Business Machines Corporation,United States,Technology,Information Technology Services
+XRX,YAHOO,Xerox Corporation,United States,Technology,Information Technology Services
+GOOGL,YAHOO,Alphabet Inc.,United States,Technology,Internet Information Providers
+TRIP,YAHOO,TripAdvisor Inc.,United States,Technology,Internet Information Providers
+YHOO,YAHOO,Yahoo! Inc.,United States,Technology,Internet Information Providers
+EA,YAHOO,Electronic Arts Inc.,United States,Technology,Multimedia & Graphics Software
+JBL,YAHOO,Jabil Circuit Inc.,United States,Technology,Printed Circuit Boards
+SYMC,YAHOO,Symantec Corporation,United States,Technology,Security Software & Services
+INTC,YAHOO,Intel Corporation,United States,Technology,Semiconductor - Broad Line
+TXN,YAHOO,Texas Instruments Inc.,United States,Technology,Semiconductor - Broad Line
+XLNX,YAHOO,Xilinx Inc.,United States,Technology,Semiconductor - Integrated Circuits
+LLTC,YAHOO,Linear Technology Corporation,United States,Technology,Semiconductor - Specialized
+MCHP,YAHOO,Microchip Technology Inc.,United States,Technology,Semiconductor - Specialized
+NVDA,YAHOO,NVIDIA Corporation,United States,Technology,Semiconductor - Specialized
+KLAC,YAHOO,KLA-Tencor Corporation,United States,Technology,Semiconductor Equipment & Materials
+TER,YAHOO,Teradyne Inc.,United States,Technology,Semiconductor Equipment & Materials
+FTR,YAHOO,Frontier Communications Corporation,United States,Technology,Telecom Services - Domestic
+VZ,YAHOO,Verizon Communications Inc.,United States,Technology,Telecom Services - Domestic
+S,YAHOO,Sprint Corporation,United States,Technology,Wireless Communications
+APD,YAHOO,Air Products and Chemicals, Inc.,United States,Basic Materials
+CF,YAHOO,CF Industries Holdings, Inc.,United States,Basic Materials
+DO,YAHOO,Diamond Offshore Drilling, Inc.,United States,Basic Materials
+EOG,YAHOO,EOG Resources, Inc.,United States,Basic Materials
+FTI,YAHOO,FMC Technologies, Inc.,United States,Basic Materials
+HP,YAHOO,Helmerich & Payne, Inc.,United States,Basic Materials
+NBL,YAHOO,Noble Energy, Inc.,United States,Basic Materials
+NOV,YAHOO,National Oilwell Varco, Inc.,United States,Basic Materials
+PPG,YAHOO,PPG Industries, Inc.,United States,Basic Materials
+QEP,YAHOO,QEP Resources, Inc.,United States,Basic Materials
+WMB,YAHOO,Williams Companies, Inc.,United States,Basic Materials
+WPX,YAHOO,WPX Energy, Inc.,United States,Basic Materials
+BMS,YAHOO,Bemis Company, Inc.,United States,Consumer Goods
+CAG,YAHOO,ConAgra Foods, Inc.,United States,Consumer Goods
+COH,YAHOO,Coach, Inc.,United States,Consumer Goods
+DPS,YAHOO,Dr Pepper Snapple Group, Inc.,United States,Consumer Goods
+GIS,YAHOO,General Mills, Inc.,United States,Consumer Goods
+HAR,YAHOO,Harman International Industries, Incorporated,United States,Consumer Goods
+HOG,YAHOO,Harley-Davidson, Inc.,United States,Consumer Goods
+LEG,YAHOO,Leggett & Platt, Incorporated,United States,Consumer Goods
+MAT,YAHOO,Mattel, Inc.,United States,Consumer Goods
+MDLZ,YAHOO,Mondelez International, Inc.,United States,Consumer Goods
+MKC,YAHOO,McCormick & Company, Incorporated,United States,Consumer Goods
+MO,YAHOO,Altria Group, Inc.,United States,Consumer Goods
+NKE,YAHOO,NIKE, Inc.,United States,Consumer Goods
+OI,YAHOO,Owens-Illinois, Inc.,United States,Consumer Goods
+PEP,YAHOO,Pepsico, Inc.,United States,Consumer Goods
+PM,YAHOO,Philip Morris International, Inc.,United States,Consumer Goods
+TSN,YAHOO,Tyson Foods, Inc.,United States,Consumer Goods
+AIG,YAHOO,American International Group, Inc.,United States,Financial
+AIZ,YAHOO,Assurant, Inc.,United States,Financial
+AMP,YAHOO,Ameriprise Financial, Inc.,United States,Financial
+AVB,YAHOO,AvalonBay Communities, Inc.,United States,Financial
+BEN,YAHOO,Franklin Resources, Inc.,United States,Financial
+BLK,YAHOO,BlackRock, Inc.,United States,Financial
+CBG,YAHOO,CBRE Group, Inc.,United States,Financial
+FII,YAHOO,Federated Investors, Inc.,United States,Financial
+GNW,YAHOO,Genworth Financial, Inc.,United States,Financial
+GS,YAHOO,The Goldman Sachs Group, Inc.,United States,Financial
+HCP,YAHOO,HCP, Inc.,United States,Financial
+HIG,YAHOO,The Hartford Financial Services Group, Inc.,United States,Financial
+HST,YAHOO,Host Hotels & Resorts, Inc.,United States,Financial
+ICE,YAHOO,Intercontinental Exchange, Inc.,United States,Financial
+LM,YAHOO,Legg Mason, Inc.,United States,Financial
+MET,YAHOO,MetLife, Inc.,United States,Financial
+MMC,YAHOO,Marsh & McLennan Companies, Inc.,United States,Financial
+MMI,YAHOO,Marcus & Millichap, Inc.,United States,Financial
+NDAQ,YAHOO,Nasdaq, Inc.,United States,Financial
+PLD,YAHOO,Prologis, Inc.,United States,Financial
+PNC,YAHOO,The PNC Financial Services Group, Inc.,United States,Financial
+PRU,YAHOO,Prudential Financial, Inc.,United States,Financial
+STI,YAHOO,SunTrust Banks, Inc.,United States,Financial
+TROW,YAHOO,T. Rowe Price Group, Inc.,United States,Financial
+TRV,YAHOO,The Travelers Companies, Inc.,United States,Financial
+TSS,YAHOO,Total System Services, Inc.,United States,Financial
+VTR,YAHOO,Ventas, Inc.,United States,Financial
+A,YAHOO,Agilent Technologies, Inc.,United States,Healthcare
+ANTM,YAHOO,Anthem, Inc.,United States,Healthcare
+BDX,YAHOO,Becton, Dickinson and Company,United States,Healthcare
+ISRG,YAHOO,Intuitive Surgical, Inc.,United States,Healthcare
+MRK,YAHOO,Merck & Co., Inc.,United States,Healthcare
+NVLS,YAHOO,Nivalis Therapeutics, Inc.,United States,Healthcare
+TMO,YAHOO,Thermo Fisher Scientific, Inc.,United States,Healthcare
+VAR,YAHOO,Varian Medical Systems, Inc.,United States,Healthcare
+ZBH,YAHOO,Zimmer Biomet Holdings, Inc.,United States,Healthcare
+JOY,YAHOO,Joy Global, Inc.,United States,Industrial Goods
+PHM,YAHOO,PulteGroup, Inc.,United States,Industrial Goods
+PWR,YAHOO,Quanta Services, Inc.,United States,Industrial Goods
+ROP,YAHOO,Roper Technologies, Inc.,United States,Industrial Goods
+RSG,YAHOO,Republic Services, Inc.,United States,Industrial Goods
+SRCL,YAHOO,Stericycle, Inc.,United States,Industrial Goods
+SWK,YAHOO,Stanley Black & Decker, Inc.,United States,Industrial Goods
+WM,YAHOO,Waste Management, Inc.,United States,Industrial Goods
+AMZN,YAHOO,Amazon.com, Inc.,United States,Services
+AN,YAHOO,AutoNation, Inc.,United States,Services
+APOL,YAHOO,Apollo Education Group, Inc.,United States,Services
+AZO,YAHOO,AutoZone, Inc.,United States,Services
+BBY,YAHOO,Best Buy Co., Inc.,United States,Services
+CAH,YAHOO,Cardinal Health, Inc.,United States,Services
+CMG,YAHOO,Chipotle Mexican Grill, Inc.,United States,Services
+DISCA,YAHOO,Discovery Communications, Inc.,United States,Services
+DLTR,YAHOO,Dollar Tree, Inc.,United States,Services
+DRI,YAHOO,Darden Restaurants, Inc.,United States,Services
+FISV,YAHOO,Fiserv, Inc.,United States,Services
+FOXA,YAHOO,Twenty-First Century Fox, Inc.,United States,Services
+GCI,YAHOO,Gannett Co., Inc.,United States,Services
+GPS,YAHOO,The Gap, Inc.,United States,Services
+GWW,YAHOO,W.W. Grainger, Inc.,United States,Services
+HD,YAHOO,The Home Depot, Inc.,United States,Services
+HRB,YAHOO,H&R Block, Inc.,United States,Services
+IPG,YAHOO,The Interpublic Group of Companies, Inc.,United States,Services
+JCP,YAHOO,J. C. Penney Company, Inc.,United States,Services
+LB,YAHOO,L Brands, Inc.,United States,Services
+LOW,YAHOO,Lowe's Companies, Inc.,United States,Services
+M,YAHOO,Macy's, Inc.,United States,Services
+MAR,YAHOO,Marriott International, Inc.,United States,Services
+NFLX,YAHOO,Netflix, Inc.,United States,Services
+PAYX,YAHOO,Paychex, Inc.,United States,Services
+PDCO,YAHOO,Patterson Companies, Inc.,United States,Services
+R,YAHOO,Ryder System, Inc.,United States,Services
+SNI,YAHOO,Scripps Networks Interactive, Inc.,United States,Services
+SPLS,YAHOO,Staples, Inc.,United States,Services
+UPS,YAHOO,United Parcel Service, Inc.,United States,Services
+VIAB,YAHOO,Viacom, Inc.,United States,Services
+WBA,YAHOO,Walgreens Boots Alliance, Inc.,United States,Services
+WFM,YAHOO,Whole Foods Market, Inc.,United States,Services
+YUM,YAHOO,Yum! Brands, Inc.,United States,Services
+ADI,YAHOO,Analog Devices, Inc.,United States,Technology
+ADP,YAHOO,Automatic Data Processing, Inc.,United States,Technology
+ADSK,YAHOO,Autodesk, Inc.,United States,Technology
+AKAM,YAHOO,Akamai Technologies, Inc.,United States,Technology
+AMAT,YAHOO,Applied Materials, Inc.,United States,Technology
+AMD,YAHOO,Advanced Micro Devices, Inc.,United States,Technology
+CA,YAHOO,CA, Inc.,United States,Technology
+CRM,YAHOO,salesforce.com, inc.,United States,Technology
+CSCO,YAHOO,Cisco Systems, Inc.,United States,Technology
+CTL,YAHOO,CenturyLink, Inc.,United States,Technology
+CTXS,YAHOO,Citrix Systems, Inc.,United States,Technology
+FFIV,YAHOO,F5 Networks, Inc.,United States,Technology
+FIS,YAHOO,Fidelity National Information Services, Inc.,United States,Technology
+FLIR,YAHOO,FLIR Systems, Inc.,United States,Technology
+FSLR,YAHOO,First Solar, Inc.,United States,Technology
+JNPR,YAHOO,Juniper Networks, Inc.,United States,Technology
+LDOS,YAHOO,Leidos Holdings, Inc.,United States,Technology
+LSI,YAHOO,Life Storage, Inc.,United States,Technology
+MSI,YAHOO,Motorola Solutions, Inc.,United States,Technology
+MU,YAHOO,Micron Technology, Inc.,United States,Technology
+NTAP,YAHOO,NetApp, Inc.,United States,Technology
+RHT,YAHOO,Red Hat, Inc.,United States,Technology
+T,YAHOO,AT&T, Inc.,United States,Technology
+VRSN,YAHOO,VeriSign, Inc.,United States,Technology
+WIN,YAHOO,Windstream Holdings, Inc.,United States,Technology
+AEP,YAHOO,American Electric Power Co., Inc.,United States,Utilities
+CNP,YAHOO,CenterPoint Energy, Inc.,United States,Utilities
+D,YAHOO,Dominion Resources, Inc.,United States,Utilities
+ED,YAHOO,Consolidated Edison, Inc.,United States,Utilities
+NEE,YAHOO,NextEra Energy, Inc.,United States,Utilities
+NRG,YAHOO,NRG Energy, Inc.,United States,Utilities
+WEC,YAHOO,WEC Energy Group, Inc.,United States,Utilities
+ES,YAHOO,Eversource Energy,United States,Utilities,Diversified Utilities
+EXC,YAHOO,Exelon Corporation,United States,Utilities,Diversified Utilities
+NI,YAHOO,NiSource Inc.,United States,Utilities,Diversified Utilities
+PEG,YAHOO,Public Service Enterprise Group Inc.,United States,Utilities,Diversified Utilities
+SRE,YAHOO,Sempra Energy,United States,Utilities,Diversified Utilities
+AEE,YAHOO,Ameren Corporation,United States,Utilities,Electric Utilities
+AES,YAHOO,The AES Corporation,United States,Utilities,Electric Utilities
+CMS,YAHOO,CMS Energy Corp.,United States,Utilities,Electric Utilities
+DTE,YAHOO,DTE Energy Company,United States,Utilities,Electric Utilities
+DUK,YAHOO,Duke Energy Corporation,United States,Utilities,Electric Utilities
+EIX,YAHOO,Edison International,United States,Utilities,Electric Utilities
+ETR,YAHOO,Entergy Corporation,United States,Utilities,Electric Utilities
+FE,YAHOO,FirstEnergy Corp.,United States,Utilities,Electric Utilities
+PCG,YAHOO,PG&E Corporation,United States,Utilities,Electric Utilities
+PNW,YAHOO,Pinnacle West Capital Corporation,United States,Utilities,Electric Utilities
+PPL,YAHOO,PPL Corporation,United States,Utilities,Electric Utilities
+SCG,YAHOO,SCANA Corp.,United States,Utilities,Electric Utilities
+SO,YAHOO,Southern Company,United States,Utilities2,Electric Utilities
+XEL,YAHOO,Xcel Energy Inc.,United States,Utilities2,Electric Utilities
+OKE,YAHOO,ONEOK Inc.,United States,Utilities2,Gas Utilities

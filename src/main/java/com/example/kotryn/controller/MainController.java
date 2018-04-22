@@ -9,6 +9,7 @@ import com.example.kotryn.processes.ProcessFactory;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+import com.example.kotryn.repository.StockRepository;
 import com.example.kotryn.web.data.Action;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
@@ -26,15 +27,17 @@ public class MainController {
     private JobRepository jobRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private ContextRepository contextRepository;
+    private StockRepository stockRepository;
 
     private String url = "/prompt_user";
     private String error = null;
 
-    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository) {
+    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository, StockRepository stockRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
-        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository));
+        this.stockRepository = stockRepository;
+        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, stockRepository));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)

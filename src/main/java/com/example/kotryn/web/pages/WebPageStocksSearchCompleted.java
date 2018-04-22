@@ -38,7 +38,7 @@ public class WebPageStocksSearchCompleted {
         Text text4 = new Text("text", "Previously selected stocks: " + previouslySelectedStocks);
 
         Checkbox checkbox = new Checkbox("checkbox", availableStocks, availableStocks);
-        Checkbox checkbox2 = new Checkbox("checkbox", Arrays.asList("A", "B!", "C"), Arrays.asList("A", "B!", "C"));
+        //Checkbox checkbox2 = new Checkbox("checkbox", Arrays.asList("A", "B!", "C"), Arrays.asList("A", "B!", "C"));
 
         Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
@@ -49,12 +49,12 @@ public class WebPageStocksSearchCompleted {
         Item<Text> itemText4 = new Item<>(text4);
 
         Item<Checkbox> itemCheckbox = new Item<>(checkbox);
-        Item<Checkbox> itemCheckbox2 = new Item<>(checkbox2);
+        //Item<Checkbox> itemCheckbox2 = new Item<>(checkbox2);
 
         Item<Button> itemBtnBack = new Item<>(btnBack);
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
 
-        Body body = new Body(itemText, itemText2, itemText3, itemCheckbox, itemText4, itemCheckbox2, itemBtnBack, itemBtnDelete);
+        Body body = new Body(itemText, itemText2, itemText3, itemCheckbox, itemText4, /*itemCheckbox2,*/ itemBtnBack, itemBtnDelete);
 
         return new Page(body);
     }
