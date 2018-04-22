@@ -14,26 +14,28 @@ public class Stock {
     @Column(name="STOCK_SECTOR")
     private String sector;
 
-    //@ManyToMany
     @ElementCollection
-    private List<String> stocks;
+    private List<String> symbols;
+    @ElementCollection
+    private List<String> companies;
 
     public Stock(){
 
     }
 
-    public Stock(List<String> stocks, String sector, Job job){
-        this.stocks = stocks;
+    public Stock(List<String> symbols, List<String> companies, String sector, Job job){
+        this.symbols = symbols;
+        this.companies = companies;
         this.sector = sector;
         this.job = job;
     }
 
-    public List<String> getStocks() {
-        return stocks;
+    public List<String> getSymbols() {
+        return symbols;
     }
 
-    public void setStocks(List<String> stocks) {
-        this.stocks = stocks;
+    public void setSymbols(List<String> stocks) {
+        this.symbols = stocks;
     }
 
     public Long getId() {
@@ -58,5 +60,13 @@ public class Stock {
 
     public void setSector(String sector) {
         this.sector = sector;
+    }
+
+    public List<String> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(List<String> companies) {
+        this.companies = companies;
     }
 }

@@ -14,6 +14,7 @@ public class CSVMyReader {
     private String csvFile;
     private Map<String, Stock> stocksMap;
     private List<String> symbols;
+    private List<String> companies;
     private Job job;
 
     private StockRepository stockRepository;
@@ -22,6 +23,7 @@ public class CSVMyReader {
         this.csvFile = csvFile;
         this.stocksMap = new HashMap<>();
         this.symbols = new ArrayList<>();
+        this.companies = new ArrayList<>();
         this.stockRepository = stockRepository;
         this.job = job;
 
@@ -43,13 +45,23 @@ public class CSVMyReader {
         this.stocksMap = stocksMap;
     }
 
+    public List<String> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(List<String> companies) {
+        this.companies = companies;
+    }
+
     public void csvFirstSetStocks (){
         CSVReader reader;
         stocksMap.clear();
         symbols.clear();
+        companies.clear();
 
         String sector = null;
         List<String> symbol = new ArrayList<>();
+        List<String> company = new ArrayList<>();
 
         try {
             reader = new CSVReader(new FileReader(csvFile));
@@ -59,23 +71,28 @@ public class CSVMyReader {
                     if(sector == null){
                         sector = line[0];
                     }else{
-                        Stock stock = new Stock(symbol, sector, job);
+                        Stock stock = new Stock(symbol, company, sector, job);
                         stock = stockRepository.save(stock);
                         stocksMap.put(sector, stock);
                         symbols.addAll(symbol);
                         symbol.clear();
+                        companies.addAll(company);
+                        company.clear();
                         sector = line[0];
                     }
                 }else{
                     symbol.add(line[0]);
+                    company.add(line[1]);
                 }
 
             }
-            Stock stock = new Stock(symbol, sector, job);
+            Stock stock = new Stock(symbol, company, sector, job);
             stock = stockRepository.save(stock);
             stocksMap.put(sector, stock);
             symbols.addAll(symbol);
             symbol.clear();
+            companies.addAll(company);
+            company.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }

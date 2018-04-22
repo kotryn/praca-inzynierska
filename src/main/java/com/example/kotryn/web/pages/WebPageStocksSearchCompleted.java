@@ -44,7 +44,6 @@ public class WebPageStocksSearchCompleted {
         Item<Text> itemText3 = new Item<>(text3);
         Item<Text> itemText4 = new Item<>(text4);
 
-        System.out.println(job.getStocks());
         Map<String, Stock> map = new HashMap<>(job.getStocks());
 
         itemList.add(itemText);
@@ -53,7 +52,12 @@ public class WebPageStocksSearchCompleted {
 
         for (Map.Entry<String, Stock> entry : map.entrySet()){
             itemList.add(new Item<>(new Text("text", entry.getKey())));
-            itemList.add(new Item<>(new Checkbox("checkbox", entry.getValue().getStocks(), entry.getValue().getStocks())));
+            List<String> name = new ArrayList<>();
+            int id = 0;
+            for (String element : entry.getValue().getCompanies()) {
+                name.add(element+" ["+entry.getValue().getSymbols().get(id++)+"]");
+            }
+            itemList.add(new Item<>(new Checkbox("checkbox", entry.getValue().getSymbols(), name)));
         }
 
         Item<Button> itemBtnBack = new Item<>(btnBack);
