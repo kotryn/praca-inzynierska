@@ -13,4 +13,8 @@ public class Body {
     public Body(Item ...items) {
         this.items = Arrays.asList(items);
     }
+
+    public Body(List<Item> items) {
+        this.items = items;
+    }
 }

@@ -60,7 +60,7 @@ public class CSVMyReader {
                         sector = line[0];
                     }else{
                         Stock stock = new Stock(symbol, sector, job);
-                        stock = stockRepository.saveAndFlush(stock);
+                        stock = stockRepository.save(stock);
                         stocksMap.put(sector, stock);
                         symbols.addAll(symbol);
                         symbol.clear();
@@ -72,7 +72,7 @@ public class CSVMyReader {
 
             }
             Stock stock = new Stock(symbol, sector, job);
-            stock = stockRepository.saveAndFlush(stock);
+            stock = stockRepository.save(stock);
             stocksMap.put(sector, stock);
             symbols.addAll(symbol);
             symbol.clear();
