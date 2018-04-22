@@ -18,8 +18,7 @@ public class Job {
     @ElementCollection
     private List<String> selectedStocks;
 
-    //private Map<String, List<String>> stocks;
-    @OneToMany(mappedBy="job")
+    @OneToMany(mappedBy="job", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @MapKey(name="sector")
     private Map<String, Stock> stocks;
 
@@ -29,6 +28,7 @@ public class Job {
         this.endDate = "not set";
         this.availableStocks = null;
         this.selectedStocks = null;
+        this.stocks = null;
     }
 
     public Long getId() {

@@ -37,6 +37,7 @@ public class WebPageStocksSearchCompleted {
         Text text4 = new Text("text", "Previously selected stocks: " + previouslySelectedStocks);
 
         Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
+        Button btnNext = new Button("button-next", "/", "Submit");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);

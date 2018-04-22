@@ -3,6 +3,7 @@ package com.example.kotryn.controller;
 import com.example.kotryn.entity.Context;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
+import com.example.kotryn.entity.Stock;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.processes.AbstractProcessFactory;
 import com.example.kotryn.processes.ProcessFactory;
@@ -18,6 +19,9 @@ import com.example.kotryn.web.pages.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.kotryn.states.State.*;
 
