@@ -1,8 +1,9 @@
-import {ADD_NEW_INPUT_VALUE, EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA, CREATE_OUTPUT_DATA, DELETE_OUTPUT_ELEMENT, CHANGE_ID} from '../actions/formData'
+import {ADD_NEW_INPUT_VALUE, EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA, CREATE_OUTPUT_DATA, DELETE_OUTPUT_ELEMENT, CHANGE_ID, EDIT_CHECKBOX_DATA} from '../actions/formData'
 
 const defaultState = {
     currentId: 0,
     values: [],
+    checkbox: [],
     jsonData: {}
 };
 
@@ -22,15 +23,16 @@ function formDataReducer(state = defaultState, action) {
         }
         case DELETE_OUTPUT_ELEMENT:
 
-            let newJsonData2 = state.jsonData;
-            let temp = state.jsonData;
-            if(temp[action.element]){
-                delete temp[action.element];
-                newJsonData2 = temp;
+            let newCheckboxJsonData = new Set([...state.checkbox]);
+            if(newCheckboxJsonData.size > 0){
+                newCheckboxJsonData.delete(action.element);
             }
+            let checkbox = [...newCheckboxJsonData];
+            let temp = {checkbox};
             return {
                 ...state,
-                jsonData: newJsonData2,
+                jsonData: JSON.parse(JSON.stringify(temp)),
+                checkbox: [...newCheckboxJsonData]
             }
         case EDIT_INPUT_VALUE:
             let newValues = state.values.map((e,i)=>{
@@ -43,13 +45,19 @@ function formDataReducer(state = defaultState, action) {
                 ...state,
                 values: newValues
             }
+        case EDIT_CHECKBOX_DATA:
+            let newData =  new Set([...state.checkbox,...action.checkbox]);
+            return {
+                ...state,
+                checkbox: [...newData]
+            }
         case CLEAR:
             return {
                 ...state,
                 values: [],
                 jsonData: {},
                 currentId: 0,
-                element: null
+                checkbox: []
             }
         case CHANGE_ID:
             return {

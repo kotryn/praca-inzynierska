@@ -55,3 +55,11 @@ export function changeNextId(id) {
     }
 }
 
+export const EDIT_CHECKBOX_DATA = 'EDIT_CHECKBOX_DATA'
+export function changeCheckboxData (checkbox) {
+    return{
+        type: EDIT_CHECKBOX_DATA,
+        checkbox: checkbox
+    }
+}
+

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import Checkbox from './Checkbox'
 import Input from "./Input"
-import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId } from "../../actions/formData";
+import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData } from "../../actions/formData";
 
 class Form extends React.Component{
 
@@ -11,7 +11,7 @@ class Form extends React.Component{
         super(props);
         this.state = {
             id: this.props.currentId
-        }
+        };
         this._setFormData(this.props.config, this.props);
     }
 
@@ -45,23 +45,23 @@ class Form extends React.Component{
     }
 
     createOutputData(){
-        const {values, type} = this.props.config;
-        let output = {values};
-        let temp = {};
+        const {values, type} = this.props.config; //values - wartosci elementow, type - checkbox / input
+        let output = {values}; //output -> AMC: true
+        let checkboxes = new Set([...this.props.checkbox]);
         const id = this.state.id;
 
         switch(type){
             case "checkbox":
-                temp = {};
                 output.values.forEach((e, i)=>{
-                        output[e] = this.props.values[id+i];
+                        output[e] = this.props.values[id+i]; //this.props.values - wartosci elementow
                         if(output[e]){
-                            temp[e] = this.props.values[id+i];
+                            checkboxes.add(e);
+                            this.props.changeCheckboxData(checkboxes);
                         }else{
                             this.props.deleteOutputElement(e);
                         }
                 });
-                return JSON.parse(JSON.stringify(temp));
+                return null;
             case "input":
                 output.values.forEach((e, i)=>{
                     output[e] = this.props.values[id+i];
@@ -74,7 +74,7 @@ class Form extends React.Component{
     }
 
     render() {
-        const {names, type, values} = this.props.config;
+        const {names, type} = this.props.config;
         const id = this.state.id;
 
         let ComponentName = "";
@@ -107,7 +107,7 @@ class Form extends React.Component{
 
 Form = connect(
     state =>  state.formData,
-    { createInputData, clear, createOutputData, deleteOutputElement, changeNextId }
+    { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData }
 )(Form)
 
 export default Form;
