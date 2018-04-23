@@ -37,7 +37,7 @@ public class WebPageStocksSearchCompleted {
         Text text4 = new Text("text", "Previously selected stocks: " + previouslySelectedStocks);
 
         Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
-        Button btnNext = new Button("button-next", "/", "Submit");
+        Button btnNext = new Button("button-form", "/calculating_sample_count/"+jobId, "Submit");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);
@@ -62,10 +62,12 @@ public class WebPageStocksSearchCompleted {
         }
 
         Item<Button> itemBtnBack = new Item<>(btnBack);
+        Item<Button> itemBtnNext = new Item<>(btnNext);
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
 
         itemList.add(itemText4);
         itemList.add(itemBtnBack);
+        itemList.add(itemBtnNext);
         itemList.add(itemBtnDelete);
 
         Body body = new Body(itemList);

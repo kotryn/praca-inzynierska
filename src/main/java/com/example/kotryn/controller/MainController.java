@@ -3,26 +3,15 @@ package com.example.kotryn.controller;
 import com.example.kotryn.entity.Context;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
-import com.example.kotryn.entity.Stock;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.processes.AbstractProcessFactory;
 import com.example.kotryn.processes.ProcessFactory;
-import com.example.kotryn.repository.ContextRepository;
-import com.example.kotryn.repository.JobRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.StockRepository;
-import com.example.kotryn.web.data.Action;
-import com.example.kotryn.web.data.IWebData;
-import com.example.kotryn.web.data.WebDataObtainingPeriodOfAnalysis;
-import com.example.kotryn.web.data.WebDataSearchingForStocksInProgress;
+import com.example.kotryn.repository.*;
+import com.example.kotryn.web.data.*;
 import com.example.kotryn.web.pages.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static com.example.kotryn.states.State.*;
 
 @RestController
@@ -31,7 +20,6 @@ public class MainController {
     private JobRepository jobRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private ContextRepository contextRepository;
-    private StockRepository stockRepository;
 
     private String url = "/prompt_user";
     private String error = null;
@@ -40,7 +28,6 @@ public class MainController {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
-        this.stockRepository = stockRepository;
         AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, stockRepository));
     }
 
@@ -65,8 +52,6 @@ public class MainController {
         return redirectView;
     }
 
-
-
     /* 1 */
     @RequestMapping(value = "/prompt_user", method = RequestMethod.GET)
     public Page promptUserGET() {
@@ -74,12 +59,14 @@ public class MainController {
         return page.show();
     }
 
+    /*2*/
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void connectToJobPOST() {
         url = "/connect_to_job";
     }
 
+    /*3*/
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.GET)
     public Page connectToJobGET() {
         WebPageConnectToJob page = new WebPageConnectToJob(error);
@@ -118,15 +105,22 @@ public class MainController {
             Context context = contextRepository.getOne(requestJob.getId());
             error = null;
 
-            if(context.getState() ==  SEARCHING_FOR_STOCKS_IN_PROGRESS){
-                WebDataSearchingForStocksInProgress webData =
-                        new WebDataSearchingForStocksInProgress(requestJob.getId());
-                webData.setAction(Action.REFRESH);
-
-                processJob(webData);
-            }else{
-                context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
-                contextRepository.save(context);
+            switch (context.getState()){
+                case SEARCHING_FOR_STOCKS_IN_PROGRESS:
+                    WebDataSearchingForStocksInProgress webData =
+                            new WebDataSearchingForStocksInProgress(requestJob.getId());
+                    webData.setAction(Action.REFRESH);
+                    processJob(webData);
+                    break;
+                case CALCULATING_SAMPLE_COUNT_IN_PROGRESS: /*AAAAAA*/
+                    WebDataCalculatingSampleCountInProgress webData2 =
+                            new WebDataCalculatingSampleCountInProgress(requestJob.getId());
+                    webData2.setAction(Action.REFRESH);
+                    processJob(webData2);
+                    break;
+                default:
+                    context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
+                    contextRepository.save(context);
             }
 
             url = context.redirectToWebPage(this,
@@ -143,6 +137,19 @@ public class MainController {
         url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
+    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void jobsDELETE(@PathVariable Long id) {
+        jobRepository.delete(id);
+        jobRepository.flush();
+        contextRepository.delete(id);
+        contextRepository.flush();
+        processDescriptorRepository.delete(id);
+        processDescriptorRepository.flush();
+        this.url = "/prompt_user";
+    }
+
+
     @RequestMapping(value = "/jobSetDate/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void jobSetDatePOST(@PathVariable Long id, @RequestBody Job addJobRequest) {
@@ -158,14 +165,14 @@ public class MainController {
 
     }
 
-    /* 5 */
+    /* 6 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.GET)
     public Page obtainingPeriodOfAnalysisGET(@PathVariable Long id) {
         WebPageObtainingPeriodOfAnalysis page = new WebPageObtainingPeriodOfAnalysis(id, jobRepository);
         return page.show();
     }
 
-    /* 6 */
+    /* 5 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void obtainingPeriodOfAnalysisPOST(@PathVariable Long id) {
@@ -179,18 +186,7 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /*@RequestMapping(value = "/period_of_analysis_back/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void obtainingPeriodOfAnalysisbackPOST(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        WebDataObtainingPeriodOfAnalysis webData = new WebDataObtainingPeriodOfAnalysis(job.getId());
-        webData.setStartDate(job.getStartDate());
-        webData.setEndDate(job.getEndDate());
 
-        processJob(webData);
-        // once 201 is received for POST, browser connects:
-        url = this.jobsGET(job.getId());
-    }*/
 
     private void processJob(IWebData webData) {
         Context context = contextRepository.getOne(webData.getJobId());
@@ -214,18 +210,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.OK)
-    public void jobsDELETE(@PathVariable Long id) {
-        jobRepository.delete(id);
-        jobRepository.flush();
-        contextRepository.delete(id);
-        contextRepository.flush();
-        processDescriptorRepository.delete(id);
-        processDescriptorRepository.flush();
-        this.url = "/prompt_user";
-    }
-
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
         WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, jobRepository, processDescriptorRepository);
@@ -241,6 +225,62 @@ public class MainController {
     @RequestMapping(value = "/stocks_search_in_progress/{id}", method = RequestMethod.GET)
     public Page searchingForStocksInProgressGET(@PathVariable Long id) {
         WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(id);
+        return page.show();
+    }
+
+
+
+
+    /*********************/
+    @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+        Job job = jobRepository.findOne(id);
+        job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job = jobRepository.save(job);
+
+        WebDataObtainingStocks webData = new WebDataObtainingStocks(job.getId());
+        webData.setSelectedStocks(job.getSelectedStocks());
+
+        processJob(webData);
+        // once 201 is received for POST, browser connects:
+        url = this.jobsGET(job.getId());
+    }
+
+    /*@RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.GET)
+    public Page calculatingSampleCountGET(@PathVariable Long id) {
+        WebPageObtainingPeriodOfAnalysis page = new WebPageObtainingPeriodOfAnalysis(id, jobRepository);
+        return page.show();
+    }*/
+
+    @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void calculatingSampleCountInProgressPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingSampleCountInProgress webData = new WebDataCalculatingSampleCountInProgress(id);
+        webData.setAction(Action.REFRESH);
+
+        processJob(webData);
+
+        // once 201 is received for POST, browser connects:
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_sample_count_completed/{id}", method = RequestMethod.GET)
+    public Page calculatingSampleCountInCompletedGET(@PathVariable Long id) {
+        WebPageCalculatingSampleCountCompleted page = new WebPageCalculatingSampleCountCompleted(id, jobRepository, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/calculating_sample_count_failed/{id}", method = RequestMethod.GET)
+    public Page calculatingSampleCountFailedGET(@PathVariable Long id) {
+        WebPageCalculatingSampleCountFailed page = new WebPageCalculatingSampleCountFailed(id, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.GET)
+    public Page calculatingSampleCountInProgressGET(@PathVariable Long id) {
+        WebPageCalculatingSampleCountInProgress page = new WebPageCalculatingSampleCountInProgress(id);
         return page.show();
     }
 }

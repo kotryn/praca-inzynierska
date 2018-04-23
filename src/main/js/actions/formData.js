@@ -38,6 +38,15 @@ export function createOutputData(jsonData) {
     }
 }
 
+export const DELETE_OUTPUT_ELEMENT = 'DELETE_OUTPUT_ELEMENT'
+export function deleteOutputElement(element) {
+    return {
+        type: DELETE_OUTPUT_ELEMENT,
+        element: element
+    }
+}
+
+
 export const CHANGE_ID = 'CHANGE_ID'
 export function changeNextId(id) {
     return {

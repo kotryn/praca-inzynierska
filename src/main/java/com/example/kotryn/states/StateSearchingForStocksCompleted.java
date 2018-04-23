@@ -35,7 +35,7 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
         switch (input.getAction()) {
             case PREVIOUS:
                 saveSelectedStocks(input);
-                moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
+                moveToNextStateAndSave(State.OBTAINING_STOCKS, context, contextRepository);
                 break;
             case NEXT:
                 saveSelectedStocks(input);

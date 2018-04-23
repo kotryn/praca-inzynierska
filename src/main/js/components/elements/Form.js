@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import Checkbox from './Checkbox'
 import Input from "./Input"
-import { createInputData, clear, createOutputData, changeNextId } from "../../actions/formData";
+import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId } from "../../actions/formData";
 
 class Form extends React.Component{
 
@@ -45,13 +45,32 @@ class Form extends React.Component{
     }
 
     createOutputData(){
-        const {values} = this.props.config;
+        const {values, type} = this.props.config;
         let output = {values};
-        this.props.values.forEach((e, i)=>{
-            output[values[i]] = e
-        });
+        let temp = {};
+        const id = this.state.id;
 
-        return JSON.parse(JSON.stringify(output));
+        switch(type){
+            case "checkbox":
+                temp = {};
+                output.values.forEach((e, i)=>{
+                        output[e] = this.props.values[id+i];
+                        if(output[e]){
+                            temp[e] = this.props.values[id+i];
+                        }else{
+                            this.props.deleteOutputElement(e);
+                        }
+                });
+                return JSON.parse(JSON.stringify(temp));
+            case "input":
+                output.values.forEach((e, i)=>{
+                    output[e] = this.props.values[id+i];
+                });
+                return JSON.parse(JSON.stringify(output));
+            default:
+                console.log("Form: unknown type - jsonData!!!");
+                return;
+        }
     }
 
     render() {
@@ -88,7 +107,7 @@ class Form extends React.Component{
 
 Form = connect(
     state =>  state.formData,
-    { createInputData, clear, createOutputData, changeNextId }
+    { createInputData, clear, createOutputData, deleteOutputElement, changeNextId }
 )(Form)
 
 export default Form;

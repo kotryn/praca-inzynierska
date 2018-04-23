@@ -2,5 +2,6 @@ package com.example.kotryn.processes;
 
 public enum ProcessType {
     UNKNOWN,
-    SEARCHING_FOR_STOCKS
+    SEARCHING_FOR_STOCKS,
+    CALCULATING_SAMPLE_COUNT
 }

@@ -14,6 +14,8 @@ public class StateFactory  {
                 return new StateCalculatingSampleCountFailed();
             case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
                 return new StateCalculatingSampleCountInProgress();
+            case OBTAINING_STOCKS:
+                return new StateObtainingStocks(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED:
                 return new StateEstimatingWorstCaseDistributionsCompleted();
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_FAILED:
