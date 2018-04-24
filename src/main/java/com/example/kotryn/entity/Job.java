@@ -1,5 +1,7 @@
 package com.example.kotryn.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +65,7 @@ public class Job {
         this.availableStocks = availableStocks;
     }
 
+    @JsonProperty("checkbox")
     public List<String> getSelectedStocks() {
         return selectedStocks;
     }

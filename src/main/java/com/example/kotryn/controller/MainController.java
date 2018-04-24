@@ -233,18 +233,20 @@ public class MainController {
 
     /*********************/
     @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
         Job job = jobRepository.findOne(id);
+        System.out.println(addSelectedStocksRequest+" "+addSelectedStocksRequest.getSelectedStocks());
         job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
         job = jobRepository.save(job);
 
-        WebDataObtainingStocks webData = new WebDataObtainingStocks(job.getId());
-        webData.setSelectedStocks(job.getSelectedStocks());
+        //WebDataObtainingStocks webData = new WebDataObtainingStocks(job.getId());
+        //webData.setSelectedStocks(job.getSelectedStocks());
 
-        processJob(webData);
+        //processJob(webData);
         // once 201 is received for POST, browser connects:
-        url = this.jobsGET(job.getId());
+        //url = this.jobsGET(job.getId());
+        url = "/prompt_user";
     }
 
     /*@RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.GET)
