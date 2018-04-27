@@ -1,0 +1,47 @@
+{
+  "body": {
+    "items": [
+      {
+        "item": {
+          "type": "input",
+          "values": [
+            "id"
+          ],
+          "names": [
+            "Supply job ID:"
+          ]
+        }
+      },
+      {
+        "item": {
+          "type": "button-back",
+          "url": "/",
+          "title": "back"
+        }
+      },
+      {
+        "item": {
+          "type": "button-form",
+          "url": "/jobsPOST",
+          "title": "submit"
+        }
+      },
+      {
+        "item": {
+          "type": "button-delete",
+          "url": "/",
+          "title": "Start page"
+        }
+      }
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+

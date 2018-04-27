@@ -20,7 +20,7 @@ public class Job {
     @ElementCollection
     private List<String> selectedStocks;
 
-    @OneToMany(mappedBy="job", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="job", cascade = CascadeType.ALL)
     @MapKey(name="sector")
     private Map<String, Stock> stocks;
 

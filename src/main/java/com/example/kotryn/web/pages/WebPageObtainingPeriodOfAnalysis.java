@@ -21,9 +21,7 @@ public class WebPageObtainingPeriodOfAnalysis {
         Text textStartDate = new Text("text", "Previous start date: " + job.getStartDate());
         Text textEndDate = new Text("text", "Previous end date: " + job.getEndDate());
 
-        Input input = new Input("input", new String[]{"startDate"}, new String[]{"Enter Start Date:"});
-
-        Input input2 = new Input("input", new String[]{"endDate"}, new String[]{"Enter end date:"});
+        Input input = new Input("input", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
 
         Button btnBack = new Button("button-back", "/", "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
@@ -34,13 +32,12 @@ public class WebPageObtainingPeriodOfAnalysis {
         Item<Text> itemTextStartDate = new Item<>(textStartDate);
         Item<Text> itemTextEndDate = new Item<>(textEndDate);
         Item<Input> itemForm = new Item<>(input);
-        Item<Input> itemForm2 = new Item<>(input2);
 
         Item<Button> itemBtnBack = new Item<>(btnBack);
         Item<Button> itemBtnNext = new Item<>(btnNext);
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
         Item<Button> itemBtnForm = new Item<>(btnForm);
 
-        return new Page(new Body(itemText, itemTextStartDate, itemTextEndDate, itemForm, itemForm2, itemBtnForm, itemBtnBack, itemBtnNext, itemBtnDelete));
+        return new Page(new Body(itemText, itemTextStartDate, itemTextEndDate, itemForm, itemBtnForm, itemBtnBack, itemBtnNext, itemBtnDelete));
     }
 }

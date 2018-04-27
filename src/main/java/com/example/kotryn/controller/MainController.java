@@ -240,14 +240,27 @@ public class MainController {
         job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
         job = jobRepository.save(job);
 
-        //WebDataObtainingStocks webData = new WebDataObtainingStocks(job.getId());
-        //webData.setSelectedStocks(job.getSelectedStocks());
+        WebDataSearchingForStocksCompleted webData = new WebDataSearchingForStocksCompleted(job.getId());
+        webData.setSelectedStocks(job.getSelectedStocks());
 
-        //processJob(webData);
+        processJob(webData);
         // once 201 is received for POST, browser connects:
         //url = this.jobsGET(job.getId());
         url = "/prompt_user";
     }
+
+    /*@RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void obtainingPeriodOfAnalysisPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataObtainingPeriodOfAnalysis webData = new WebDataObtainingPeriodOfAnalysis(job.getId());
+        webData.setStartDate(job.getStartDate());
+        webData.setEndDate(job.getEndDate());
+
+        processJob(webData);
+        // once 201 is received for POST, browser connects:
+        url = this.jobsGET(job.getId());
+    }*/
 
     /*@RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.GET)
     public Page calculatingSampleCountGET(@PathVariable Long id) {

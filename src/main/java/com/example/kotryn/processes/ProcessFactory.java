@@ -23,6 +23,8 @@ public class ProcessFactory implements IProcessFactory {
         switch (processDescriptor.getProcessType()) {
             case SEARCHING_FOR_STOCKS:
                 return new ProcessSearchingForStocks(jobId, jobRepository, stockRepository, processDescriptorRepository);
+            case CALCULATING_SAMPLE_COUNT:
+                return new ProcessCalculatingSampleCount(jobId, jobRepository, stockRepository, processDescriptorRepository);
             default:
                 throw new RuntimeException("Unknown process");
         }

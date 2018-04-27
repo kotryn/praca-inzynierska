@@ -29,7 +29,7 @@ public class StateFactory  {
             case OBTAINING_RETURN_PERIOD:
                 return new StateObtainingReturnPeriod();
             case SEARCHING_FOR_STOCKS_COMPLETED:
-                return new StateSearchingForStocksCompleted(jobRepository, contextRepository);
+                return new StateSearchingForStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case SEARCHING_FOR_STOCKS_FAILED:
                 return new StateSearchingForStocksFailed(jobRepository, contextRepository);
             case SEARCHING_FOR_STOCKS_IN_PROGRESS:

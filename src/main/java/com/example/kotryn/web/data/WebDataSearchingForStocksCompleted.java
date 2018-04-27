@@ -10,7 +10,7 @@ public class WebDataSearchingForStocksCompleted implements IWebData {
 
     public WebDataSearchingForStocksCompleted(Long jobId) {
         this.jobId = jobId;
-        action = Action.UNKNOWN;
+        action = Action.NEXT;
     }
 
     @Override
