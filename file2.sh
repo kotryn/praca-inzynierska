@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "Searching for stocks for job ID: " $1
+echo "Calculating sample count for job ID: " $1
 sleep 1
