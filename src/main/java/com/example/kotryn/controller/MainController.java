@@ -245,8 +245,8 @@ public class MainController {
 
         processJob(webData);
         // once 201 is received for POST, browser connects:
-        //url = this.jobsGET(job.getId());
-        url = "/prompt_user";
+        url = this.jobsGET(job.getId());
+        //url = "/prompt_user";
     }
 
     /*@RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)

@@ -78,6 +78,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
                 //String command = "cmd.exe /c start /w cmd.exe /c \"echo Searching for stocks for job ID: "
                 //        + jobId + "&& timeout 15\"";
                 processDescriptor.setSystemType(SystemType.LINUX);
+                //System.out.println(System.getProperty("os.name"));
                 String command = "xterm  -e ./file2.sh " + jobId;
                 Process process = Runtime.getRuntime().exec(command);
                 toBeDoneInsideProcessAtBegin();
