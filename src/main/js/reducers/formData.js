@@ -28,10 +28,9 @@ function formDataReducer(state = defaultState, action) {
                 newCheckboxJsonData.delete(action.element);
             }
             let checkbox = [...newCheckboxJsonData];
-            let temp = {checkbox};
             return {
                 ...state,
-                jsonData: JSON.parse(JSON.stringify(temp)),
+                jsonData: JSON.parse(JSON.stringify({checkbox})),
                 checkbox: [...newCheckboxJsonData]
             }
         case EDIT_INPUT_VALUE:
