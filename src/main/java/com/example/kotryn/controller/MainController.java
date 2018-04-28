@@ -210,6 +210,16 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.POST)
+    public void searchingForStocksCompletedPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        System.out.println("OKOKOK");
+        url = this.jobsGET(job.getId());
+    }
+
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
         WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, jobRepository, processDescriptorRepository);
@@ -248,25 +258,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
         //url = "/prompt_user";
     }
-
-    /*@RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void obtainingPeriodOfAnalysisPOST(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        WebDataObtainingPeriodOfAnalysis webData = new WebDataObtainingPeriodOfAnalysis(job.getId());
-        webData.setStartDate(job.getStartDate());
-        webData.setEndDate(job.getEndDate());
-
-        processJob(webData);
-        // once 201 is received for POST, browser connects:
-        url = this.jobsGET(job.getId());
-    }*/
-
-    /*@RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.GET)
-    public Page calculatingSampleCountGET(@PathVariable Long id) {
-        WebPageObtainingPeriodOfAnalysis page = new WebPageObtainingPeriodOfAnalysis(id, jobRepository);
-        return page.show();
-    }*/
 
     @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)

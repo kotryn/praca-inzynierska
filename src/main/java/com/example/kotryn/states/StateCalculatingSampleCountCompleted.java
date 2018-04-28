@@ -2,10 +2,12 @@ package com.example.kotryn.states;
 
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context;
+import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
+import com.example.kotryn.web.data.WebDataCalculatingSampleCountCompleted;
 
 public class StateCalculatingSampleCountCompleted extends StateBase implements IState {
 
@@ -27,6 +29,23 @@ public class StateCalculatingSampleCountCompleted extends StateBase implements I
 
     @Override
     public void handle(Context context, IWebData webData) {
-        throw new UnsupportedOperationException(getClass().getSimpleName() + " not yet implemented");
+        WebDataCalculatingSampleCountCompleted input = getInput(webData);
+        switch (input.getAction()) {
+            case NEXT:
+                /*saveSelectedStocks(input);
+                createProcessDescriptorAndSave(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(),
+                        processDescriptorRepository);
+                moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_IN_PROGRESS, context, contextRepository);
+                startProcess(input.getJobId());
+                break;*/
+                throw new RuntimeException("Not implemented yet");
+            case PREVIOUS:
+                //saveSelectedStocks(input);
+                moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
+                break;
+                //throw new RuntimeException("TEST");
+            default:
+                throw new RuntimeException("Undefined action");
+        }
     }
 }

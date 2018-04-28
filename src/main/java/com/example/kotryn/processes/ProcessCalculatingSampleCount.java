@@ -29,7 +29,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
-    public void toBeDoneInsideProcessAtBegin() {
+    private void toBeDoneInsideProcessAtBegin() {
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.IN_PROGRESS);
@@ -37,7 +37,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
-    public void toBeDoneInsideProcessAtEndWhenSuccess() {
+    private void toBeDoneInsideProcessAtEndWhenSuccess() {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
@@ -56,7 +56,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
-    public void toBeDoneInsideProcessAtEndWhenFailure() {
+    private void toBeDoneInsideProcessAtEndWhenFailure() {
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.COMPLETED_FAILURE);

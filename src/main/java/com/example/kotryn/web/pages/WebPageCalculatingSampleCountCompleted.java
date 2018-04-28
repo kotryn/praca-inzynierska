@@ -31,7 +31,7 @@ public class WebPageCalculatingSampleCountCompleted {
 
         List<Item> itemList = new ArrayList<>();
 
-        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/", "back"));
+        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/stocks_search_completed/"+jobId, "back"));
         Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/", "Submit"));
         Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
 
