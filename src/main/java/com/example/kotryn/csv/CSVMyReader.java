@@ -19,6 +19,11 @@ public class CSVMyReader {
 
     private StockRepository stockRepository;
 
+    public CSVMyReader(String csvFile){
+        this.csvFile = csvFile;
+
+    }
+
     public CSVMyReader(String csvFile, StockRepository stockRepository, Job job){
         this.csvFile = csvFile;
         this.stocksMap = new HashMap<>();
@@ -96,5 +101,20 @@ public class CSVMyReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public  List<String> csvGetOneColumn (){
+        CSVReader reader;
+        List<String> symbol = new ArrayList<>();
+        try {
+            reader = new CSVReader(new FileReader(csvFile));
+            String[] line;
+            while ((line = reader.readNext()) != null) {
+                symbol.add(line[0]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return symbol;
     }
 }

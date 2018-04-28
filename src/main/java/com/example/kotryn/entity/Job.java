@@ -24,6 +24,11 @@ public class Job {
     @MapKey(name="sector")
     private Map<String, Stock> stocks;
 
+    @ElementCollection
+    private List<String> calculatingSample;
+    @ElementCollection
+    private List<String> selectedCalculatingSample;
+
 
     public Job(){
         this.startDate = "not set";
@@ -80,5 +85,21 @@ public class Job {
 
     public void setStocks(Map<String, Stock> stocks) {
         this.stocks = stocks;
+    }
+
+    public List<String> getCalculatingSample() {
+        return calculatingSample;
+    }
+
+    public void setCalculatingSample(List<String> calculatingSample) {
+        this.calculatingSample = calculatingSample;
+    }
+
+    public List<String> getSelectedCalculatingSample() {
+        return selectedCalculatingSample;
+    }
+
+    public void setSelectedCalculatingSample(List<String> selectedCalculatingSample) {
+        this.selectedCalculatingSample = selectedCalculatingSample;
     }
 }

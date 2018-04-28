@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProcessCalculatingSampleCount implements IProcess {
 
@@ -39,13 +41,11 @@ public class ProcessCalculatingSampleCount implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        //String csvFile = File.getFile("FIRST_STOCK");
-        //CSVMyReader readFile = new CSVMyReader(csvFile, stockRepository, job);
-        //readFile.csvFirstSetStocks();
-        //job.setStocks(readFile.getStocksMap());
-        //job.setAvailableStocks(readFile.getSymbols());
+        String csvFile = File.getFile("CALCULATING_SAMPLE_COUNT");
+        CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        //jobRepository.saveAndFlush(job);
+        job.setCalculatingSample(readFile.csvGetOneColumn());
+        jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
