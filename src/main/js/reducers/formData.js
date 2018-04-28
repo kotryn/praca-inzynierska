@@ -47,9 +47,11 @@ function formDataReducer(state = defaultState, action) {
             }
         case EDIT_CHECKBOX_DATA:
             let newData =  new Set([...state.checkbox,...action.checkbox]);
+            checkbox = [...newData];
             return {
                 ...state,
-                checkbox: [...newData]
+                checkbox: [...newData],
+                jsonData: JSON.parse(JSON.stringify({checkbox}))
             }
         case CLEAR:
             return {
