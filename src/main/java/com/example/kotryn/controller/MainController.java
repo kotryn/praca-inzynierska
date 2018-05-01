@@ -131,6 +131,14 @@ public class MainController {
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void jobsPOST(@PathVariable Long id) {
+        /*Job job = jobRepository.findOne(id);
+        WebDataSearchingForStocksCompleted webData = new WebDataSearchingForStocksCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());*/
+
+
+
         Context context = contextRepository.getOne(id);
         context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
         contextRepository.save(context);
@@ -161,6 +169,7 @@ public class MainController {
 
     private String jobsGET(Long id) {
         Context context = contextRepository.getOne(id);
+        System.out.println(context.getState());
         return context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
 
     }
@@ -210,15 +219,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.POST)
-    public void searchingForStocksCompletedPOST(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
-        webData.setAction(Action.PREVIOUS);
-        processJob(webData);
-        System.out.println("OKOKOK");
-        url = this.jobsGET(job.getId());
-    }
 
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
@@ -242,6 +242,7 @@ public class MainController {
 
 
     /*********************/
+
     @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -272,6 +273,12 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.GET)
+    public Page calculatingSampleCountInProgressGET(@PathVariable Long id) {
+        WebPageCalculatingSampleCountInProgress page = new WebPageCalculatingSampleCountInProgress(id);
+        return page.show();
+    }
+
     @RequestMapping(value = "/calculating_sample_count_completed/{id}", method = RequestMethod.GET)
     public Page calculatingSampleCountInCompletedGET(@PathVariable Long id) {
         WebPageCalculatingSampleCountCompleted page = new WebPageCalculatingSampleCountCompleted(id, jobRepository, processDescriptorRepository);
@@ -284,9 +291,23 @@ public class MainController {
         return page.show();
     }
 
-    @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.GET)
-    public Page calculatingSampleCountInProgressGET(@PathVariable Long id) {
-        WebPageCalculatingSampleCountInProgress page = new WebPageCalculatingSampleCountInProgress(id);
-        return page.show();
+    @RequestMapping(value = "/calculating_sample_count_in_progress_back/{id}", method = RequestMethod.POST)
+    public void calculatingSampleCountInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        Context context = contextRepository.getOne(id);
+        System.out.println(context.getState());
+        WebDataCalculatingSampleCountInProgress webData = new WebDataCalculatingSampleCountInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_sample_count_completed_back/{id}", method = RequestMethod.POST)
+    public void calculatingSampleCountCompletedBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
     }
 }

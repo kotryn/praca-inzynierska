@@ -39,6 +39,12 @@ class StateBase {
         process.start();
     }
 
+    void interruptProcess(Long jobId) {
+        IProcessFactory processFactory = AbstractProcessFactory.getFactory();
+        IProcess process = processFactory.getProcess(jobId);
+        process.interrupt();
+    }
+
     void verifyProcessType(ProcessType processType, Long jobId,
                            ProcessDescriptorRepository processDescriptorRepository) {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);

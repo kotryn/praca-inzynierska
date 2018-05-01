@@ -14,7 +14,7 @@ public class WebPageCalculatingSampleCountInProgress {
         Text text = new Text("text", "Calculating Sample Count in progress");
 
         Button btnRefresh = new Button("button", "/calculating_sample_count_in_progress/"+jobId, "refresh");
-        Button btnBack = new Button("button-back", "/", "back");
+        Button btnBack = new Button("button-back", "/calculating_sample_count_in_progress_back/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);

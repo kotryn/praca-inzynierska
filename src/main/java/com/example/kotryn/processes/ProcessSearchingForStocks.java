@@ -19,6 +19,7 @@ public class ProcessSearchingForStocks implements IProcess {
     private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
+    private Process process;
 
     public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
@@ -79,7 +80,7 @@ public class ProcessSearchingForStocks implements IProcess {
                 //        + jobId + "&& timeout 15\"";
                 processDescriptor.setSystemType(SystemType.LINUX);
                 String command = "xterm  -e ./file.sh " + jobId;
-                Process process = Runtime.getRuntime().exec(command);
+                process = Runtime.getRuntime().exec(command);
                 toBeDoneInsideProcessAtBegin();
                 int exitCode = process.waitFor();
                 // here the process is finished
@@ -98,6 +99,7 @@ public class ProcessSearchingForStocks implements IProcess {
     @Override
     public void interrupt() {
         // interrupting should be done in a separate thread so as not to block UI
-        throw new UnsupportedOperationException("Not yet implemented");
+        process.destroy();
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
 }

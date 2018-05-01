@@ -8,7 +8,11 @@ import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.repository.StockRepository;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.management.ManagementFactory;
+import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -29,11 +33,11 @@ public class ProcessCalculatingSampleCount implements IProcess {
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
-    private void toBeDoneInsideProcessAtBegin() {
+    private void toBeDoneInsideProcessAtBegin(int pid) {
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.IN_PROGRESS);
-        processDescriptor.setPid(1111);
+        processDescriptor.setPid(pid);
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
@@ -81,7 +85,24 @@ public class ProcessCalculatingSampleCount implements IProcess {
                 //System.out.println(System.getProperty("os.name"));
                 String command = "xterm  -e ./file2.sh " + jobId;
                 Process process = Runtime.getRuntime().exec(command);
-                toBeDoneInsideProcessAtBegin();
+
+                int pid = -1;
+
+                try {
+                    if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
+                        Field f = process.getClass().getDeclaredField("pid");
+                        f.setAccessible(true);
+                        pid = (int) f.getLong(process);
+                        f.setAccessible(false);
+                    }
+                } catch (Exception e) {
+                    pid = -1;
+                }
+
+
+                //String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
+                System.out.println(pid);
+                toBeDoneInsideProcessAtBegin(pid);
                 int exitCode = process.waitFor();
                 // here the process is finished
                 // (closing window finishes the process with exitCode == 0)
@@ -99,6 +120,18 @@ public class ProcessCalculatingSampleCount implements IProcess {
     @Override
     public void interrupt() {
         // interrupting should be done in a separate thread so as not to block UI
-        throw new UnsupportedOperationException("Not yet implemented");
+       new Thread(() -> {
+            try {
+                ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
+                processDescriptor.setProcessState(ProcessState.UNKNOWN);
+                processDescriptorRepository.saveAndFlush(processDescriptor);
+                String command = "kill -9 "+processDescriptor.getPid();
+                System.out.println(command);
+                Runtime.getRuntime().exec(command);
+            } catch (IOException e) {
+                //toBeDoneInsideProcessAtEndWhenFailure();
+                throw new UnsupportedOperationException("Not yet implemented");
+            }
+        }).start();
     }
 }
