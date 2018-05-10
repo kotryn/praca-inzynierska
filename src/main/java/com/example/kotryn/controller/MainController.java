@@ -218,6 +218,16 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    @RequestMapping(value = "/stocks_search_in_progress_back/{id}", method = RequestMethod.POST)
+    public void searchingForStocksInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        Context context = contextRepository.getOne(id);
+        WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
 
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {

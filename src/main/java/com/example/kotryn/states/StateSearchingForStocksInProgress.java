@@ -39,7 +39,8 @@ public class StateSearchingForStocksInProgress extends StateBase implements ISta
         WebDataSearchingForStocksInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                throw new UnsupportedOperationException("Interrupt not yet implemented");
+                interruptProcess(input.getJobId());
+                moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
             case REFRESH:
                 verifyProcessType(ProcessType.SEARCHING_FOR_STOCKS, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);

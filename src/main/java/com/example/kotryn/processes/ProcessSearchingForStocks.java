@@ -9,6 +9,7 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.repository.StockRepository;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -19,7 +20,6 @@ public class ProcessSearchingForStocks implements IProcess {
     private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
-    private Process process;
 
     public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
@@ -28,11 +28,11 @@ public class ProcessSearchingForStocks implements IProcess {
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
-    public void toBeDoneInsideProcessAtBegin() {
+    public void toBeDoneInsideProcessAtBegin(int pid) {
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.IN_PROGRESS);
-        processDescriptor.setPid(1234);
+        processDescriptor.setPid(pid);
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
@@ -80,11 +80,24 @@ public class ProcessSearchingForStocks implements IProcess {
                 //        + jobId + "&& timeout 15\"";
                 processDescriptor.setSystemType(SystemType.LINUX);
                 String command = "xterm  -e ./file.sh " + jobId;
-                process = Runtime.getRuntime().exec(command);
-                toBeDoneInsideProcessAtBegin();
+                Process process = Runtime.getRuntime().exec(command);
+
+                int pid = -1;
+
+                try {
+                    if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
+                        Field f = process.getClass().getDeclaredField("pid");
+                        f.setAccessible(true);
+                        pid = (int) f.getLong(process);
+                        f.setAccessible(false);
+                    }
+                } catch (Exception e) {
+                    pid = -1;
+                }
+
+
+                toBeDoneInsideProcessAtBegin(pid);
                 int exitCode = process.waitFor();
-                // here the process is finished
-                // (closing window finishes the process with exitCode == 0)
                 if (exitCode == 0) {
                     toBeDoneInsideProcessAtEndWhenSuccess();
                 } else {
@@ -98,8 +111,17 @@ public class ProcessSearchingForStocks implements IProcess {
 
     @Override
     public void interrupt() {
-        // interrupting should be done in a separate thread so as not to block UI
-        process.destroy();
-        //throw new UnsupportedOperationException("Not yet implemented");
+        new Thread(() -> {
+            try {
+                ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
+                processDescriptor.setProcessState(ProcessState.UNKNOWN);
+                processDescriptorRepository.saveAndFlush(processDescriptor);
+                String command = "kill -9 "+processDescriptor.getPid();
+                Runtime.getRuntime().exec(command);
+            } catch (IOException e) {
+                //toBeDoneInsideProcessAtEndWhenFailure();
+                throw new UnsupportedOperationException("Not yet implemented");
+            }
+        }).start();
     }
 }

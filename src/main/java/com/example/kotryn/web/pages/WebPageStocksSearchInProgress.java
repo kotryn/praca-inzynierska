@@ -14,7 +14,7 @@ public class WebPageStocksSearchInProgress {
         Text text = new Text("text", "Searching for stocks in progress");
 
         Button btnRefresh = new Button("button", "/stocks_search_in_progress/"+jobId, "refresh");
-        Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
+        Button btnBack = new Button("button-back", "/stocks_search_in_progress_back/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);
