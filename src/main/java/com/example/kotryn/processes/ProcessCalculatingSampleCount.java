@@ -99,13 +99,8 @@ public class ProcessCalculatingSampleCount implements IProcess {
                     pid = -1;
                 }
 
-
-                //String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
-                System.out.println(pid);
                 toBeDoneInsideProcessAtBegin(pid);
                 int exitCode = process.waitFor();
-                // here the process is finished
-                // (closing window finishes the process with exitCode == 0)
                 if (exitCode == 0) {
                     toBeDoneInsideProcessAtEndWhenSuccess();
                 } else {
@@ -119,14 +114,12 @@ public class ProcessCalculatingSampleCount implements IProcess {
 
     @Override
     public void interrupt() {
-        // interrupting should be done in a separate thread so as not to block UI
        new Thread(() -> {
             try {
                 ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
                 processDescriptor.setProcessState(ProcessState.UNKNOWN);
                 processDescriptorRepository.saveAndFlush(processDescriptor);
                 String command = "kill -9 "+processDescriptor.getPid();
-                System.out.println(command);
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 //toBeDoneInsideProcessAtEndWhenFailure();

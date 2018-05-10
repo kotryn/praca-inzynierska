@@ -40,11 +40,9 @@ public class StateCalculatingSampleCountInProgress extends StateBase implements 
         WebDataCalculatingSampleCountInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                //TODO kill thread
-                System.out.println(input.getJobId());
                 interruptProcess(input.getJobId());
                 moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
-                //throw new UnsupportedOperationException("Interrupt not yet implemented");
+                break;
             case REFRESH:
                 verifyProcessType(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(), processDescriptorRepository);
                 ifCalculatingDoneMoveToNextStateAndSave(context);

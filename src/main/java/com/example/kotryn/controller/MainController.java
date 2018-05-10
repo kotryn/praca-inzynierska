@@ -169,7 +169,6 @@ public class MainController {
 
     private String jobsGET(Long id) {
         Context context = contextRepository.getOne(id);
-        System.out.println(context.getState());
         return context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
 
     }
@@ -247,7 +246,6 @@ public class MainController {
     @ResponseStatus(HttpStatus.CREATED)
     public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
         Job job = jobRepository.findOne(id);
-        System.out.println(addSelectedStocksRequest+" "+addSelectedStocksRequest.getSelectedStocks());
         job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
         job = jobRepository.save(job);
 
@@ -295,7 +293,6 @@ public class MainController {
     public void calculatingSampleCountInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         Context context = contextRepository.getOne(id);
-        System.out.println(context.getState());
         WebDataCalculatingSampleCountInProgress webData = new WebDataCalculatingSampleCountInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
