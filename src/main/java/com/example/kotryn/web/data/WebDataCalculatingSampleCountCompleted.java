@@ -6,11 +6,11 @@ public class WebDataCalculatingSampleCountCompleted implements IWebData {
 
     private final Long jobId;
     private Action action;
-    private List<String> selectedStocks;
+    private List<String> selectedCalculatingSample;
 
     public WebDataCalculatingSampleCountCompleted(Long jobId) {
         this.jobId = jobId;
-        action = Action.UNKNOWN;
+        action = Action.NEXT;
     }
 
     @Override
@@ -27,11 +27,11 @@ public class WebDataCalculatingSampleCountCompleted implements IWebData {
         this.action = action;
     }
 
-    public List<String> getSelectedStocks() {
-        return selectedStocks;
+    public List<String> getSelectedCalculatingSample() {
+        return selectedCalculatingSample;
     }
 
-    public void setSelectedStocks(List<String> selectedStocks) {
-        this.selectedStocks = selectedStocks;
+    public void setSelectedCalculatingSample(List<String> selectedCalculatingSample) {
+        this.selectedCalculatingSample = selectedCalculatingSample;
     }
 }

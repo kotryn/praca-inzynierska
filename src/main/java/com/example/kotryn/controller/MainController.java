@@ -247,11 +247,6 @@ public class MainController {
         return page.show();
     }
 
-
-
-
-    /*********************/
-
     @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -265,7 +260,6 @@ public class MainController {
         processJob(webData);
         // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
-        //url = "/prompt_user";
     }
 
     @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.POST)
@@ -316,5 +310,26 @@ public class MainController {
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
         url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions_setup/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void estimatingWorstCaseDistributionsSetupPOST(@PathVariable Long id, @RequestBody Job addSelectedCalculatingSampleRequest) {
+        Job job = jobRepository.findOne(id);
+        job.setSelectedCalculatingSample(addSelectedCalculatingSampleRequest.getSelectedCalculatingSample());
+        job = jobRepository.save(job);
+
+        WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(job.getId());
+        webData.setSelectedCalculatingSample(job.getSelectedCalculatingSample());
+
+        processJob(webData);
+        // once 201 is received for POST, browser connects:
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseDistributionsPOST(@PathVariable Long id, @RequestBody Job addSelectedCalculatingSampleRequest) {
+        WebPageCalculatingSampleCountInProgress page = new WebPageCalculatingSampleCountInProgress(id);
+        return page.show();
     }
 }

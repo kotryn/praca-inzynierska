@@ -23,7 +23,7 @@ public class StateFactory  {
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
                 return new StateEstimatingWorstCaseDistributionsInProgress();
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP:
-                return new StateEstimatingWorstCaseDistributionsSetup();
+                return new StateEstimatingWorstCaseDistributionsSetup(jobRepository, contextRepository, processDescriptorRepository);
             case OBTAINING_PERIOD_OF_ANALYSIS:
                 return new StateObtainingPeriodOfAnalysis(jobRepository, contextRepository, processDescriptorRepository);
             case OBTAINING_RETURN_PERIOD:

@@ -25,6 +25,8 @@ public class ProcessFactory implements IProcessFactory {
                 return new ProcessSearchingForStocks(jobId, jobRepository, stockRepository, processDescriptorRepository);
             case CALCULATING_SAMPLE_COUNT:
                 return new ProcessCalculatingSampleCount(jobId, jobRepository, stockRepository, processDescriptorRepository);
+            case ESTIMATING_WORST_CASE_DISTRIBUTIONS:
+                return new ProcessEstimatingWorstCaseDistributions(jobId, jobRepository, stockRepository, processDescriptorRepository);
             default:
                 throw new RuntimeException("Unknown process");
         }

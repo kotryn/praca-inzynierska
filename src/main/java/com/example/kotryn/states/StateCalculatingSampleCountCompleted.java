@@ -2,6 +2,7 @@ package com.example.kotryn.states;
 
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context;
+import com.example.kotryn.entity.Job;
 import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
@@ -27,18 +28,24 @@ public class StateCalculatingSampleCountCompleted extends StateBase implements I
         return "calculating_sample_count_completed/"+context.getJobId();
     }
 
+    private void saveSelectedCalculatingSample(WebDataCalculatingSampleCountCompleted input) {
+        Job job = jobRepository.getOne(input.getJobId());
+        job.setSelectedCalculatingSample(input.getSelectedCalculatingSample());
+        jobRepository.saveAndFlush(job);
+    }
+
     @Override
     public void handle(Context context, IWebData webData) {
         WebDataCalculatingSampleCountCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                /*saveSelectedStocks(input);
-                createProcessDescriptorAndSave(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(),
-                        processDescriptorRepository);
-                moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_IN_PROGRESS, context, contextRepository);
-                startProcess(input.getJobId());
-                break;*/
-                throw new RuntimeException("Not implemented yet");
+                saveSelectedCalculatingSample(input);
+                //createProcessDescriptorAndSave(ProcessType.ESTIMATING_WORST_CASE_DISTRIBUTIONS, input.getJobId(),
+                 //       processDescriptorRepository);
+                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP, context, contextRepository);
+                //startProcess(input.getJobId());
+                break;
+
             case PREVIOUS:
                 moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
                 break;
