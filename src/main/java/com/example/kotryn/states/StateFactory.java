@@ -17,11 +17,11 @@ public class StateFactory  {
             case OBTAINING_STOCKS:
                 return new StateObtainingStocks(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED:
-                return new StateEstimatingWorstCaseDistributionsCompleted();
+                return new StateEstimatingWorstCaseDistributionsCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_FAILED:
                 return new StateEstimatingWorstCaseDistributionsFailed();
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
-                return new StateEstimatingWorstCaseDistributionsInProgress();
+                return new StateEstimatingWorstCaseDistributionsInProgress(contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP:
                 return new StateEstimatingWorstCaseDistributionsSetup(jobRepository, contextRepository, processDescriptorRepository);
             case OBTAINING_PERIOD_OF_ANALYSIS:

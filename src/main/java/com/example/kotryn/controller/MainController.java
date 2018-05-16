@@ -118,6 +118,12 @@ public class MainController {
                     webData2.setAction(Action.REFRESH);
                     processJob(webData2);
                     break;
+                case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS: /*AAAAAA*/
+                    WebDataEstimatingWorstCaseDistributionsInProgress webData3 =
+                            new WebDataEstimatingWorstCaseDistributionsInProgress(requestJob.getId());
+                    webData3.setAction(Action.REFRESH);
+                    processJob(webData3);
+                    break;
                 default:
                     context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
                     contextRepository.save(context);
@@ -190,14 +196,12 @@ public class MainController {
         webData.setEndDate(job.getEndDate());
 
         processJob(webData);
-        // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
     }
 
-
-
     private void processJob(IWebData webData) {
         Context context = contextRepository.getOne(webData.getJobId());
+        System.out.println(context.getState());
         if (context != null) {
             context.handle(webData, jobRepository, contextRepository, processDescriptorRepository);
         } else {
@@ -213,15 +217,12 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-
-        // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
     }
 
     @RequestMapping(value = "/stocks_search_in_progress_back/{id}", method = RequestMethod.POST)
     public void searchingForStocksInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        Context context = contextRepository.getOne(id);
         WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
@@ -328,8 +329,49 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions/{id}", method = RequestMethod.GET)
-    public Page estimatingWorstCaseDistributionsPOST(@PathVariable Long id, @RequestBody Job addSelectedCalculatingSampleRequest) {
-        WebPageCalculatingSampleCountInProgress page = new WebPageCalculatingSampleCountInProgress(id);
+    public Page estimatingWorstCaseDistributionsGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseDistributionsSetup page = new WebPageEstimatingWorstCaseDistributionsSetup(id);
         return page.show();
     }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void estimatingWorstCaseDistributionsPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
+
+        processJob(webData);//blad
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void estimatingWorstCaseDistributionsInProgressPOST(@PathVariable Long id) {
+        System.out.println("TUUU???");
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseDistributionsInProgress webData = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
+        webData.setAction(Action.REFRESH);
+
+        processJob(webData);//blad
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions_in_progress/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseDistributionsInProgressGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseDistributionsInProgress page = new WebPageEstimatingWorstCaseDistributionsInProgress(id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions_completed/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseDistributionsCompletedGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseDistributionsCompleted page = new WebPageEstimatingWorstCaseDistributionsCompleted(id, jobRepository, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions_failed/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseDistributionsFailedGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseDistributionsFailed page = new WebPageEstimatingWorstCaseDistributionsFailed(id, processDescriptorRepository);
+        return page.show();
+    }
+
 }
