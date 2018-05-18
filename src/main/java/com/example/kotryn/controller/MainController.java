@@ -374,4 +374,24 @@ public class MainController {
         return page.show();
     }
 
+    @RequestMapping(value = "/estimating_worst_case_distributions_setup_back/{id}", method = RequestMethod.POST)
+    public void estimatingWorstCaseDistributionsSetupBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_distributions_completed_back/{id}", method = RequestMethod.POST)
+    public void estimatingWorstCaseDistributionsCompletedBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+
+
 }

@@ -8,6 +8,7 @@ import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataCalculatingSampleCountCompleted;
+import com.example.kotryn.web.data.WebDataEstimatingWorstCaseDistributionsCompleted;
 
 public class StateEstimatingWorstCaseDistributionsCompleted extends StateBase implements IState {
 
@@ -27,15 +28,15 @@ public class StateEstimatingWorstCaseDistributionsCompleted extends StateBase im
         return "estimating_worst_case_distributions_completed/"+context.getJobId();
     }
 
-    private void saveSelectedCalculatingSample(WebDataCalculatingSampleCountCompleted input) {
+    private void saveSelectedCalculatingSample(WebDataEstimatingWorstCaseDistributionsCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
-        job.setSelectedCalculatingSample(input.getSelectedCalculatingSample());
+        //job.setSelectedCalculatingSample(input.getSelectedCalculatingSample());
         jobRepository.saveAndFlush(job);
     }
 
     @Override
     public void handle(Context context, IWebData webData) {
-        WebDataCalculatingSampleCountCompleted input = getInput(webData);
+        WebDataEstimatingWorstCaseDistributionsCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
                 saveSelectedCalculatingSample(input);
