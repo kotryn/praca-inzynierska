@@ -44,11 +44,6 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
                 moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_IN_PROGRESS, context, contextRepository);
                 startProcess(input.getJobId());
                 break;
-            case PREVIOUS:
-                //saveSelectedStocks(input);
-                //moveToNextStateAndSave(State.OBTAINING_RETURN_PERIOD, context, contextRepository);
-                //break;
-                throw new RuntimeException("TEST");
             default:
                 throw new RuntimeException("Undefined action");
         }

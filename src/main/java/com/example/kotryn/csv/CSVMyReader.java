@@ -46,18 +46,6 @@ public class CSVMyReader {
         return stocksMap;
     }
 
-    public void setStocksMap(Map<String, Stock> stocksMap) {
-        this.stocksMap = stocksMap;
-    }
-
-    public List<String> getCompanies() {
-        return companies;
-    }
-
-    public void setCompanies(List<String> companies) {
-        this.companies = companies;
-    }
-
     public void csvFirstSetStocks (){
         CSVReader reader;
         stocksMap.clear();

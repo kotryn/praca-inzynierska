@@ -50,10 +50,6 @@ public class StateObtainingPeriodOfAnalysis extends StateBase implements IState 
                 // (launching should be done in a separate thread so as not to block UI)
                 startProcess(input.getJobId());
                 break;
-            case PREVIOUS:
-                //saveSelectedStocks(input);
-                moveToNextStateAndSave(State.OBTAINING_RETURN_PERIOD, context, contextRepository);
-                break;
             default:
                 throw new RuntimeException("Undefined action");
         }

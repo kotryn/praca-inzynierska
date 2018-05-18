@@ -8,7 +8,7 @@ import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
-import com.example.kotryn.web.data.WebDataCalculatingSampleCountInProgress;
+import com.example.kotryn.web.data.WebDataEstimatingWorstCaseDistributionsInProgress;
 
 public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase implements IState {
 
@@ -22,7 +22,7 @@ public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase i
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        return "/calculating_sample_count_in_progress/"+context.getJobId();
+        return "/estimating_worst_case_distributions_in_progress/"+context.getJobId();
     }
 
     private void ifCalculatingDoneMoveToNextStateAndSave(Context context) {
@@ -36,7 +36,7 @@ public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase i
 
     @Override
     public void handle(Context context, IWebData webData) {
-        WebDataCalculatingSampleCountInProgress input = getInput(webData);
+        WebDataEstimatingWorstCaseDistributionsInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
                 interruptProcess(input.getJobId());

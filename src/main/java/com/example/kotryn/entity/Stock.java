@@ -8,8 +8,6 @@ public class Stock {
     @Id
     @GeneratedValue
     private Long id;
-    //@ManyToOne(cascade = CascadeType.ALL)
-    //@ManyToOne
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn
     private Job job;

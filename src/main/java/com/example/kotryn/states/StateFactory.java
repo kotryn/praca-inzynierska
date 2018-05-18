@@ -26,8 +26,6 @@ public class StateFactory  {
                 return new StateEstimatingWorstCaseDistributionsSetup(jobRepository, contextRepository, processDescriptorRepository);
             case OBTAINING_PERIOD_OF_ANALYSIS:
                 return new StateObtainingPeriodOfAnalysis(jobRepository, contextRepository, processDescriptorRepository);
-            case OBTAINING_RETURN_PERIOD:
-                return new StateObtainingReturnPeriod();
             case SEARCHING_FOR_STOCKS_COMPLETED:
                 return new StateSearchingForStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case SEARCHING_FOR_STOCKS_FAILED:

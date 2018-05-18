@@ -41,6 +41,7 @@ public class StateSearchingForStocksInProgress extends StateBase implements ISta
             case INTERRUPT:
                 interruptProcess(input.getJobId());
                 moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
+                break;
             case REFRESH:
                 verifyProcessType(ProcessType.SEARCHING_FOR_STOCKS, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);

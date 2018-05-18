@@ -52,41 +52,35 @@ public class MainController {
         return redirectView;
     }
 
-    /* 1 */
     @RequestMapping(value = "/prompt_user", method = RequestMethod.GET)
     public Page promptUserGET() {
         WebPagePromptUser page = new WebPagePromptUser();
         return page.show();
     }
 
-    /*2*/
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void connectToJobPOST() {
         url = "/connect_to_job";
     }
 
-    /*3*/
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.GET)
     public Page connectToJobGET() {
         WebPageConnectToJob page = new WebPageConnectToJob(error);
         return page.show();
     }
 
-
-    /* 2 */
     @RequestMapping(value = "/begin_job", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void beginJobPOST() {
         Job job = new Job();
         job = jobRepository.save(job);
         Context context = new Context(job.getId());
-        context = contextRepository.save(context);
+        contextRepository.save(context);
         processDescriptorRepository.save(new ProcessDescriptor(job.getId()));
         url = "/begin_job/"+job.getId();
     }
 
-    /* 3 */
     @RequestMapping(value = "/begin_job/{id}", method = RequestMethod.GET)
     public Page beginJobGET(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
@@ -94,7 +88,6 @@ public class MainController {
         return page.show();
     }
 
-    /* 4 */
     @RequestMapping(value = "/jobsPOST", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void jobsPOST(@RequestBody Job requestJob) {
@@ -112,13 +105,13 @@ public class MainController {
                     webData.setAction(Action.REFRESH);
                     processJob(webData);
                     break;
-                case CALCULATING_SAMPLE_COUNT_IN_PROGRESS: /*AAAAAA*/
+                case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
                     WebDataCalculatingSampleCountInProgress webData2 =
                             new WebDataCalculatingSampleCountInProgress(requestJob.getId());
                     webData2.setAction(Action.REFRESH);
                     processJob(webData2);
                     break;
-                case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS: /*AAAAAA*/
+                case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
                     WebDataEstimatingWorstCaseDistributionsInProgress webData3 =
                             new WebDataEstimatingWorstCaseDistributionsInProgress(requestJob.getId());
                     webData3.setAction(Action.REFRESH);
@@ -137,14 +130,6 @@ public class MainController {
     @RequestMapping(value = "/jobsPOST/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void jobsPOST(@PathVariable Long id) {
-        /*Job job = jobRepository.findOne(id);
-        WebDataSearchingForStocksCompleted webData = new WebDataSearchingForStocksCompleted(id);
-        webData.setAction(Action.PREVIOUS);
-        processJob(webData);
-        url = this.jobsGET(job.getId());*/
-
-
-
         Context context = contextRepository.getOne(id);
         context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
         contextRepository.save(context);
@@ -154,6 +139,25 @@ public class MainController {
     @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void jobsDELETE(@PathVariable Long id) {
+        Context context = contextRepository.getOne(id);
+        switch (context.getState()){
+            case SEARCHING_FOR_STOCKS_IN_PROGRESS:
+                WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
+                webData.setAction(Action.INTERRUPT);
+                processJob(webData);
+                break;
+            case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
+                WebDataCalculatingSampleCountInProgress webData2 = new WebDataCalculatingSampleCountInProgress(id);
+                webData2.setAction(Action.INTERRUPT);
+                processJob(webData2);
+                break;
+            case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
+                WebDataEstimatingWorstCaseDistributionsInProgress webData3 = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
+                webData3.setAction(Action.INTERRUPT);
+                processJob(webData3);
+                break;
+        }
+
         jobRepository.delete(id);
         jobRepository.flush();
         contextRepository.delete(id);
@@ -179,14 +183,12 @@ public class MainController {
 
     }
 
-    /* 6 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.GET)
     public Page obtainingPeriodOfAnalysisGET(@PathVariable Long id) {
         WebPageObtainingPeriodOfAnalysis page = new WebPageObtainingPeriodOfAnalysis(id, jobRepository);
         return page.show();
     }
 
-    /* 5 */
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void obtainingPeriodOfAnalysisPOST(@PathVariable Long id) {
@@ -201,7 +203,6 @@ public class MainController {
 
     private void processJob(IWebData webData) {
         Context context = contextRepository.getOne(webData.getJobId());
-        System.out.println(context.getState());
         if (context != null) {
             context.handle(webData, jobRepository, contextRepository, processDescriptorRepository);
         } else {
@@ -259,7 +260,6 @@ public class MainController {
         webData.setSelectedStocks(job.getSelectedStocks());
 
         processJob(webData);
-        // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
     }
 
@@ -271,8 +271,6 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-
-        // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
     }
 
@@ -297,7 +295,6 @@ public class MainController {
     @RequestMapping(value = "/calculating_sample_count_in_progress_back/{id}", method = RequestMethod.POST)
     public void calculatingSampleCountInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        Context context = contextRepository.getOne(id);
         WebDataCalculatingSampleCountInProgress webData = new WebDataCalculatingSampleCountInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
@@ -324,7 +321,6 @@ public class MainController {
         webData.setSelectedCalculatingSample(job.getSelectedCalculatingSample());
 
         processJob(webData);
-        // once 201 is received for POST, browser connects:
         url = this.jobsGET(job.getId());
     }
 
@@ -340,19 +336,18 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
 
-        processJob(webData);//blad
+        processJob(webData);
         url = this.jobsGET(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_in_progress/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseDistributionsInProgressPOST(@PathVariable Long id) {
-        System.out.println("TUUU???");
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseDistributionsInProgress webData = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
         webData.setAction(Action.REFRESH);
 
-        processJob(webData);//blad
+        processJob(webData);
         url = this.jobsGET(job.getId());
     }
 
@@ -392,6 +387,14 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    @RequestMapping(value = "/estimating_worst_case_distributions_in_progress_back/{id}", method = RequestMethod.POST)
+    public void estimatingWorstCaseDistributionsInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
 
+        WebDataEstimatingWorstCaseDistributionsInProgress webData = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
 
 }
