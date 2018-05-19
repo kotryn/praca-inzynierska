@@ -32,6 +32,43 @@ public class StateFactory  {
                 return new StateSearchingForStocksFailed(jobRepository, contextRepository);
             case SEARCHING_FOR_STOCKS_IN_PROGRESS:
                 return new StateSearchingForStocksInProgress(contextRepository, processDescriptorRepository);
+
+            case ESTIMATING_GROWTH_STOCKS_COMPLETED:
+                return new StateEstimatingGrowthStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
+            case ESTIMATING_GROWTH_STOCKS_FAILED:
+                return new StateEstimatingGrowthStocksFailed(jobRepository, contextRepository);
+            case ESTIMATING_GROWTH_STOCKS_IN_PROGRESS:
+                return new StateEstimatingGrowthStocksInProgress(contextRepository, processDescriptorRepository);
+
+            case ESTIMATING_NON_CORRELATED_STOCKS_COMPLETED:
+                return new StateEstimatingNonCorrelatedStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
+            case ESTIMATING_NON_CORRELATED_STOCKS_FAILED:
+                return new StateEstimatingNonCorrelatedStocksFailed(jobRepository, contextRepository);
+            case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
+                return new StateEstimatingNonCorrelatedStocksInProgress(contextRepository, processDescriptorRepository);
+
+            case ESTIMATING_WORST_CASE_COPULA_COMPLETED:
+                return new StateEstimatingWorstCaseCopulaCompleted(jobRepository, contextRepository, processDescriptorRepository);
+            case ESTIMATING_WORST_CASE_COPULA_FAILED:
+                return new StateEstimatingWorstCaseCopulaFailed(jobRepository, contextRepository);
+            case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
+                return new StateEstimatingWorstCaseCopulaInProgress(contextRepository, processDescriptorRepository);
+
+            case BUILDING_ROBUST_PORTFOLIO_COMPLETED:
+                return new StateBuildingRobustPortfolioCompleted(jobRepository, contextRepository, processDescriptorRepository);
+            case BUILDING_ROBUST_PORTFOLIO_FAILED:
+                return new StateBuildingRobustPortfolioFailed(jobRepository, contextRepository);
+            case BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS:
+                return new StateBuildingRobustPortfolioInProgress(contextRepository, processDescriptorRepository);
+
+            case CALCULATING_STATISTIC_COMPLETED:
+                return new StateCalculatingStatisticCompleted(jobRepository, contextRepository, processDescriptorRepository);
+            case CALCULATING_STATISTIC_FAILED:
+                return new StateCalculatingStatisticFailed(jobRepository, contextRepository);
+            case CALCULATING_STATISTIC_IN_PROGRESS:
+                return new StateCalculatingStatisticInProgress(contextRepository, processDescriptorRepository);
+
+
             default:
                 throw new RuntimeException("Unknown state");
         }
