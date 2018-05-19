@@ -14,14 +14,14 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-public class ProcessCalculatingSampleCount implements IProcess {
+public class ProcessBuildingRobustPortfolio implements IProcess {
 
     private JobRepository jobRepository;
     private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessCalculatingSampleCount(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessBuildingRobustPortfolio(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
         this.stockRepository = stockRepository;
@@ -40,7 +40,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        String csvFile = File.getFile("ESTIMATING_WORST_CASE_DISTRIBUTION");
+        String csvFile = File.getFile("BUILDING_ROBUST_PORTFOLIO");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
         job.setCalculatingSample(readFile.csvGetOneColumn());
@@ -62,7 +62,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 30, 15);
         processDescriptor.setDuration(Duration.between(startTime, stopTime));
-        processDescriptor.setErrorMessage("estimating worst case failed");
+        processDescriptor.setErrorMessage("Building robust portfolio failed");
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
@@ -78,7 +78,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
                 //        + jobId + "&& timeout 15\"";
                 processDescriptor.setSystemType(SystemType.LINUX);
                 //System.out.println(System.getProperty("os.name"));
-                String command = "xterm  -e ./file2.sh " + jobId;
+                String command = "xterm  -e ./file2.sh " + jobId; //TODO: zmienić file.sh
                 Process process = Runtime.getRuntime().exec(command);
 
                 int pid = -1;
@@ -109,7 +109,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
 
     @Override
     public void interrupt() {
-       new Thread(() -> {
+        new Thread(() -> {
             try {
                 ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
                 processDescriptor.setProcessState(ProcessState.UNKNOWN);
