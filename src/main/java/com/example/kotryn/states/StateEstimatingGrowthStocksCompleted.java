@@ -3,6 +3,7 @@ package com.example.kotryn.states;
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context;
 import com.example.kotryn.entity.Job;
+import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
@@ -38,12 +39,11 @@ public class StateEstimatingGrowthStocksCompleted extends StateBase implements I
         switch (input.getAction()) {
             case NEXT:
                 //saveSelectedEstimatingGrowthStocks(input);
-                //createProcessDescriptorAndSave(ProcessType.ESTIMATING_WORST_CASE_DISTRIBUTIONS, input.getJobId(),
-                //       processDescriptorRepository);
-                //moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP, context, contextRepository);
-                //startProcess(input.getJobId());
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                createProcessDescriptorAndSave(ProcessType.ESTIMATING_NON_CORRELATED_STOCKS, input.getJobId(),
+                       processDescriptorRepository);
+                moveToNextStateAndSave(State.ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS, context, contextRepository);
+                startProcess(input.getJobId());
+                break;
             case PREVIOUS:
                 moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED, context, contextRepository);
                 break;

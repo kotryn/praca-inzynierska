@@ -48,7 +48,7 @@ public class StateEstimatingWorstCaseDistributionsCompleted extends StateBase im
                 break;
 
             case PREVIOUS:
-                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP, context, contextRepository);
                 break;
             default:
                 throw new RuntimeException("Undefined action");
