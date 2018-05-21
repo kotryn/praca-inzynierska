@@ -38,10 +38,9 @@ public class StateEstimatingGrowthStocksInProgress extends StateBase implements 
         WebDataEstimatingGrowthStocksInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                //interruptProcess(input.getJobId());
-                //moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                interruptProcess(input.getJobId());
+                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED, context, contextRepository);
+                break;
             case REFRESH:
                 verifyProcessType(ProcessType.ESTIMATING_GROWTH_STOCKS, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);

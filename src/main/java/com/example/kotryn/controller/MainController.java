@@ -281,7 +281,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_sample_count_completed/{id}", method = RequestMethod.GET)
-    public Page calculatingSampleCountInCompletedGET(@PathVariable Long id) {
+    public Page calculatingSampleCountCompletedGET(@PathVariable Long id) {
         WebPageCalculatingSampleCountCompleted page = new WebPageCalculatingSampleCountCompleted(id, jobRepository, processDescriptorRepository);
         return page.show();
     }
@@ -396,5 +396,71 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
+
+    /****/
+
+    //ESTIMATING_GROWTH_STOCKS_IN_PROGRESS
+    @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void estimatingGrowthStocksPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+        Job job = jobRepository.findOne(id);
+        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job = jobRepository.save(job);
+
+        WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(job.getId());
+        //webData.setSelectedStocks(job.getSelectedStocks());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void estimatingGrowthStocksInProgressPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingGrowthStocksInProgress webData = new WebDataEstimatingGrowthStocksInProgress(id);
+        webData.setAction(Action.REFRESH);
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_in_progress/{id}", method = RequestMethod.GET)
+    public Page estimatingGrowthStocksInProgressGET(@PathVariable Long id) {
+        WebPageEstimatingGrowthStocksInProgress page = new WebPageEstimatingGrowthStocksInProgress(id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_completed/{id}", method = RequestMethod.GET)
+    public Page estimatingGrowthStocksCompletedGET(@PathVariable Long id) {
+        WebPageEstimatingGrowthStocksCompleted page = new WebPageEstimatingGrowthStocksCompleted(id, jobRepository, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_failed/{id}", method = RequestMethod.GET)
+    public Page estimatingGrowthStocksFailedGET(@PathVariable Long id) {
+        WebPageEstimatingGrowthStocksFailed page = new WebPageEstimatingGrowthStocksFailed(id, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_in_progress_back/{id}", method = RequestMethod.POST)
+    public void estimatingGrowthStocksInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingGrowthStocksInProgress webData = new WebDataEstimatingGrowthStocksInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_completed_back/{id}", method = RequestMethod.POST)
+    public void estimatingGrowthStocksCompletedBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    /***/
 
 }

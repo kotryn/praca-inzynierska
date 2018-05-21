@@ -35,7 +35,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         List<Item> itemList = new ArrayList<>();
 
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/", "Submit"));
+        Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Submit"));
         Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
 
 

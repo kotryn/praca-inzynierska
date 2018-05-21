@@ -6,7 +6,7 @@ public class WebDataEstimatingWorstCaseDistributionsCompleted implements IWebDat
 
     private final Long jobId;
     private Action action;
-    private List<String> worstCaseDistributions;
+    //private List<String> worstCaseDistributions;
 
     public WebDataEstimatingWorstCaseDistributionsCompleted(Long jobId) {
         this.jobId = jobId;
@@ -27,11 +27,11 @@ public class WebDataEstimatingWorstCaseDistributionsCompleted implements IWebDat
         this.action = action;
     }
 
-    public List<String> getWorstCaseDistributions() {
+    /*public List<String> getWorstCaseDistributions() {
         return worstCaseDistributions;
     }
 
     public void setWorstCaseDistributions(List<String> worstCaseDistributions) {
         this.worstCaseDistributions = worstCaseDistributions;
-    }
+    }*/
 }
