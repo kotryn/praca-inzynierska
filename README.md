@@ -12,7 +12,7 @@ Linux:
 2. Nodejs (4.4.5 or higher)
 `sudo apt-get install nodejs`
 3. Npm (3.9.2 or higher)
-`sudo apt-get install npm` <- sprawdzic!!!
+`sudo apt-get install npm`
 
 ### Running project
 
@@ -22,22 +22,3 @@ Linux:
 
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
-
-### TO DO:
-1. Przy przejściu na następną stronę -> POST. Jeżeli 201 -> idź dalej
-2. Pobierz dane. Jeżeli 200 -> wyświetl.
-
-### How to post new user?
-In *Advanced REST client*:
-1. Method: POST
-2. Host: `http://localhost:8080`
-3. Path: `/user`
-4. Body:
-```
-  {
-    "name": "Kate",
-    "surname": "Romka",
-    "age": 22
-  }
-```
-  5. SEND
