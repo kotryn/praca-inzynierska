@@ -588,5 +588,69 @@ public class MainController {
     }
 
     /***/
+    /****/
+    //BUILDING_ROBUST_PORTFOLIO
+    @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+        Job job = jobRepository.findOne(id);
+        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job = jobRepository.save(job);
+
+        WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(job.getId());
+        //webData.setSelectedStocks(job.getSelectedStocks());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void buildingRobustPortfolioInProgressPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataBuildingRobustPortfolioInProgress webData = new WebDataBuildingRobustPortfolioInProgress(id);
+        webData.setAction(Action.REFRESH);
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio_in_progress/{id}", method = RequestMethod.GET)
+    public Page buildingRobustPortfolioInProgressGET(@PathVariable Long id) {
+        WebPageBuildingRobustPortfolioInProgress page = new WebPageBuildingRobustPortfolioInProgress(id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio_completed/{id}", method = RequestMethod.GET)
+    public Page buildingRobustPortfolioCompletedGET(@PathVariable Long id) {
+        WebPageBuildingRobustPortfolioCompleted page = new WebPageBuildingRobustPortfolioCompleted(id, jobRepository, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio_failed/{id}", method = RequestMethod.GET)
+    public Page buildingRobustPortfolioFailedGET(@PathVariable Long id) {
+        WebPageBuildingRobustPortfolioFailed page = new WebPageBuildingRobustPortfolioFailed(id, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio_in_progress_back/{id}", method = RequestMethod.POST)
+    public void buildingRobustPortfolioInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataBuildingRobustPortfolioInProgress webData = new WebDataBuildingRobustPortfolioInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio_in_progress_completed_back/{id}", method = RequestMethod.POST)
+    public void buildingRobustPortfolioCompletedBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    /***/
 
 }

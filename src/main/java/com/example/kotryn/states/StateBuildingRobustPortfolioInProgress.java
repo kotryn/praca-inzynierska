@@ -38,10 +38,9 @@ public class StateBuildingRobustPortfolioInProgress extends StateBase implements
         WebDataBuildingRobustPortfolioInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                //interruptProcess(input.getJobId());
-                //moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                interruptProcess(input.getJobId());
+                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_COMPLETED, context, contextRepository);
+                break;
             case REFRESH:
                 verifyProcessType(ProcessType.BUILDING_ROBUST_PORTFOLIO, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);
