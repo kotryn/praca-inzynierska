@@ -1,11 +1,14 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
+import com.example.kotryn.repository.ProcessDescriptorRepository;
 
 public class WebPageEstimatingWorstCaseCopulaFailed {
+    private final ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageEstimatingWorstCaseCopulaFailed(Long jobId) {
+    public WebPageEstimatingWorstCaseCopulaFailed(Long jobId, ProcessDescriptorRepository processDescriptorRepository) {
+        this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
     }
 

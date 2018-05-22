@@ -27,9 +27,9 @@ public class StateEstimatingWorstCaseCopulaInProgress extends StateBase implemen
     private void ifSearchingDoneMoveToNextStateAndSave(Context context) {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(context.getJobId());
         if (processDescriptor.getProcessState() == ProcessState.COMPLETED_SUCCESS) {
-            moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED, context, contextRepository);
+            moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_COMPLETED, context, contextRepository);
         } else if (processDescriptor.getProcessState() == ProcessState.COMPLETED_FAILURE){
-            moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_FAILED, context, contextRepository);
+            moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_FAILED, context, contextRepository);
         }
     }
 
@@ -38,12 +38,11 @@ public class StateEstimatingWorstCaseCopulaInProgress extends StateBase implemen
         WebDataEstimatingWorstCaseCopulaInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                //interruptProcess(input.getJobId());
-                //moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                interruptProcess(input.getJobId());
+                moveToNextStateAndSave(State.ESTIMATING_NON_CORRELATED_STOCKS_COMPLETED, context, contextRepository);
+                break;
             case REFRESH:
-                verifyProcessType(ProcessType.ESTIMATING_WORST_CASE_DISTRIBUTIONS, input.getJobId(), processDescriptorRepository);
+                verifyProcessType(ProcessType.ESTIMATING_WORST_CASE_COPULA, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);
                 break;
             default:

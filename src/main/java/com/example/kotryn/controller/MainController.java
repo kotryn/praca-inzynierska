@@ -524,6 +524,69 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    /****/
+    //ESTIMATING_WORST_CASE_COPULA
+    @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+        Job job = jobRepository.findOne(id);
+        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job = jobRepository.save(job);
+
+        WebDataEstimatingNonCorrelatedStocksCompleted webData = new WebDataEstimatingNonCorrelatedStocksCompleted(job.getId());
+        //webData.setSelectedStocks(job.getSelectedStocks());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_copula_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void estimatingWorstCaseCopulaInProgressPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseCopulaInProgress webData = new WebDataEstimatingWorstCaseCopulaInProgress(id);
+        webData.setAction(Action.REFRESH);
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_copula_in_progress/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseCopulaInProgressGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseCopulaInProgress page = new WebPageEstimatingWorstCaseCopulaInProgress(id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_copula_completed/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseCopulaCompletedGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseCopulaCompleted page = new WebPageEstimatingWorstCaseCopulaCompleted(id, jobRepository, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_copula_failed/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseCopulaFailedGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseCopulaFailed page = new WebPageEstimatingWorstCaseCopulaFailed(id, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_copula_in_progress_back/{id}", method = RequestMethod.POST)
+    public void estimatingWorstCaseCopulaInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseCopulaInProgress webData = new WebDataEstimatingWorstCaseCopulaInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_worst_case_copula_in_progress_completed_back/{id}", method = RequestMethod.POST)
+    public void estimatingWorstCaseCopulaCompletedBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
     /***/
 
 }
