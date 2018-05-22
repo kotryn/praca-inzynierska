@@ -463,7 +463,6 @@ public class MainController {
 
 
     /****/
-    //ESTIMATING_NON_CORRELATED_STOCKS
     @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -495,35 +494,35 @@ public class MainController {
         return page.show();
     }
 
-    /*@RequestMapping(value = "/estimating_growth_stocks_completed/{id}", method = RequestMethod.GET)
-    public Page estimatingGrowthStocksCompletedGET(@PathVariable Long id) {
-        WebPageEstimatingGrowthStocksCompleted page = new WebPageEstimatingGrowthStocksCompleted(id, jobRepository, processDescriptorRepository);
+    @RequestMapping(value = "/estimating_non_correlated_stocks_completed/{id}", method = RequestMethod.GET)
+    public Page estimatingNonCorrelatedStocksCompletedGET(@PathVariable Long id) {
+        WebPageEstimatingNonCorrelatedStocksCompleted page = new WebPageEstimatingNonCorrelatedStocksCompleted(id, jobRepository, processDescriptorRepository);
         return page.show();
     }
 
-    @RequestMapping(value = "/estimating_growth_stocks_failed/{id}", method = RequestMethod.GET)
-    public Page estimatingGrowthStocksFailedGET(@PathVariable Long id) {
-        WebPageEstimatingGrowthStocksFailed page = new WebPageEstimatingGrowthStocksFailed(id, processDescriptorRepository);
+    @RequestMapping(value = "/estimating_non_correlated_stocks_failed/{id}", method = RequestMethod.GET)
+    public Page estimatingNonCorrelatedStocksFailedGET(@PathVariable Long id) {
+        WebPageEstimatingNonCorrelatedStocksFailed page = new WebPageEstimatingNonCorrelatedStocksFailed(id, processDescriptorRepository);
         return page.show();
     }
 
-    @RequestMapping(value = "/estimating_growth_stocks_in_progress_back/{id}", method = RequestMethod.POST)
-    public void estimatingGrowthStocksInProgressBackPOST(@PathVariable Long id) {
+    @RequestMapping(value = "/estimating_non_correlated_stocks_in_progress_back/{id}", method = RequestMethod.POST)
+    public void estimatingNonCorrelatedStocksInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        WebDataEstimatingGrowthStocksInProgress webData = new WebDataEstimatingGrowthStocksInProgress(id);
+        WebDataEstimatingNonCorrelatedStocksInProgress webData = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
 
-    @RequestMapping(value = "/estimating_growth_stocks_completed_back/{id}", method = RequestMethod.POST)
-    public void estimatingGrowthStocksCompletedBackPOST(@PathVariable Long id) {
+   @RequestMapping(value = "/estimating_non_correlated_stocks_completed_back/{id}", method = RequestMethod.POST)
+    public void estimatingNonCorrelatedStocksCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(id);
+       WebDataEstimatingNonCorrelatedStocksCompleted webData = new WebDataEstimatingNonCorrelatedStocksCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
         url = this.jobsGET(job.getId());
-    }*/
+    }
 
     /***/
 

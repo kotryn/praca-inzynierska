@@ -12,16 +12,17 @@ public class WebPageEstimatingNonCorrelatedStocksInProgress {
     public Page show() {
         Text text = new Text("text", "WebPageEstimatingNonCorrelatedStocksInProgress "+ jobId);
 
-        //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
-        //Button btnBack = new Button("button-back", "/", "back");
+        Button btnRefresh = new Button("button", "/estimating_non_correlated_stocks_in_progress/"+jobId, "refresh");
+        Button btnBack = new Button("button-back", "/estimating_non_correlated_stocks_in_progress_back/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);
 
-        //Item<Button> itemBtnConnect = new Item<>(btnConnect);
-        //Item<Button> itemBtnBack = new Item<>(btnBack);
+
+        Item<Button> itemBtnRefresh = new Item<>(btnRefresh);
+        Item<Button> itemBtnBack = new Item<>(btnBack);
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
 
-        return new Page(new Body(itemText, itemBtnDelete));
+        return new Page(new Body(itemText, itemBtnBack, itemBtnRefresh, itemBtnDelete));
     }
 }

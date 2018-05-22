@@ -1,11 +1,14 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
+import com.example.kotryn.repository.ProcessDescriptorRepository;
 
 public class WebPageEstimatingNonCorrelatedStocksFailed {
+    private final ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageEstimatingNonCorrelatedStocksFailed(Long jobId) {
+    public WebPageEstimatingNonCorrelatedStocksFailed(Long jobId, ProcessDescriptorRepository processDescriptorRepository) {
+        this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
     }
 

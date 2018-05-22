@@ -45,9 +45,8 @@ public class StateEstimatingNonCorrelatedStocksCompleted extends StateBase imple
                 //break;
                 throw new RuntimeException("Not implemented yet");
             case PREVIOUS:
-                //moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                moveToNextStateAndSave(State.ESTIMATING_GROWTH_STOCKS_COMPLETED, context, contextRepository);
+                break;
             default:
                 throw new RuntimeException("Undefined action");
         }

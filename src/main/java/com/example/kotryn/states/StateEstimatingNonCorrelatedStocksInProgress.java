@@ -38,10 +38,9 @@ public class StateEstimatingNonCorrelatedStocksInProgress extends StateBase impl
         WebDataEstimatingNonCorrelatedStocksInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                //interruptProcess(input.getJobId());
-                //moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                interruptProcess(input.getJobId());
+                moveToNextStateAndSave(State.ESTIMATING_GROWTH_STOCKS_COMPLETED, context, contextRepository);
+                break;
             case REFRESH:
                 verifyProcessType(ProcessType.ESTIMATING_NON_CORRELATED_STOCKS, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);
