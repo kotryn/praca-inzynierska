@@ -117,6 +117,36 @@ public class MainController {
                     webData3.setAction(Action.REFRESH);
                     processJob(webData3);
                     break;
+                case ESTIMATING_GROWTH_STOCKS_IN_PROGRESS:
+                    WebDataEstimatingGrowthStocksInProgress webData4 =
+                            new WebDataEstimatingGrowthStocksInProgress(requestJob.getId());
+                    webData4.setAction(Action.REFRESH);
+                    processJob(webData4);
+                    break;
+                case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
+                    WebDataEstimatingNonCorrelatedStocksInProgress webData5 =
+                            new WebDataEstimatingNonCorrelatedStocksInProgress(requestJob.getId());
+                    webData5.setAction(Action.REFRESH);
+                    processJob(webData5);
+                    break;
+                case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
+                    WebDataEstimatingWorstCaseCopulaInProgress webData6 =
+                            new WebDataEstimatingWorstCaseCopulaInProgress(requestJob.getId());
+                    webData6.setAction(Action.REFRESH);
+                    processJob(webData6);
+                    break;
+                case BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS:
+                    WebDataBuildingRobustPortfolioInProgress webData7 =
+                            new WebDataBuildingRobustPortfolioInProgress(requestJob.getId());
+                    webData7.setAction(Action.REFRESH);
+                    processJob(webData7);
+                    break;
+                case CALCULATING_STATISTIC_IN_PROGRESS:
+                    WebDataCalculatingStatisticInProgress webData8 =
+                            new WebDataCalculatingStatisticInProgress(requestJob.getId());
+                    webData8.setAction(Action.REFRESH);
+                    processJob(webData8);
+                    break;
                 default:
                     context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
                     contextRepository.save(context);
@@ -156,6 +186,31 @@ public class MainController {
                 webData3.setAction(Action.INTERRUPT);
                 processJob(webData3);
                 break;
+            case ESTIMATING_GROWTH_STOCKS_IN_PROGRESS:
+                WebDataEstimatingGrowthStocksInProgress webData4 = new WebDataEstimatingGrowthStocksInProgress(id);
+                webData4.setAction(Action.INTERRUPT);
+                processJob(webData4);
+                break;
+            case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
+                WebDataEstimatingNonCorrelatedStocksInProgress webData5 = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
+                webData5.setAction(Action.INTERRUPT);
+                processJob(webData5);
+                break;
+            case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
+                WebDataEstimatingWorstCaseCopulaInProgress webData6 = new WebDataEstimatingWorstCaseCopulaInProgress(id);
+                webData6.setAction(Action.INTERRUPT);
+                processJob(webData6);
+                break;
+            case BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS:
+                WebDataBuildingRobustPortfolioInProgress webData7 = new WebDataBuildingRobustPortfolioInProgress(id);
+                webData7.setAction(Action.INTERRUPT);
+                processJob(webData7);
+                break;
+            case CALCULATING_STATISTIC_IN_PROGRESS:
+                WebDataCalculatingStatisticInProgress webData8 = new WebDataCalculatingStatisticInProgress(id);
+                webData8.setAction(Action.INTERRUPT);
+                processJob(webData8);
+                break;
         }
 
         jobRepository.delete(id);
@@ -166,7 +221,6 @@ public class MainController {
         processDescriptorRepository.flush();
         this.url = "/prompt_user";
     }
-
 
     @RequestMapping(value = "/jobSetDate/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -397,7 +451,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /****/
     @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void estimatingGrowthStocksPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -459,10 +512,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /***/
-
-
-    /****/
     @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -524,8 +573,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /****/
-    //ESTIMATING_WORST_CASE_COPULA
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -587,9 +634,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /***/
-    /****/
-    //BUILDING_ROBUST_PORTFOLIO
     @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -651,9 +695,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /***/
-    /****/
-    //CALCULATING_STATISTIC
     @RequestMapping(value = "/calculating_statistic/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
@@ -714,7 +755,4 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
-
-    /***/
-
 }

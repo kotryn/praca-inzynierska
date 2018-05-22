@@ -66,7 +66,7 @@ public class StateFactory  {
                 return new StateBuildingRobustPortfolioInProgress(contextRepository, processDescriptorRepository);
 
             case CALCULATING_STATISTIC_COMPLETED:
-                return new StateCalculatingStatisticCompleted(jobRepository, contextRepository, processDescriptorRepository);
+                return new StateCalculatingStatisticCompleted(contextRepository);
             case CALCULATING_STATISTIC_FAILED:
                 return new StateCalculatingStatisticFailed(jobRepository, contextRepository);
             case CALCULATING_STATISTIC_IN_PROGRESS:

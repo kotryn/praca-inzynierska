@@ -11,14 +11,10 @@ import com.example.kotryn.web.data.WebDataCalculatingStatisticCompleted;
 
 public class StateCalculatingStatisticCompleted extends StateBase implements IState {
 
-    private final JobRepository jobRepository;
     private final ContextRepository contextRepository;
-    private final ProcessDescriptorRepository processDescriptorRepository;
 
-    public StateCalculatingStatisticCompleted(JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
-        this.jobRepository = jobRepository;
+    public StateCalculatingStatisticCompleted(ContextRepository contextRepository) {
         this.contextRepository = contextRepository;
-        this.processDescriptorRepository = processDescriptorRepository;
     }
 
 
@@ -27,22 +23,10 @@ public class StateCalculatingStatisticCompleted extends StateBase implements ISt
         return "calculating_statistic_completed/" + context.getJobId();
     }
 
-    private void saveCalculatingStatistic(WebDataCalculatingStatisticCompleted input) {
-        Job job = jobRepository.getOne(input.getJobId());
-        jobRepository.saveAndFlush(job);
-    }
-
     @Override
     public void handle(Context context, IWebData webData) {
         WebDataCalculatingStatisticCompleted input = getInput(webData);
         switch (input.getAction()) {
-            case NEXT:
-                //saveCalculatingStatistic(input);
-                //createProcessDescriptorAndSave(ProcessType.ESTIMATING_WORST_CASE_DISTRIBUTIONS, input.getJobId(),
-                //       processDescriptorRepository);
-                //moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP, context, contextRepository);
-                //startProcess(input.getJobId());
-                //break;
             case PREVIOUS:
                 moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_COMPLETED, context, contextRepository);
                 break;
