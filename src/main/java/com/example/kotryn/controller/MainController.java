@@ -652,5 +652,69 @@ public class MainController {
     }
 
     /***/
+    /****/
+    //CALCULATING_STATISTIC
+    @RequestMapping(value = "/calculating_statistic/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+        Job job = jobRepository.findOne(id);
+        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job = jobRepository.save(job);
+
+        WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(job.getId());
+        //webData.setSelectedStocks(job.getSelectedStocks());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_statistic_in_progress/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void calculatingStatisticInProgressPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingStatisticInProgress webData = new WebDataCalculatingStatisticInProgress(id);
+        webData.setAction(Action.REFRESH);
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_statistic_in_progress/{id}", method = RequestMethod.GET)
+    public Page calculatingStatisticInProgressGET(@PathVariable Long id) {
+        WebPageCalculatingStatisticInProgress page = new WebPageCalculatingStatisticInProgress(id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/calculating_statistic_completed/{id}", method = RequestMethod.GET)
+    public Page calculatingStatisticCompletedGET(@PathVariable Long id) {
+        WebPageCalculatingStatisticCompleted page = new WebPageCalculatingStatisticCompleted(id, jobRepository, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/calculating_statistic_failed/{id}", method = RequestMethod.GET)
+    public Page calculatingStatisticFailedGET(@PathVariable Long id) {
+        WebPageCalculatingStatisticFailed page = new WebPageCalculatingStatisticFailed(id, processDescriptorRepository);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/calculating_statistic_in_progress_back/{id}", method = RequestMethod.POST)
+    public void calculatingStatisticInProgressBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingStatisticInProgress webData = new WebDataCalculatingStatisticInProgress(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_statistic_in_progress_completed_back/{id}", method = RequestMethod.POST)
+    public void calculatingStatisticCompletedBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingStatisticCompleted webData = new WebDataCalculatingStatisticCompleted(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    /***/
 
 }

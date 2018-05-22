@@ -38,10 +38,9 @@ public class StateCalculatingStatisticInProgress extends StateBase implements IS
         WebDataCalculatingStatisticInProgress input = getInput(webData);
         switch (input.getAction()) {
             case INTERRUPT:
-                //interruptProcess(input.getJobId());
-                //moveToNextStateAndSave(State.OBTAINING_PERIOD_OF_ANALYSIS, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                interruptProcess(input.getJobId());
+                moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_COMPLETED, context, contextRepository);
+                break;
             case REFRESH:
                 verifyProcessType(ProcessType.CALCULATING_STATISTIC, input.getJobId(), processDescriptorRepository);
                 ifSearchingDoneMoveToNextStateAndSave(context);

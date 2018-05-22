@@ -24,7 +24,7 @@ public class StateCalculatingStatisticCompleted extends StateBase implements ISt
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        return "calculating_portfolio_completed/" + context.getJobId();
+        return "calculating_statistic_completed/" + context.getJobId();
     }
 
     private void saveCalculatingStatistic(WebDataCalculatingStatisticCompleted input) {
@@ -43,11 +43,9 @@ public class StateCalculatingStatisticCompleted extends StateBase implements ISt
                 //moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP, context, contextRepository);
                 //startProcess(input.getJobId());
                 //break;
-                throw new RuntimeException("Not implemented yet");
             case PREVIOUS:
-                //moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
-                //break;
-                throw new RuntimeException("Not implemented yet");
+                moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_COMPLETED, context, contextRepository);
+                break;
             default:
                 throw new RuntimeException("Undefined action");
         }

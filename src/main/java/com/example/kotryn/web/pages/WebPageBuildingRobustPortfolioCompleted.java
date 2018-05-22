@@ -18,16 +18,16 @@ public class WebPageBuildingRobustPortfolioCompleted {
     public Page show() {
         Text text = new Text("text", "BuildingRobustPortfolioCompleted "+ jobId);
 
-        //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
+        Button btnSubmit = new Button("button-form", "/calculating_statistic/"+jobId, "submit");
         Button btnBack = new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);
 
-        //Item<Button> itemBtnConnect = new Item<>(btnConnect);
+        Item<Button> itemBtnSubmit = new Item<>(btnSubmit);
         Item<Button> itemBtnBack = new Item<>(btnBack);
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
 
-        return new Page(new Body(itemText, itemBtnBack, itemBtnDelete));
+        return new Page(new Body(itemText, itemBtnBack, itemBtnSubmit, itemBtnDelete));
     }
 }
