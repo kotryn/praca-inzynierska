@@ -12,8 +12,8 @@ public class WebPageEstimatingNonCorrelatedStocksFailed {
         this.jobId = jobId;
     }
 
-    public Page show() {
-        Text text = new Text("text", "WebPageEstimatingNonCorrelatedStocksFailed "+ jobId);
+    public Page show() {//TODO: failed
+        Text text = new Text("text", "Estimating non correlated stocks failed");
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         //Button btnBack = new Button("button-back", "/", "back");

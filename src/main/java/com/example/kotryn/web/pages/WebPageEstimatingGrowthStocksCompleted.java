@@ -17,7 +17,7 @@ public class WebPageEstimatingGrowthStocksCompleted {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageEstimatingGrowthStocksCompleted "+ jobId);
+        Text text = new Text("text", "Estimating growth stocks completed successful");
 
         Button btnConnect = new Button("button-form", "/estimating_non_correlated_stocks/"+jobId, "Submit");
         Button btnBack = new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "back");

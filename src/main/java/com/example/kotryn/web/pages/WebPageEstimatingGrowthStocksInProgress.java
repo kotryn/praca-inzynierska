@@ -10,7 +10,7 @@ public class WebPageEstimatingGrowthStocksInProgress {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageEstimatingGrowthStocksInProgress "+ jobId);
+        Text text = new Text("text", "Estimating growth stocks in progress");
 
         Button btnRefresh = new Button("button", "/estimating_growth_stocks_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/estimating_growth_stocks_in_progress_back/"+jobId, "back");

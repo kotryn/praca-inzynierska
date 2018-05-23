@@ -13,7 +13,7 @@ public class WebPageBuildingRobustPortfolioFailed {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageBuildingRobustPortfolioFailed "+ jobId);
+        Text text = new Text("text", "Building robust portfolio failed "+ jobId); //TODO: failed
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         //Button btnBack = new Button("button-back", "/", "back");

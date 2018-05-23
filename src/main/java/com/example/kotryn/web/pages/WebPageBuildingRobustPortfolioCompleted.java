@@ -16,7 +16,7 @@ public class WebPageBuildingRobustPortfolioCompleted {
     }
 
     public Page show() {
-        Text text = new Text("text", "BuildingRobustPortfolioCompleted "+ jobId);
+        Text text = new Text("text", "Building robust portfolio completed successful");
 
         Button btnSubmit = new Button("button-form", "/calculating_statistic/"+jobId, "submit");
         Button btnBack = new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back");

@@ -16,7 +16,7 @@ public class WebPageEstimatingNonCorrelatedStocksCompleted {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageEstimatingNonCorrelatedStocksCompleted "+ jobId);
+        Text text = new Text("text", "Estimating non correlated stocks completed successful");
 
         Button btnConnect = new Button("button-form", "/estimating_worst_case_copula/"+jobId, "connect");
         Button btnBack = new Button("button-back", "/estimating_non_correlated_stocks_completed_back/"+jobId, "back");

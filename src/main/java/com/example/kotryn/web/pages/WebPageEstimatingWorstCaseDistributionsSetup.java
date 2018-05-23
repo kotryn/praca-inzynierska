@@ -4,7 +4,6 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 
-//TODO: zbudować stronę z ustawieniami do policzenia worst case distribution
 public class WebPageEstimatingWorstCaseDistributionsSetup {
     //private final JobRepository jobRepository;
     private final Long jobId;

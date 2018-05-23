@@ -12,8 +12,8 @@ public class WebPageEstimatingGrowthStocksFailed {
         this.jobId = jobId;
     }
 
-    public Page show() {
-        Text text = new Text("text", "WebPageEstimatingGrowthStocksFailed "+ jobId);
+    public Page show() {//TODO: failed
+        Text text = new Text("text", "Estimating growth stocks failed");
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         //Button btnBack = new Button("button-back", "/", "back");

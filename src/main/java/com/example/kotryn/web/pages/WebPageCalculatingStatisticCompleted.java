@@ -16,7 +16,7 @@ public class WebPageCalculatingStatisticCompleted {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageCalculatingStatisticCompleted "+ jobId);
+        Text text = new Text("text", "Calculating statistic completed successful");
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         Button btnBack = new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "back");

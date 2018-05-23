@@ -287,19 +287,19 @@ public class MainController {
 
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
-        WebPageStocksSearchCompleted page = new WebPageStocksSearchCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageSearchingForStocksCompleted page = new WebPageSearchingForStocksCompleted(id, jobRepository, processDescriptorRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/stocks_search_failed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksFailedGET(@PathVariable Long id) {
-        WebPageStocksSearchFailed page = new WebPageStocksSearchFailed(id, processDescriptorRepository);
+        WebPageSearchingForStocksFailed page = new WebPageSearchingForStocksFailed(id, processDescriptorRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/stocks_search_in_progress/{id}", method = RequestMethod.GET)
     public Page searchingForStocksInProgressGET(@PathVariable Long id) {
-        WebPageStocksSearchInProgress page = new WebPageStocksSearchInProgress(id);
+        WebPageSearchingForStocksInProgress page = new WebPageSearchingForStocksInProgress(id);
         return page.show();
     }
 

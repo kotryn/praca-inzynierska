@@ -78,7 +78,7 @@ public class ProcessBuildingRobustPortfolio implements IProcess {
                 //        + jobId + "&& timeout 15\"";
                 processDescriptor.setSystemType(SystemType.LINUX);
                 //System.out.println(System.getProperty("os.name"));
-                String command = "xterm  -e ./file2.sh " + jobId; //TODO: zmienić file.sh
+                String command = "xterm  -e ./file7.sh " + jobId;
                 Process process = Runtime.getRuntime().exec(command);
 
                 int pid = -1;

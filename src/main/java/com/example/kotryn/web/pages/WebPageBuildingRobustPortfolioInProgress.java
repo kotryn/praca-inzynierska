@@ -10,7 +10,7 @@ public class WebPageBuildingRobustPortfolioInProgress {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageBuildingRobustPortfolioInProgress "+ jobId);
+        Text text = new Text("text", "Building robust portfolio in progress");
 
         Button btnRefresh = new Button("button", "/building_robust_portfolio_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/building_robust_portfolio_in_progress_back/"+jobId, "back");

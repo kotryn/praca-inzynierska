@@ -10,7 +10,7 @@ public class WebPageEstimatingNonCorrelatedStocksInProgress {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageEstimatingNonCorrelatedStocksInProgress "+ jobId);
+        Text text = new Text("text", "Estimating non correlated stocks in progress");
 
         Button btnRefresh = new Button("button", "/estimating_non_correlated_stocks_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/estimating_non_correlated_stocks_in_progress_back/"+jobId, "back");

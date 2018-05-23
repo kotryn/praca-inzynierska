@@ -8,7 +8,7 @@ public class Stock {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Job job;
 

@@ -10,7 +10,7 @@ public class WebPageEstimatingWorstCaseCopulaInProgress {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageEstimatingWorstCaseCopulaInProgress "+ jobId);
+        Text text = new Text("text", "Estimating worst case copula in progress");
 
         Button btnRefresh = new Button("button", "/estimating_worst_case_copula_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/estimating_worst_case_copula_in_progress_back/"+jobId, "back");

@@ -16,7 +16,7 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageEstimatingWorstCaseCopulaCompleted "+ jobId);
+        Text text = new Text("text", "Estimating worst case copula completed successful");
 
         Button btnConnect = new Button("button-form", "/building_robust_portfolio/"+jobId, "connect");
         Button btnBack = new Button("button-back", "/estimating_worst_case_copula_in_progress_completed_back/"+jobId, "back");

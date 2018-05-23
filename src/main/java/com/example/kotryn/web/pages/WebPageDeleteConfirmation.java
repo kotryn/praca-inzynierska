@@ -10,7 +10,7 @@ public class WebPageDeleteConfirmation {
         this.jobId = jobId;
     }
 
-    private Page show() {
+    private Page show() {//TODO: confirm job delete
         /*view.println("Deleted job ID: " + jobId);
         view.println("1. Begin or connect to a job (link)");
         view.println("2. Exit");

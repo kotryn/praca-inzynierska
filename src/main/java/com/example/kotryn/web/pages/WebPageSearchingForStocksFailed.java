@@ -1,27 +1,36 @@
 package com.example.kotryn.web.pages;
 
+import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.json.*;
+import com.example.kotryn.lib.Tools;
+import com.example.kotryn.repository.ProcessDescriptorRepository;
 
-public class WebPageSearchingForStocksFailed {
+public class WebPageSearchingForStocksFailed {//TODO: failed
+
+    private final ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageSearchingForStocksFailed(Long jobId) {
+    public WebPageSearchingForStocksFailed(Long jobId, ProcessDescriptorRepository processDescriptorRepository) {
+        this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
     }
 
     public Page show() {
-        Text text = new Text("text", "WebPageSearchingForStocksFailed "+ jobId);
+        ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
+        String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
 
-        //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
-        //Button btnBack = new Button("button-back", "/", "back");
+        Text text = new Text("text", "Searching for stocks failed. Reason: " + processDescriptor.getErrorMessage());
+        Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
+
+        Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
         Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
 
         Item<Text> itemText = new Item<>(text);
+        Item<Text> itemText2 = new Item<>(text2);
 
-        //Item<Button> itemBtnConnect = new Item<>(btnConnect);
-        //Item<Button> itemBtnBack = new Item<>(btnBack);
         Item<Button> itemBtnDelete = new Item<>(btnDelete);
+        Item<Button> itemBtnBack = new Item<>(btnBack);
 
-        return new Page(new Body(itemText, itemBtnDelete));
+        return new Page(new Body(itemText, itemText2, itemBtnBack, itemBtnDelete));
     }
 }

@@ -12,8 +12,8 @@ public class WebPageEstimatingWorstCaseCopulaFailed {
         this.jobId = jobId;
     }
 
-    public Page show() {
-        Text text = new Text("text", "WebPageEstimatingWorstCaseCopulaFailed "+ jobId);
+    public Page show() {//TODO: failed
+        Text text = new Text("text", "Estimating worst case copula failed");
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         //Button btnBack = new Button("button-back", "/", "back");

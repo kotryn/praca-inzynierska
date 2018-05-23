@@ -15,7 +15,7 @@ public class WebPageCalculatingSampleCountFailed {
         this.jobId = jobId;
     }
 
-    public Page show() {
+    public Page show() {//TODO: failed
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
         String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
 
