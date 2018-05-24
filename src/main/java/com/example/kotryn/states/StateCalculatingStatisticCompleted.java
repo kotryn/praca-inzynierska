@@ -17,7 +17,6 @@ public class StateCalculatingStatisticCompleted extends StateBase implements ISt
         this.contextRepository = contextRepository;
     }
 
-
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
         return "calculating_statistic_completed/" + context.getJobId();

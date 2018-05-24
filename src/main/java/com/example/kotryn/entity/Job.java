@@ -47,6 +47,14 @@ public class Job {
     @ElementCollection
     private List<String> selectedWorstCaseCopula;
 
+    @ElementCollection
+    private List<String> robustPortfolio;
+    @ElementCollection
+    private List<String> selectedRobustPortfolio;
+
+    @ElementCollection
+    private List<String> statistic;
+
 
     public Job(){
         this.startDate = "not set";
@@ -54,6 +62,19 @@ public class Job {
         this.availableStocks = null;
         this.selectedStocks = null;
         this.stocks = null;
+        this.calculatingSample = null;
+        this.selectedCalculatingSample = null;
+        this.worstCaseDistributions = null;
+        this.selectedWorstCaseDistributions = null;
+        this.growthStocks = null;
+        this.selectedGrowthStocks = null;
+        this.nonCorrelatedStocks = null;
+        this.selectedNonCorrelatedStocks = null;
+        this.worstCaseCopula = null;
+        this.selectedWorstCaseCopula = null;
+        this.robustPortfolio = null;
+        this.selectedRobustPortfolio = null;
+        this.statistic = null;
     }
 
     public Long getId() {
@@ -104,7 +125,6 @@ public class Job {
         this.stocks = stocks;
     }
 
-    /**/
     public List<String> getCalculatingSample() {
         return calculatingSample;
     }
@@ -120,7 +140,7 @@ public class Job {
     public void setSelectedCalculatingSample(List<String> selectedCalculatingSample) {
         this.selectedCalculatingSample = selectedCalculatingSample;
     }
-    /**/
+
     public List<String> getWorstCaseDistributions() {
         return worstCaseDistributions;
     }
@@ -183,5 +203,29 @@ public class Job {
 
     public void setSelectedWorstCaseCopula(List<String> selectedWorstCaseCopula) {
         this.selectedWorstCaseCopula = selectedWorstCaseCopula;
+    }
+
+    public List<String> getRobustPortfolio() {
+        return robustPortfolio;
+    }
+
+    public void setRobustPortfolio(List<String> robustPortfolio) {
+        this.robustPortfolio = robustPortfolio;
+    }
+
+    public List<String> getSelectedRobustPortfolio() {
+        return selectedRobustPortfolio;
+    }
+
+    public void setSelectedRobustPortfolio(List<String> selectedRobustPortfolio) {
+        this.selectedRobustPortfolio = selectedRobustPortfolio;
+    }
+
+    public List<String> getStatistic() {
+        return statistic;
+    }
+
+    public void setStatistic(List<String> statistic) {
+        this.statistic = statistic;
     }
 }

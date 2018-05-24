@@ -6,7 +6,6 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.StockRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -17,14 +16,12 @@ import java.time.Month;
 public class ProcessBuildingRobustPortfolio implements IProcess {
 
     private JobRepository jobRepository;
-    private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessBuildingRobustPortfolio(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessBuildingRobustPortfolio(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
-        this.stockRepository = stockRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -43,7 +40,7 @@ public class ProcessBuildingRobustPortfolio implements IProcess {
         String csvFile = File.getFile("BUILDING_ROBUST_PORTFOLIO");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setCalculatingSample(readFile.csvGetOneColumn());
+        job.setRobustPortfolio(readFile.csvGetOneColumn());
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

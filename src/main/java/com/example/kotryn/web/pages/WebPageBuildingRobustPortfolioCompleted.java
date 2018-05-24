@@ -1,8 +1,14 @@
 package com.example.kotryn.web.pages;
 
+import com.example.kotryn.entity.Job;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class WebPageBuildingRobustPortfolioCompleted {
     private JobRepository jobRepository;
@@ -16,18 +22,27 @@ public class WebPageBuildingRobustPortfolioCompleted {
     }
 
     public Page show() {
-        Text text = new Text("text", "Building robust portfolio completed successful");
+        Job job = jobRepository.findOne(jobId);
 
-        Button btnSubmit = new Button("button-form", "/calculating_statistic/"+jobId, "submit");
-        Button btnBack = new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        List<String> selectedRobustPortfolio = Optional.ofNullable(job.getRobustPortfolio()).orElse(Collections.singletonList("none"));
+        List<String> previouslySelectedRobustPortfolio = Optional.ofNullable(job.getSelectedRobustPortfolio()).orElse(Collections.singletonList("none"));
 
-        Item<Text> itemText = new Item<>(text);
+        List<Item> itemList = new ArrayList<>();
 
-        Item<Button> itemBtnSubmit = new Item<>(btnSubmit);
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
+        itemList.add(new Item<>(new Text("text", "Building robust portfolio completed successful")));
+        itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedRobustPortfolio)));
+        itemList.add(new Item<>( new Text("text", "Available: ")));
 
-        return new Page(new Body(itemText, itemBtnBack, itemBtnSubmit, itemBtnDelete));
+        itemList.add(new Item<>(new Checkbox("checkbox", selectedRobustPortfolio, selectedRobustPortfolio)));
+
+        Item<Button> itemBtnSubmit = new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "submit"));
+        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+
+        itemList.add(itemBtnBack);
+        itemList.add(itemBtnSubmit);
+        itemList.add(itemBtnDelete);
+
+        return new Page(new Body(itemList));
     }
 }

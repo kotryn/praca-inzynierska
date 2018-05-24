@@ -30,6 +30,7 @@ public class StateBuildingRobustPortfolioCompleted extends StateBase implements 
 
     private void saveBuildingRobustPortfolio(WebDataBuildingRobustPortfolioCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
+        job.setSelectedRobustPortfolio(input.getSelectedRobustPortfolio());
         jobRepository.saveAndFlush(job);
     }
 
@@ -38,7 +39,7 @@ public class StateBuildingRobustPortfolioCompleted extends StateBase implements 
         WebDataBuildingRobustPortfolioCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                //saveBuildingRobustPortfolio(input);
+                saveBuildingRobustPortfolio(input);
                 createProcessDescriptorAndSave(ProcessType.CALCULATING_STATISTIC, input.getJobId(),
                        processDescriptorRepository);
                 moveToNextStateAndSave(State.CALCULATING_STATISTIC_IN_PROGRESS, context, contextRepository);

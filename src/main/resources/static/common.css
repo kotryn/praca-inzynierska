@@ -89,3 +89,6 @@ tr.article{
 .checkbox{
     display: block;
 }
+li.list{
+    text-align: left;
+}

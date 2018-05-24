@@ -10,7 +10,7 @@ public class WebPageCalculatingStatisticInProgress {
     }
 
     public Page show() {
-        Text text = new Text("text", "Calculating statistic in progress");
+        Text text = new Text("text", "Calculating out-of sample statistic in progress");
 
         Button btnRefresh = new Button("button", "/calculating_statistic_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/calculating_statistic_in_progress_back/"+jobId, "back");

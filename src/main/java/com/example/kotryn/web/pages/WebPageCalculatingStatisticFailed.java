@@ -13,7 +13,7 @@ public class WebPageCalculatingStatisticFailed {
     }
 
     public Page show() {//TODO: failed
-        Text text = new Text("text", "Calculating statistic failed ");
+        Text text = new Text("text", "Calculating out-of sample statistic failed ");
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         //Button btnBack = new Button("button-back", "/", "back");

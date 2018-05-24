@@ -713,11 +713,11 @@ public class MainController {
     @ResponseStatus(HttpStatus.CREATED)
     public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(jobDTO.getSelectedStocks());
+        job.setSelectedRobustPortfolio(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(job.getId());
-        //webData.setSelectedStocks(job.getSelectedStocks());
+        webData.setSelectedRobustPortfolio(job.getSelectedRobustPortfolio());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

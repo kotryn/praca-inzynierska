@@ -34,9 +34,9 @@ public class ProcessFactory implements IProcessFactory {
             case ESTIMATING_WORST_CASE_COPULA:
                 return new ProcessEstimatingWorstCaseCopula(jobId, jobRepository, processDescriptorRepository);
             case BUILDING_ROBUST_PORTFOLIO:
-                return new ProcessBuildingRobustPortfolio(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessBuildingRobustPortfolio(jobId, jobRepository, processDescriptorRepository);
             case CALCULATING_STATISTIC:
-                return new ProcessCalculatingStatistic(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessCalculatingStatistic(jobId, jobRepository, processDescriptorRepository);
             default:
                 throw new RuntimeException("Unknown process");
         }

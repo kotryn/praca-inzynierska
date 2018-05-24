@@ -12,6 +12,7 @@ import Table from './elements/Table'
 import Title from './elements/Title'
 import Image from "./elements/Image"
 import Form from "./elements/Form"
+import List from "./elements/List"
 
 
 class Main extends React.Component{
@@ -69,6 +70,9 @@ class Main extends React.Component{
                     break;
                 case "checkbox":
                     components.push(<Form config={element} />);
+                    break;
+                case "list":
+                    components.push(<List config={element} />);
                     break;
                 default:
                     console.log('unknown type of component');
