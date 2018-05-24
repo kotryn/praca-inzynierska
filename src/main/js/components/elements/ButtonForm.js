@@ -15,6 +15,8 @@ class ButtonForm extends React.Component{
         event.preventDefault();
         const {url} = this.props.config;
 
+        console.log(this.props.jsonData, "  ", this.props.config);
+
         axios.post(url, this.props.jsonData)
             .then(response => {
                 if(response.status === 201){

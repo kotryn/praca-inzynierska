@@ -29,6 +29,16 @@ public class Job {
     @ElementCollection
     private List<String> selectedCalculatingSample;
 
+    @ElementCollection
+    private List<String> worstCaseDistributions;
+    @ElementCollection
+    private List<String> selectedWorstCaseDistributions;
+
+    @ElementCollection
+    private List<String> growthStocks;
+    @ElementCollection
+    private List<String> selectedGrowthStocks;
+
 
     public Job(){
         this.startDate = "not set";
@@ -70,7 +80,6 @@ public class Job {
         this.availableStocks = availableStocks;
     }
 
-    @JsonProperty("checkbox")
     public List<String> getSelectedStocks() {
         return selectedStocks;
     }
@@ -87,6 +96,7 @@ public class Job {
         this.stocks = stocks;
     }
 
+    /**/
     public List<String> getCalculatingSample() {
         return calculatingSample;
     }
@@ -102,4 +112,38 @@ public class Job {
     public void setSelectedCalculatingSample(List<String> selectedCalculatingSample) {
         this.selectedCalculatingSample = selectedCalculatingSample;
     }
+    /**/
+    public List<String> getWorstCaseDistributions() {
+        return worstCaseDistributions;
+    }
+
+    public void setWorstCaseDistributions(List<String> worstCaseDistributions) {
+        this.worstCaseDistributions = worstCaseDistributions;
+    }
+
+    public List<String> getSelectedWorstCaseDistributions() {
+        return selectedWorstCaseDistributions;
+    }
+
+    public void setSelectedWorstCaseDistributions(List<String> selectedWorstCaseDistributions) {
+        this.selectedWorstCaseDistributions = selectedWorstCaseDistributions;
+    }
+    /**/
+
+    public List<String> getGrowthStocks() {
+        return growthStocks;
+    }
+
+    public void setGrowthStocks(List<String> growthStocks) {
+        this.growthStocks = growthStocks;
+    }
+
+    public List<String> getSelectedGrowthStocks() {
+        return selectedGrowthStocks;
+    }
+
+    public void setSelectedGrowthStocks(List<String> selectedGrowthStocks) {
+        this.selectedGrowthStocks = selectedGrowthStocks;
+    }
+    /**/
 }

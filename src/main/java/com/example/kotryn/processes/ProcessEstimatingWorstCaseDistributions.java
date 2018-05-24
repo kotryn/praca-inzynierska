@@ -6,7 +6,6 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.StockRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -17,14 +16,12 @@ import java.time.Month;
 public class ProcessEstimatingWorstCaseDistributions implements IProcess {
 
     private JobRepository jobRepository;
-    private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessEstimatingWorstCaseDistributions(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessEstimatingWorstCaseDistributions(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
-        this.stockRepository = stockRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -40,18 +37,19 @@ public class ProcessEstimatingWorstCaseDistributions implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        String csvFile = File.getFile("CALCULATING_SAMPLE_COUNT");
+        String csvFile = File.getFile("ESTIMATING_WORST_CASE_DISTRIBUTION");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setCalculatingSample(readFile.csvGetOneColumn());
+        job.setWorstCaseDistributions(readFile.csvGetOneColumn());
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.COMPLETED_SUCCESS);
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
+        System.out.println(LocalDateTime.now());//TODO: set real time
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 40, 10);
-        processDescriptor.setDuration(Duration.between(startTime, stopTime));
+        processDescriptor.setDuration(Duration.between(startTime, stopTime));//TODO: set real duration
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
@@ -62,7 +60,7 @@ public class ProcessEstimatingWorstCaseDistributions implements IProcess {
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 30, 15);
         processDescriptor.setDuration(Duration.between(startTime, stopTime));
-        processDescriptor.setErrorMessage("calculating sample count failed");
+        processDescriptor.setErrorMessage("estimating worst case failed");
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
@@ -117,7 +115,6 @@ public class ProcessEstimatingWorstCaseDistributions implements IProcess {
                 String command = "kill -9 "+processDescriptor.getPid();
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
-                //toBeDoneInsideProcessAtEndWhenFailure();
                 throw new UnsupportedOperationException("Not yet implemented");
             }
         }).start();

@@ -30,6 +30,7 @@ public class StateEstimatingGrowthStocksCompleted extends StateBase implements I
 
     private void saveSelectedEstimatingGrowthStocks(WebDataEstimatingGrowthStocksCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
+        job.setSelectedGrowthStocks(input.getSelectedGrowthStocks());
         jobRepository.saveAndFlush(job);
     }
 
@@ -38,7 +39,7 @@ public class StateEstimatingGrowthStocksCompleted extends StateBase implements I
         WebDataEstimatingGrowthStocksCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                //saveSelectedEstimatingGrowthStocks(input);
+                saveSelectedEstimatingGrowthStocks(input);
                 createProcessDescriptorAndSave(ProcessType.ESTIMATING_NON_CORRELATED_STOCKS, input.getJobId(),
                        processDescriptorRepository);
                 moveToNextStateAndSave(State.ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS, context, contextRepository);

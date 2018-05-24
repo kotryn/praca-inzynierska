@@ -2,6 +2,7 @@ package com.example.kotryn.controller;
 
 import com.example.kotryn.entity.Context;
 import com.example.kotryn.entity.Job;
+import com.example.kotryn.entity.JobDTO;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.processes.AbstractProcessFactory;
@@ -305,9 +306,9 @@ public class MainController {
 
     @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+    public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job.setSelectedStocks(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataSearchingForStocksCompleted webData = new WebDataSearchingForStocksCompleted(job.getId());
@@ -366,9 +367,9 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_worst_case_distributions_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingWorstCaseDistributionsSetupPOST(@PathVariable Long id, @RequestBody Job addSelectedCalculatingSampleRequest) {
+    public void estimatingWorstCaseDistributionsSetupPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedCalculatingSample(addSelectedCalculatingSampleRequest.getSelectedCalculatingSample());
+        job.setSelectedCalculatingSample(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(job.getId());
@@ -453,13 +454,13 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingGrowthStocksPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+    public void estimatingGrowthStocksPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job.setSelectedWorstCaseDistributions(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(job.getId());
-        //webData.setSelectedStocks(job.getSelectedStocks());
+        webData.setSelectedWorstCaseDistributions(job.getSelectedWorstCaseDistributions());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
@@ -514,13 +515,13 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        job.setSelectedGrowthStocks(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
-        //webData.setSelectedStocks(job.getSelectedStocks());
+        webData.setSelectedGrowthStocks(job.getSelectedGrowthStocks());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
@@ -575,9 +576,9 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+    public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        //job.setSelectedStocks(jobDTO.getSelectedStocks());
         job = jobRepository.save(job);
 
         WebDataEstimatingNonCorrelatedStocksCompleted webData = new WebDataEstimatingNonCorrelatedStocksCompleted(job.getId());
@@ -636,9 +637,9 @@ public class MainController {
 
     @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+    public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        //job.setSelectedStocks(jobDTO.getSelectedStocks());
         job = jobRepository.save(job);
 
         WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(job.getId());
@@ -697,9 +698,9 @@ public class MainController {
 
     @RequestMapping(value = "/calculating_statistic/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody Job addSelectedStocksRequest) {
+    public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(addSelectedStocksRequest.getSelectedStocks());
+        //job.setSelectedStocks(jobDTO.getSelectedStocks());
         job = jobRepository.save(job);
 
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(job.getId());

@@ -17,14 +17,12 @@ import java.time.Month;
 public class ProcessEstimatingGrowthStocks implements IProcess {
 
     private JobRepository jobRepository;
-    private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessEstimatingGrowthStocks(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessEstimatingGrowthStocks(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
-        this.stockRepository = stockRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -43,7 +41,7 @@ public class ProcessEstimatingGrowthStocks implements IProcess {
         String csvFile = File.getFile("ESTIMATING_GROWTH_STOCKS");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setCalculatingSample(readFile.csvGetOneColumn());
+        job.setGrowthStocks(readFile.csvGetOneColumn());
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

@@ -6,7 +6,7 @@ public class WebDataEstimatingGrowthStocksCompleted implements IWebData {
 
     private final Long jobId;
     private Action action;
-    private List<String> selectedStocks;
+    private List<String> selectedGrowthStocks;
 
     public WebDataEstimatingGrowthStocksCompleted(Long jobId) {
         this.jobId = jobId;
@@ -25,5 +25,13 @@ public class WebDataEstimatingGrowthStocksCompleted implements IWebData {
 
     public void setAction(Action action) {
         this.action = action;
+    }
+
+    public void setSelectedGrowthStocks(List<String> selectedGrowthStocks) {
+        this.selectedGrowthStocks = selectedGrowthStocks;
+    }
+
+    public List<String> getSelectedGrowthStocks() {
+        return selectedGrowthStocks;
     }
 }

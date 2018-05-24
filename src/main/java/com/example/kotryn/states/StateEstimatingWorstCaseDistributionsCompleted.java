@@ -29,9 +29,9 @@ public class StateEstimatingWorstCaseDistributionsCompleted extends StateBase im
         return "estimating_worst_case_distributions_completed/"+context.getJobId();
     }
 
-    private void saveSelectedCalculatingSample(WebDataEstimatingWorstCaseDistributionsCompleted input) {
+    private void saveSelectedEstimatingWorstCaseDistributions(WebDataEstimatingWorstCaseDistributionsCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
-        //job.setSelectedCalculatingSample(input.getSelectedCalculatingSample());
+        job.setSelectedWorstCaseDistributions(input.getSelectedWorstCaseDistributions());
         jobRepository.saveAndFlush(job);
     }
 
@@ -40,7 +40,7 @@ public class StateEstimatingWorstCaseDistributionsCompleted extends StateBase im
         WebDataEstimatingWorstCaseDistributionsCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                //saveSelectedCalculatingSample(input);
+                saveSelectedEstimatingWorstCaseDistributions(input);
                 createProcessDescriptorAndSave(ProcessType.ESTIMATING_GROWTH_STOCKS, input.getJobId(),
                         processDescriptorRepository);
                 moveToNextStateAndSave(State.ESTIMATING_GROWTH_STOCKS_IN_PROGRESS, context, contextRepository);

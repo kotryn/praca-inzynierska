@@ -6,7 +6,6 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.StockRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -17,14 +16,12 @@ import java.time.Month;
 public class ProcessCalculatingSampleCount implements IProcess {
 
     private JobRepository jobRepository;
-    private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessCalculatingSampleCount(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessCalculatingSampleCount(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
-        this.stockRepository = stockRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -40,7 +37,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        String csvFile = File.getFile("ESTIMATING_WORST_CASE_DISTRIBUTION");
+        String csvFile = File.getFile("CALCULATING_SAMPLE_COUNT");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
         job.setCalculatingSample(readFile.csvGetOneColumn());
@@ -62,7 +59,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 30, 15);
         processDescriptor.setDuration(Duration.between(startTime, stopTime));
-        processDescriptor.setErrorMessage("estimating worst case failed");
+        processDescriptor.setErrorMessage("calculating sample count failed");
         processDescriptorRepository.saveAndFlush(processDescriptor);
     }
 
@@ -77,7 +74,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
                 //String command = "cmd.exe /c start /w cmd.exe /c \"echo Searching for stocks for job ID: "
                 //        + jobId + "&& timeout 15\"";
                 processDescriptor.setSystemType(SystemType.LINUX);
-                //System.out.println(System.getProperty("os.name"));
+                //System.out.println(System.getProperty("os.name"));--> Windows 7
                 String command = "xterm  -e ./file2.sh " + jobId;
                 Process process = Runtime.getRuntime().exec(command);
 
@@ -117,7 +114,6 @@ public class ProcessCalculatingSampleCount implements IProcess {
                 String command = "kill -9 "+processDescriptor.getPid();
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
-                //toBeDoneInsideProcessAtEndWhenFailure();
                 throw new UnsupportedOperationException("Not yet implemented");
             }
         }).start();

@@ -3,7 +3,6 @@ package com.example.kotryn.web.pages;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.json.*;
-import com.example.kotryn.lib.Tools;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
@@ -29,8 +28,8 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         //String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
-        //List<String> selectedCalculatingSample = Optional.ofNullable(job.getCalculatingSample()).orElse(Collections.singletonList("none"));
-       // List<String> previouslySelectedCalculatingSample = Optional.ofNullable(job.getSelectedCalculatingSample()).orElse(Collections.singletonList("none"));
+        List<String> selectedWorstCaseDistributions = Optional.ofNullable(job.getWorstCaseDistributions()).orElse(Collections.singletonList("none"));
+        List<String> previouslySelectedWorstCaseDistributions = Optional.ofNullable(job.getSelectedWorstCaseDistributions()).orElse(Collections.singletonList("none"));
 
         List<Item> itemList = new ArrayList<>();
 
@@ -41,10 +40,10 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
 
 
         itemList.add(new Item<>(new Text("text", "Estimating worst case distributions completed successfully")));
-        //itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedCalculatingSample)));
-        //itemList.add(new Item<>( new Text("text", "Available: ")));
+        itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedWorstCaseDistributions)));
+        itemList.add(new Item<>( new Text("text", "Available: ")));
 
-        //itemList.add(new Item<>(new Checkbox("checkbox", selectedCalculatingSample, selectedCalculatingSample)));
+        itemList.add(new Item<>(new Checkbox("checkbox", selectedWorstCaseDistributions, selectedWorstCaseDistributions)));
 
         itemList.add(itemBtnBack);
         itemList.add(itemBtnNext);

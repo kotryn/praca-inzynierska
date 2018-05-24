@@ -7,6 +7,7 @@ import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.web.data.Action;
 import com.example.kotryn.web.data.IWebData;
+import com.example.kotryn.web.data.WebDataCalculatingStatisticFailed;
 
 public class StateCalculatingStatisticFailed extends StateBase implements IState {
     private final JobRepository jobRepository;

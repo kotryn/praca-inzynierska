@@ -24,11 +24,11 @@ public class ProcessFactory implements IProcessFactory {
             case SEARCHING_FOR_STOCKS:
                 return new ProcessSearchingForStocks(jobId, jobRepository, stockRepository, processDescriptorRepository);
             case CALCULATING_SAMPLE_COUNT:
-                return new ProcessCalculatingSampleCount(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessCalculatingSampleCount(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS:
-                return new ProcessEstimatingWorstCaseDistributions(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessEstimatingWorstCaseDistributions(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS:
-                return new ProcessEstimatingGrowthStocks(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessEstimatingGrowthStocks(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_NON_CORRELATED_STOCKS:
                 return new ProcessEstimatingNonCorrelatedStocks(jobId, jobRepository, stockRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_COPULA:

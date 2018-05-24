@@ -1,4 +1,4 @@
-package com.example.kotryn.states;
+package com.example.kotryn.web.data;
 
 import com.example.kotryn.web.data.Action;
 import com.example.kotryn.web.data.IWebData;
