@@ -32,7 +32,7 @@ public class ProcessFactory implements IProcessFactory {
             case ESTIMATING_NON_CORRELATED_STOCKS:
                 return new ProcessEstimatingNonCorrelatedStocks(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_COPULA:
-                return new ProcessEstimatingWorstCaseCopula(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessEstimatingWorstCaseCopula(jobId, jobRepository, processDescriptorRepository);
             case BUILDING_ROBUST_PORTFOLIO:
                 return new ProcessBuildingRobustPortfolio(jobId, jobRepository, stockRepository, processDescriptorRepository);
             case CALCULATING_STATISTIC:

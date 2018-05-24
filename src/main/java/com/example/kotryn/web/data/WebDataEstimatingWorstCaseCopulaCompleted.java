@@ -6,7 +6,7 @@ public class WebDataEstimatingWorstCaseCopulaCompleted implements IWebData {
 
     private final Long jobId;
     private Action action;
-    private List<String> selectedStocks;
+    private List<String> selectedWorstCaseCopula;
 
     public WebDataEstimatingWorstCaseCopulaCompleted(Long jobId) {
         this.jobId = jobId;
@@ -25,5 +25,13 @@ public class WebDataEstimatingWorstCaseCopulaCompleted implements IWebData {
 
     public void setAction(Action action) {
         this.action = action;
+    }
+
+    public List<String> getSelectedWorstCaseCopula() {
+        return selectedWorstCaseCopula;
+    }
+
+    public void setSelectedWorstCaseCopula(List<String> selectedWorstCaseCopula) {
+        this.selectedWorstCaseCopula = selectedWorstCaseCopula;
     }
 }

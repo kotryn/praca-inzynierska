@@ -42,6 +42,11 @@ public class Job {
     @ElementCollection
     private List<String> selectedNonCorrelatedStocks;
 
+    @ElementCollection
+    private List<String> worstCaseCopula;
+    @ElementCollection
+    private List<String> selectedWorstCaseCopula;
+
 
     public Job(){
         this.startDate = "not set";
@@ -147,7 +152,6 @@ public class Job {
     public void setSelectedGrowthStocks(List<String> selectedGrowthStocks) {
         this.selectedGrowthStocks = selectedGrowthStocks;
     }
-    /**/
 
     public List<String> getNonCorrelatedStocks() {
         return nonCorrelatedStocks;
@@ -163,5 +167,21 @@ public class Job {
 
     public void setSelectedNonCorrelatedStocks(List<String> selectedNonCorrelatedStocks) {
         this.selectedNonCorrelatedStocks = selectedNonCorrelatedStocks;
+    }
+
+    public List<String> getWorstCaseCopula() {
+        return worstCaseCopula;
+    }
+
+    public void setWorstCaseCopula(List<String> worstCaseCopula) {
+        this.worstCaseCopula = worstCaseCopula;
+    }
+
+    public List<String> getSelectedWorstCaseCopula() {
+        return selectedWorstCaseCopula;
+    }
+
+    public void setSelectedWorstCaseCopula(List<String> selectedWorstCaseCopula) {
+        this.selectedWorstCaseCopula = selectedWorstCaseCopula;
     }
 }

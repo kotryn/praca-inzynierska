@@ -652,11 +652,11 @@ public class MainController {
     @ResponseStatus(HttpStatus.CREATED)
     public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(jobDTO.getSelectedStocks());
+        job.setSelectedWorstCaseCopula(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(job.getId());
-        //webData.setSelectedStocks(job.getSelectedStocks());
+        webData.setSelectedWorstCaseCopula(job.getSelectedWorstCaseCopula());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

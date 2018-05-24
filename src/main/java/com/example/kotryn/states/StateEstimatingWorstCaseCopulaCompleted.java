@@ -30,6 +30,7 @@ public class StateEstimatingWorstCaseCopulaCompleted extends StateBase implement
 
     private void saveSelectedEstimatingWorstCaseCopula(WebDataEstimatingWorstCaseCopulaCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
+        job.setSelectedWorstCaseCopula(input.getSelectedWorstCaseCopula());
         jobRepository.saveAndFlush(job);
     }
 
@@ -38,7 +39,7 @@ public class StateEstimatingWorstCaseCopulaCompleted extends StateBase implement
         WebDataEstimatingWorstCaseCopulaCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                //saveSelectedEstimatingWorstCaseCopula(input);
+                saveSelectedEstimatingWorstCaseCopula(input);
                 createProcessDescriptorAndSave(ProcessType.BUILDING_ROBUST_PORTFOLIO, input.getJobId(),
                        processDescriptorRepository);
                 moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS, context, contextRepository);
