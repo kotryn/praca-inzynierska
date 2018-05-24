@@ -1,7 +1,5 @@
 package com.example.kotryn.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +36,11 @@ public class Job {
     private List<String> growthStocks;
     @ElementCollection
     private List<String> selectedGrowthStocks;
+
+    @ElementCollection
+    private List<String> nonCorrelatedStocks;
+    @ElementCollection
+    private List<String> selectedNonCorrelatedStocks;
 
 
     public Job(){
@@ -128,7 +131,6 @@ public class Job {
     public void setSelectedWorstCaseDistributions(List<String> selectedWorstCaseDistributions) {
         this.selectedWorstCaseDistributions = selectedWorstCaseDistributions;
     }
-    /**/
 
     public List<String> getGrowthStocks() {
         return growthStocks;
@@ -146,4 +148,20 @@ public class Job {
         this.selectedGrowthStocks = selectedGrowthStocks;
     }
     /**/
+
+    public List<String> getNonCorrelatedStocks() {
+        return nonCorrelatedStocks;
+    }
+
+    public void setNonCorrelatedStocks(List<String> nonCorrelatedStocks) {
+        this.nonCorrelatedStocks = nonCorrelatedStocks;
+    }
+
+    public List<String> getSelectedNonCorrelatedStocks() {
+        return selectedNonCorrelatedStocks;
+    }
+
+    public void setSelectedNonCorrelatedStocks(List<String> selectedNonCorrelatedStocks) {
+        this.selectedNonCorrelatedStocks = selectedNonCorrelatedStocks;
+    }
 }

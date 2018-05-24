@@ -573,16 +573,29 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
+    /*    @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+        Job job = jobRepository.findOne(id);
+        job.setSelectedGrowthStocks(jobDTO.getCheckbox());
+        job = jobRepository.save(job);
+
+        WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
+        webData.setSelectedGrowthStocks(job.getSelectedGrowthStocks());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }*/
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedStocks(jobDTO.getSelectedStocks());
+        job.setSelectedNonCorrelatedStocks(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataEstimatingNonCorrelatedStocksCompleted webData = new WebDataEstimatingNonCorrelatedStocksCompleted(job.getId());
-        //webData.setSelectedStocks(job.getSelectedStocks());
+        webData.setSelectedNonCorrelatedStocks(job.getSelectedNonCorrelatedStocks());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

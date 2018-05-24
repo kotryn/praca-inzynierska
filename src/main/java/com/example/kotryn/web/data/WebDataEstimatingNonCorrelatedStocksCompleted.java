@@ -6,7 +6,7 @@ public class WebDataEstimatingNonCorrelatedStocksCompleted implements IWebData {
 
     private final Long jobId;
     private Action action;
-    private List<String> selectedStocks;
+    private List<String> selectedNonCorrelatedStocks;
 
     public WebDataEstimatingNonCorrelatedStocksCompleted(Long jobId) {
         this.jobId = jobId;
@@ -25,5 +25,13 @@ public class WebDataEstimatingNonCorrelatedStocksCompleted implements IWebData {
 
     public void setAction(Action action) {
         this.action = action;
+    }
+
+    public List<String> getSelectedNonCorrelatedStocks() {
+        return selectedNonCorrelatedStocks;
+    }
+
+    public void setSelectedNonCorrelatedStocks(List<String> selectedNonCorrelatedStocks) {
+        this.selectedNonCorrelatedStocks = selectedNonCorrelatedStocks;
     }
 }

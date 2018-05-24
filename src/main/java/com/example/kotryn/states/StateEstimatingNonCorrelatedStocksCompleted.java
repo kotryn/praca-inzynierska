@@ -30,6 +30,7 @@ public class StateEstimatingNonCorrelatedStocksCompleted extends StateBase imple
 
     private void saveSelectedEstimatingNonCorrelatedStocks(WebDataEstimatingNonCorrelatedStocksCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
+        job.setSelectedNonCorrelatedStocks(input.getSelectedNonCorrelatedStocks());
         jobRepository.saveAndFlush(job);
     }
 
@@ -38,7 +39,7 @@ public class StateEstimatingNonCorrelatedStocksCompleted extends StateBase imple
         WebDataEstimatingNonCorrelatedStocksCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                //saveSelectedEstimatingNonCorrelatedStocks(input);
+                saveSelectedEstimatingNonCorrelatedStocks(input);
                 createProcessDescriptorAndSave(ProcessType.ESTIMATING_WORST_CASE_COPULA, input.getJobId(),
                        processDescriptorRepository);
                 moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS, context, contextRepository);

@@ -17,14 +17,12 @@ import java.time.Month;
 public class ProcessEstimatingNonCorrelatedStocks implements IProcess {
 
     private JobRepository jobRepository;
-    private StockRepository stockRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessEstimatingNonCorrelatedStocks(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessEstimatingNonCorrelatedStocks(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
-        this.stockRepository = stockRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -43,7 +41,7 @@ public class ProcessEstimatingNonCorrelatedStocks implements IProcess {
         String csvFile = File.getFile("ESTIMATING_NON_CORRELATED_STOCKS");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setCalculatingSample(readFile.csvGetOneColumn());
+        job.setNonCorrelatedStocks(readFile.csvGetOneColumn());
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository
