@@ -33,7 +33,7 @@ public class WebPageCalculatingSampleCountCompleted {
 
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "back"));
         Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/estimating_worst_case_distributions_setup/"+jobId, "Submit"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
 
 

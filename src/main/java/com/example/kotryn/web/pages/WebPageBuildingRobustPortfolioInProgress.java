@@ -14,7 +14,7 @@ public class WebPageBuildingRobustPortfolioInProgress {
 
         Button btnRefresh = new Button("button", "/building_robust_portfolio_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/building_robust_portfolio_in_progress_back/"+jobId, "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
 
         Item<Text> itemText = new Item<>(text);
 

@@ -37,7 +37,7 @@ public class WebPageBuildingRobustPortfolioCompleted {
 
         Item<Button> itemBtnSubmit = new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "submit"));
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
         itemList.add(itemBtnBack);
         itemList.add(itemBtnSubmit);

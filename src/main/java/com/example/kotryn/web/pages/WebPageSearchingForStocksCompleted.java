@@ -38,7 +38,7 @@ public class WebPageSearchingForStocksCompleted {
 
         Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
         Button btnNext = new Button("button-form", "/calculating_sample_count/"+jobId, "Submit");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
 
         Item<Text> itemText = new Item<>(text);
         Item<Text> itemText2 = new Item<>(text2);

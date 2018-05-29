@@ -14,8 +14,7 @@ class ButtonDelete extends React.Component{
     delete(event) {
         event.preventDefault();
         const {url} = this.props.config;
-
-        axios.delete(url)
+        axios.delete(url, {data:this.props.jsonData})
             .then(response => {
                 if(response.status === 200){
                     this.props.getPageDataInfo();
@@ -36,7 +35,7 @@ class ButtonDelete extends React.Component{
 }
 
 ButtonDelete = connect(
-    null,
+    state =>  state.formData,
     { getPageDataInfo }
 )(ButtonDelete)
 

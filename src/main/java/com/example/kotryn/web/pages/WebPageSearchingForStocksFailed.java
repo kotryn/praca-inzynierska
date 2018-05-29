@@ -23,7 +23,7 @@ public class WebPageSearchingForStocksFailed {//TODO: failed
         Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
 
         Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
 
         Item<Text> itemText = new Item<>(text);
         Item<Text> itemText2 = new Item<>(text2);

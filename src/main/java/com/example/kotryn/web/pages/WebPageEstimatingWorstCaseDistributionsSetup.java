@@ -19,7 +19,7 @@ public class WebPageEstimatingWorstCaseDistributionsSetup {
         Text text = new Text("text", "Estimating worst case distributions setup");
 
         Button btnBack = new Button("button-back", "/estimating_worst_case_distributions_setup_back/"+jobId, "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
         Button btnNext= new Button("button", "/estimating_worst_case_distributions/"+jobId, "Next");
 
         Item<Text> itemText = new Item<>(text);

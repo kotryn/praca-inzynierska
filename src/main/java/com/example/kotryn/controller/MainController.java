@@ -39,13 +39,6 @@ public class MainController {
         url = "/prompt_user";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.OK)
-    public void startPageDELETE() {
-        error = null;
-        this.url = "/prompt_user";
-    }
-
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     RedirectView redirect()  {
         RedirectView redirectView = new RedirectView();
@@ -57,6 +50,12 @@ public class MainController {
     public Page promptUserGET() {
         WebPagePromptUser page = new WebPagePromptUser();
         return page.show();
+    }
+
+    @RequestMapping(value = "/prompt_user", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void promptUserPOST() {
+        url = "/prompt_user";
     }
 
     @RequestMapping(value = "/connect_to_job", method = RequestMethod.POST)
@@ -167,60 +166,78 @@ public class MainController {
         url = context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
 
-    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete_job", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void jobsDELETE(@PathVariable Long id) {
-        Context context = contextRepository.getOne(id);
-        switch (context.getState()){
-            case SEARCHING_FOR_STOCKS_IN_PROGRESS:
-                WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
-                webData.setAction(Action.INTERRUPT);
-                processJob(webData);
-                break;
-            case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
-                WebDataCalculatingSampleCountInProgress webData2 = new WebDataCalculatingSampleCountInProgress(id);
-                webData2.setAction(Action.INTERRUPT);
-                processJob(webData2);
-                break;
-            case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
-                WebDataEstimatingWorstCaseDistributionsInProgress webData3 = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
-                webData3.setAction(Action.INTERRUPT);
-                processJob(webData3);
-                break;
-            case ESTIMATING_GROWTH_STOCKS_IN_PROGRESS:
-                WebDataEstimatingGrowthStocksInProgress webData4 = new WebDataEstimatingGrowthStocksInProgress(id);
-                webData4.setAction(Action.INTERRUPT);
-                processJob(webData4);
-                break;
-            case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
-                WebDataEstimatingNonCorrelatedStocksInProgress webData5 = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
-                webData5.setAction(Action.INTERRUPT);
-                processJob(webData5);
-                break;
-            case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
-                WebDataEstimatingWorstCaseCopulaInProgress webData6 = new WebDataEstimatingWorstCaseCopulaInProgress(id);
-                webData6.setAction(Action.INTERRUPT);
-                processJob(webData6);
-                break;
-            case BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS:
-                WebDataBuildingRobustPortfolioInProgress webData7 = new WebDataBuildingRobustPortfolioInProgress(id);
-                webData7.setAction(Action.INTERRUPT);
-                processJob(webData7);
-                break;
-            case CALCULATING_STATISTIC_IN_PROGRESS:
-                WebDataCalculatingStatisticInProgress webData8 = new WebDataCalculatingStatisticInProgress(id);
-                webData8.setAction(Action.INTERRUPT);
-                processJob(webData8);
-                break;
-        }
+    public void deleteJobPOST() {
+        url = "/delete_job";
+    }
 
-        jobRepository.delete(id);
-        jobRepository.flush();
-        contextRepository.delete(id);
-        contextRepository.flush();
-        processDescriptorRepository.delete(id);
-        processDescriptorRepository.flush();
-        this.url = "/prompt_user";
+    @RequestMapping(value = "/delete_job", method = RequestMethod.GET)
+    public Page deleteJobGET() {
+        WebPageDeleteJob page = new WebPageDeleteJob(error);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/delete_job", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void jobsDELETE(@RequestBody Job requestJob) {
+        if(requestJob.getId() == null || !contextRepository.exists(requestJob.getId())){
+            error = "Job with id "+requestJob.getId()+" not exist";
+            this.url = "/delete_job";
+        }else{
+            Long id = requestJob.getId();
+            Context context = contextRepository.getOne(id);
+            error = null;
+            switch (context.getState()) {
+                case SEARCHING_FOR_STOCKS_IN_PROGRESS:
+                    WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
+                    webData.setAction(Action.INTERRUPT);
+                    processJob(webData);
+                    break;
+                case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
+                    WebDataCalculatingSampleCountInProgress webData2 = new WebDataCalculatingSampleCountInProgress(id);
+                    webData2.setAction(Action.INTERRUPT);
+                    processJob(webData2);
+                    break;
+                case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
+                    WebDataEstimatingWorstCaseDistributionsInProgress webData3 = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
+                    webData3.setAction(Action.INTERRUPT);
+                    processJob(webData3);
+                    break;
+                case ESTIMATING_GROWTH_STOCKS_IN_PROGRESS:
+                    WebDataEstimatingGrowthStocksInProgress webData4 = new WebDataEstimatingGrowthStocksInProgress(id);
+                    webData4.setAction(Action.INTERRUPT);
+                    processJob(webData4);
+                    break;
+                case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
+                    WebDataEstimatingNonCorrelatedStocksInProgress webData5 = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
+                    webData5.setAction(Action.INTERRUPT);
+                    processJob(webData5);
+                    break;
+                case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
+                    WebDataEstimatingWorstCaseCopulaInProgress webData6 = new WebDataEstimatingWorstCaseCopulaInProgress(id);
+                    webData6.setAction(Action.INTERRUPT);
+                    processJob(webData6);
+                    break;
+                case BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS:
+                    WebDataBuildingRobustPortfolioInProgress webData7 = new WebDataBuildingRobustPortfolioInProgress(id);
+                    webData7.setAction(Action.INTERRUPT);
+                    processJob(webData7);
+                    break;
+                case CALCULATING_STATISTIC_IN_PROGRESS:
+                    WebDataCalculatingStatisticInProgress webData8 = new WebDataCalculatingStatisticInProgress(id);
+                    webData8.setAction(Action.INTERRUPT);
+                    processJob(webData8);
+                    break;
+            }
+            jobRepository.delete(id);
+            jobRepository.flush();
+            contextRepository.delete(id);
+            contextRepository.flush();
+            processDescriptorRepository.delete(id);
+            processDescriptorRepository.flush();
+            this.url = "/prompt_user";
+        }
     }
 
     @RequestMapping(value = "/jobSetDate/{id}", method = RequestMethod.POST)
@@ -235,7 +252,6 @@ public class MainController {
     private String jobsGET(Long id) {
         Context context = contextRepository.getOne(id);
         return context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
-
     }
 
     @RequestMapping(value = "/period_of_analysis/{id}", method = RequestMethod.GET)

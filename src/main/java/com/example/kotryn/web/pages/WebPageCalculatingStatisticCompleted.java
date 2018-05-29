@@ -29,7 +29,7 @@ public class WebPageCalculatingStatisticCompleted {
         List<Item> itemList = new ArrayList<>();
 
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
         itemList.add(new Item<>(new Text("text", "Calculating out-of sample statistic completed successful")));
         itemList.add(new Item<>( new Text("text", "Result: ")));

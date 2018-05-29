@@ -45,8 +45,8 @@ class Form extends React.Component{
     }
 
     createOutputData(){
-        const {values, type} = this.props.config; //values - wartosci elementow, type - checkbox / input
-        let output = {values}; //output -> AMC: true
+        const {values, type} = this.props.config;
+        let output = {values};
         let checkboxes = new Set([...this.props.checkbox]);
         const id = this.state.id;
 

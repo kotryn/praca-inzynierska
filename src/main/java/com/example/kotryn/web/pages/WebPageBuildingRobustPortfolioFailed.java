@@ -17,7 +17,7 @@ public class WebPageBuildingRobustPortfolioFailed {
 
         //Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
         //Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
 
         Item<Text> itemText = new Item<>(text);
 

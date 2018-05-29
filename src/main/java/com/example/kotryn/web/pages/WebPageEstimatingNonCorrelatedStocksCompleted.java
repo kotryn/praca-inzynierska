@@ -31,7 +31,7 @@ public class WebPageEstimatingNonCorrelatedStocksCompleted {
 
         Item<Button> itemBtnConnect = new Item<>(new Button("button-form", "/estimating_worst_case_copula/"+jobId, "connect"));
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_non_correlated_stocks_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
         itemList.add(new Item<>(new Text("text", "Estimating non correlated stocks completed successful")));
         itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedNonCorrelatedStocks)));

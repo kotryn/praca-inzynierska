@@ -24,7 +24,7 @@ public class WebPageObtainingPeriodOfAnalysis {
         Input input = new Input("input", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
 
         Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
         Button btnNext= new Button("button", "/period_of_analysis/"+jobId, "Next");
         Button btnForm = new Button("button-form", "/jobSetDate/"+jobId, "submit");
 

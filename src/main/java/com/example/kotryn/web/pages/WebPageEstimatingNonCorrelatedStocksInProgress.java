@@ -14,7 +14,7 @@ public class WebPageEstimatingNonCorrelatedStocksInProgress {
 
         Button btnRefresh = new Button("button", "/estimating_non_correlated_stocks_in_progress/"+jobId, "refresh");
         Button btnBack = new Button("button-back", "/estimating_non_correlated_stocks_in_progress_back/"+jobId, "back");
-        Button btnDelete = new Button("button-delete", "/jobs/"+jobId, "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
 
         Item<Text> itemText = new Item<>(text);
 

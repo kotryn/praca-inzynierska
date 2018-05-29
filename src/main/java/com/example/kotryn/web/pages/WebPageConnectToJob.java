@@ -14,7 +14,7 @@ public class WebPageConnectToJob {
         Input input = new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"});
 
         Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button-delete", "/", "Start page");
+        Button btnDelete = new Button("button", "/prompt_user", "Start page");
         Button btnForm = new Button("button-form", "/jobsPOST", "submit");
 
         Item<Input> itemForm = new Item<>(input);

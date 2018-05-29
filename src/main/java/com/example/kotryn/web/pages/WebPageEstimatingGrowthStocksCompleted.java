@@ -32,7 +32,7 @@ public class WebPageEstimatingGrowthStocksCompleted {
 
         Item<Button> itemBtnConnect = new Item<>(new Button("button-form", "/estimating_non_correlated_stocks/"+jobId, "Submit"));
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
         itemList.add(new Item<>(new Text("text", "Estimating growth stocks completed successful")));
         itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedGrowthStocks)));

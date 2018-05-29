@@ -35,7 +35,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
 
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back"));
         Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Submit"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
         itemList.add(new Item<>(new Text("text", "Estimating worst case distributions completed successfully")));
         itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedWorstCaseDistributions)));

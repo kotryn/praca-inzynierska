@@ -31,7 +31,7 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
 
         Item<Button> itemBtnConnect = new Item<>(new Button("button-form", "/building_robust_portfolio/"+jobId, "connect"));
         Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_worst_case_copula_in_progress_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button-delete", "/jobs/"+jobId, "Start page"));
+        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
 
         itemList.add(new Item<>(new Text("text", "Estimating worst case copula completed successful")));
         itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedWorstCaseCopula)));
