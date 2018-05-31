@@ -147,9 +147,6 @@ public class MainController {
                     webData8.setAction(Action.REFRESH);
                     processJob(webData8);
                     break;
-                default:
-                    context.setState(OBTAINING_PERIOD_OF_ANALYSIS);
-                    contextRepository.save(context);
             }
 
             url = context.redirectToWebPage(this,
