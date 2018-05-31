@@ -21,7 +21,7 @@ public class WebPageObtainingPeriodOfAnalysis {
         Text textStartDate = new Text("text", "Previous start date: " + job.getStartDate());
         Text textEndDate = new Text("text", "Previous end date: " + job.getEndDate());
 
-        Input input = new Input("input", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
+        Input input = new Input("input-date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
 
         Button btnBack = new Button("button-back", "/", "back");
         Button btnDelete = new Button("button", "/prompt_user", "Start page");

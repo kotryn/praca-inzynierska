@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import Checkbox from './Checkbox'
 import Input from "./Input"
+import InputDate from "./InputDate"
 import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData } from "../../actions/formData";
 
 class Form extends React.Component{
@@ -22,6 +23,9 @@ class Form extends React.Component{
                 formData = values.map(()=> false);
                 break;
             case "input":
+                formData = values.map(()=> "");
+                break;
+            case "input-date":
                 formData = values.map(()=> "");
                 break;
             default:
@@ -67,6 +71,11 @@ class Form extends React.Component{
                     output[e] = this.props.values[id+i];
                 });
                 return JSON.parse(JSON.stringify(output));
+            case "input-date":
+                output.values.forEach((e, i)=>{
+                    output[e] = this.props.values[id+i];
+                });
+                return JSON.parse(JSON.stringify(output));
             default:
                 console.log("Form: unknown type - jsonData!!!");
                 return;
@@ -86,6 +95,10 @@ class Form extends React.Component{
                 break;
             case "input":
                 ComponentName = Input;
+                style = "form-text";
+                break;
+            case "input-date":
+                ComponentName = InputDate;
                 style = "form-text";
                 break;
             default:
