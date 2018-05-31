@@ -25,25 +25,26 @@ public class WebPageEstimatingGrowthStocksCompleted {
     public Page show() {
         Job job = jobRepository.findOne(jobId);
 
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
+
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+
+        body.add(new Item<>(new Text("text", "Searching for stocks in progress")));
+
         List<String> selectedGrowthStocks = Optional.ofNullable(job.getGrowthStocks()).orElse(Collections.singletonList("none"));
         List<String> previouslySelectedGrowthStocks = Optional.ofNullable(job.getSelectedGrowthStocks()).orElse(Collections.singletonList("none"));
 
-        List<Item> itemList = new ArrayList<>();
+        body.add(new Item<>(new Text("text", "Estimating growth stocks completed successful")));
+        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedGrowthStocks)));
+        body.add(new Item<>( new Text("text", "Available: ")));
 
-        Item<Button> itemBtnConnect = new Item<>(new Button("button-form", "/estimating_non_correlated_stocks/"+jobId, "Submit"));
-        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
+        body.add(new Item<>(new Checkbox("checkbox", selectedGrowthStocks, selectedGrowthStocks)));
 
-        itemList.add(new Item<>(new Text("text", "Estimating growth stocks completed successful")));
-        itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedGrowthStocks)));
-        itemList.add(new Item<>( new Text("text", "Available: ")));
+        body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-form", "/estimating_non_correlated_stocks/"+jobId, "Submit")));
 
-        itemList.add(new Item<>(new Checkbox("checkbox", selectedGrowthStocks, selectedGrowthStocks)));
-
-        itemList.add(itemBtnBack);
-        itemList.add(itemBtnConnect);
-        itemList.add(itemBtnDelete);
-
-        return new Page(new Body(itemList));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

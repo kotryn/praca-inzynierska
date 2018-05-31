@@ -2,6 +2,9 @@ package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WebPageConnectToJob {
 
     private String error;
@@ -11,24 +14,18 @@ public class WebPageConnectToJob {
     }
 
     public Page show() {
-        Input input = new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"});
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
 
-        Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button", "/prompt_user", "Start page");
-        Button btnForm = new Button("button-form", "/jobsPOST", "submit");
-
-        Item<Input> itemForm = new Item<>(input);
-
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-        Item<Button> itemBtnForm = new Item<>(btnForm);
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
 
         if(error != null){
-            Text errorText = new Text("text", error);
-            Item<Text> error = new Item<>(errorText);
-            return new Page(new Body(error, itemForm, itemBtnBack, itemBtnForm, itemBtnDelete));
+            body.add(new Item<>(new Text("text", error)));
         }
+        body.add(new Item<>(new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"})));
+        body.add(new Item<>(new Button("button-back", "/", "back")));
+        body.add(new Item<>(new Button("button-form", "/jobsPOST", "submit")));
 
-        return new Page(new Body(itemForm, itemBtnBack, itemBtnForm, itemBtnDelete));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

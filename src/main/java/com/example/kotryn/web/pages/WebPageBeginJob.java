@@ -2,6 +2,9 @@ package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WebPageBeginJob {
 
     private final Long jobId;
@@ -11,18 +14,15 @@ public class WebPageBeginJob {
     }
 
     public Page show() {
-        Text text = new Text("text", "New job id: "+ jobId);
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
 
-        Button btnConnect = new Button("button", "/jobsPOST/"+jobId, "connect");
-        Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button", "/prompt_user", "Start page");
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
 
-        Item<Text> itemText = new Item<>(text);
+        body.add(new Item<>(new Text("text", "New job id: "+ jobId)));
+        body.add(new Item<>(new Button("button-back", "/", "back")));
+        body.add(new Item<>(new Button("button", "/jobsPOST/"+jobId, "connect")));
 
-        Item<Button> itemBtnConnect = new Item<>(btnConnect);
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
-
-        return new Page(new Body(itemText, itemBtnBack, itemBtnConnect, itemBtnDelete));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

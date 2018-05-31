@@ -26,27 +26,24 @@ public class WebPageCalculatingSampleCountCompleted {
         String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
+
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+
         List<String> selectedCalculatingSample = Optional.ofNullable(job.getCalculatingSample()).orElse(Collections.singletonList("none"));
         List<String> previouslySelectedCalculatingSample = Optional.ofNullable(job.getSelectedCalculatingSample()).orElse(Collections.singletonList("none"));
 
-        List<Item> itemList = new ArrayList<>();
+        body.add(new Item<>(new Text("text", "Calculating sample count completed successfully")));
+        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedCalculatingSample)));
+        body.add(new Item<>( new Text("text", "Available: ")));
 
-        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/estimating_worst_case_distributions_setup/"+jobId, "Submit"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
+        body.add(new Item<>(new Checkbox("checkbox", selectedCalculatingSample, selectedCalculatingSample)));
 
+        body.add(new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-form", "/estimating_worst_case_distributions_setup/"+jobId, "Submit")));
 
-
-        itemList.add(new Item<>(new Text("text", "Calculating sample count completed successfully")));
-        itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedCalculatingSample)));
-        itemList.add(new Item<>( new Text("text", "Available: ")));
-
-        itemList.add(new Item<>(new Checkbox("checkbox", selectedCalculatingSample, selectedCalculatingSample)));
-
-        itemList.add(itemBtnBack);
-        itemList.add(itemBtnNext);
-        itemList.add(itemBtnDelete);
-
-        return new Page(new Body(itemList));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

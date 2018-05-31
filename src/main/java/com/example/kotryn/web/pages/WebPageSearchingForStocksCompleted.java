@@ -29,49 +29,33 @@ public class WebPageSearchingForStocksCompleted {
 
         List<String> previouslySelectedStocks = Optional.ofNullable(job.getSelectedStocks()).orElse(Collections.singletonList("none"));
 
-        List<Item> itemList = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
+        List<Item> body = new ArrayList<>();
 
-        Text text = new Text("text", "Searching for stocks completed successfully");
-        Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
-        Text text3 = new Text("text", "Available stocks: ");
-        Text text4 = new Text("text", "Previously selected stocks: " + previouslySelectedStocks);
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        Button btnBack = new Button("button-back", "/jobsPOST/"+jobId, "back");
-        Button btnNext = new Button("button-form", "/calculating_sample_count/"+jobId, "Submit");
-        Button btnDelete = new Button("button", "/prompt_user", "Start page");
-
-        Item<Text> itemText = new Item<>(text);
-        Item<Text> itemText2 = new Item<>(text2);
-        Item<Text> itemText3 = new Item<>(text3);
-        Item<Text> itemText4 = new Item<>(text4);
+        body.add(new Item<>(new Text("text", "Searching for stocks completed successfully")));
+        body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
+        body.add(new Item<>(new Text("text", "Available stocks: ")));
 
         Map<String, Stock> map = new HashMap<>(job.getStocks());
 
-        itemList.add(itemText);
-        itemList.add(itemText2);
-        itemList.add(itemText3);
-
         for (Map.Entry<String, Stock> entry : map.entrySet()){
-            itemList.add(new Item<>(new Text("text", entry.getKey())));
+            body.add(new Item<>(new Text("text", entry.getKey())));
             List<String> name = new ArrayList<>();
             int id = 0;
             for (String element : entry.getValue().getCompanies()) {
                 name.add(element+" ["+entry.getValue().getSymbols().get(id++)+"]");
             }
-            itemList.add(new Item<>(new Checkbox("checkbox", entry.getValue().getSymbols(), name)));
+            body.add(new Item<>(new Checkbox("checkbox", entry.getValue().getSymbols(), name)));
         }
 
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-        Item<Button> itemBtnNext = new Item<>(btnNext);
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
 
-        itemList.add(itemText4);
-        itemList.add(itemBtnBack);
-        itemList.add(itemBtnNext);
-        itemList.add(itemBtnDelete);
+        body.add(new Item<>(new Text("text", "Previously selected stocks: " + previouslySelectedStocks)));
+        body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-form", "/calculating_sample_count/"+jobId, "Submit")));
 
-        Body body = new Body(itemList);
-
-        return new Page(body);
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

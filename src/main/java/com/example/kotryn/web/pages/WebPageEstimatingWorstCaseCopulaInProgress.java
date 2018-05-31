@@ -2,6 +2,9 @@ package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WebPageEstimatingWorstCaseCopulaInProgress {
     private final Long jobId;
 
@@ -10,18 +13,16 @@ public class WebPageEstimatingWorstCaseCopulaInProgress {
     }
 
     public Page show() {
-        Text text = new Text("text", "Estimating worst case copula in progress");
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
 
-        Button btnRefresh = new Button("button", "/estimating_worst_case_copula_in_progress/"+jobId, "refresh");
-        Button btnBack = new Button("button-back", "/estimating_worst_case_copula_in_progress_back/"+jobId, "back");
-        Button btnDelete = new Button("button", "/prompt_user", "Start page");
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        Item<Text> itemText = new Item<>(text);
+        body.add(new Item<>(new Text("text", "Estimating worst case copula in progress")));
+        body.add(new Item<>(new Button("button-back", "/estimating_worst_case_copula_in_progress_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button", "/estimating_worst_case_copula_in_progress/"+jobId, "refresh")));
 
-        Item<Button> itemBtnRefresh = new Item<>(btnRefresh);
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-
-        return new Page(new Body(itemText, itemBtnBack, itemBtnRefresh, itemBtnDelete));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

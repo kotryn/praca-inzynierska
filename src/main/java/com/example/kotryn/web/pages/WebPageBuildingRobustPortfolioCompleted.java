@@ -24,25 +24,22 @@ public class WebPageBuildingRobustPortfolioCompleted {
     public Page show() {
         Job job = jobRepository.findOne(jobId);
 
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
+
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+
         List<String> selectedRobustPortfolio = Optional.ofNullable(job.getRobustPortfolio()).orElse(Collections.singletonList("none"));
         List<String> previouslySelectedRobustPortfolio = Optional.ofNullable(job.getSelectedRobustPortfolio()).orElse(Collections.singletonList("none"));
 
-        List<Item> itemList = new ArrayList<>();
+        body.add(new Item<>(new Text("text", "Building robust portfolio completed successful")));
+        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedRobustPortfolio)));
+        body.add(new Item<>( new Text("text", "Available: ")));
+        body.add(new Item<>(new Checkbox("checkbox", selectedRobustPortfolio, selectedRobustPortfolio)));
+        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "submit")));
 
-        itemList.add(new Item<>(new Text("text", "Building robust portfolio completed successful")));
-        itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedRobustPortfolio)));
-        itemList.add(new Item<>( new Text("text", "Available: ")));
-
-        itemList.add(new Item<>(new Checkbox("checkbox", selectedRobustPortfolio, selectedRobustPortfolio)));
-
-        Item<Button> itemBtnSubmit = new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "submit"));
-        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
-
-        itemList.add(itemBtnBack);
-        itemList.add(itemBtnSubmit);
-        itemList.add(itemBtnDelete);
-
-        return new Page(new Body(itemList));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

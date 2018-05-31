@@ -4,6 +4,9 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WebPageObtainingPeriodOfAnalysis {
 
     private final JobRepository jobRepository;
@@ -17,27 +20,20 @@ public class WebPageObtainingPeriodOfAnalysis {
     public Page show() {
         Job job = jobRepository.getOne(jobId);
 
-        Text text = new Text("text", "Supply the period of analysis");
-        Text textStartDate = new Text("text", "Previous start date: " + job.getStartDate());
-        Text textEndDate = new Text("text", "Previous end date: " + job.getEndDate());
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
 
-        Input input = new Input("input-date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"});
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button", "/prompt_user", "Start page");
-        Button btnNext= new Button("button", "/period_of_analysis/"+jobId, "Next");
-        Button btnForm = new Button("button-form", "/jobSetDate/"+jobId, "submit");
+        body.add(new Item<>(new Text("text", "Supply the period of analysis")));
+        body.add(new Item<>(new Text("text", "Previous start date: " + job.getStartDate())));
+        body.add(new Item<>(new Text("text", "Previous end date: " + job.getEndDate())));
+        body.add(new Item<>(new Input("input-date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
+        body.add(new Item<>(new Button("button-form", "/jobSetDate/"+jobId, "submit")));
+        body.add(new Item<>(new Button("button-back", "/", "back")));
+        body.add(new Item<>(new Button("button", "/period_of_analysis/"+jobId, "Next")));
 
-        Item<Text> itemText = new Item<>(text);
-        Item<Text> itemTextStartDate = new Item<>(textStartDate);
-        Item<Text> itemTextEndDate = new Item<>(textEndDate);
-        Item<Input> itemForm = new Item<>(input);
-
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-        Item<Button> itemBtnNext = new Item<>(btnNext);
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
-        Item<Button> itemBtnForm = new Item<>(btnForm);
-
-        return new Page(new Body(itemText, itemTextStartDate, itemTextEndDate, itemForm, itemBtnForm, itemBtnBack, itemBtnNext, itemBtnDelete));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

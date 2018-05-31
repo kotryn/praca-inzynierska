@@ -31,22 +31,19 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         List<String> selectedWorstCaseDistributions = Optional.ofNullable(job.getWorstCaseDistributions()).orElse(Collections.singletonList("none"));
         List<String> previouslySelectedWorstCaseDistributions = Optional.ofNullable(job.getSelectedWorstCaseDistributions()).orElse(Collections.singletonList("none"));
 
-        List<Item> itemList = new ArrayList<>();
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
 
-        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnNext = new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Submit"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        itemList.add(new Item<>(new Text("text", "Estimating worst case distributions completed successfully")));
-        itemList.add(new Item<>(new Text("text", "Previously: " + previouslySelectedWorstCaseDistributions)));
-        itemList.add(new Item<>( new Text("text", "Available: ")));
+        body.add(new Item<>(new Text("text", "Estimating worst case distributions completed successfully")));
+        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedWorstCaseDistributions)));
+        body.add(new Item<>( new Text("text", "Available: ")));
+        body.add(new Item<>(new Checkbox("checkbox", selectedWorstCaseDistributions, selectedWorstCaseDistributions)));
+        body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Submit")));
 
-        itemList.add(new Item<>(new Checkbox("checkbox", selectedWorstCaseDistributions, selectedWorstCaseDistributions)));
-
-        itemList.add(itemBtnBack);
-        itemList.add(itemBtnNext);
-        itemList.add(itemBtnDelete);
-
-        return new Page(new Body(itemList));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

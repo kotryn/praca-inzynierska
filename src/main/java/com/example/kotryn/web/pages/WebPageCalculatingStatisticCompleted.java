@@ -24,21 +24,21 @@ public class WebPageCalculatingStatisticCompleted {
     public Page show() {
         Job job = jobRepository.findOne(jobId);
 
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
+
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+
         List<String> statistic = Optional.ofNullable(job.getStatistic()).orElse(Collections.singletonList("none"));
 
-        List<Item> itemList = new ArrayList<>();
+        body.add(new Item<>(new Text("text", "Calculating out-of sample statistic completed successful")));
+        body.add(new Item<>( new Text("text", "Result: ")));
 
-        Item<Button> itemBtnBack = new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "back"));
-        Item<Button> itemBtnDelete = new Item<>(new Button("button", "/prompt_user", "Start page"));
+        body.add(new Item<>(new ListJ("list", statistic)));
 
-        itemList.add(new Item<>(new Text("text", "Calculating out-of sample statistic completed successful")));
-        itemList.add(new Item<>( new Text("text", "Result: ")));
+        body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "back")));
 
-        itemList.add(new Item<>(new ListJ("list", statistic)));
-
-        itemList.add(itemBtnBack);
-        itemList.add(itemBtnDelete);
-
-        return new Page(new Body(itemList));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

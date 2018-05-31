@@ -5,6 +5,9 @@ import com.example.kotryn.json.*;
 import com.example.kotryn.lib.Tools;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WebPageEstimatingWorstCaseDistributionsFailed {
 
     private final ProcessDescriptorRepository processDescriptorRepository;
@@ -19,18 +22,16 @@ public class WebPageEstimatingWorstCaseDistributionsFailed {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
         String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
 
-        Text text = new Text("text", "Estimating worst case distributions failed. Reason: " + processDescriptor.getErrorMessage());
-        Text text2 = new Text("text", "Elapsed time: "+formattedDuration);
+        List<Item> body = new ArrayList<>();
+        List<Item> navbar = new ArrayList<>();
 
-        Button btnBack = new Button("button-back", "/", "back");
-        Button btnDelete = new Button("button", "/prompt_user", "Start page");
+        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        Item<Text> itemText = new Item<>(text);
-        Item<Text> itemText2 = new Item<>(text2);
+        body.add(new Item<>(new Text("text", "Estimating worst case distributions failed. Reason: " + processDescriptor.getErrorMessage())));
+        body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
+        body.add(new Item<>(new Button("button-back", "/", "back")));
 
-        Item<Button> itemBtnDelete = new Item<>(btnDelete);
-        Item<Button> itemBtnBack = new Item<>(btnBack);
-
-        return new Page(new Body(itemText, itemText2, itemBtnBack, itemBtnDelete));
+        return new Page(new Navbar(navbar), new Body(body));
     }
 }

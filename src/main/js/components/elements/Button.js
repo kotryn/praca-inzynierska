@@ -25,7 +25,13 @@ class Button extends React.Component{
     }
 
     render() {
-        const {title} = this.props.config;
+        const {title, type} = this.props.config;
+        if(type === 'button-start-page'){
+            return (
+                <button className={"btn btn-primary home"} onClick={this.next}>
+                    <i className="fas fa-home"></i>
+                </button>
+            )}
 
         return (
             <div className={'my-button'}>

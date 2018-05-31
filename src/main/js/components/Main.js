@@ -35,47 +35,52 @@ class Main extends React.Component{
             return <div>{status}</div>
         }
 
-        let components = [];
-        function setComponentType(element){
+        function setComponentType(element, component){
             switch(element.type){
                 case "title":
-                    components.push(<Title config={element}/>);
+                    component.push(<Title config={element}/>);
                     break;
                 case "text":
-                    components.push(<Text config={element}/>);
+                    component.push(<Text config={element}/>);
+                    break;
+                case "text-navbar":
+                    component.push(<Text config={element}/>);
                     break;
                 case "line":
-                    components.push(<Line config={element}/>);
+                    component.push(<Line config={element}/>);
                     break;
                 case "button":
-                    components.push(<Button config={element} />);
+                    component.push(<Button config={element} />);
+                    break;
+                case "button-start-page":
+                    component.push(<Button config={element} />);
                     break;
                 case "button-back":
-                    components.push(<ButtonBack config={element} />);
+                    component.push(<ButtonBack config={element} />);
                     break;
                 case "button-delete":
-                    components.push(<ButtonDelete config={element} />);
+                    component.push(<ButtonDelete config={element} />);
                     break;
                 case "button-form":
-                    components.push(<ButtonForm config={element} />);
+                    component.push(<ButtonForm config={element} />);
                     break;
                 case "table":
-                    components.push(<Table config={element}/>);
+                    component.push(<Table config={element}/>);
                     break;
                 case "input":
-                    components.push(<Form config={element}/>);
+                    component.push(<Form config={element}/>);
                     break;
                 case "input-date":
-                    components.push(<Form config={element}/>);
+                    component.push(<Form config={element}/>);
                     break;
                 case "image":
-                    components.push(<Image config={element} />);
+                    component.push(<Image config={element} />);
                     break;
                 case "checkbox":
-                    components.push(<Form config={element} />);
+                    component.push(<Form config={element} />);
                     break;
                 case "list":
-                    components.push(<List config={element} />);
+                    component.push(<List config={element} />);
                     break;
                 default:
                     console.log('unknown type of component');
@@ -83,12 +88,27 @@ class Main extends React.Component{
             }
         }
 
-        config.body.items.map((element)=>{
-            setComponentType(element.item);
+        let components = [];
+        config.body && config.body.items.map((element)=>{
+            setComponentType(element.item, components);
         });
 
-        return <main className={'container'}>{components}</main>
-    }
+        let navbarComponents = [];
+        config.navbar && config.navbar.items.map((element)=>{
+            setComponentType(element.item, navbarComponents);
+        });
+        console.log(config);
+
+
+
+
+
+        return (
+            <div className={'container'}>
+                <header>{navbarComponents}</header>
+                <main>{components}</main>
+            </div>
+        )}
 }
 
 Main = connect(
