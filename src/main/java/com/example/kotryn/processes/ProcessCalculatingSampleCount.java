@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 public class ProcessCalculatingSampleCount implements IProcess {
 
@@ -40,7 +41,9 @@ public class ProcessCalculatingSampleCount implements IProcess {
         String csvFile = File.getFile("CALCULATING_SAMPLE_COUNT");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setCalculatingSample(readFile.csvGetOneColumn());
+        List<String> result = readFile.csvGetOneColumn();
+        job.setInSample(result.get(0));
+        job.setOutOfSample(result.get(1));
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

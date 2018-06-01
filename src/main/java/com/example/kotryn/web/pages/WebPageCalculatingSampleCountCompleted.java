@@ -24,7 +24,7 @@ public class WebPageCalculatingSampleCountCompleted {
     public Page show() {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
         //String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
-        //Job job = jobRepository.findOne(jobId);
+        Job job = jobRepository.findOne(jobId);
 
         List<Item> body = new ArrayList<>();
         List<Item> navbar = new ArrayList<>();
@@ -32,13 +32,9 @@ public class WebPageCalculatingSampleCountCompleted {
         navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        //List<String> selectedCalculatingSample = Optional.ofNullable(job.getCalculatingSample()).orElse(Collections.singletonList("none"));
-
         body.add(new Item<>(new Text("text", "Calculating sample count completed successfully")));
-        body.add(new Item<>(new Text("text", "In-sample: 30")));//TODO: wyświetlać "policzone" sample
-        body.add(new Item<>( new Text("text", "Out-of-sample: 10")));
-
-        //body.add(new Item<>(new Checkbox("checkbox", selectedCalculatingSample, selectedCalculatingSample)));
+        body.add(new Item<>(new Text("text", "In-sample: "+job.getInSample())));
+        body.add(new Item<>( new Text("text", "Out-of-sample: "+job.getOutOfSample())));
 
         body.add(new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "back")));
         body.add(new Item<>(new Button("button", "/estimating_worst_case_distributions_setup/"+jobId, "Next")));

@@ -18,6 +18,8 @@ public class Job {
     private String endOutOfSampleDate;
     private Integer windowSize;
     private Integer growthRate;
+    private String inSample;
+    private String outOfSample;
 
     @ElementCollection
     private List<String> availableStocks;
@@ -27,9 +29,6 @@ public class Job {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
     @MapKey(name="sector")
     private Map<String, Stock> stocks;
-
-    @ElementCollection
-    private List<String> calculatingSample;
 
     @ElementCollection
     private List<String> worstCaseDistributions;
@@ -66,7 +65,6 @@ public class Job {
         this.availableStocks = null;
         this.selectedStocks = null;
         this.stocks = null;
-        this.calculatingSample = null;
         this.windowSize = null;
         this.growthRate = null;
         this.worstCaseDistributions = null;
@@ -178,12 +176,20 @@ public class Job {
         this.endOutOfSampleDate = endOutOfSampleDate;
     }
 
-    public List<String> getCalculatingSample() {
-        return calculatingSample;
+    public String getInSample() {
+        return inSample;
     }
 
-    public void setCalculatingSample(List<String> calculatingSample) {
-        this.calculatingSample = calculatingSample;
+    public void setInSample(String inSample) {
+        this.inSample = inSample;
+    }
+
+    public String getOutOfSample() {
+        return outOfSample;
+    }
+
+    public void setOutOfSample(String outOfSample) {
+        this.outOfSample = outOfSample;
     }
 
     public List<String> getWorstCaseDistributions() {
