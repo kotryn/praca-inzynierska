@@ -1,14 +1,16 @@
 package com.example.kotryn.entity;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Stock {
     @Id
     @GeneratedValue
     private Long id;
-    //@ManyToOne(cascade = CascadeType.ALL)
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Job job;
@@ -17,27 +19,17 @@ public class Stock {
     private String sector;
 
     @ElementCollection
-    private List<String> symbols;
-    @ElementCollection
-    private List<String> companies;
+    private Map<String,String> industriesStocks = new HashMap<> ();
+
 
     public Stock(){
 
     }
 
-    public Stock(List<String> symbols, List<String> companies, String sector, Job job){
-        this.symbols = symbols;
-        this.companies = companies;
+    public Stock(Map<String, String> industriesStocks, String sector, Job job){
+        this.industriesStocks.putAll(industriesStocks);
         this.sector = sector;
         this.job = job;
-    }
-
-    public List<String> getSymbols() {
-        return symbols;
-    }
-
-    public void setSymbols(List<String> stocks) {
-        this.symbols = stocks;
     }
 
     public Long getId() {
@@ -64,11 +56,11 @@ public class Stock {
         this.sector = sector;
     }
 
-    public List<String> getCompanies() {
-        return companies;
+    public Map<String, String> getIndustriesStocks() {
+        return industriesStocks;
     }
 
-    public void setCompanies(List<String> companies) {
-        this.companies = companies;
+    public void setIndustriesStocks(Map<String, String> industriesStocks) {
+        this.industriesStocks = industriesStocks;
     }
 }

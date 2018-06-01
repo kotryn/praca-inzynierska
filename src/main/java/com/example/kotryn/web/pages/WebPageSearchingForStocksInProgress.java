@@ -21,8 +21,8 @@ public class WebPageSearchingForStocksInProgress {
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         body.add(new Item<>(new Text("text", "Searching for stocks in progress")));
-        body.add(new Item<>(new Button("button", "/stocks_search_in_progress/"+jobId, "refresh")));
         body.add(new Item<>(new Button("button-back", "/stocks_search_in_progress_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button", "/stocks_search_in_progress/"+jobId, "refresh")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

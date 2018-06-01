@@ -31,8 +31,6 @@ public class WebPageEstimatingGrowthStocksCompleted {
         navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Searching for stocks in progress")));
-
         List<String> selectedGrowthStocks = Optional.ofNullable(job.getGrowthStocks()).orElse(Collections.singletonList("none"));
         List<String> previouslySelectedGrowthStocks = Optional.ofNullable(job.getSelectedGrowthStocks()).orElse(Collections.singletonList("none"));
 

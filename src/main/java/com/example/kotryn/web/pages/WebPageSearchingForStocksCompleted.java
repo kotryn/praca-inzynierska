@@ -22,6 +22,31 @@ public class WebPageSearchingForStocksCompleted {
         this.jobId = jobId;
     }
 
+    static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value)
+    {
+        List<K> listOfKeys = null;
+
+        //Check if Map contains the given value
+        if(mapOfWords.containsValue(value))
+        {
+            // Create an Empty List
+            listOfKeys = new ArrayList<>();
+
+            // Iterate over each entry of map using entrySet
+            for (Map.Entry<K, V> entry : mapOfWords.entrySet())
+            {
+                // Check if value matches with given value
+                if (entry.getValue().equals(value))
+                {
+                    // Store the key from entry to the list
+                    listOfKeys.add(entry.getKey());
+                }
+            }
+        }
+        // Return the list of keys whose value matches with given value.
+        return listOfKeys;
+    }
+
     public Page show() {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
         String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
@@ -43,12 +68,22 @@ public class WebPageSearchingForStocksCompleted {
 
         for (Map.Entry<String, Stock> entry : map.entrySet()){
             body.add(new Item<>(new Text("text", entry.getKey())));
-            List<String> name = new ArrayList<>();
+            //List<String> name = new ArrayList<>();
             int id = 0;
-            for (String element : entry.getValue().getCompanies()) {
-                name.add(element+" ["+entry.getValue().getSymbols().get(id++)+"]");
+
+            for(Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()){
+
+                body.add(new Item<>(new Text("text", element.getValue())));
+                List<String> name = getAllKeysForValue(entry.getValue().getIndustriesStocks(), element.getValue());
+                body.add(new Item<>(new Checkbox("checkbox", name, name)));
+
             }
-            body.add(new Item<>(new Checkbox("checkbox", entry.getValue().getSymbols(), name)));
+
+
+            /*for (String element : entry.getValue().getIndustries()) {
+                name.add(element+" ["+entry.getValue().getSymbols().get(id)+"] "+entry.getValue().getIndustries().get(id++));
+            }
+            body.add(new Item<>(new Checkbox("checkbox", entry.getValue().getSymbols(), name)));*/
         }
 
 
