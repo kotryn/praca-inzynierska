@@ -68,22 +68,17 @@ public class WebPageSearchingForStocksCompleted {
 
         for (Map.Entry<String, Stock> entry : map.entrySet()){
             body.add(new Item<>(new Text("text", entry.getKey())));
-            //List<String> name = new ArrayList<>();
-            int id = 0;
+            Set<String> industry = new HashSet<>();
 
             for(Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()){
+                industry.add(element.getValue());
+            }
 
-                body.add(new Item<>(new Text("text", element.getValue())));
-                List<String> name = getAllKeysForValue(entry.getValue().getIndustriesStocks(), element.getValue());
+            for(String s: industry){
+                body.add(new Item<>(new Text("text", s)));
+                List<String> name = getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
                 body.add(new Item<>(new Checkbox("checkbox", name, name)));
-
             }
-
-
-            /*for (String element : entry.getValue().getIndustries()) {
-                name.add(element+" ["+entry.getValue().getSymbols().get(id)+"] "+entry.getValue().getIndustries().get(id++));
-            }
-            body.add(new Item<>(new Checkbox("checkbox", entry.getValue().getSymbols(), name)));*/
         }
 
 
