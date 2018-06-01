@@ -16,6 +16,8 @@ public class Job {
     private String endInSampleDate;
     private String startOutOfSampleDate;
     private String endOutOfSampleDate;
+    private Integer windowSize;
+    private Integer growthRate;
 
     @ElementCollection
     private List<String> availableStocks;
@@ -28,8 +30,6 @@ public class Job {
 
     @ElementCollection
     private List<String> calculatingSample;
-    @ElementCollection
-    private List<String> selectedCalculatingSample;
 
     @ElementCollection
     private List<String> worstCaseDistributions;
@@ -67,7 +67,8 @@ public class Job {
         this.selectedStocks = null;
         this.stocks = null;
         this.calculatingSample = null;
-        this.selectedCalculatingSample = null;
+        this.windowSize = null;
+        this.growthRate = null;
         this.worstCaseDistributions = null;
         this.selectedWorstCaseDistributions = null;
         this.growthStocks = null;
@@ -103,6 +104,22 @@ public class Job {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public Integer getWindowSize() {
+        return windowSize;
+    }
+
+    public void setWindowSize(Integer windowSize) {
+        this.windowSize = windowSize;
+    }
+
+    public Integer getGrowthRate() {
+        return growthRate;
+    }
+
+    public void setGrowthRate(Integer growthRate) {
+        this.growthRate = growthRate;
     }
 
     public List<String> getAvailableStocks() {
@@ -167,14 +184,6 @@ public class Job {
 
     public void setCalculatingSample(List<String> calculatingSample) {
         this.calculatingSample = calculatingSample;
-    }
-
-    public List<String> getSelectedCalculatingSample() {
-        return selectedCalculatingSample;
-    }
-
-    public void setSelectedCalculatingSample(List<String> selectedCalculatingSample) {
-        this.selectedCalculatingSample = selectedCalculatingSample;
     }
 
     public List<String> getWorstCaseDistributions() {

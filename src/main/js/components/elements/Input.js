@@ -15,12 +15,22 @@ class Input extends React.Component{
 
     render() {
 
-        const {name, id} = this.props;
+        const {name, id, type} = this.props;
+
+        let t = "text";
+        switch(type){
+            case "input-integer":
+                t = "number";
+                break;
+            case "input-date":
+                t = "date";
+                break;
+        }
 
         return (
             <label>
                 <div>{name}</div>
-                <input type="text" name="value" value={this.props.values[id]} onChange={this.handle.bind(this)} />
+                <input type={t} name="value" value={this.props.values[id]} onChange={this.handle.bind(this)} />
             </label>
         );
     }

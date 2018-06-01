@@ -414,30 +414,29 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_setup/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingWorstCaseDistributionsSetupPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
-        Job job = jobRepository.findOne(id);
-        job.setSelectedCalculatingSample(jobDTO.getCheckbox());
-        job = jobRepository.save(job);
-
-        WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(job.getId());
-        webData.setSelectedCalculatingSample(job.getSelectedCalculatingSample());
+    @ResponseStatus(HttpStatus.OK)
+    public void estimatingWorstCaseDistributionsSetupPOST(@PathVariable Long id) {
+        WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.jobsGET(id);
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions/{id}", method = RequestMethod.GET)
     public Page estimatingWorstCaseDistributionsGET(@PathVariable Long id) {
-        WebPageEstimatingWorstCaseDistributionsSetup page = new WebPageEstimatingWorstCaseDistributionsSetup(id);
+        WebPageEstimatingWorstCaseDistributionsSetup page = new WebPageEstimatingWorstCaseDistributionsSetup(jobRepository, id);
         return page.show();
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void estimatingWorstCaseDistributionsPOST(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void estimatingWorstCaseDistributionsPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
         Job job = jobRepository.findOne(id);
+        job.setWindowSize(jobRequest.getWindowSize());
+        job.setGrowthRate(jobRequest.getGrowthRate());
+        job = jobRepository.save(job);
         WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
+        //webData.setGrowthRate(job.getGrowthRate());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

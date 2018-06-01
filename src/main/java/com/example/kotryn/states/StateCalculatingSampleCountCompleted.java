@@ -28,18 +28,18 @@ public class StateCalculatingSampleCountCompleted extends StateBase implements I
         return "calculating_sample_count_completed/"+context.getJobId();
     }
 
-    private void saveSelectedCalculatingSample(WebDataCalculatingSampleCountCompleted input) {
+    /*private void saveSelectedCalculatingSample(WebDataCalculatingSampleCountCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
         job.setSelectedCalculatingSample(input.getSelectedCalculatingSample());
         jobRepository.saveAndFlush(job);
-    }
+    }*/
 
     @Override
     public void handle(Context context, IWebData webData) {
         WebDataCalculatingSampleCountCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                saveSelectedCalculatingSample(input);
+                //saveSelectedCalculatingSample(input);
                 //createProcessDescriptorAndSave(ProcessType.ESTIMATING_WORST_CASE_DISTRIBUTIONS, input.getJobId(),
                  //       processDescriptorRepository);
                 moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP, context, contextRepository);

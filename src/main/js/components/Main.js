@@ -73,6 +73,9 @@ class Main extends React.Component{
                 case "input-date":
                     component.push(<Form config={element}/>);
                     break;
+                case "input-integer":
+                    component.push(<Form config={element}/>);
+                    break;
                 case "image":
                     component.push(<Image config={element} />);
                     break;
