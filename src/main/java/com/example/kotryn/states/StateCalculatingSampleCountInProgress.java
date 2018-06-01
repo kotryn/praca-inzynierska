@@ -41,7 +41,7 @@ public class StateCalculatingSampleCountInProgress extends StateBase implements 
         switch (input.getAction()) {
             case INTERRUPT:
                 interruptProcess(input.getJobId());
-                moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_SETUP, context, contextRepository);
                 break;
             case REFRESH:
                 verifyProcessType(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(), processDescriptorRepository);

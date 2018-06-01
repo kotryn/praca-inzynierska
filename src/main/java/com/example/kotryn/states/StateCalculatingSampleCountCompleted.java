@@ -47,7 +47,7 @@ public class StateCalculatingSampleCountCompleted extends StateBase implements I
                 break;
 
             case PREVIOUS:
-                moveToNextStateAndSave(State.SEARCHING_FOR_STOCKS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_SETUP, context, contextRepository);
                 break;
             default:
                 throw new RuntimeException("Undefined action");

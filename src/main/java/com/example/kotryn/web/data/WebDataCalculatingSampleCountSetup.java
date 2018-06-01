@@ -1,18 +1,15 @@
 package com.example.kotryn.web.data;
 
-import java.util.List;
-
-public class WebDataCalculatingSampleCountCompleted implements IWebData {
+public class WebDataCalculatingSampleCountSetup implements IWebData {
 
     private final Long jobId;
     private Action action;
-    private List<String> selectedCalculatingSample;
-    /*private String startInSampleDate;
+    private String startInSampleDate;
     private String endInSampleDate;
     private String startOutOfSampleDate;
-    private String endOutOfSampleDate;*/
+    private String endOutOfSampleDate;
 
-    public WebDataCalculatingSampleCountCompleted(Long jobId) {
+    public WebDataCalculatingSampleCountSetup(Long jobId) {
         this.jobId = jobId;
         action = Action.NEXT;
     }
@@ -31,15 +28,7 @@ public class WebDataCalculatingSampleCountCompleted implements IWebData {
         this.action = action;
     }
 
-    public List<String> getSelectedCalculatingSample() {
-        return selectedCalculatingSample;
-    }
-
-    public void setSelectedCalculatingSample(List<String> selectedCalculatingSample) {
-        this.selectedCalculatingSample = selectedCalculatingSample;
-    }
-
-    /*public String getStartInSampleDate() {
+    public String getStartInSampleDate() {
         return startInSampleDate;
     }
 
@@ -69,5 +58,5 @@ public class WebDataCalculatingSampleCountCompleted implements IWebData {
 
     public void setEndOutOfSampleDate(String endOutOfSampleDate) {
         this.endOutOfSampleDate = endOutOfSampleDate;
-    }*/
+    }
 }

@@ -317,15 +317,50 @@ public class MainController {
         return page.show();
     }
 
-    @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/calculating_sample_count_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+    public void calculatingSampleCountSetupPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
         job.setSelectedStocks(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataSearchingForStocksCompleted webData = new WebDataSearchingForStocksCompleted(job.getId());
         webData.setSelectedStocks(job.getSelectedStocks());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_sample_count_setup/{id}", method = RequestMethod.GET)
+    public Page calculatingSampleCountSetupGET(@PathVariable Long id) {
+        WebPageCalculatingSampleCountSetup page = new WebPageCalculatingSampleCountSetup(jobRepository, id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/calculating_sample_count_setup_back/{id}", method = RequestMethod.POST)
+    public void calculatingSampleCountSetupBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataCalculatingSampleCountSetup webData = new WebDataCalculatingSampleCountSetup(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void calculatingSampleCountPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
+        Job job = jobRepository.findOne(id);
+        job.setStartInSampleDate(jobRequest.getStartInSampleDate());
+        job.setEndInSampleDate(jobRequest.getEndInSampleDate());
+        job.setStartOutOfSampleDate(jobRequest.getStartOutOfSampleDate());
+        job.setEndOutOfSampleDate(jobRequest.getEndOutOfSampleDate());
+        job = jobRepository.save(job);
+
+        WebDataCalculatingSampleCountSetup webData = new WebDataCalculatingSampleCountSetup(job.getId());
+        webData.setStartInSampleDate(job.getStartInSampleDate());
+        webData.setEndInSampleDate(job.getEndInSampleDate());
+        webData.setStartOutOfSampleDate(job.getStartOutOfSampleDate());
+        webData.setEndOutOfSampleDate(job.getEndOutOfSampleDate());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
@@ -586,19 +621,6 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
-    /*    @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
-        Job job = jobRepository.findOne(id);
-        job.setSelectedGrowthStocks(jobDTO.getCheckbox());
-        job = jobRepository.save(job);
-
-        WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
-        webData.setSelectedGrowthStocks(job.getSelectedGrowthStocks());
-
-        processJob(webData);
-        url = this.jobsGET(job.getId());
-    }*/
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)

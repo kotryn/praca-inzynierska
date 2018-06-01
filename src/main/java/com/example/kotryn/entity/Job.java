@@ -12,6 +12,10 @@ public class Job {
     private Long id;
     private String startDate;
     private String endDate;
+    private String startInSampleDate;
+    private String endInSampleDate;
+    private String startOutOfSampleDate;
+    private String endOutOfSampleDate;
 
     @ElementCollection
     private List<String> availableStocks;
@@ -123,6 +127,38 @@ public class Job {
 
     public void setStocks(Map<String, Stock> stocks) {
         this.stocks = stocks;
+    }
+
+    public String getStartInSampleDate() {
+        return startInSampleDate;
+    }
+
+    public void setStartInSampleDate(String startInSampleDate) {
+        this.startInSampleDate = startInSampleDate;
+    }
+
+    public String getEndInSampleDate() {
+        return endInSampleDate;
+    }
+
+    public void setEndInSampleDate(String endInSampleDate) {
+        this.endInSampleDate = endInSampleDate;
+    }
+
+    public String getStartOutOfSampleDate() {
+        return startOutOfSampleDate;
+    }
+
+    public void setStartOutOfSampleDate(String startOutOfSampleDate) {
+        this.startOutOfSampleDate = startOutOfSampleDate;
+    }
+
+    public String getEndOutOfSampleDate() {
+        return endOutOfSampleDate;
+    }
+
+    public void setEndOutOfSampleDate(String endOutOfSampleDate) {
+        this.endOutOfSampleDate = endOutOfSampleDate;
     }
 
     public List<String> getCalculatingSample() {

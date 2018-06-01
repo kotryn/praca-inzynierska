@@ -39,10 +39,11 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
         switch (input.getAction()) {
             case NEXT:
                 saveSelectedStocks(input);
-                createProcessDescriptorAndSave(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(),
-                        processDescriptorRepository);
-                moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_IN_PROGRESS, context, contextRepository);
-                startProcess(input.getJobId());
+                /*createProcessDescriptorAndSave(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(),
+                        processDescriptorRepository);*/
+                /*moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_IN_PROGRESS, context, contextRepository);*/
+                /*startProcess(input.getJobId());*/
+                moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_SETUP, context, contextRepository);
                 break;
             default:
                 throw new RuntimeException("Undefined action");

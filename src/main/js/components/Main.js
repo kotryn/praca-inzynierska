@@ -97,18 +97,14 @@ class Main extends React.Component{
         config.navbar && config.navbar.items.map((element)=>{
             setComponentType(element.item, navbarComponents);
         });
-        console.log(config);
-
-
-
-
 
         return (
             <div className={'container'}>
                 <header>{navbarComponents}</header>
                 <main>{components}</main>
             </div>
-        )}
+        )
+    }
 }
 
 Main = connect(

@@ -63,12 +63,14 @@ public class WebPageSearchingForStocksCompleted {
         body.add(new Item<>(new Text("text", "Searching for stocks completed successfully")));
         body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
         body.add(new Item<>(new Text("text", "Previously selected stocks: " + previouslySelectedStocks)));
+
+
         body.add(new Item<>(new Text("text", "Available stocks: ")));
 
         Map<String, Stock> map = new HashMap<>(job.getStocks());
 
         for (Map.Entry<String, Stock> entry : map.entrySet()){
-            body.add(new Item<>(new Text("text", entry.getKey())));
+            body.add(new Item<>(new Text("text", entry.getKey())));//Sector
             Set<String> industry = new HashSet<>();
 
             for(Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()){
@@ -76,15 +78,15 @@ public class WebPageSearchingForStocksCompleted {
             }
 
             for(String s: industry){
-                body.add(new Item<>(new Text("text", s)));
+                body.add(new Item<>(new Text("text", s)));//Industry
                 List<String> name = getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
-                body.add(new Item<>(new Checkbox("checkbox", name, name)));
+                body.add(new Item<>(new Checkbox("checkbox", name, name)));//Stocks
             }
         }
 
 
         body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "back")));
-        body.add(new Item<>(new Button("button-form", "/calculating_sample_count/"+jobId, "Submit")));
+        body.add(new Item<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Submit")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

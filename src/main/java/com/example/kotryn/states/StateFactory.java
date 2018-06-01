@@ -8,6 +8,8 @@ public class StateFactory  {
 
     public static IState getState(State state, JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
         switch(state) {
+            case CALCULATING_SAMPLE_COUNT_SETUP:
+                return new StateCalculatingSampleCountSetup(jobRepository, contextRepository, processDescriptorRepository);
             case CALCULATING_SAMPLE_COUNT_COMPLETED:
                 return new StateCalculatingSampleCountCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case CALCULATING_SAMPLE_COUNT_FAILED:
