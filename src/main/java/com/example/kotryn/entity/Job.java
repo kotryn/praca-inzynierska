@@ -21,6 +21,9 @@ public class Job {
     private Integer growthRate;
     private String inSample;
     private String outOfSample;
+    private Integer maxNumberSector;
+    private Integer maxNumberIndustry;
+    private Double maxCoefficient;
 
     @ElementCollection
     private List<String> availableStocks;
@@ -279,6 +282,30 @@ public class Job {
 
     public void setStatistic(List<String> statistic) {
         this.statistic = statistic;
+    }
+
+    public Integer getMaxNumberSector() {
+        return maxNumberSector;
+    }
+
+    public void setMaxNumberSector(Integer maxNumberSector) {
+        this.maxNumberSector = maxNumberSector;
+    }
+
+    public Integer getMaxNumberIndustry() {
+        return maxNumberIndustry;
+    }
+
+    public void setMaxNumberIndustry(Integer maxNumberIndustry) {
+        this.maxNumberIndustry = maxNumberIndustry;
+    }
+
+    public Double getMaxCoefficient() {
+        return maxCoefficient;
+    }
+
+    public void setMaxCoefficient(Double maxCoefficient) {
+        this.maxCoefficient = maxCoefficient;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value)

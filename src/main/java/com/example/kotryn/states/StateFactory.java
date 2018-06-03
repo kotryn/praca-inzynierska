@@ -40,7 +40,7 @@ public class StateFactory  {
                 return new StateSearchingForStocksInProgress(contextRepository, processDescriptorRepository);
 
             case ESTIMATING_GROWTH_STOCKS_SETUP:
-                return new StateEstimatingGrowthStocksSetup(contextRepository, processDescriptorRepository);
+                return new StateEstimatingGrowthStocksSetup(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS_COMPLETED:
                 return new StateEstimatingGrowthStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS_FAILED:

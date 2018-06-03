@@ -515,10 +515,18 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingGrowthStocksPOST(@PathVariable Long id) {
+    public void estimatingGrowthStocksPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
         Job job = jobRepository.findOne(id);
 
+        job.setMaxNumberSector(jobRequest.getMaxNumberSector());
+        job.setMaxNumberIndustry(jobRequest.getMaxNumberIndustry());
+        job.setMaxCoefficient(jobRequest.getMaxCoefficient());
+        job = jobRepository.save(job);
+
         WebDataEstimatingGrowthStocksSetup webData = new WebDataEstimatingGrowthStocksSetup(job.getId());
+        webData.setMaxNumberSector(job.getMaxNumberSector());
+        webData.setMaxNumberIndustry(job.getMaxNumberIndustry());
+        webData.setMaxCoefficient(job.getMaxCoefficient());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

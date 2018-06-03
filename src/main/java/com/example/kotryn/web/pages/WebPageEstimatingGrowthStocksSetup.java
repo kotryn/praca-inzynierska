@@ -27,11 +27,14 @@ public class WebPageEstimatingGrowthStocksSetup {
 
         body.add(new Item<>(new Text("text", "Estimating growth stocks setup")));
 
-        //body.add(new Item<>(new Text("text", "Previously selected window size: " + job.getWindowSize())));
-        //body.add(new Item<>(new Input("input-integer", new String[]{"windowSize"}, new String[]{"Window Size:"})));
+        body.add(new Item<>(new Text("text", "Previously selected maximum number in sector: " + job.getMaxNumberSector())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"maxNumberSector"}, new String[]{"Maximum number in sector:"})));
 
-        //body.add(new Item<>(new Text("text", "Previously selected required growth rate: " + job.getGrowthRate())));
-        //body.add(new Item<>(new Input("input-integer", new String[]{"growthRate"}, new String[]{"Required growth rate:"})));
+        body.add(new Item<>(new Text("text", "Previously selected maximum number in industry: " + job.getMaxNumberIndustry())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"maxNumberIndustry"}, new String[]{"Maximum number in industry:"})));
+
+        body.add(new Item<>(new Text("text", "Previously selected maximum correlation coefficient: " + job.getMaxCoefficient())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"maxCoefficient"}, new String[]{"Maximum correlation coefficient:"})));
 
         body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_in_setup_back/"+jobId, "back")));//TODO
         body.add(new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Next")));
