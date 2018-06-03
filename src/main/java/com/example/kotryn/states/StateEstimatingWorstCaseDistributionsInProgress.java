@@ -1,8 +1,7 @@
 package com.example.kotryn.states;
 
 import com.example.kotryn.controller.MainController;
-import com.example.kotryn.entity.Context;
-import com.example.kotryn.entity.ProcessDescriptor;
+import com.example.kotryn.entity.*;
 import com.example.kotryn.processes.ProcessState;
 import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
@@ -10,8 +9,9 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataEstimatingWorstCaseDistributionsInProgress;
 
-public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase implements IState {
+import java.util.Map;
 
+public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase implements IState {
     private final ContextRepository contextRepository;
     private final ProcessDescriptorRepository processDescriptorRepository;
 

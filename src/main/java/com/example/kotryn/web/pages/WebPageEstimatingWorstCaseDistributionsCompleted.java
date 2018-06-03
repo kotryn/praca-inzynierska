@@ -1,15 +1,12 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.entity.Job;
-import com.example.kotryn.entity.ProcessDescriptor;
+import com.example.kotryn.entity.WorstCaseDistributionSector;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class WebPageEstimatingWorstCaseDistributionsCompleted {
 
@@ -28,8 +25,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         //String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
-        List<String> selectedWorstCaseDistributions = Optional.ofNullable(job.getWorstCaseDistributions()).orElse(Collections.singletonList("none"));
-        List<String> previouslySelectedWorstCaseDistributions = Optional.ofNullable(job.getSelectedWorstCaseDistributions()).orElse(Collections.singletonList("none"));
+        List<String> test = Optional.ofNullable(job.getAvailableWorstCaseDistributionsStocks()).orElse(Collections.singletonList("none"));
 
         List<Item> body = new ArrayList<>();
         List<Item> navbar = new ArrayList<>();
@@ -38,11 +34,26 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         body.add(new Item<>(new Text("text", "Estimating worst case distributions completed successfully")));
-        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedWorstCaseDistributions)));
-        body.add(new Item<>( new Text("text", "Available: ")));
-        body.add(new Item<>(new Checkbox("checkbox", selectedWorstCaseDistributions, selectedWorstCaseDistributions)));
+
+        Map<String, WorstCaseDistributionSector> map = new HashMap<>(job.getWorstCaseDistributionStocks());
+
+        for (Map.Entry<String, WorstCaseDistributionSector> entry : map.entrySet()) {
+            body.add(new Item<>(new Text("text", entry.getKey())));//Sector
+            Set<String> industry = new HashSet<>();
+
+            for (Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()) {
+                industry.add(element.getValue());
+            }
+
+            for (String s : industry) {
+                body.add(new Item<>(new Text("text", s)));//Industry
+                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
+                body.add(new Item<>(new ListJ("list", name)));//Stocks
+            }
+        }
+
         body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Submit")));
+        body.add(new Item<>(new Button("button", "/estimating_growth_stocks/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

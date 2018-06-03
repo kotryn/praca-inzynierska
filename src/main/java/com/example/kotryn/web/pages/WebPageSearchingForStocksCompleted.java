@@ -2,7 +2,7 @@ package com.example.kotryn.web.pages;
 
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
-import com.example.kotryn.entity.Stock;
+import com.example.kotryn.entity.Sector;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
@@ -20,31 +20,6 @@ public class WebPageSearchingForStocksCompleted {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
-    }
-
-    static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value)
-    {
-        List<K> listOfKeys = null;
-
-        //Check if Map contains the given value
-        if(mapOfWords.containsValue(value))
-        {
-            // Create an Empty List
-            listOfKeys = new ArrayList<>();
-
-            // Iterate over each entry of map using entrySet
-            for (Map.Entry<K, V> entry : mapOfWords.entrySet())
-            {
-                // Check if value matches with given value
-                if (entry.getValue().equals(value))
-                {
-                    // Store the key from entry to the list
-                    listOfKeys.add(entry.getKey());
-                }
-            }
-        }
-        // Return the list of keys whose value matches with given value.
-        return listOfKeys;
     }
 
     public Page show() {
@@ -67,9 +42,9 @@ public class WebPageSearchingForStocksCompleted {
 
         body.add(new Item<>(new Text("text", "Available stocks: ")));
 
-        Map<String, Stock> map = new HashMap<>(job.getStocks());
+        Map<String, Sector> map = new HashMap<>(job.getStocks());
 
-        for (Map.Entry<String, Stock> entry : map.entrySet()){
+        for (Map.Entry<String, Sector> entry : map.entrySet()){
             body.add(new Item<>(new Text("text", entry.getKey())));//Sector
             Set<String> industry = new HashSet<>();
 
@@ -79,7 +54,7 @@ public class WebPageSearchingForStocksCompleted {
 
             for(String s: industry){
                 body.add(new Item<>(new Text("text", s)));//Industry
-                List<String> name = getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
+                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
                 body.add(new Item<>(new Checkbox("checkbox", name, name)));//Stocks
             }
         }

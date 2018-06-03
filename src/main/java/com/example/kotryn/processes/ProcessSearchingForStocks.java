@@ -4,9 +4,11 @@ import com.example.kotryn.csv.CSVMyReader;
 import com.example.kotryn.csv.File;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
+//import com.example.kotryn.entity.WorstCaseDistributionSector;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.StockRepository;
+import com.example.kotryn.repository.SectorRepository;
+//import com.example.kotryn.repository.WorstCaseDistributionSectorRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -17,14 +19,16 @@ import java.time.Month;
 public class ProcessSearchingForStocks implements IProcess {
 
     private JobRepository jobRepository;
-    private StockRepository stockRepository;
+    private SectorRepository sectorRepository;
+    //private WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, StockRepository stockRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessSearchingForStocks(Long jobId, JobRepository jobRepository, SectorRepository sectorRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
-        this.stockRepository = stockRepository;
+        this.sectorRepository = sectorRepository;
+        //this.worstCaseDistributionSectorRepository = worstCaseDistributionSectorRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -41,7 +45,7 @@ public class ProcessSearchingForStocks implements IProcess {
         Job job = jobRepository.findOne(jobId);
 
         String csvFile = File.getFile("FIRST_STOCK");
-        CSVMyReader readFile = new CSVMyReader(csvFile, stockRepository, job);
+        CSVMyReader readFile = new CSVMyReader(csvFile, sectorRepository, job);
         readFile.csvFirstSetStocks();
         job.setStocks(readFile.getStocksMap());
         job.setAvailableStocks(readFile.getSymbols());

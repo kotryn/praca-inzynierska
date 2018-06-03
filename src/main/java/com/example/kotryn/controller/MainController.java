@@ -1,9 +1,6 @@
 package com.example.kotryn.controller;
 
-import com.example.kotryn.entity.Context;
-import com.example.kotryn.entity.Job;
-import com.example.kotryn.entity.JobDTO;
-import com.example.kotryn.entity.ProcessDescriptor;
+import com.example.kotryn.entity.*;
 import com.example.kotryn.json.Page;
 import com.example.kotryn.processes.AbstractProcessFactory;
 import com.example.kotryn.processes.ProcessFactory;
@@ -25,11 +22,11 @@ public class MainController {
     private String url = "/prompt_user";
     private String error = null;
 
-    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository, StockRepository stockRepository) {
+    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository, SectorRepository sectorRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
-        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, stockRepository));
+        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, sectorRepository, worstCaseDistributionSectorRepository));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -500,14 +497,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingGrowthStocksPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+    @ResponseStatus(HttpStatus.OK)
+    public void estimatingGrowthStocksPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedWorstCaseDistributions(jobDTO.getCheckbox());
-        job = jobRepository.save(job);
 
         WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(job.getId());
-        webData.setSelectedWorstCaseDistributions(job.getSelectedWorstCaseDistributions());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

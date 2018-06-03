@@ -2,11 +2,10 @@ package com.example.kotryn.entity;
 
 import javax.persistence.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity
-public class Stock {
+public class WorstCaseDistributionSector {
     @Id
     @GeneratedValue
     private Long id;
@@ -15,20 +14,20 @@ public class Stock {
     @JoinColumn
     private Job job;
 
-    @Column(name="STOCK_SECTOR")
-    private String sector;
+    @Column(name="WORST_CASE_DISTRIBUTION_STOCK_SECTOR")
+    private String worstCaseDistributionSector;
 
     @ElementCollection
-    private Map<String,String> industriesStocks = new HashMap<> ();
+    private Map<String,String> industriesStocks = new HashMap<>();
 
 
-    public Stock(){
+    public WorstCaseDistributionSector(){
 
     }
 
-    public Stock(Map<String, String> industriesStocks, String sector, Job job){
+    public WorstCaseDistributionSector(Map<String, String> industriesStocks, String worstCaseDistributionSector, Job job){
         this.industriesStocks.putAll(industriesStocks);
-        this.sector = sector;
+        this.worstCaseDistributionSector = worstCaseDistributionSector;
         this.job = job;
     }
 
@@ -48,12 +47,12 @@ public class Stock {
         this.job = job;
     }
 
-    public String getSector() {
-        return sector;
+    public String getWorstCaseDistributionSector() {
+        return worstCaseDistributionSector;
     }
 
-    public void setSector(String sector) {
-        this.sector = sector;
+    public void setWorstCaseDistributionSector(String worstCaseDistributionSector) {
+        this.worstCaseDistributionSector = worstCaseDistributionSector;
     }
 
     public Map<String, String> getIndustriesStocks() {

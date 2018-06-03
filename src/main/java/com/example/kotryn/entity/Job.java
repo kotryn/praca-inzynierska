@@ -1,6 +1,7 @@
 package com.example.kotryn.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,13 +28,15 @@ public class Job {
     private List<String> selectedStocks;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
+    @MapKey(name="worstCaseDistributionSector")
+    private Map<String, WorstCaseDistributionSector> worstCaseDistributionStocks;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
     @MapKey(name="sector")
-    private Map<String, Stock> stocks;
+    private Map<String, Sector> stocks;
 
     @ElementCollection
-    private List<String> worstCaseDistributions;
-    @ElementCollection
-    private List<String> selectedWorstCaseDistributions;
+    private List<String> availableWorstCaseDistributionsStocks;
 
     @ElementCollection
     private List<String> growthStocks;
@@ -67,8 +70,6 @@ public class Job {
         this.stocks = null;
         this.windowSize = null;
         this.growthRate = null;
-        this.worstCaseDistributions = null;
-        this.selectedWorstCaseDistributions = null;
         this.growthStocks = null;
         this.selectedGrowthStocks = null;
         this.nonCorrelatedStocks = null;
@@ -136,12 +137,28 @@ public class Job {
         this.selectedStocks = selectedStocks;
     }
 
-    public Map<String, Stock> getStocks() {
+    public Map<String, Sector> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Map<String, Stock> stocks) {
+    public void setStocks(Map<String, Sector> stocks) {
         this.stocks = stocks;
+    }
+
+    public Map<String, WorstCaseDistributionSector> getWorstCaseDistributionStocks() {
+        return worstCaseDistributionStocks;
+    }
+
+    public void setWorstCaseDistributionStocks(Map<String, WorstCaseDistributionSector> worstCaseDistributionStocks) {
+        this.worstCaseDistributionStocks = worstCaseDistributionStocks;
+    }
+
+    public List<String> getAvailableWorstCaseDistributionsStocks() {
+        return availableWorstCaseDistributionsStocks;
+    }
+
+    public void setAvailableWorstCaseDistributionsStocks(List<String> availableWorstCaseDistributionsStocks) {
+        this.availableWorstCaseDistributionsStocks = availableWorstCaseDistributionsStocks;
     }
 
     public String getStartInSampleDate() {
@@ -190,22 +207,6 @@ public class Job {
 
     public void setOutOfSample(String outOfSample) {
         this.outOfSample = outOfSample;
-    }
-
-    public List<String> getWorstCaseDistributions() {
-        return worstCaseDistributions;
-    }
-
-    public void setWorstCaseDistributions(List<String> worstCaseDistributions) {
-        this.worstCaseDistributions = worstCaseDistributions;
-    }
-
-    public List<String> getSelectedWorstCaseDistributions() {
-        return selectedWorstCaseDistributions;
-    }
-
-    public void setSelectedWorstCaseDistributions(List<String> selectedWorstCaseDistributions) {
-        this.selectedWorstCaseDistributions = selectedWorstCaseDistributions;
     }
 
     public List<String> getGrowthStocks() {
@@ -278,5 +279,30 @@ public class Job {
 
     public void setStatistic(List<String> statistic) {
         this.statistic = statistic;
+    }
+
+    public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value)
+    {
+        List<K> listOfKeys = null;
+
+        //Check if Map contains the given value
+        if(mapOfWords.containsValue(value))
+        {
+            // Create an Empty List
+            listOfKeys = new ArrayList<>();
+
+            // Iterate over each entry of map using entrySet
+            for (Map.Entry<K, V> entry : mapOfWords.entrySet())
+            {
+                // Check if value matches with given value
+                if (entry.getValue().equals(value))
+                {
+                    // Store the key from entry to the list
+                    listOfKeys.add(entry.getKey());
+                }
+            }
+        }
+        // Return the list of keys whose value matches with given value.
+        return listOfKeys;
     }
 }

@@ -39,7 +39,7 @@ public class StateEstimatingWorstCaseDistributionsSetup extends StateBase implem
         WebDataEstimatingWorstCaseDistributionsSetup input = getInput(webData);//nie pasuje mu
         switch (input.getAction()) {
             case NEXT:
-                saveEstimatingWorstCaseDistributions(input);
+                //saveEstimatingWorstCaseDistributions(input);
                 createProcessDescriptorAndSave(ProcessType.ESTIMATING_WORST_CASE_DISTRIBUTIONS, input.getJobId(),
                         processDescriptorRepository);
                 moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS, context, contextRepository);

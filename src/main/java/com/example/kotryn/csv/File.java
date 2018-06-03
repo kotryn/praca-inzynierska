@@ -9,7 +9,7 @@ public class File  {
             case "CALCULATING_SAMPLE_COUNT":
                 return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/calculatingSampleCount.csv";
             case "ESTIMATING_WORST_CASE_DISTRIBUTION":
-                return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/dane4.csv";
+                return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/estimatingWorstCaseDistributions.csv";
             case "ESTIMATING_GROWTH_STOCKS":
                 return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/estimatingGrowthStocks.csv";
             case "ESTIMATING_NON_CORRELATED_STOCKS":

@@ -21,7 +21,7 @@ public class StateFactory  {
 
                 return new StateObtainingStocks(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED:
-                return new StateEstimatingWorstCaseDistributionsCompleted(jobRepository, contextRepository, processDescriptorRepository);
+                return new StateEstimatingWorstCaseDistributionsCompleted(contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_FAILED:
                 return new StateEstimatingWorstCaseDistributionsFailed();
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:

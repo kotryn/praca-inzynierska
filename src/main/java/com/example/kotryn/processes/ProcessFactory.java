@@ -3,18 +3,21 @@ package com.example.kotryn.processes;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.StockRepository;
+import com.example.kotryn.repository.SectorRepository;
+import com.example.kotryn.repository.WorstCaseDistributionSectorRepository;
 
 public class ProcessFactory implements IProcessFactory {
 
     private final JobRepository jobRepository;
     private final ProcessDescriptorRepository processDescriptorRepository;
-    private StockRepository stockRepository;
+    private SectorRepository sectorRepository;
+    private WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository;
 
-    public ProcessFactory(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, StockRepository stockRepository) {
+    public ProcessFactory(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, SectorRepository sectorRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
-        this.stockRepository = stockRepository;
+        this.sectorRepository = sectorRepository;
+        this.worstCaseDistributionSectorRepository = worstCaseDistributionSectorRepository;
     }
 
     @Override
@@ -22,11 +25,11 @@ public class ProcessFactory implements IProcessFactory {
         ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
         switch (processDescriptor.getProcessType()) {
             case SEARCHING_FOR_STOCKS:
-                return new ProcessSearchingForStocks(jobId, jobRepository, stockRepository, processDescriptorRepository);
+                return new ProcessSearchingForStocks(jobId, jobRepository, sectorRepository, processDescriptorRepository);
             case CALCULATING_SAMPLE_COUNT:
                 return new ProcessCalculatingSampleCount(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS:
-                return new ProcessEstimatingWorstCaseDistributions(jobId, jobRepository, processDescriptorRepository);
+                return new ProcessEstimatingWorstCaseDistributions(jobId, jobRepository, worstCaseDistributionSectorRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS:
                 return new ProcessEstimatingGrowthStocks(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_NON_CORRELATED_STOCKS:

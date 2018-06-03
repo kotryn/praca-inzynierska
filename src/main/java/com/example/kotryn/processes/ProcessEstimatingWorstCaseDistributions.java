@@ -6,6 +6,7 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
+import com.example.kotryn.repository.WorstCaseDistributionSectorRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -16,12 +17,14 @@ import java.time.Month;
 public class ProcessEstimatingWorstCaseDistributions implements IProcess {
 
     private JobRepository jobRepository;
+    private WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessEstimatingWorstCaseDistributions(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessEstimatingWorstCaseDistributions(Long jobId, JobRepository jobRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
+        this.worstCaseDistributionSectorRepository = worstCaseDistributionSectorRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -38,16 +41,18 @@ public class ProcessEstimatingWorstCaseDistributions implements IProcess {
         Job job = jobRepository.findOne(jobId);
 
         String csvFile = File.getFile("ESTIMATING_WORST_CASE_DISTRIBUTION");
-        CSVMyReader readFile = new CSVMyReader(csvFile);
+        CSVMyReader readFile = new CSVMyReader(csvFile, worstCaseDistributionSectorRepository, job);
+        readFile.csvFirstSetStocks2();
+        job.setWorstCaseDistributionStocks(readFile.getSectorsWorstCaseDistributionsMap());
+        job.setAvailableWorstCaseDistributionsStocks(readFile.getSymbols());
 
-        job.setWorstCaseDistributions(readFile.csvGetOneColumn());
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository
         ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
         processDescriptor.setProcessState(ProcessState.COMPLETED_SUCCESS);
         LocalDateTime startTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 20, 55);
-        System.out.println(LocalDateTime.now());//TODO: set real time
+        //System.out.println(LocalDateTime.now());//TODO: set real time
         LocalDateTime stopTime = LocalDateTime.of(2016, Month.AUGUST, 31, 10, 40, 10);
         processDescriptor.setDuration(Duration.between(startTime, stopTime));//TODO: set real duration
         processDescriptorRepository.saveAndFlush(processDescriptor);
