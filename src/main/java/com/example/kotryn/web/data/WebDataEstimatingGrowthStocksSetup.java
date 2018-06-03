@@ -1,11 +1,11 @@
 package com.example.kotryn.web.data;
 
-public class WebDataEstimatingWorstCaseDistributionsSetup implements IWebData {
+public class WebDataEstimatingGrowthStocksSetup implements IWebData {
 
     private final Long jobId;
     private Action action;
 
-    public WebDataEstimatingWorstCaseDistributionsSetup(Long jobId) {
+    public WebDataEstimatingGrowthStocksSetup(Long jobId) {
         this.jobId = jobId;
         action = Action.NEXT;
     }

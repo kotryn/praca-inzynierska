@@ -39,7 +39,7 @@ public class StateEstimatingGrowthStocksInProgress extends StateBase implements 
         switch (input.getAction()) {
             case INTERRUPT:
                 interruptProcess(input.getJobId());
-                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.ESTIMATING_GROWTH_STOCKS_SETUP, context, contextRepository);
                 break;
             case REFRESH:
                 verifyProcessType(ProcessType.ESTIMATING_GROWTH_STOCKS, input.getJobId(), processDescriptorRepository);

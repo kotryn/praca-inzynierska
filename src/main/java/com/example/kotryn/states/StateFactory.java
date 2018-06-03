@@ -18,8 +18,8 @@ public class StateFactory  {
 
                 return new StateCalculatingSampleCountInProgress(contextRepository, processDescriptorRepository);
             case OBTAINING_STOCKS:
-
                 return new StateObtainingStocks(jobRepository, contextRepository, processDescriptorRepository);
+
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED:
                 return new StateEstimatingWorstCaseDistributionsCompleted(contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_FAILED:
@@ -27,7 +27,7 @@ public class StateFactory  {
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_IN_PROGRESS:
                 return new StateEstimatingWorstCaseDistributionsInProgress(contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_SETUP:
-                return new StateEstimatingWorstCaseDistributionsSetup(jobRepository, contextRepository, processDescriptorRepository);
+                return new StateEstimatingWorstCaseDistributionsSetup(contextRepository, processDescriptorRepository);
 
             case OBTAINING_PERIOD_OF_ANALYSIS:
                 return new StateObtainingPeriodOfAnalysis(jobRepository, contextRepository, processDescriptorRepository);
@@ -39,6 +39,8 @@ public class StateFactory  {
             case SEARCHING_FOR_STOCKS_IN_PROGRESS:
                 return new StateSearchingForStocksInProgress(contextRepository, processDescriptorRepository);
 
+            case ESTIMATING_GROWTH_STOCKS_SETUP:
+                return new StateEstimatingGrowthStocksSetup(contextRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS_COMPLETED:
                 return new StateEstimatingGrowthStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS_FAILED:

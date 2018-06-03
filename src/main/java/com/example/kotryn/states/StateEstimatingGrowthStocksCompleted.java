@@ -46,7 +46,7 @@ public class StateEstimatingGrowthStocksCompleted extends StateBase implements I
                 startProcess(input.getJobId());
                 break;
             case PREVIOUS:
-                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.ESTIMATING_GROWTH_STOCKS_SETUP, context, contextRepository);
                 break;
             default:
                 throw new RuntimeException("Undefined action");

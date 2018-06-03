@@ -496,12 +496,29 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/estimating_growth_stocks_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void estimatingGrowthStocksPOST(@PathVariable Long id) {
+    public void estimatingGrowthStocksSetupPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
 
         WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(job.getId());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.GET)
+    public Page estimatingGrowthStocksGET(@PathVariable Long id) {
+        WebPageEstimatingGrowthStocksSetup page = new WebPageEstimatingGrowthStocksSetup(jobRepository, id);
+        return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void estimatingGrowthStocksPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+
+        WebDataEstimatingGrowthStocksSetup webData = new WebDataEstimatingGrowthStocksSetup(job.getId());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
@@ -534,6 +551,15 @@ public class MainController {
     public Page estimatingGrowthStocksFailedGET(@PathVariable Long id) {
         WebPageEstimatingGrowthStocksFailed page = new WebPageEstimatingGrowthStocksFailed(id, processDescriptorRepository);
         return page.show();
+    }
+
+    @RequestMapping(value = "/estimating_growth_stocks_in_setup_back/{id}", method = RequestMethod.POST)
+    public void estimatingGrowthStocksSetupBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataEstimatingGrowthStocksSetup webData = new WebDataEstimatingGrowthStocksSetup(id);
+        webData.setAction(Action.PREVIOUS);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_in_progress_back/{id}", method = RequestMethod.POST)

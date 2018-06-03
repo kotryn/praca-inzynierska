@@ -53,7 +53,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         }
 
         body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button", "/estimating_growth_stocks/"+jobId, "Next")));
+        body.add(new Item<>(new Button("button", "/estimating_growth_stocks_setup/"+jobId, "Next")));//TODO: "/estimating_growth_stocks/"+jobId
 
         return new Page(new Navbar(navbar), new Body(body));
     }
