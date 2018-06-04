@@ -40,7 +40,7 @@ public class ProcessEstimatingWorstCaseCopula implements IProcess {
         String csvFile = File.getFile("ESTIMATING_WORST_CASE_COPULA");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setWorstCaseCopula(readFile.csvGetOneColumn());
+        job.setCorrelationMatrix(Double.parseDouble(readFile.csvGetOneColumn().get(0)));
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

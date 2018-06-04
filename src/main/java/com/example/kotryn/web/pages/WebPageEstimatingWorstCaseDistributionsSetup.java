@@ -33,7 +33,7 @@ public class WebPageEstimatingWorstCaseDistributionsSetup {
         body.add(new Item<>(new Text("text", "Previously selected required growth rate: " + job.getGrowthRate())));
         body.add(new Item<>(new Input("input-integer", new String[]{"growthRate"}, new String[]{"Required growth rate:"})));
 
-        body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_setup_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_setup_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button-form", "/estimating_worst_case_distributions/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar) ,new Body(body));

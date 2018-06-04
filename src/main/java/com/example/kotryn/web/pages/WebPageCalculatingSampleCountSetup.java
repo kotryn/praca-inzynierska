@@ -42,7 +42,7 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Item<>(new Text("text", "Previous periodicity: " + job.getPeriodicity())));
         body.add(new Item<>(new Input("input", new String[]{"periodicity"}, new String[]{"Enter periodicity:"})));//TODO: radio button
 
-        body.add(new Item<>(new Button("button-back", "/calculating_sample_count_setup_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-back", "/calculating_sample_count_setup_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button-form", "/calculating_sample_count/"+jobId, "Next")));
 
 

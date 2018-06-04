@@ -12,8 +12,6 @@ public class File  {
                 return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/estimatingWorstCaseDistributions.csv";
             case "ESTIMATING_GROWTH_STOCKS":
                 return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/estimatingGrowthStocks.csv";
-            case "ESTIMATING_NON_CORRELATED_STOCKS":
-                return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/estimatingNonCorrelatedStocks.csv";
             case "ESTIMATING_WORST_CASE_COPULA":
                 return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/estimatingWorstCaseCopula.csv";
             case "BUILDING_ROBUST_PORTFOLIO":

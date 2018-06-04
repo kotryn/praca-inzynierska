@@ -553,7 +553,7 @@ public class MainController {
         return page.show();
     }
 
-    @RequestMapping(value = "/estimating_growth_stocks_in_setup_back/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/estimating_growth_stocks_setup_back/{id}", method = RequestMethod.POST)
     public void estimatingGrowthStocksSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksSetup webData = new WebDataEstimatingGrowthStocksSetup(id);
@@ -604,7 +604,6 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
-    /**/
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -660,7 +659,7 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    @RequestMapping(value = "/estimating_worst_case_copula_in_progress_completed_back/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/estimating_worst_case_copula_completed_back/{id}", method = RequestMethod.POST)
     public void estimatingWorstCaseCopulaCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(id);
@@ -669,15 +668,34 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    /**/
+
+    @RequestMapping(value = "/building_robust_portfolio_setup/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void buildingRobustPortfolioSetupPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+
+        WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(job.getId());
+
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
+    @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.GET)
+    public Page buildingRobustPortfolioGET(@PathVariable Long id) {
+        WebPageBuildingRobustPortfolioSetup page = new WebPageBuildingRobustPortfolioSetup(jobRepository, id);
+        return page.show();
+    }
+
     @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedWorstCaseCopula(jobDTO.getCheckbox());
-        job = jobRepository.save(job);
+        //job.setSelectedWorstCaseCopula(jobDTO.getCheckbox());
+        //job = jobRepository.save(job);
 
-        WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(job.getId());
-        webData.setSelectedWorstCaseCopula(job.getSelectedWorstCaseCopula());
+        WebDataBuildingRobustPortfolioSetup webData = new WebDataBuildingRobustPortfolioSetup(job.getId());
+       // webData.setSelectedWorstCaseCopula(job.getSelectedWorstCaseCopula());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
@@ -711,6 +729,16 @@ public class MainController {
         WebPageBuildingRobustPortfolioFailed page = new WebPageBuildingRobustPortfolioFailed(id, processDescriptorRepository);
         return page.show();
     }
+
+    @RequestMapping(value = "/building_robust_portfolio_setup_back/{id}", method = RequestMethod.POST)
+    public void buildingRobustPortfolioSetupBackPOST(@PathVariable Long id) {
+        Job job = jobRepository.findOne(id);
+        WebDataBuildingRobustPortfolioSetup webData = new WebDataBuildingRobustPortfolioSetup(id);
+        webData.setAction(Action.INTERRUPT);
+        processJob(webData);
+        url = this.jobsGET(job.getId());
+    }
+
 
     @RequestMapping(value = "/building_robust_portfolio_in_progress_back/{id}", method = RequestMethod.POST)
     public void buildingRobustPortfolioInProgressBackPOST(@PathVariable Long id) {

@@ -58,6 +58,8 @@ public class StateFactory  {
             case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
                 return new StateEstimatingWorstCaseCopulaInProgress(contextRepository, processDescriptorRepository);
 
+            case BUILDING_ROBUST_PORTFOLIO_SETUP:
+                return new StateBuildingRobustPortfolioSetup(jobRepository, contextRepository, processDescriptorRepository);
             case BUILDING_ROBUST_PORTFOLIO_COMPLETED:
                 return new StateBuildingRobustPortfolioCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case BUILDING_ROBUST_PORTFOLIO_FAILED:

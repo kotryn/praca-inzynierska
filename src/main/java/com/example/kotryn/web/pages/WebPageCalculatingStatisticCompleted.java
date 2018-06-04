@@ -37,7 +37,7 @@ public class WebPageCalculatingStatisticCompleted {
 
         body.add(new Item<>(new ListJ("list", statistic)));
 
-        body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "Back")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

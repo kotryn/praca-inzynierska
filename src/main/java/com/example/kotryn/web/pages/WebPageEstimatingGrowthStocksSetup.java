@@ -36,7 +36,7 @@ public class WebPageEstimatingGrowthStocksSetup {
         body.add(new Item<>(new Text("text", "Previously selected maximum correlation coefficient: " + job.getMaxCoefficient())));
         body.add(new Item<>(new Input("input-integer", new String[]{"maxCoefficient"}, new String[]{"Maximum correlation coefficient:"})));
 
-        body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_in_setup_back/"+jobId, "back")));//TODO
+        body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_setup_back/"+jobId, "Back")));//TODO
         body.add(new Item<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar) ,new Body(body));

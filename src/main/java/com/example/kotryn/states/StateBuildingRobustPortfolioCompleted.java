@@ -46,7 +46,7 @@ public class StateBuildingRobustPortfolioCompleted extends StateBase implements 
                 startProcess(input.getJobId());
                 break;
             case PREVIOUS:
-                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_SETUP, context, contextRepository);
                 break;
             default:
                 throw new RuntimeException("Undefined action");

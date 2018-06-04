@@ -39,7 +39,7 @@ public class StateBuildingRobustPortfolioInProgress extends StateBase implements
         switch (input.getAction()) {
             case INTERRUPT:
                 interruptProcess(input.getJobId());
-                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_SETUP, context, contextRepository);
                 break;
             case REFRESH:
                 verifyProcessType(ProcessType.BUILDING_ROBUST_PORTFOLIO, input.getJobId(), processDescriptorRepository);

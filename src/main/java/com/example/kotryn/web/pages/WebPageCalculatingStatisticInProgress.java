@@ -20,8 +20,8 @@ public class WebPageCalculatingStatisticInProgress {
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         body.add(new Item<>(new Text("text", "Calculating out-of sample statistic in progress")));
-        body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button", "/calculating_statistic_in_progress/"+jobId, "refresh")));
+        body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_back/"+jobId, "Back")));
+        body.add(new Item<>(new Button("button", "/calculating_statistic_in_progress/"+jobId, "Refresh")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

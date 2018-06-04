@@ -33,11 +33,11 @@ public class WebPageBuildingRobustPortfolioCompleted {
         List<String> selectedRobustPortfolio = Optional.ofNullable(job.getRobustPortfolio()).orElse(Collections.singletonList("none"));
         List<String> previouslySelectedRobustPortfolio = Optional.ofNullable(job.getSelectedRobustPortfolio()).orElse(Collections.singletonList("none"));
 
-        body.add(new Item<>(new Text("text", "Building robust portfolio completed successful")));
+        body.add(new Item<>(new Text("text", "Portfolio optimization completed successful")));
         body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedRobustPortfolio)));
         body.add(new Item<>( new Text("text", "Available: ")));
         body.add(new Item<>(new Checkbox("checkbox", selectedRobustPortfolio, selectedRobustPortfolio)));
-        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "submit")));
 
         return new Page(new Navbar(navbar), new Body(body));

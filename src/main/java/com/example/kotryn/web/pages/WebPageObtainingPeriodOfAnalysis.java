@@ -31,7 +31,7 @@ public class WebPageObtainingPeriodOfAnalysis {
         body.add(new Item<>(new Text("text", "Previous end date: " + job.getEndDate())));
         body.add(new Item<>(new Input("input-date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
         body.add(new Item<>(new Button("button-form", "/jobSetDate/"+jobId, "submit")));
-        body.add(new Item<>(new Button("button-back", "/", "back")));
+        body.add(new Item<>(new Button("button-back", "/", "Back")));
         body.add(new Item<>(new Button("button", "/period_of_analysis/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));

@@ -20,8 +20,8 @@ public class WebPageEstimatingGrowthStocksInProgress {
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         body.add(new Item<>(new Text("text", "Estimating growth stocks in progress")));
-        body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_in_progress_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button", "/estimating_growth_stocks_in_progress/"+jobId, "refresh")));
+        body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_in_progress_back/"+jobId, "Back")));
+        body.add(new Item<>(new Button("button", "/estimating_growth_stocks_in_progress/"+jobId, "Refresh")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

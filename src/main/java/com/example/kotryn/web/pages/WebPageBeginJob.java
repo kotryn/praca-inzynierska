@@ -20,8 +20,8 @@ public class WebPageBeginJob {
         navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
 
         body.add(new Item<>(new Text("text", "New job id: "+ jobId)));
-        body.add(new Item<>(new Button("button-back", "/", "back")));
-        body.add(new Item<>(new Button("button", "/jobsPOST/"+jobId, "connect")));
+        body.add(new Item<>(new Button("button-back", "/", "Back")));
+        body.add(new Item<>(new Button("button", "/jobsPOST/"+jobId, "Connect")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

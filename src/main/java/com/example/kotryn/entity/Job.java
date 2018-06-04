@@ -27,6 +27,7 @@ public class Job {
     private Double maxCoefficient;
     private Integer copulaWindowSize;
     private String copulaType;
+    private Double correlationMatrix;
 
     @ElementCollection
     private List<String> selectedStocks;
@@ -277,6 +278,14 @@ public class Job {
 
     public void setCopulaType(String copulaType) {
         this.copulaType = copulaType;
+    }
+
+    public Double getCorrelationMatrix() {
+        return correlationMatrix;
+    }
+
+    public void setCorrelationMatrix(Double correlationMatrix) {
+        this.correlationMatrix = correlationMatrix;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {

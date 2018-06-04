@@ -30,7 +30,7 @@ public class WebPageSearchingForStocksFailed {//TODO: failed
 
         body.add(new Item<>(new Text("text", "Searching for stocks failed. Reason: " + processDescriptor.getErrorMessage())));
         body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
-        body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "Back")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

@@ -36,7 +36,7 @@ public class WebPageCalculatingSampleCountCompleted {
         body.add(new Item<>(new Text("text", "In-sample: "+job.getInSample())));
         body.add(new Item<>( new Text("text", "Out-of-sample: "+job.getOutOfSample())));
 
-        body.add(new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "back")));
+        body.add(new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button", "/estimating_worst_case_distributions_setup/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));

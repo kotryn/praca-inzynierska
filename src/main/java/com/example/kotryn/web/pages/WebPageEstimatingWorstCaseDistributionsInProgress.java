@@ -21,8 +21,8 @@ public class WebPageEstimatingWorstCaseDistributionsInProgress {
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         body.add(new Item<>(new Text("text", "Estimating worst case distributions in progress")));
-        body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_in_progress_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button", "/estimating_worst_case_distributions_in_progress/"+jobId, "refresh")));
+        body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_in_progress_back/"+jobId, "Back")));
+        body.add(new Item<>(new Button("button", "/estimating_worst_case_distributions_in_progress/"+jobId, "Refresh")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

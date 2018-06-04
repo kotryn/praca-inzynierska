@@ -19,9 +19,9 @@ public class WebPageBuildingRobustPortfolioInProgress {
         navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Building robust portfolio in progress")));
-        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button", "/building_robust_portfolio_in_progress/"+jobId, "refresh")));
+        body.add(new Item<>(new Text("text", "Portfolio optimization in progress")));
+        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_back/"+jobId, "Back")));
+        body.add(new Item<>(new Button("button", "/building_robust_portfolio_in_progress/"+jobId, "Refresh")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }
