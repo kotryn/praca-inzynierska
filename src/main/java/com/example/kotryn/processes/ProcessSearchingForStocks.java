@@ -4,11 +4,9 @@ import com.example.kotryn.csv.CSVMyReader;
 import com.example.kotryn.csv.File;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
-//import com.example.kotryn.entity.WorstCaseDistributionSector;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.repository.SectorRepository;
-//import com.example.kotryn.repository.WorstCaseDistributionSectorRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -20,7 +18,6 @@ public class ProcessSearchingForStocks implements IProcess {
 
     private JobRepository jobRepository;
     private SectorRepository sectorRepository;
-    //private WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
@@ -28,7 +25,6 @@ public class ProcessSearchingForStocks implements IProcess {
         this.jobId = jobId;
         this.jobRepository = jobRepository;
         this.sectorRepository = sectorRepository;
-        //this.worstCaseDistributionSectorRepository = worstCaseDistributionSectorRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
 
@@ -48,7 +44,6 @@ public class ProcessSearchingForStocks implements IProcess {
         CSVMyReader readFile = new CSVMyReader(csvFile, sectorRepository, job);
         readFile.csvFirstSetStocks();
         job.setStocks(readFile.getStocksMap());
-        job.setAvailableStocks(readFile.getSymbols());
 
         jobRepository.saveAndFlush(job);
 

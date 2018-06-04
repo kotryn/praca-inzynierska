@@ -25,8 +25,6 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         //String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
-        List<String> test = Optional.ofNullable(job.getAvailableWorstCaseDistributionsStocks()).orElse(Collections.singletonList("none"));
-
         List<Item> body = new ArrayList<>();
         List<Item> navbar = new ArrayList<>();
 
@@ -53,7 +51,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         }
 
         body.add(new Item<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "back")));
-        body.add(new Item<>(new Button("button", "/estimating_growth_stocks_setup/"+jobId, "Next")));//TODO: "/estimating_growth_stocks/"+jobId
+        body.add(new Item<>(new Button("button", "/estimating_growth_stocks_setup/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

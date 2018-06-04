@@ -4,6 +4,7 @@ import com.example.kotryn.csv.CSVMyReader;
 import com.example.kotryn.csv.File;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
+import com.example.kotryn.repository.GrowthStockSectorRepository;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
@@ -14,13 +15,14 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 public class ProcessEstimatingGrowthStocks implements IProcess {
-
     private JobRepository jobRepository;
+    private GrowthStockSectorRepository growthStockSectorRepository;
     private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public ProcessEstimatingGrowthStocks(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public ProcessEstimatingGrowthStocks(Long jobId, JobRepository jobRepository, GrowthStockSectorRepository growthStockSectorRepository, ProcessDescriptorRepository processDescriptorRepository) {
         this.jobId = jobId;
+        this.growthStockSectorRepository = growthStockSectorRepository;
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
     }
@@ -38,9 +40,11 @@ public class ProcessEstimatingGrowthStocks implements IProcess {
         Job job = jobRepository.findOne(jobId);
 
         String csvFile = File.getFile("ESTIMATING_GROWTH_STOCKS");
-        CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setGrowthStocks(readFile.csvGetOneColumn());
+        CSVMyReader readFile = new CSVMyReader(csvFile, growthStockSectorRepository, job);
+        readFile.csvFirstSetStocks3();
+        job.setGrowthStock(readFile.getSectorsGrowthStockMap());
+
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

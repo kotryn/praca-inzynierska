@@ -26,8 +26,6 @@ public class Job {
     private Double maxCoefficient;
 
     @ElementCollection
-    private List<String> availableStocks;
-    @ElementCollection
     private List<String> selectedStocks;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
@@ -38,13 +36,9 @@ public class Job {
     @MapKey(name="sector")
     private Map<String, Sector> stocks;
 
-    @ElementCollection
-    private List<String> availableWorstCaseDistributionsStocks;
-
-    @ElementCollection
-    private List<String> growthStocks;
-    @ElementCollection
-    private List<String> selectedGrowthStocks;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
+    @MapKey(name="growthStockSector")
+    private Map<String, GrowthStockSector> growthStock;
 
     @ElementCollection
     private List<String> nonCorrelatedStocks;
@@ -68,13 +62,10 @@ public class Job {
     public Job(){
         this.startDate = "not set";
         this.endDate = "not set";
-        this.availableStocks = null;
         this.selectedStocks = null;
         this.stocks = null;
         this.windowSize = null;
         this.growthRate = null;
-        this.growthStocks = null;
-        this.selectedGrowthStocks = null;
         this.nonCorrelatedStocks = null;
         this.selectedNonCorrelatedStocks = null;
         this.worstCaseCopula = null;
@@ -124,14 +115,6 @@ public class Job {
         this.growthRate = growthRate;
     }
 
-    public List<String> getAvailableStocks() {
-        return availableStocks;
-    }
-
-    public void setAvailableStocks(List<String> availableStocks) {
-        this.availableStocks = availableStocks;
-    }
-
     public List<String> getSelectedStocks() {
         return selectedStocks;
     }
@@ -156,12 +139,12 @@ public class Job {
         this.worstCaseDistributionStocks = worstCaseDistributionStocks;
     }
 
-    public List<String> getAvailableWorstCaseDistributionsStocks() {
-        return availableWorstCaseDistributionsStocks;
+    public Map<String, GrowthStockSector> getGrowthStock() {
+        return growthStock;
     }
 
-    public void setAvailableWorstCaseDistributionsStocks(List<String> availableWorstCaseDistributionsStocks) {
-        this.availableWorstCaseDistributionsStocks = availableWorstCaseDistributionsStocks;
+    public void setGrowthStock(Map<String, GrowthStockSector> growthStock) {
+        this.growthStock = growthStock;
     }
 
     public String getStartInSampleDate() {
@@ -210,22 +193,6 @@ public class Job {
 
     public void setOutOfSample(String outOfSample) {
         this.outOfSample = outOfSample;
-    }
-
-    public List<String> getGrowthStocks() {
-        return growthStocks;
-    }
-
-    public void setGrowthStocks(List<String> growthStocks) {
-        this.growthStocks = growthStocks;
-    }
-
-    public List<String> getSelectedGrowthStocks() {
-        return selectedGrowthStocks;
-    }
-
-    public void setSelectedGrowthStocks(List<String> selectedGrowthStocks) {
-        this.selectedGrowthStocks = selectedGrowthStocks;
     }
 
     public List<String> getNonCorrelatedStocks() {
@@ -308,28 +275,16 @@ public class Job {
         this.maxCoefficient = maxCoefficient;
     }
 
-    public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value)
-    {
+    public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {
         List<K> listOfKeys = null;
-
-        //Check if Map contains the given value
-        if(mapOfWords.containsValue(value))
-        {
-            // Create an Empty List
+        if(mapOfWords.containsValue(value)) {
             listOfKeys = new ArrayList<>();
-
-            // Iterate over each entry of map using entrySet
-            for (Map.Entry<K, V> entry : mapOfWords.entrySet())
-            {
-                // Check if value matches with given value
-                if (entry.getValue().equals(value))
-                {
-                    // Store the key from entry to the list
+            for (Map.Entry<K, V> entry : mapOfWords.entrySet()) {
+                if (entry.getValue().equals(value)) {
                     listOfKeys.add(entry.getKey());
                 }
             }
         }
-        // Return the list of keys whose value matches with given value.
         return listOfKeys;
     }
 }

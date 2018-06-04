@@ -44,7 +44,6 @@ public class ProcessEstimatingWorstCaseDistributions implements IProcess {
         CSVMyReader readFile = new CSVMyReader(csvFile, worstCaseDistributionSectorRepository, job);
         readFile.csvFirstSetStocks2();
         job.setWorstCaseDistributionStocks(readFile.getSectorsWorstCaseDistributionsMap());
-        job.setAvailableWorstCaseDistributionsStocks(readFile.getSymbols());
 
         jobRepository.saveAndFlush(job);
 

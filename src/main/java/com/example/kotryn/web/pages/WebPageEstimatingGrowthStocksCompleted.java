@@ -1,14 +1,13 @@
 package com.example.kotryn.web.pages;
 
+import com.example.kotryn.entity.GrowthStockSector;
 import com.example.kotryn.entity.Job;
+import com.example.kotryn.entity.WorstCaseDistributionSector;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class WebPageEstimatingGrowthStocksCompleted {
 
@@ -30,15 +29,24 @@ public class WebPageEstimatingGrowthStocksCompleted {
 
         navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
-
-        List<String> selectedGrowthStocks = Optional.ofNullable(job.getGrowthStocks()).orElse(Collections.singletonList("none"));
-        List<String> previouslySelectedGrowthStocks = Optional.ofNullable(job.getSelectedGrowthStocks()).orElse(Collections.singletonList("none"));
-
         body.add(new Item<>(new Text("text", "Estimating growth stocks completed successful")));
-        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedGrowthStocks)));
-        body.add(new Item<>( new Text("text", "Available: ")));
 
-        body.add(new Item<>(new Checkbox("checkbox", selectedGrowthStocks, selectedGrowthStocks)));
+        Map<String, GrowthStockSector> map = new HashMap<>(job.getGrowthStock());
+
+        for (Map.Entry<String, GrowthStockSector> entry : map.entrySet()) {
+            body.add(new Item<>(new Text("text", entry.getKey())));//Sector
+            Set<String> industry = new HashSet<>();
+
+            for (Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()) {
+                industry.add(element.getValue());
+            }
+
+            for (String s : industry) {
+                body.add(new Item<>(new Text("text", s)));//Industry
+                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
+                body.add(new Item<>(new ListJ("list", name)));//Stocks
+            }
+        }
 
         body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "back")));
         body.add(new Item<>(new Button("button-form", "/estimating_non_correlated_stocks/"+jobId, "Submit")));

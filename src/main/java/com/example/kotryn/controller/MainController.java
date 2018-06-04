@@ -22,11 +22,11 @@ public class MainController {
     private String url = "/prompt_user";
     private String error = null;
 
-    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository, SectorRepository sectorRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository) {
+    public MainController(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, ContextRepository contextRepository, SectorRepository sectorRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository, GrowthStockSectorRepository growthStockSectorRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
-        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, sectorRepository, worstCaseDistributionSectorRepository));
+        AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, sectorRepository, worstCaseDistributionSectorRepository, growthStockSectorRepository));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -590,13 +590,11 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedGrowthStocks(jobDTO.getCheckbox());
         job = jobRepository.save(job);
 
         WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
-        webData.setSelectedGrowthStocks(job.getSelectedGrowthStocks());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

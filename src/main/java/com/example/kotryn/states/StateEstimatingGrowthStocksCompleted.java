@@ -28,18 +28,11 @@ public class StateEstimatingGrowthStocksCompleted extends StateBase implements I
         return "estimating_growth_stocks_completed/"+context.getJobId();
     }
 
-    private void saveSelectedEstimatingGrowthStocks(WebDataEstimatingGrowthStocksCompleted input) {
-        Job job = jobRepository.getOne(input.getJobId());
-        job.setSelectedGrowthStocks(input.getSelectedGrowthStocks());
-        jobRepository.saveAndFlush(job);
-    }
-
     @Override
     public void handle(Context context, IWebData webData) {
         WebDataEstimatingGrowthStocksCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                saveSelectedEstimatingGrowthStocks(input);
                 createProcessDescriptorAndSave(ProcessType.ESTIMATING_NON_CORRELATED_STOCKS, input.getJobId(),
                        processDescriptorRepository);
                 moveToNextStateAndSave(State.ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS, context, contextRepository);

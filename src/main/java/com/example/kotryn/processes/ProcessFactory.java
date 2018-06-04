@@ -1,10 +1,7 @@
 package com.example.kotryn.processes;
 
 import com.example.kotryn.entity.ProcessDescriptor;
-import com.example.kotryn.repository.JobRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.repository.SectorRepository;
-import com.example.kotryn.repository.WorstCaseDistributionSectorRepository;
+import com.example.kotryn.repository.*;
 
 public class ProcessFactory implements IProcessFactory {
 
@@ -12,12 +9,14 @@ public class ProcessFactory implements IProcessFactory {
     private final ProcessDescriptorRepository processDescriptorRepository;
     private SectorRepository sectorRepository;
     private WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository;
+    private GrowthStockSectorRepository growthStockSectorRepository;
 
-    public ProcessFactory(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, SectorRepository sectorRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository) {
+    public ProcessFactory(JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository, SectorRepository sectorRepository, WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository, GrowthStockSectorRepository growthStockSectorRepository) {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.sectorRepository = sectorRepository;
         this.worstCaseDistributionSectorRepository = worstCaseDistributionSectorRepository;
+        this.growthStockSectorRepository = growthStockSectorRepository;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class ProcessFactory implements IProcessFactory {
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS:
                 return new ProcessEstimatingWorstCaseDistributions(jobId, jobRepository, worstCaseDistributionSectorRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS:
-                return new ProcessEstimatingGrowthStocks(jobId, jobRepository, processDescriptorRepository);
+                return new ProcessEstimatingGrowthStocks(jobId, jobRepository, growthStockSectorRepository, processDescriptorRepository);
             case ESTIMATING_NON_CORRELATED_STOCKS:
                 return new ProcessEstimatingNonCorrelatedStocks(jobId, jobRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_COPULA:
