@@ -42,19 +42,15 @@ public class StateFactory  {
             case ESTIMATING_GROWTH_STOCKS_SETUP:
                 return new StateEstimatingGrowthStocksSetup(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_GROWTH_STOCKS_COMPLETED:
-                return new StateEstimatingGrowthStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
+                return new StateEstimatingGrowthStocksCompleted(contextRepository);
             case ESTIMATING_GROWTH_STOCKS_FAILED:
                 return new StateEstimatingGrowthStocksFailed(jobRepository, contextRepository);
             case ESTIMATING_GROWTH_STOCKS_IN_PROGRESS:
                 return new StateEstimatingGrowthStocksInProgress(contextRepository, processDescriptorRepository);
 
-            case ESTIMATING_NON_CORRELATED_STOCKS_COMPLETED:
-                return new StateEstimatingNonCorrelatedStocksCompleted(jobRepository, contextRepository, processDescriptorRepository);
-            case ESTIMATING_NON_CORRELATED_STOCKS_FAILED:
-                return new StateEstimatingNonCorrelatedStocksFailed(jobRepository, contextRepository);
-            case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
-                return new StateEstimatingNonCorrelatedStocksInProgress(contextRepository, processDescriptorRepository);
 
+            case ESTIMATING_WORST_CASE_COPULA_SETUP:
+                return new StateEstimatingWorstCaseCopulaSetup(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_COPULA_COMPLETED:
                 return new StateEstimatingWorstCaseCopulaCompleted(jobRepository, contextRepository, processDescriptorRepository);
             case ESTIMATING_WORST_CASE_COPULA_FAILED:

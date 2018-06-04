@@ -40,7 +40,6 @@ public class ProcessEstimatingNonCorrelatedStocks implements IProcess {
         String csvFile = File.getFile("ESTIMATING_NON_CORRELATED_STOCKS");
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setNonCorrelatedStocks(readFile.csvGetOneColumn());
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

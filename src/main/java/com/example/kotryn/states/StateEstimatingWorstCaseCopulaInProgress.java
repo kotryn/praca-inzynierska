@@ -39,7 +39,7 @@ public class StateEstimatingWorstCaseCopulaInProgress extends StateBase implemen
         switch (input.getAction()) {
             case INTERRUPT:
                 interruptProcess(input.getJobId());
-                moveToNextStateAndSave(State.ESTIMATING_NON_CORRELATED_STOCKS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_SETUP, context, contextRepository);
                 break;
             case REFRESH:
                 verifyProcessType(ProcessType.ESTIMATING_WORST_CASE_COPULA, input.getJobId(), processDescriptorRepository);

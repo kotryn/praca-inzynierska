@@ -120,12 +120,6 @@ public class MainController {
                     webData4.setAction(Action.REFRESH);
                     processJob(webData4);
                     break;
-                case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
-                    WebDataEstimatingNonCorrelatedStocksInProgress webData5 =
-                            new WebDataEstimatingNonCorrelatedStocksInProgress(requestJob.getId());
-                    webData5.setAction(Action.REFRESH);
-                    processJob(webData5);
-                    break;
                 case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
                     WebDataEstimatingWorstCaseCopulaInProgress webData6 =
                             new WebDataEstimatingWorstCaseCopulaInProgress(requestJob.getId());
@@ -202,11 +196,6 @@ public class MainController {
                     WebDataEstimatingGrowthStocksInProgress webData4 = new WebDataEstimatingGrowthStocksInProgress(id);
                     webData4.setAction(Action.INTERRUPT);
                     processJob(webData4);
-                    break;
-                case ESTIMATING_NON_CORRELATED_STOCKS_IN_PROGRESS:
-                    WebDataEstimatingNonCorrelatedStocksInProgress webData5 = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
-                    webData5.setAction(Action.INTERRUPT);
-                    processJob(webData5);
                     break;
                 case ESTIMATING_WORST_CASE_COPULA_IN_PROGRESS:
                     WebDataEstimatingWorstCaseCopulaInProgress webData6 = new WebDataEstimatingWorstCaseCopulaInProgress(id);
@@ -498,6 +487,7 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
+    /****************************/
     @RequestMapping(value = "/estimating_growth_stocks_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void estimatingGrowthStocksSetupPOST(@PathVariable Long id) {
@@ -589,75 +579,44 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
+    /******************************/
 
-    @RequestMapping(value = "/estimating_non_correlated_stocks/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingNonCorrelatedStocksPOST(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-        job = jobRepository.save(job);
-
-        WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
-
-        processJob(webData);
-        url = this.jobsGET(job.getId());
-    }
-
-    @RequestMapping(value = "/estimating_non_correlated_stocks_in_progress/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/estimating_worst_case_copula_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void estimatingNonCorrelatedStocksInProgressPOST(@PathVariable Long id) {
+    public void estimatingWorstCaseCopulaSetupPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        WebDataEstimatingNonCorrelatedStocksInProgress webData = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
-        webData.setAction(Action.REFRESH);
-
+        WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
 
-    @RequestMapping(value = "/estimating_non_correlated_stocks_in_progress/{id}", method = RequestMethod.GET)
-    public Page estimatingNonCorrelatedStocksInProgressGET(@PathVariable Long id) {
-        WebPageEstimatingNonCorrelatedStocksInProgress page = new WebPageEstimatingNonCorrelatedStocksInProgress(id);
+    @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.GET)
+    public Page estimatingWorstCaseCopulaGET(@PathVariable Long id) {
+        WebPageEstimatingWorstCaseCopulaSetup page = new WebPageEstimatingWorstCaseCopulaSetup(jobRepository, id);
         return page.show();
     }
 
-    @RequestMapping(value = "/estimating_non_correlated_stocks_completed/{id}", method = RequestMethod.GET)
-    public Page estimatingNonCorrelatedStocksCompletedGET(@PathVariable Long id) {
-        WebPageEstimatingNonCorrelatedStocksCompleted page = new WebPageEstimatingNonCorrelatedStocksCompleted(id, jobRepository, processDescriptorRepository);
-        return page.show();
-    }
-
-    @RequestMapping(value = "/estimating_non_correlated_stocks_failed/{id}", method = RequestMethod.GET)
-    public Page estimatingNonCorrelatedStocksFailedGET(@PathVariable Long id) {
-        WebPageEstimatingNonCorrelatedStocksFailed page = new WebPageEstimatingNonCorrelatedStocksFailed(id, processDescriptorRepository);
-        return page.show();
-    }
-
-    @RequestMapping(value = "/estimating_non_correlated_stocks_in_progress_back/{id}", method = RequestMethod.POST)
-    public void estimatingNonCorrelatedStocksInProgressBackPOST(@PathVariable Long id) {
+    @RequestMapping(value = "/estimating_worst_case_copula_setup_back/{id}", method = RequestMethod.POST)
+    public void estimatingWorstCaseCopulaSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-        WebDataEstimatingNonCorrelatedStocksInProgress webData = new WebDataEstimatingNonCorrelatedStocksInProgress(id);
-        webData.setAction(Action.INTERRUPT);
-        processJob(webData);
-        url = this.jobsGET(job.getId());
-    }
-
-   @RequestMapping(value = "/estimating_non_correlated_stocks_completed_back/{id}", method = RequestMethod.POST)
-    public void estimatingNonCorrelatedStocksCompletedBackPOST(@PathVariable Long id) {
-        Job job = jobRepository.findOne(id);
-       WebDataEstimatingNonCorrelatedStocksCompleted webData = new WebDataEstimatingNonCorrelatedStocksCompleted(id);
+        WebDataEstimatingWorstCaseCopulaSetup webData = new WebDataEstimatingWorstCaseCopulaSetup(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
+    /**/
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+    public void estimatingWorstCaseCopulaPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedNonCorrelatedStocks(jobDTO.getCheckbox());
+        job.setCopulaWindowSize(jobRequest.getCopulaWindowSize());
+        job.setCopulaType(jobRequest.getCopulaType());
         job = jobRepository.save(job);
 
-        WebDataEstimatingNonCorrelatedStocksCompleted webData = new WebDataEstimatingNonCorrelatedStocksCompleted(job.getId());
-        webData.setSelectedNonCorrelatedStocks(job.getSelectedNonCorrelatedStocks());
+        WebDataEstimatingWorstCaseCopulaSetup webData = new WebDataEstimatingWorstCaseCopulaSetup(job.getId());
+        webData.setCopulaWindowSize(job.getCopulaWindowSize());
+        webData.setCopulaType(job.getCopulaType());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

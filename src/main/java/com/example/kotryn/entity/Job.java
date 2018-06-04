@@ -25,6 +25,8 @@ public class Job {
     private Integer maxNumberSector;
     private Integer maxNumberIndustry;
     private Double maxCoefficient;
+    private Integer copulaWindowSize;
+    private String copulaType;
 
     @ElementCollection
     private List<String> selectedStocks;
@@ -40,11 +42,6 @@ public class Job {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
     @MapKey(name="growthStockSector")
     private Map<String, GrowthStockSector> growthStock;
-
-    @ElementCollection
-    private List<String> nonCorrelatedStocks;
-    @ElementCollection
-    private List<String> selectedNonCorrelatedStocks;
 
     @ElementCollection
     private List<String> worstCaseCopula;
@@ -67,8 +64,6 @@ public class Job {
         this.stocks = null;
         this.windowSize = null;
         this.growthRate = null;
-        this.nonCorrelatedStocks = null;
-        this.selectedNonCorrelatedStocks = null;
         this.worstCaseCopula = null;
         this.selectedWorstCaseCopula = null;
         this.robustPortfolio = null;
@@ -204,22 +199,6 @@ public class Job {
         this.outOfSample = outOfSample;
     }
 
-    public List<String> getNonCorrelatedStocks() {
-        return nonCorrelatedStocks;
-    }
-
-    public void setNonCorrelatedStocks(List<String> nonCorrelatedStocks) {
-        this.nonCorrelatedStocks = nonCorrelatedStocks;
-    }
-
-    public List<String> getSelectedNonCorrelatedStocks() {
-        return selectedNonCorrelatedStocks;
-    }
-
-    public void setSelectedNonCorrelatedStocks(List<String> selectedNonCorrelatedStocks) {
-        this.selectedNonCorrelatedStocks = selectedNonCorrelatedStocks;
-    }
-
     public List<String> getWorstCaseCopula() {
         return worstCaseCopula;
     }
@@ -282,6 +261,22 @@ public class Job {
 
     public void setMaxCoefficient(Double maxCoefficient) {
         this.maxCoefficient = maxCoefficient;
+    }
+
+    public Integer getCopulaWindowSize() {
+        return copulaWindowSize;
+    }
+
+    public void setCopulaWindowSize(Integer copulaWindowSize) {
+        this.copulaWindowSize = copulaWindowSize;
+    }
+
+    public String getCopulaType() {
+        return copulaType;
+    }
+
+    public void setCopulaType(String copulaType) {
+        this.copulaType = copulaType;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {

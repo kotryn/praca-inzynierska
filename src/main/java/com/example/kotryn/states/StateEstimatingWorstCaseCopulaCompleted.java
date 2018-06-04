@@ -46,7 +46,7 @@ public class StateEstimatingWorstCaseCopulaCompleted extends StateBase implement
                 startProcess(input.getJobId());
                 break;
             case PREVIOUS:
-                moveToNextStateAndSave(State.ESTIMATING_NON_CORRELATED_STOCKS_COMPLETED, context, contextRepository);
+                moveToNextStateAndSave(State.ESTIMATING_WORST_CASE_COPULA_SETUP, context, contextRepository);
                 break;
             default:
                 throw new RuntimeException("Undefined action");
