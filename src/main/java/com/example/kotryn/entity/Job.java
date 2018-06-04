@@ -17,6 +17,7 @@ public class Job {
     private String endInSampleDate;
     private String startOutOfSampleDate;
     private String endOutOfSampleDate;
+    private String periodicity;
     private Integer windowSize;
     private Integer growthRate;
     private String inSample;
@@ -177,6 +178,14 @@ public class Job {
 
     public void setEndOutOfSampleDate(String endOutOfSampleDate) {
         this.endOutOfSampleDate = endOutOfSampleDate;
+    }
+
+    public String getPeriodicity() {
+        return periodicity;
+    }
+
+    public void setPeriodicity(String periodicity) {
+        this.periodicity = periodicity;
     }
 
     public String getInSample() {

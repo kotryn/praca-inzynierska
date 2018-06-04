@@ -8,6 +8,7 @@ public class WebDataCalculatingSampleCountSetup implements IWebData {
     private String endInSampleDate;
     private String startOutOfSampleDate;
     private String endOutOfSampleDate;
+    private String periodicity;
 
     public WebDataCalculatingSampleCountSetup(Long jobId) {
         this.jobId = jobId;
@@ -58,5 +59,13 @@ public class WebDataCalculatingSampleCountSetup implements IWebData {
 
     public void setEndOutOfSampleDate(String endOutOfSampleDate) {
         this.endOutOfSampleDate = endOutOfSampleDate;
+    }
+
+    public String getPeriodicity() {
+        return periodicity;
+    }
+
+    public void setPeriodicity(String periodicity) {
+        this.periodicity = periodicity;
     }
 }

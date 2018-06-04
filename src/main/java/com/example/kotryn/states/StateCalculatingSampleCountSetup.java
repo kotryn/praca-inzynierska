@@ -33,6 +33,7 @@ public class StateCalculatingSampleCountSetup extends StateBase implements IStat
         job.setEndInSampleDate(input.getEndInSampleDate());
         job.setStartOutOfSampleDate(input.getStartOutOfSampleDate());
         job.setEndOutOfSampleDate(input.getEndOutOfSampleDate());
+        job.setPeriodicity(input.getPeriodicity());
         jobRepository.saveAndFlush(job);
     }
 

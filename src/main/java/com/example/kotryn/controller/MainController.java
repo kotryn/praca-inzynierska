@@ -351,6 +351,7 @@ public class MainController {
         job.setEndInSampleDate(jobRequest.getEndInSampleDate());
         job.setStartOutOfSampleDate(jobRequest.getStartOutOfSampleDate());
         job.setEndOutOfSampleDate(jobRequest.getEndOutOfSampleDate());
+        job.setPeriodicity(jobRequest.getPeriodicity());
         job = jobRepository.save(job);
 
         WebDataCalculatingSampleCountSetup webData = new WebDataCalculatingSampleCountSetup(job.getId());
@@ -358,6 +359,7 @@ public class MainController {
         webData.setEndInSampleDate(job.getEndInSampleDate());
         webData.setStartOutOfSampleDate(job.getStartOutOfSampleDate());
         webData.setEndOutOfSampleDate(job.getEndOutOfSampleDate());
+        webData.setPeriodicity(job.getPeriodicity());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
