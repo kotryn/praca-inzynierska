@@ -27,17 +27,17 @@ public class WebPageBuildingRobustPortfolioSetup {
 
         body.add(new Item<>(new Text("text", "Portfolio optimisation setup")));
 
-        //body.add(new Item<>(new Text("text", "Previously selected number of samples: " /*+ job.getMaxNumberSector()*/)));
-       // body.add(new Item<>(new Input("input-integer", new String[]{"numberOfSamples"}, new String[]{"Number of samples:"})));
+        body.add(new Item<>(new Text("text", "Previously selected number of samples: " + job.getNumberOfSamples())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"numberOfSamples"}, new String[]{"Number of samples:"})));
 
-       // body.add(new Item<>(new Text("text", "Previously selected required year rate of return: " /*+ job.getMaxNumberIndustry()*/)));
-        //body.add(new Item<>(new Input("input-integer", new String[]{"yearRateOfReturn"}, new String[]{"Required year rate of return:"})));
+        body.add(new Item<>(new Text("text", "Previously selected required year rate of return: " + job.getYearRateOfReturn())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"yearRateOfReturn"}, new String[]{"Required year rate of return:"})));
 
-        //body.add(new Item<>(new Text("text", "Previously selected CVaR (Conditional Value At Risk) tolerance level (ß): "/* + job.getMaxCoefficient()*/)));
-        //body.add(new Item<>(new Input("input-integer", new String[]{"toleranceLevel"}, new String[]{"CVaR tolerance level (ß):"})));
+        body.add(new Item<>(new Text("text", "Previously selected CVaR (Conditional Value At Risk) tolerance level (ß): " + job.getToleranceLevel())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"toleranceLevel"}, new String[]{"CVaR tolerance level (ß):"})));
 
-        //body.add(new Item<>(new Text("text", "Previously selected required maximum number of shares: " /*+ job.getMaxCoefficient()*/)));
-        //body.add(new Item<>(new Input("input-integer", new String[]{"maxShare"}, new String[]{"CVaR tolerance level (ß):"})));
+        body.add(new Item<>(new Text("text", "Previously selected required maximum number of shares: " + job.getMaxShare())));
+        body.add(new Item<>(new Input("input-integer", new String[]{"maxShare"}, new String[]{"Required maximum number of shares:"})));
 
         body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_setup_back/"+jobId, "Back")));//TODO
         body.add(new Item<>(new Button("button-form", "/building_robust_portfolio/"+jobId, "Next")));

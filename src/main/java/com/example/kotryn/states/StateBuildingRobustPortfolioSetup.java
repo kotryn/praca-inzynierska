@@ -28,7 +28,10 @@ public class StateBuildingRobustPortfolioSetup extends StateBase implements ISta
 
     private void saveBuildingRobustPortfolioSetup(WebDataBuildingRobustPortfolioSetup input) {
         Job job = jobRepository.getOne(input.getJobId());
-        //job.setMaxNumberSector(input.getMaxNumberSector());
+        job.setNumberOfSamples(input.getNumberOfSamples());
+        job.setYearRateOfReturn(input.getYearRateOfReturn());
+        job.setToleranceLevel(input.getToleranceLevel());
+        job.setMaxShare(input.getMaxShare());
         jobRepository.saveAndFlush(job);
     }
 
@@ -37,7 +40,7 @@ public class StateBuildingRobustPortfolioSetup extends StateBase implements ISta
         WebDataBuildingRobustPortfolioSetup input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                //saveBuildingRobustPortfolioSetup(input);
+                saveBuildingRobustPortfolioSetup(input);
                 createProcessDescriptorAndSave(ProcessType.BUILDING_ROBUST_PORTFOLIO, input.getJobId(), processDescriptorRepository);
                 moveToNextStateAndSave(State.BUILDING_ROBUST_PORTFOLIO_IN_PROGRESS, context, contextRepository);
                 startProcess(input.getJobId());

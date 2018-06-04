@@ -28,6 +28,10 @@ public class Job {
     private Integer copulaWindowSize;
     private String copulaType;
     private Double correlationMatrix;
+    private Integer numberOfSamples;
+    private Double yearRateOfReturn;
+    private Double toleranceLevel;
+    private Double maxShare;
 
     @ElementCollection
     private List<String> selectedStocks;
@@ -45,11 +49,6 @@ public class Job {
     private Map<String, GrowthStockSector> growthStock;
 
     @ElementCollection
-    private List<String> worstCaseCopula;
-    @ElementCollection
-    private List<String> selectedWorstCaseCopula;
-
-    @ElementCollection
     private List<String> robustPortfolio;
     @ElementCollection
     private List<String> selectedRobustPortfolio;
@@ -65,8 +64,6 @@ public class Job {
         this.stocks = null;
         this.windowSize = null;
         this.growthRate = null;
-        this.worstCaseCopula = null;
-        this.selectedWorstCaseCopula = null;
         this.robustPortfolio = null;
         this.selectedRobustPortfolio = null;
         this.statistic = null;
@@ -200,22 +197,6 @@ public class Job {
         this.outOfSample = outOfSample;
     }
 
-    public List<String> getWorstCaseCopula() {
-        return worstCaseCopula;
-    }
-
-    public void setWorstCaseCopula(List<String> worstCaseCopula) {
-        this.worstCaseCopula = worstCaseCopula;
-    }
-
-    public List<String> getSelectedWorstCaseCopula() {
-        return selectedWorstCaseCopula;
-    }
-
-    public void setSelectedWorstCaseCopula(List<String> selectedWorstCaseCopula) {
-        this.selectedWorstCaseCopula = selectedWorstCaseCopula;
-    }
-
     public List<String> getRobustPortfolio() {
         return robustPortfolio;
     }
@@ -286,6 +267,38 @@ public class Job {
 
     public void setCorrelationMatrix(Double correlationMatrix) {
         this.correlationMatrix = correlationMatrix;
+    }
+
+    public Integer getNumberOfSamples() {
+        return numberOfSamples;
+    }
+
+    public void setNumberOfSamples(Integer numberOfSamples) {
+        this.numberOfSamples = numberOfSamples;
+    }
+
+    public Double getYearRateOfReturn() {
+        return yearRateOfReturn;
+    }
+
+    public void setYearRateOfReturn(Double yearRateOfReturn) {
+        this.yearRateOfReturn = yearRateOfReturn;
+    }
+
+    public Double getToleranceLevel() {
+        return toleranceLevel;
+    }
+
+    public void setToleranceLevel(Double toleranceLevel) {
+        this.toleranceLevel = toleranceLevel;
+    }
+
+    public Double getMaxShare() {
+        return maxShare;
+    }
+
+    public void setMaxShare(Double maxShare) {
+        this.maxShare = maxShare;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {

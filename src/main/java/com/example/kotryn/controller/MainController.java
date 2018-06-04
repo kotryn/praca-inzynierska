@@ -689,13 +689,19 @@ public class MainController {
 
     @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+    public void buildingRobustPortfolioPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
         Job job = jobRepository.findOne(id);
-        //job.setSelectedWorstCaseCopula(jobDTO.getCheckbox());
-        //job = jobRepository.save(job);
+        job.setNumberOfSamples(jobRequest.getNumberOfSamples());
+        job.setYearRateOfReturn(jobRequest.getYearRateOfReturn());
+        job.setToleranceLevel(jobRequest.getToleranceLevel());
+        job.setMaxShare(jobRequest.getMaxShare());
+        job = jobRepository.save(job);
 
         WebDataBuildingRobustPortfolioSetup webData = new WebDataBuildingRobustPortfolioSetup(job.getId());
-       // webData.setSelectedWorstCaseCopula(job.getSelectedWorstCaseCopula());
+        webData.setNumberOfSamples(job.getNumberOfSamples());
+        webData.setYearRateOfReturn(job.getYearRateOfReturn());
+        webData.setToleranceLevel(job.getToleranceLevel());
+        webData.setMaxShare(job.getMaxShare());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
