@@ -4,11 +4,6 @@ import {connect} from "react-redux";
 import {editInputValue} from "../../actions/formData";
 
 class Input extends React.Component{
-
-    constructor(props) {
-        super(props);
-    }
-
     handle(e) {
         this.props.editInputValue(e.target.value,  this.props.id);
     }
@@ -17,7 +12,7 @@ class Input extends React.Component{
 
         const {name, id, type} = this.props;
 
-        let t = "text";
+        let t;
         switch(type){
             case "input-integer":
                 t = "number";
@@ -25,6 +20,8 @@ class Input extends React.Component{
             case "input-date":
                 t = "date";
                 break;
+            default:
+                t = "text";
         }
 
         return (

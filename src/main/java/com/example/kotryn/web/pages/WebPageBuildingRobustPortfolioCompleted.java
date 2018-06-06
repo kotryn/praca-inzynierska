@@ -38,7 +38,7 @@ public class WebPageBuildingRobustPortfolioCompleted {
         body.add(new Item<>( new Text("text", "Available: ")));
         body.add(new Item<>(new Checkbox("checkbox", selectedRobustPortfolio, selectedRobustPortfolio)));
         body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "submit")));
+        body.add(new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

@@ -1,11 +1,6 @@
 import React from 'react';
 
 class List extends React.Component{
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {items} = this.props.config;
         const component = items.map((e, i) => (

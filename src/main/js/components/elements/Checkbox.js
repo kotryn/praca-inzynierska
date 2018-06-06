@@ -3,11 +3,6 @@ import {editInputValue} from "../../actions/formData";
 import {connect} from "react-redux";
 
 class Checkbox extends React.Component{
-
-    constructor(props) {
-        super(props);
-    }
-
     handle(e) {
         this.props.editInputValue( e.target.checked,  this.props.id);
     }

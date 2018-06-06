@@ -61,7 +61,7 @@ public class WebPageSearchingForStocksCompleted {
 
 
         body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Submit")));
+        body.add(new Item<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

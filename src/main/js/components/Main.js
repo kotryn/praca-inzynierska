@@ -16,11 +16,6 @@ import List from "./elements/List"
 
 
 class Main extends React.Component{
-
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.getPageDataInfo()
     }
@@ -35,55 +30,55 @@ class Main extends React.Component{
             return <div>{status}</div>
         }
 
-        function setComponentType(element, component){
+        function setComponentType(element, component, index){
             switch(element.type){
                 case "title":
-                    component.push(<Title config={element}/>);
+                    component.push(<Title config={element} key={index} />);
                     break;
                 case "text":
-                    component.push(<Text config={element}/>);
+                    component.push(<Text config={element} key={index} />);
                     break;
                 case "text-navbar":
-                    component.push(<Text config={element}/>);
+                    component.push(<Text config={element} key={index} />);
                     break;
                 case "line":
-                    component.push(<Line config={element}/>);
+                    component.push(<Line config={element} key={index} />);
                     break;
                 case "button":
-                    component.push(<Button config={element} />);
+                    component.push(<Button config={element} key={index}  />);
                     break;
                 case "button-start-page":
-                    component.push(<Button config={element} />);
+                    component.push(<Button config={element} key={index}  />);
                     break;
                 case "button-back":
-                    component.push(<ButtonBack config={element} />);
+                    component.push(<ButtonBack config={element} key={index}  />);
                     break;
                 case "button-delete":
-                    component.push(<ButtonDelete config={element} />);
+                    component.push(<ButtonDelete config={element} key={index}  />);
                     break;
                 case "button-form":
-                    component.push(<ButtonForm config={element} />);
+                    component.push(<ButtonForm config={element} key={index}  />);
                     break;
                 case "table":
-                    component.push(<Table config={element}/>);
+                    component.push(<Table config={element} key={index} />);
                     break;
                 case "input":
-                    component.push(<Form config={element}/>);
+                    component.push(<Form config={element} key={index} />);
                     break;
                 case "input-date":
-                    component.push(<Form config={element}/>);
+                    component.push(<Form config={element} key={index} />);
                     break;
                 case "input-integer":
-                    component.push(<Form config={element}/>);
+                    component.push(<Form config={element} key={index} />);
                     break;
                 case "image":
-                    component.push(<Image config={element} />);
+                    component.push(<Image config={element} key={index}  />);
                     break;
                 case "checkbox":
-                    component.push(<Form config={element} />);
+                    component.push(<Form config={element} key={index}  />);
                     break;
                 case "list":
-                    component.push(<List config={element} />);
+                    component.push(<List config={element} key={index}  />);
                     break;
                 default:
                     console.log('unknown type of component');
@@ -92,13 +87,13 @@ class Main extends React.Component{
         }
 
         let components = [];
-        config.body && config.body.items.map((element)=>{
-            setComponentType(element.item, components);
+        config.body && config.body.items.map((element, index)=>{
+            setComponentType(element.item, components, index);
         });
 
         let navbarComponents = [];
-        config.navbar && config.navbar.items.map((element)=>{
-            setComponentType(element.item, navbarComponents);
+        config.navbar && config.navbar.items.map((element, index)=>{
+            setComponentType(element.item, navbarComponents, index);
         });
 
         return (

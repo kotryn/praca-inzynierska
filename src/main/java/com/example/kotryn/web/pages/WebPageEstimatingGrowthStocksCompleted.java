@@ -49,7 +49,7 @@ public class WebPageEstimatingGrowthStocksCompleted {
         }
 
         body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button", "/estimating_worst_case_copula_setup/"+jobId, "Submit")));
+        body.add(new Item<>(new Button("button", "/estimating_worst_case_copula_setup/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }
