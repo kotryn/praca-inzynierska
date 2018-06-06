@@ -3,6 +3,8 @@ package com.example.kotryn.states;
 public enum State {
     UNKNOWN,
 
+    NEW_JOB,
+
     OBTAINING_PERIOD_OF_ANALYSIS,
 
     SEARCHING_FOR_STOCKS_COMPLETED,

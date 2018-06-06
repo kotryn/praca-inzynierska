@@ -20,6 +20,10 @@ public class MainController {
     private ProcessDescriptorRepository processDescriptorRepository;
     private ContextRepository contextRepository;
 
+    private SectorRepository sectorRepository;
+    private WorstCaseDistributionSectorRepository worstCaseDistributionSectorRepository;
+    private GrowthStockSectorRepository growthStockSectorRepository;
+
     private String url = "/prompt_user";
     private String error = null;
 
@@ -27,6 +31,11 @@ public class MainController {
         this.jobRepository = jobRepository;
         this.processDescriptorRepository = processDescriptorRepository;
         this.contextRepository = contextRepository;
+
+        this.sectorRepository = sectorRepository;
+        this.worstCaseDistributionSectorRepository = worstCaseDistributionSectorRepository;
+        this.growthStockSectorRepository = growthStockSectorRepository;
+
         AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, sectorRepository, worstCaseDistributionSectorRepository, growthStockSectorRepository));
     }
 
@@ -74,6 +83,7 @@ public class MainController {
         Job job = new Job();
         job = jobRepository.save(job);
         Context context = new Context(job.getId());
+        context.setState(NEW_JOB);
         contextRepository.save(context);
         processDescriptorRepository.save(new ProcessDescriptor(job.getId()));
         url = "/begin_job/"+job.getId();
@@ -214,6 +224,12 @@ public class MainController {
                     processJob(webData8);
                     break;
             }
+            growthStockSectorRepository.removeByJobId(id);
+            growthStockSectorRepository.flush();
+            worstCaseDistributionSectorRepository.removeByJobId(id);
+            worstCaseDistributionSectorRepository.flush();
+            sectorRepository.removeByJobId(id);
+            sectorRepository.flush();
             jobRepository.delete(id);
             jobRepository.flush();
             contextRepository.delete(id);
