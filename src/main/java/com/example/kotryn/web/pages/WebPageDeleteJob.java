@@ -17,7 +17,7 @@ public class WebPageDeleteJob {
         List<Item> body = new ArrayList<>();
         List<Item> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
 
         body.add(new Item<>(new Text("text", "Delete job")));
         if(error != null){

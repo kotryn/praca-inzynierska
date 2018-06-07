@@ -27,7 +27,7 @@ public class WebPageCalculatingStatisticCompleted {
         List<Item> body = new ArrayList<>();
         List<Item> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/prompt_user", "Start page")));
+        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         List<String> statistic = Optional.ofNullable(job.getStatistic()).orElse(Collections.singletonList("none"));
