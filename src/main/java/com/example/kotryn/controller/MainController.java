@@ -80,13 +80,6 @@ public class MainController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void prevPage() {
-        error = null;
-        url = "/start_page";
-    }
-
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     RedirectView redirect()  {
         RedirectView redirectView = new RedirectView();
@@ -103,6 +96,7 @@ public class MainController {
     @RequestMapping(value = "/start_page", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void promptUserPOST() {
+        error = null;
         url = "/start_page";
     }
 

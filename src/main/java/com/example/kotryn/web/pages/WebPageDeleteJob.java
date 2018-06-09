@@ -24,7 +24,7 @@ public class WebPageDeleteJob {
             body.add(new Item<>(new Text("text", error)));
         }
         body.add(new Item<>(new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"})));
-        body.add(new Item<>(new Button("button-back", "/", "Back")));
+        body.add(new Item<>(new Button("button-back", "/start_page", "Back")));
         body.add(new Item<>(new Button("button-delete", "/delete_job", "Delete")));
 
         return new Page(new Navbar(navbar), new Body(body));

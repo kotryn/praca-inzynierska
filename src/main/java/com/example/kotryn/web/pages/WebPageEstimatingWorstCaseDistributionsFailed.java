@@ -30,7 +30,7 @@ public class WebPageEstimatingWorstCaseDistributionsFailed {
 
         body.add(new Item<>(new Text("text", "Estimating worst case distributions failed. Reason: " + processDescriptor.getErrorMessage())));
         body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
-        body.add(new Item<>(new Button("button-back", "/", "Back")));
+        body.add(new Item<>(new Button("button-back", "/start_page", "Back")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }
