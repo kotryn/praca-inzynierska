@@ -50,9 +50,9 @@ public class Job {
     private Map<String, GrowthStockSector> growthStock;
 
     @ElementCollection
-    private List<String> robustPortfolio;
+    private List<String> portfolioCompany;
     @ElementCollection
-    private List<String> selectedRobustPortfolio;
+    private List<String> portfolioShare;
 
     @ElementCollection
     private List<String> statistic;
@@ -65,8 +65,8 @@ public class Job {
         this.stocks = null;
         this.windowSize = null;
         this.growthRate = null;
-        this.robustPortfolio = null;
-        this.selectedRobustPortfolio = null;
+        this.portfolioCompany = null;
+        this.portfolioShare = null;
         this.statistic = null;
     }
 
@@ -198,22 +198,6 @@ public class Job {
         this.outOfSample = outOfSample;
     }
 
-    public List<String> getRobustPortfolio() {
-        return robustPortfolio;
-    }
-
-    public void setRobustPortfolio(List<String> robustPortfolio) {
-        this.robustPortfolio = robustPortfolio;
-    }
-
-    public List<String> getSelectedRobustPortfolio() {
-        return selectedRobustPortfolio;
-    }
-
-    public void setSelectedRobustPortfolio(List<String> selectedRobustPortfolio) {
-        this.selectedRobustPortfolio = selectedRobustPortfolio;
-    }
-
     public List<String> getStatistic() {
         return statistic;
     }
@@ -308,6 +292,22 @@ public class Job {
 
     public void setTheta(Double theta) {
         this.theta = theta;
+    }
+
+    public List<String> getPortfolioCompany() {
+        return portfolioCompany;
+    }
+
+    public void setPortfolioCompany(List<String> portfolioCompany) {
+        this.portfolioCompany = portfolioCompany;
+    }
+
+    public List<String> getPortfolioShare() {
+        return portfolioShare;
+    }
+
+    public void setPortfolioShare(List<String> portfolioShare) {
+        this.portfolioShare = portfolioShare;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {

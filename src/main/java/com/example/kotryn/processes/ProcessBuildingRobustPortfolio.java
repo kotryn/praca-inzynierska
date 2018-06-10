@@ -41,7 +41,8 @@ public class ProcessBuildingRobustPortfolio implements IProcess {
         String csvFile = FileFactory.getFile(File.BUILDING_ROBUST_PORTFOLIO);
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setRobustPortfolio(readFile.csvGetOneColumn());
+        job.setPortfolioCompany(readFile.csvGetOneColumn(0));
+        job.setPortfolioShare(readFile.csvGetOneColumn(1));
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

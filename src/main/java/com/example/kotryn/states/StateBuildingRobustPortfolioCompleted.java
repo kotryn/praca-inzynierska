@@ -28,18 +28,18 @@ public class StateBuildingRobustPortfolioCompleted extends StateBase implements 
         return "building_robust_portfolio_completed/"+context.getJobId();
     }
 
-    private void saveBuildingRobustPortfolio(WebDataBuildingRobustPortfolioCompleted input) {
+   /* private void saveBuildingRobustPortfolio(WebDataBuildingRobustPortfolioCompleted input) {
         Job job = jobRepository.getOne(input.getJobId());
         job.setSelectedRobustPortfolio(input.getSelectedRobustPortfolio());
         jobRepository.saveAndFlush(job);
-    }
+    }*/
 
     @Override
     public void handle(Context context, IWebData webData) {
         WebDataBuildingRobustPortfolioCompleted input = getInput(webData);
         switch (input.getAction()) {
             case NEXT:
-                saveBuildingRobustPortfolio(input);
+                //saveBuildingRobustPortfolio(input);
                 createProcessDescriptorAndSave(ProcessType.CALCULATING_STATISTIC, input.getJobId(),
                        processDescriptorRepository);
                 moveToNextStateAndSave(State.CALCULATING_STATISTIC_IN_PROGRESS, context, contextRepository);

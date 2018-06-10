@@ -30,13 +30,32 @@ public class WebPageBuildingRobustPortfolioCompleted {
         navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        List<String> selectedRobustPortfolio = Optional.ofNullable(job.getRobustPortfolio()).orElse(Collections.singletonList("none"));
-        List<String> previouslySelectedRobustPortfolio = Optional.ofNullable(job.getSelectedRobustPortfolio()).orElse(Collections.singletonList("none"));
+        //List<String> share = Optional.ofNullable(job.getPortfolioShare()).orElse(Collections.singletonList("none"));
 
         body.add(new Item<>(new Text("text", "Portfolio optimization completed successful")));
-        body.add(new Item<>(new Text("text", "Previously: " + previouslySelectedRobustPortfolio)));
-        body.add(new Item<>( new Text("text", "Available: ")));
-        body.add(new Item<>(new Checkbox("checkbox", selectedRobustPortfolio, selectedRobustPortfolio)));
+
+        body.add(new Item<>(new Text("text", "Composition of the optimal portfolio")));
+
+
+        List<List<String>> list = new ArrayList<>();
+
+        List<String> company = new ArrayList<>();
+        company.add("Company");
+        company.addAll(Optional.ofNullable(job.getPortfolioCompany()).orElse(Collections.singletonList("none")));
+        List<String> share = new ArrayList<>();
+        share.add("Share");
+        share.addAll(Optional.ofNullable(job.getPortfolioShare()).orElse(Collections.singletonList("none")));
+
+        list.add(company);
+        list.add(share);
+
+        //System.out.println(list.size());
+
+        body.add(new Item<>(new Table("table", list)));
+
+
+
+
         body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "Next")));
 

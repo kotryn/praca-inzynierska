@@ -42,13 +42,13 @@ public class ProcessEstimatingWorstCaseCopula implements IProcess {
             String csvFile = FileFactory.getFile(File.ESTIMATING_WORST_CASE_CLAYTON_COPULA);
             CSVMyReader readFile = new CSVMyReader(csvFile);
 
-            job.setTheta(Double.parseDouble(readFile.csvGetOneColumn().get(0)));
+            job.setTheta(Double.parseDouble(readFile.csvGetOneColumn(0).get(0)));
         }
         else if(job.getCopulaType().equals("t copula")){
             String csvFile = FileFactory.getFile(File.ESTIMATING_WORST_CASE_T_COPULA);
             CSVMyReader readFile = new CSVMyReader(csvFile);
 
-            job.setCorrelationMatrix(Double.parseDouble(readFile.csvGetOneColumn().get(0)));
+            job.setCorrelationMatrix(Double.parseDouble(readFile.csvGetOneColumn(0).get(0)));
         }
 
 

@@ -41,7 +41,7 @@ public class ProcessCalculatingStatistic implements IProcess {
         String csvFile = FileFactory.getFile(File.CALCULATING_STATISTIC);
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setStatistic(readFile.csvGetOneColumn());
+        job.setStatistic(readFile.csvGetOneColumn(0));
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

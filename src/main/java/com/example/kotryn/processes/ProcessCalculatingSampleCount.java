@@ -42,7 +42,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
         String csvFile = FileFactory.getFile(File.CALCULATING_SAMPLE_COUNT);
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        List<String> result = readFile.csvGetOneColumn();
+        List<String> result = readFile.csvGetOneColumn(0);
         job.setInSample(result.get(0));
         job.setOutOfSample(result.get(1));
         jobRepository.saveAndFlush(job);

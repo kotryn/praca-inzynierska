@@ -1,76 +1,50 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import axios from 'axios';
 
 class Table extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: [],
-            loading: true
-        };
-    }
-
-    componentDidMount() {
-        axios
-            .get(this.props.config.url)
-            .then(res => {
-                this.setState({
-                    data: res.data,
-                    loading: false
-                });
-            })
-            .catch(error => console.log(error))
+        console.log(props);
     }
 
     render() {
-        if(this.state.loading){
-            return <div>loading...</div>
-        }
-        const data = this.state.data;
-        const {config, query} = this.props;
+        const {data} = this.props.config;
 
-        const title = config.title.map((element, index)=>(
-            <th key={index}>
-                {element}
-            </th>
+         const title = data.map((element, index)=>(
+            <div className={"table-name"} key={index}>
+                {element[0]}
+            </div>
         ));
 
-        const items = data.map((e, i)=>{
-            const obj = Object.values(e).map((el, ind)=>{
-                if(Object.keys(e).indexOf('id') !== ind){
-                    return <td>{el}</td>
+
+        const items = data.map((element, index)=>{
+            const obj = element.map((e, i)=>{
+                if(i !== 0){
+                    return <div className={"table-element"} key={i}>{e}</div>
                 }
             });
-            return<tr>{obj}</tr>
+            return<div className={"table-column"} key={index}>{obj}</div>
         });
 
-        const newItems = query.map((e, i)=>{
+        /*const newItems = query.map((e, i)=>{
             const obj = Object.values(e).map((el, ind)=>{
                 return <td>{el}</td>
             });
             return<tr>{obj}</tr>
-        });
+        });*/
 
         return (
-            <table >
-                <tbody>
-                <tr>
+            <div className={"table"}>
+                <div className={"table-title"}>
                     {title}
-                </tr>
-                {items}
-                {newItems}
-                </tbody>
-            </table>
+                </div>
+                <div className={"table-data"}>
+                    {items}
+                </div>
+            </div>
         );
+        //return <div>WORKING...</div>
     }
 }
-
-Table = connect(
-    state =>  state.inputFormData,
-    null
-)(Table)
-
 
 export default Table;

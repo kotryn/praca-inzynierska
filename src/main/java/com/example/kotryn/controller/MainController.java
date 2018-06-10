@@ -737,13 +737,15 @@ public class MainController {
 
     @RequestMapping(value = "/calculating_statistic/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody JobDTO jobDTO) {
+    public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
         Job job = jobRepository.findOne(id);
-        job.setSelectedRobustPortfolio(jobDTO.getCheckbox());
+        job.setPortfolioCompany(jobRequest.getPortfolioCompany());
+        job.setPortfolioShare(jobRequest.getPortfolioShare());
         job = jobRepository.save(job);
 
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(job.getId());
-        webData.setSelectedRobustPortfolio(job.getSelectedRobustPortfolio());
+        webData.setPortfolioCompany(job.getPortfolioCompany());
+        webData.setPortfolioShare(job.getPortfolioShare());
 
         processJob(webData);
         url = this.jobsGET(job.getId());

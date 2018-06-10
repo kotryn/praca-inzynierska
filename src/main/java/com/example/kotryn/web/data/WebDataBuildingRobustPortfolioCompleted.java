@@ -6,7 +6,8 @@ public class WebDataBuildingRobustPortfolioCompleted implements IWebData {
 
     private final Long jobId;
     private Action action;
-    private List<String> selectedRobustPortfolio;
+    private List<String> portfolioCompany;
+    private List<String> portfolioShare;
 
     public WebDataBuildingRobustPortfolioCompleted(Long jobId) {
         this.jobId = jobId;
@@ -27,11 +28,19 @@ public class WebDataBuildingRobustPortfolioCompleted implements IWebData {
         this.action = action;
     }
 
-    public List<String> getSelectedRobustPortfolio() {
-        return selectedRobustPortfolio;
+    public List<String> getPortfolioCompany() {
+        return portfolioCompany;
     }
 
-    public void setSelectedRobustPortfolio(List<String> selectedRobustPortfolio) {
-        this.selectedRobustPortfolio = selectedRobustPortfolio;
+    public void setPortfolioCompany(List<String> portfolioCompany) {
+        this.portfolioCompany = portfolioCompany;
+    }
+
+    public List<String> getPortfolioShare() {
+        return portfolioShare;
+    }
+
+    public void setPortfolioShare(List<String> portfolioShare) {
+        this.portfolioShare = portfolioShare;
     }
 }

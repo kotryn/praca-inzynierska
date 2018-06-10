@@ -105,14 +105,14 @@ public class CSVMyReader {
         }
     }
 
-    public  List<String> csvGetOneColumn (){
+    public  List<String> csvGetOneColumn (int column){
         CSVReader reader;
         List<String> symbol = new ArrayList<>();
         try {
             reader = new CSVReader(new FileReader(csvFile));
             String[] line;
             while ((line = reader.readNext()) != null) {
-                symbol.add(line[0]);
+                symbol.add(line[column]);
             }
         } catch (IOException e) {
             e.printStackTrace();

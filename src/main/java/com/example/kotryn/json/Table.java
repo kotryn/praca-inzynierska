@@ -2,19 +2,17 @@ package com.example.kotryn.json;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import java.util.List;
+
 public class Table {
     @JsonView(View.Summary.class)
     private String type;
 
     @JsonView(View.Summary.class)
-    private String[] title;
+    private List<List<String>> data;
 
-    @JsonView(View.Summary.class)
-    private String url;
-
-    public Table(String type, String[] title, String url) {
+    public Table(String type, List<List<String>> data) {
         this.type = type;
-        this.title = title;
-        this.url = url;
+        this.data = data;
     }
 }
