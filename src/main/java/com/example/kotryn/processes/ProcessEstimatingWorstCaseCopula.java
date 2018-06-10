@@ -2,6 +2,7 @@ package com.example.kotryn.processes;
 
 import com.example.kotryn.csv.CSVMyReader;
 import com.example.kotryn.csv.File;
+import com.example.kotryn.csv.FileFactory;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
@@ -37,10 +38,20 @@ public class ProcessEstimatingWorstCaseCopula implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        String csvFile = File.getFile("ESTIMATING_WORST_CASE_COPULA");
-        CSVMyReader readFile = new CSVMyReader(csvFile);
+        if(job.getCopulaType().equals("Clayton copula")){
+            String csvFile = FileFactory.getFile(File.ESTIMATING_WORST_CASE_CLAYTON_COPULA);
+            CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setCorrelationMatrix(Double.parseDouble(readFile.csvGetOneColumn().get(0)));
+            job.setTheta(Double.parseDouble(readFile.csvGetOneColumn().get(0)));
+        }
+        else if(job.getCopulaType().equals("t copula")){
+            String csvFile = FileFactory.getFile(File.ESTIMATING_WORST_CASE_T_COPULA);
+            CSVMyReader readFile = new CSVMyReader(csvFile);
+
+            job.setCorrelationMatrix(Double.parseDouble(readFile.csvGetOneColumn().get(0)));
+        }
+
+
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

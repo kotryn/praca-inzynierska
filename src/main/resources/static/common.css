@@ -102,3 +102,10 @@ tr.article{
 li.list{
     text-align: left;
 }
+label.radio-button {
+    display: block;
+    text-align: left;
+}
+input[type="radio"] {
+    margin-right: 10px;
+}

@@ -118,9 +118,7 @@ class Form extends React.Component{
                 break;
             case "radio-button":
                 return (
-                    <form className={style}>
-                        <RadioButtons names={names} id={id} value={value} />
-                    </form>
+                    <RadioButtons names={names} id={id} value={value} />
                 );
             case "input":
                 ComponentName = Input;

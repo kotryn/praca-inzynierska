@@ -32,6 +32,7 @@ public class Job {
     private Double yearRateOfReturn;
     private Double toleranceLevel;
     private Double maxShare;
+    private Double theta;
 
     @ElementCollection
     private List<String> selectedStocks;
@@ -299,6 +300,14 @@ public class Job {
 
     public void setMaxShare(Double maxShare) {
         this.maxShare = maxShare;
+    }
+
+    public Double getTheta() {
+        return theta;
+    }
+
+    public void setTheta(Double theta) {
+        this.theta = theta;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {

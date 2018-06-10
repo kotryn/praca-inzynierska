@@ -40,7 +40,7 @@ class RadioButtons extends React.Component{
         ));
 
         return (
-            <div>{component}</div>
+            <form className={"radio-button"}>{component}</form>
         );
     }
 }

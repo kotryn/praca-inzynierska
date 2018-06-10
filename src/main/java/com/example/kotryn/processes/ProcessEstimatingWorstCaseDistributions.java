@@ -2,6 +2,7 @@ package com.example.kotryn.processes;
 
 import com.example.kotryn.csv.CSVMyReader;
 import com.example.kotryn.csv.File;
+import com.example.kotryn.csv.FileFactory;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.JobRepository;
@@ -40,7 +41,7 @@ public class ProcessEstimatingWorstCaseDistributions implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        String csvFile = File.getFile("ESTIMATING_WORST_CASE_DISTRIBUTION");
+        String csvFile = FileFactory.getFile(File.ESTIMATING_WORST_CASE_DISTRIBUTION);
         CSVMyReader readFile = new CSVMyReader(csvFile, worstCaseDistributionSectorRepository, job);
         readFile.csvFirstSetStocks2();
         job.setWorstCaseDistributionStocks(readFile.getSectorsWorstCaseDistributionsMap());

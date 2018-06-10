@@ -2,6 +2,7 @@ package com.example.kotryn.processes;
 
 import com.example.kotryn.csv.CSVMyReader;
 import com.example.kotryn.csv.File;
+import com.example.kotryn.csv.FileFactory;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.repository.GrowthStockSectorRepository;
@@ -39,7 +40,7 @@ public class ProcessEstimatingGrowthStocks implements IProcess {
         // update jobRepository
         Job job = jobRepository.findOne(jobId);
 
-        String csvFile = File.getFile("ESTIMATING_GROWTH_STOCKS");
+        String csvFile = FileFactory.getFile(File.ESTIMATING_GROWTH_STOCKS);
 
         CSVMyReader readFile = new CSVMyReader(csvFile, growthStockSectorRepository, job);
         readFile.csvFirstSetStocks3();

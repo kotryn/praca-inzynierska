@@ -29,8 +29,13 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         body.add(new Item<>(new Text("text", "Estimating worst case copula completed successful")));
-        body.add(new Item<>(new Text("text", "Correlation matrix - number degrees of freedom: "+job.getCorrelationMatrix())));
 
+        if(job.getCopulaType().equals("Clayton copula")){
+            body.add(new Item<>(new Text("text", "Theta parameter (θ): "+job.getTheta())));
+        }
+        else if(job.getCopulaType().equals("t copula")){
+            body.add(new Item<>(new Text("text", "Correlation matrix - number degrees of freedom: "+job.getCorrelationMatrix())));
+        }
 
         body.add(new Item<>(new Button("button-back", "/estimating_worst_case_copula_completed_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button", "/building_robust_portfolio_setup/"+jobId, "Next")));
