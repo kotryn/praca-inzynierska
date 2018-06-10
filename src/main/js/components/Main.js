@@ -77,6 +77,9 @@ class Main extends React.Component{
                 case "checkbox":
                     component.push(<Form config={element} key={index}  />);
                     break;
+                case "radio-button":
+                    component.push(<Form config={element} key={index}  />);
+                    break;
                 case "list":
                     component.push(<List config={element} key={index}  />);
                     break;

@@ -4,17 +4,17 @@ import {connect} from "react-redux";
 
 class Checkbox extends React.Component{
     handle(e) {
-        this.props.editInputValue( e.target.checked,  this.props.id);
+        this.props.editInputValue(e.target.checked,  this.props.id);
     }
 
     render() {
-        const {name, id} = this.props;
+        const {name, id, values} = this.props;
 
         return (
             <label className={'checkbox'}>
                 <input
                     type="checkbox"
-                    checked={this.props.values[id]}
+                    checked={values[id]}
                     onChange={this.handle.bind(this)} />
                 {name}
             </label>

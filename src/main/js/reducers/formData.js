@@ -1,4 +1,4 @@
-import {EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA, CREATE_OUTPUT_DATA, DELETE_OUTPUT_ELEMENT, CHANGE_ID, EDIT_CHECKBOX_DATA} from '../actions/formData'
+import {EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA, CREATE_OUTPUT_DATA, DELETE_OUTPUT_ELEMENT, CHANGE_ID, EDIT_CHECKBOX_DATA, EDIT_RADIO_DATA} from '../actions/formData'
 
 const defaultState = {
     currentId: 0,
@@ -30,7 +30,7 @@ function formDataReducer(state = defaultState, action) {
             let checkbox = [...newCheckboxJsonData];
             return {
                 ...state,
-                jsonData: {checkbox},
+                jsonData: {...state.jsonData, checkbox},
                 checkbox: [...newCheckboxJsonData]
             }
         case EDIT_INPUT_VALUE:
@@ -50,7 +50,14 @@ function formDataReducer(state = defaultState, action) {
             return {
                 ...state,
                 checkbox: [...newData],
-                jsonData: {checkbox}
+                jsonData: {...state.jsonData, checkbox}
+            }
+        case EDIT_RADIO_DATA:
+            let value = {};
+            value[action.value] = action.radio;
+            return {
+                ...state,
+                jsonData: {...state.jsonData, ...value}
             }
         case CLEAR:
             return {

@@ -39,7 +39,6 @@ public class WebPageSearchingForStocksCompleted {
         body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
         body.add(new Item<>(new Text("text", "Previously selected stocks: " + previouslySelectedStocks)));
 
-
         body.add(new Item<>(new Text("text", "Available stocks: ")));
 
         Map<String, Sector> map = new HashMap<>(job.getStocks());
@@ -58,7 +57,6 @@ public class WebPageSearchingForStocksCompleted {
                 body.add(new Item<>(new Checkbox("checkbox", name, name)));//Stocks
             }
         }
-
 
         body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "Back")));
         body.add(new Item<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Next")));

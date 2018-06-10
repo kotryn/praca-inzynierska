@@ -63,3 +63,12 @@ export function changeCheckboxData (checkbox) {
     }
 }
 
+export const EDIT_RADIO_DATA = 'EDIT_RADIO_DATA'
+export function changeRadioData (radio, value) {
+    return{
+        type: EDIT_RADIO_DATA,
+        radio: radio,
+        value: value
+    }
+}
+

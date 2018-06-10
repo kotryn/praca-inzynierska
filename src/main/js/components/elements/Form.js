@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import Checkbox from './Checkbox'
+import RadioButtons from './RadioButtons'
 import Input from "./Input"
-import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData } from "../../actions/formData";
+import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData, changeRadioData } from "../../actions/formData";
 
 class Form extends React.Component{
 
@@ -15,11 +16,18 @@ class Form extends React.Component{
         this._setFormData(this.props.config, this.props);
     }
 
-    _setFormData({type, values}, {createInputData, changeNextId}){
+    _setFormData({type, values, value, names}, {createInputData, changeNextId}){
         let formData = [];
         switch(type){
             case "checkbox":
                 formData = values.map(()=> false);
+                break;
+            case "radio-button":
+                formData = values.map((e, i)=> {
+                    if(i === 0){
+                        return names[i]
+                    }return false
+                });
                 break;
             case "input":
                 formData = values.map(()=> "");
@@ -51,7 +59,7 @@ class Form extends React.Component{
     }
 
     createOutputData(){
-        const {values, type} = this.props.config;
+        const {values, type, value} = this.props.config;
         let output = {values};
         let checkboxes = new Set([...this.props.checkbox]);
         const id = this.state.id;
@@ -66,6 +74,14 @@ class Form extends React.Component{
                         }else{
                             this.props.deleteOutputElement(e);
                         }
+                });
+                return null;
+            case "radio-button":
+                output.values.forEach((e, i)=>{
+                    output[e] = this.props.values[id+i];
+                    if(output[e] !== false){
+                        this.props.changeRadioData(output[e], value);
+                    }
                 });
                 return null;
             case "input":
@@ -90,7 +106,7 @@ class Form extends React.Component{
     }
 
     render() {
-        const {names, type} = this.props.config;
+        const {names, type, value} = this.props.config;
         const id = this.state.id;
 
         let ComponentName = "";
@@ -100,6 +116,12 @@ class Form extends React.Component{
                 ComponentName = Checkbox;
                 style = "form-checkbox";
                 break;
+            case "radio-button":
+                return (
+                    <form className={style}>
+                        <RadioButtons names={names} id={id} value={value} />
+                    </form>
+                );
             case "input":
                 ComponentName = Input;
                 style = "form-text";
@@ -131,7 +153,7 @@ class Form extends React.Component{
 
 Form = connect(
     state =>  state.formData,
-    { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData }
+    { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData, changeRadioData }
 )(Form)
 
 export default Form;

@@ -711,7 +711,7 @@ public class MainController {
     public void buildingRobustPortfolioSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataBuildingRobustPortfolioSetup webData = new WebDataBuildingRobustPortfolioSetup(id);
-        webData.setAction(Action.INTERRUPT);
+        webData.setAction(Action.PREVIOUS);
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
