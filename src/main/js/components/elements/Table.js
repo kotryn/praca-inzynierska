@@ -4,8 +4,6 @@ class Table extends React.Component{
     render() {
         const {data} = this.props.config;
 
-        console.log(data);
-
         let width = 100 / data.length + "%";
 
          const title = data.map((element, index)=>(

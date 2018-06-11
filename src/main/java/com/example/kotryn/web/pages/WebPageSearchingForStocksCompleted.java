@@ -29,6 +29,11 @@ public class WebPageSearchingForStocksCompleted {
 
         List<String> previouslySelectedStocks = Optional.ofNullable(job.getSelectedStocks()).orElse(Collections.singletonList("none"));
 
+        String previouslySelectedStocksText = "Previously selected stocks: " + previouslySelectedStocks;
+        if(previouslySelectedStocks.size() <= 0){
+            previouslySelectedStocksText = "Previously selected stocks: none";
+        }
+
         List<Item> navbar = new ArrayList<>();
         List<Item> body = new ArrayList<>();
 
@@ -37,7 +42,7 @@ public class WebPageSearchingForStocksCompleted {
 
         body.add(new Item<>(new Text("text", "Searching for stocks completed successfully")));
         body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
-        body.add(new Item<>(new Text("text", "Previously selected stocks: " + previouslySelectedStocks)));
+        body.add(new Item<>(new Text("text", previouslySelectedStocksText)));
 
         body.add(new Item<>(new Text("text", "Available stocks: ")));
 

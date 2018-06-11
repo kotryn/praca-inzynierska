@@ -37,8 +37,7 @@ public class WebPageCalculatingStatisticCompleted {
         List<Map<String,Double>> data = new ArrayList<>();
         data.add(xy);
 
-        body.add(new Item<>(new Text("text", "Calculating out-of sample statistic completed successful")));
-        body.add(new Item<>( new Text("text", "Result: ")));
+        body.add(new Item<>(new Text("text", "Producing out-of sample portfolio graph completed successful")));
 
         body.add(new Item<>(new Graph("graph", new String[]{"robust portfolio"}, data)));
 

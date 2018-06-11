@@ -33,7 +33,7 @@ public class WebPageEstimatingWorstCaseCopulaSetup {
         body.add(new Item<>(new Text("text", "Previously selected type: " + job.getCopulaType())));
 
         body.add(new Item<>(new Text("text", "Copula type:")));
-        body.add(new Item<>(new RadioButton("radio-button", new String[]{"Clayton copula", "t copula"}, new String[]{"Clayton copula", "t copula"}, "copulaType")));//TODO: zapisuje do BD
+        body.add(new Item<>(new RadioButton("radio-button", new String[]{"Clayton copula", "t copula"}, new String[]{"Clayton copula", "t copula"}, "copulaType")));
 
 
         body.add(new Item<>(new Button("button-back", "/estimating_worst_case_copula_setup_back/"+jobId, "Back")));

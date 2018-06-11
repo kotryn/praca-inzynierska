@@ -19,7 +19,7 @@ public class WebPageCalculatingStatisticInProgress {
         navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Calculating out-of sample statistic in progress")));
+        body.add(new Item<>(new Text("text", "Producing out-of sample portfolio graph in progress")));
         body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button", "/calculating_statistic_in_progress/"+jobId, "Refresh")));
 

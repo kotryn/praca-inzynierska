@@ -38,12 +38,12 @@ public class Job {
     private List<String> selectedStocks;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
-    @MapKey(name="worstCaseDistributionSector")
-    private Map<String, WorstCaseDistributionSector> worstCaseDistributionStocks;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
     @MapKey(name="sector")
     private Map<String, Sector> stocks;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
+    @MapKey(name="worstCaseDistributionSector")
+    private Map<String, WorstCaseDistributionSector> worstCaseDistributionStocks;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="job")
     @MapKey(name="growthStockSector")
@@ -55,9 +55,6 @@ public class Job {
     private List<String> portfolioShare;
 
     @ElementCollection
-    private List<String> statistic;
-
-    @ElementCollection
     private List<String> x;
     @ElementCollection
     private List<Double> y;
@@ -66,13 +63,28 @@ public class Job {
     public Job(){
         this.startDate = "not set";
         this.endDate = "not set";
+        this.startInSampleDate = "not set";
+        this.endInSampleDate = "not set";
+        this.startOutOfSampleDate = "not set";
+        this.endOutOfSampleDate = "not set";
+        this.periodicity = "not set";
+        this.windowSize = null; //TODO
+        this.growthRate = null; //TODO
+        this.inSample = "not set";
+        this.outOfSample = "not set";
+        this.maxNumberSector = null; //TODO
+        this.maxNumberIndustry = null; //TODO
+        this.maxCoefficient = null; //TODO
+        this.copulaWindowSize = null; //TODO
+        this.copulaType = "not set";
+        this.correlationMatrix = null; //TODO
+        this.numberOfSamples = null; //TODO
+        this.yearRateOfReturn = null; //TODO
+        this.toleranceLevel = null; //TODO
+        this.maxShare = null; //TODO
+        this.theta = null; //TODO
+
         this.selectedStocks = null;
-        this.stocks = null;
-        this.windowSize = null;
-        this.growthRate = null;
-        this.portfolioCompany = null;
-        this.portfolioShare = null;
-        this.statistic = null;
     }
 
     public Long getId() {
@@ -201,14 +213,6 @@ public class Job {
 
     public void setOutOfSample(String outOfSample) {
         this.outOfSample = outOfSample;
-    }
-
-    public List<String> getStatistic() {
-        return statistic;
-    }
-
-    public void setStatistic(List<String> statistic) {
-        this.statistic = statistic;
     }
 
     public Integer getMaxNumberSector() {
