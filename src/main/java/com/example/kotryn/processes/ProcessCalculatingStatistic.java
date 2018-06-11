@@ -13,6 +13,8 @@ import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProcessCalculatingStatistic implements IProcess {
 
@@ -41,7 +43,16 @@ public class ProcessCalculatingStatistic implements IProcess {
         String csvFile = FileFactory.getFile(File.CALCULATING_STATISTIC);
         CSVMyReader readFile = new CSVMyReader(csvFile);
 
-        job.setStatistic(readFile.csvGetOneColumn(0));
+        job.setX(readFile.csvGetOneColumn(0));
+
+        List<String> stringList = readFile.csvGetOneColumn(1);
+        List<Double> doubleList = new ArrayList<>();
+
+        for(String item : stringList){
+            doubleList.add(Double.parseDouble(item));
+        }
+
+        job.setY(doubleList);
         jobRepository.saveAndFlush(job);
 
         // update processDescriptorRepository

@@ -1,17 +1,15 @@
 import React from 'react';
 
 class Table extends React.Component{
-
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
-
     render() {
         const {data} = this.props.config;
 
+        console.log(data);
+
+        let width = 100 / data.length + "%";
+
          const title = data.map((element, index)=>(
-            <div className={"table-name"} key={index}>
+            <div className={"table-name"} style={{width: width}} key={index}>
                 {element[0]}
             </div>
         ));
@@ -23,15 +21,8 @@ class Table extends React.Component{
                     return <div className={"table-element"} key={i}>{e}</div>
                 }
             });
-            return<div className={"table-column"} key={index}>{obj}</div>
+            return<div className={"table-column"} style={{width: width}} key={index}>{obj}</div>
         });
-
-        /*const newItems = query.map((e, i)=>{
-            const obj = Object.values(e).map((el, ind)=>{
-                return <td>{el}</td>
-            });
-            return<tr>{obj}</tr>
-        });*/
 
         return (
             <div className={"table"}>
@@ -43,7 +34,6 @@ class Table extends React.Component{
                 </div>
             </div>
         );
-        //return <div>WORKING...</div>
     }
 }
 

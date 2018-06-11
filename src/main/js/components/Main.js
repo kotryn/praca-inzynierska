@@ -13,6 +13,7 @@ import Title from './elements/Title'
 import Image from "./elements/Image"
 import Form from "./elements/Form"
 import List from "./elements/List"
+import Graph from "./elements/Graph"
 
 
 class Main extends React.Component{
@@ -82,6 +83,9 @@ class Main extends React.Component{
                     break;
                 case "list":
                     component.push(<List config={element} key={index}  />);
+                    break;
+                case "graph":
+                    component.push(<Graph config={element} key={index}  />);
                     break;
                 default:
                     console.log('unknown type of component');

@@ -116,10 +116,12 @@ input[type="radio"] {
 .table-name {
     display: inline-block;
     text-align: left;
-    width: 50%;
     font-weight: bold;
 }
 .table-column {
     display: inline-block;
-    width: 50%;
+}
+.chart{
+    width: 100%;
+    margin-top: 50px;
 }

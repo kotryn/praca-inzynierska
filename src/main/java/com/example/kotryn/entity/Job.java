@@ -57,6 +57,11 @@ public class Job {
     @ElementCollection
     private List<String> statistic;
 
+    @ElementCollection
+    private List<String> x;
+    @ElementCollection
+    private List<Double> y;
+
 
     public Job(){
         this.startDate = "not set";
@@ -308,6 +313,22 @@ public class Job {
 
     public void setPortfolioShare(List<String> portfolioShare) {
         this.portfolioShare = portfolioShare;
+    }
+
+    public List<String> getX() {
+        return x;
+    }
+
+    public void setX(List<String> x) {
+        this.x = x;
+    }
+
+    public List<Double> getY() {
+        return y;
+    }
+
+    public void setY(List<Double> y) {
+        this.y = y;
     }
 
     public static <K, V> List<K> getAllKeysForValue(Map<K, V> mapOfWords, V value) {

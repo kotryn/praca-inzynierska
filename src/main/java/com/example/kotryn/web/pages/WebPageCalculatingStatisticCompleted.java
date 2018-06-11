@@ -5,10 +5,7 @@ import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class WebPageCalculatingStatisticCompleted {
     private JobRepository jobRepository;
@@ -30,12 +27,20 @@ public class WebPageCalculatingStatisticCompleted {
         navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
         navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        List<String> statistic = Optional.ofNullable(job.getStatistic()).orElse(Collections.singletonList("none"));
+        List<String> x = Optional.ofNullable(job.getX()).orElse(Collections.singletonList("none"));
+        List<Double> y = Optional.ofNullable(job.getY()).orElse(Collections.singletonList(null));
+        Map<String, Double> xy = new HashMap<>();
+
+        for(int i = 0; i < x.size(); i++){
+            xy.put(x.get(i), y.get(i));
+        }
+        List<Map<String,Double>> data = new ArrayList<>();
+        data.add(xy);
 
         body.add(new Item<>(new Text("text", "Calculating out-of sample statistic completed successful")));
         body.add(new Item<>( new Text("text", "Result: ")));
 
-        body.add(new Item<>(new ListJ("list", statistic)));
+        body.add(new Item<>(new Graph("graph", new String[]{"robust portfolio"}, data)));
 
         body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "Back")));
 

@@ -43,13 +43,11 @@ public class WebPageBuildingRobustPortfolioCompleted {
         company.add("Company");
         company.addAll(Optional.ofNullable(job.getPortfolioCompany()).orElse(Collections.singletonList("none")));
         List<String> share = new ArrayList<>();
-        share.add("Share");
+        share.add("Share (%)");
         share.addAll(Optional.ofNullable(job.getPortfolioShare()).orElse(Collections.singletonList("none")));
 
         list.add(company);
         list.add(share);
-
-        //System.out.println(list.size());
 
         body.add(new Item<>(new Table("table", list)));
 
