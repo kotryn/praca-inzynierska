@@ -4,15 +4,19 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
-public class ListJ {
+public class ExpandedList {
     @JsonView(View.Summary.class)
     private String type;
 
     @JsonView(View.Summary.class)
-    private List<String> items;
+    private String name;
 
-    public ListJ(String type, List<String> items) {
+    @JsonView(View.Summary.class)
+    private List<Item> items;
+
+    public ExpandedList(String type, String name, List<Item> items) {
         this.type = type;
+        this.name = name;
         this.items = items;
     }
 }

@@ -34,19 +34,25 @@ public class WebPageEstimatingGrowthStocksCompleted {
         Map<String, GrowthStockSector> map = new HashMap<>(job.getGrowthStock());
 
         for (Map.Entry<String, GrowthStockSector> entry : map.entrySet()) {
-            body.add(new Item<>(new Text("text", entry.getKey())));//Sector
+            String sector = entry.getKey();
             Set<String> industry = new HashSet<>();
 
             for (Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()) {
                 industry.add(element.getValue());
             }
+            List<Item> expandedList = new ArrayList<>();
 
-            for (String s : industry) {
-                body.add(new Item<>(new Text("text", s)));//Industry
-                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
-                body.add(new Item<>(new ListJ("list", name)));//Stocks
+            for (String i : industry) {
+                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), i);
+                List<Item> nameList = new ArrayList<>();
+                nameList.add(new Item<>(new StaticList("list", name)));
+                expandedList.add(new Item<>(new ExpandedList("expanded-list", i, nameList)));
+
             }
+            body.add(new Item<>(new ExpandedList("expanded-list", sector, expandedList)));
         }
+
+
 
         body.add(new Item<>(new Button("button-back", "/estimating_growth_stocks_completed_back/"+jobId, "Back")));
         body.add(new Item<>(new Button("button", "/estimating_worst_case_copula_setup/"+jobId, "Next")));

@@ -39,7 +39,7 @@ public class MainController {
         AbstractProcessFactory.setFactory(new ProcessFactory(jobRepository, processDescriptorRepository, sectorRepository, worstCaseDistributionSectorRepository, growthStockSectorRepository));
     }
 
-    private void interruptJob(Long id, Action action){
+    private void checkState(Long id, Action action){
         Context context = contextRepository.getOne(id);
         switch (context.getState()) {
             case SEARCHING_FOR_STOCKS_IN_PROGRESS:
@@ -140,7 +140,7 @@ public class MainController {
         }else{
             error = null;
             Context context = contextRepository.getOne(requestJob.getId());
-            this.interruptJob(requestJob.getId(), Action.REFRESH);
+            this.checkState(requestJob.getId(), Action.REFRESH);
             url = context.redirectToWebPage(this,
                     jobRepository, contextRepository, processDescriptorRepository);
         }
@@ -176,7 +176,7 @@ public class MainController {
         }else{
             error = null;
             Long id = requestJob.getId();
-            this.interruptJob(id, Action.INTERRUPT);
+            this.checkState(id, Action.INTERRUPT);
 
             growthStockSectorRepository.removeByJobId(id);
             growthStockSectorRepository.flush();

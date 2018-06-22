@@ -36,17 +36,17 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         Map<String, WorstCaseDistributionSector> map = new HashMap<>(job.getWorstCaseDistributionStocks());
 
         for (Map.Entry<String, WorstCaseDistributionSector> entry : map.entrySet()) {
-            body.add(new Item<>(new Text("text", entry.getKey())));//Sector
+            body.add(new Item<>(new Title("title", "h3", entry.getKey())));//Sector
             Set<String> industry = new HashSet<>();
 
             for (Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()) {
                 industry.add(element.getValue());
             }
 
-            for (String s : industry) {
-                body.add(new Item<>(new Text("text", s)));//Industry
-                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), s);
-                body.add(new Item<>(new ListJ("list", name)));//Stocks
+            for (String i : industry) {
+                body.add(new Item<>(new Title("title", "h4", i)));//Industry
+                List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), i);
+                body.add(new Item<>(new StaticList("list", name)));//Stocks
             }
         }
 

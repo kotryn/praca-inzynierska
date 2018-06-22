@@ -121,7 +121,42 @@ input[type="radio"] {
 .table-column {
     display: inline-block;
 }
+.table-title {
+    border-bottom: 1px solid black;
+    padding: 0 0 1% 0;
+}
+.table-data {
+    padding-top: 1%;
+}
+.table-element {
+    padding-bottom: 1%;
+    padding-right: 4%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 .chart{
     width: 100%;
     margin-top: 50px;
+}
+.expanded-list{
+    text-align: left;
+}
+.expanded-list-title{
+    font-size: 18px;
+    position: relative;
+    padding: 10px;
+}
+.expanded-list-items{
+    height: 0;
+    overflow: hidden;
+    -moz-transition: height .5s;
+    -ms-transition: height .5s;
+    -o-transition: height .5s;
+    -webkit-transition: height .5s;
+    transition: height .5s;
+    margin-left: 20px;
+}
+.wrapper{
+
 }

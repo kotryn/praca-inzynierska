@@ -43,7 +43,6 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Item<>(new Text("text", "Previous out-of-sample end date: " + endOutOfSampleDate)));
         body.add(new Item<>(new Input("input-date", new String[]{"startOutOfSampleDate", "endOutOfSampleDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
 
-        body.add(new Item<>(new Text("text", "Supply periodicity")));
         body.add(new Item<>(new Text("text", "Previous periodicity: " + job.getPeriodicity())));
         body.add(new Item<>(new Text("text", "Select periodicity:")));
         body.add(new Item<>(new RadioButton("radio-button", new String[]{"weekly", "quarterly", "daily"}, new String[]{"weekly", "quarterly", "daily"}, "periodicity")));
