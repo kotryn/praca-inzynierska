@@ -14,7 +14,7 @@ import Image from "./elements/Image"
 import Form from "./elements/Form"
 import List from "./elements/List"
 import Graph from "./elements/Graph"
-import ExpandedList from "./elements/ExpandedList"
+import Dropdown from "./elements/Dropdown"
 
 
 class Main extends React.Component{
@@ -32,7 +32,7 @@ class Main extends React.Component{
             return <div>{status}</div>
         }
 
-        let expandedListIndex = 0;
+        let dropdownIndex = 0;
         function setComponentType(element, component, index){
             switch(element.type){
                 case "title":
@@ -86,13 +86,13 @@ class Main extends React.Component{
                 case "list":
                     component.push(<List config={element} key={index}  />);
                     break;
-                case "expanded-list":
+                case "dropdown":
                     let componentName = [];
                     element.items.map((e, i)=>{
                         setComponentType(e.item, componentName, i);
                     });
-                    component.push(<ExpandedList config={element} key={index} component={componentName} index={expandedListIndex} />);
-                    expandedListIndex++;
+                    component.push(<Dropdown config={element} key={index} component={componentName} index={dropdownIndex} />);
+                    dropdownIndex++;
                     break;
                 case "graph":
                     component.push(<Graph config={element} key={index}  />);

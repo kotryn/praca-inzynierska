@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
-public class ExpandedList {
+public class Dropdown {
     @JsonView(View.Summary.class)
     private String type;
 
@@ -14,7 +14,7 @@ public class ExpandedList {
     @JsonView(View.Summary.class)
     private List<Item> items;
 
-    public ExpandedList(String type, String name, List<Item> items) {
+    public Dropdown(String type, String name, List<Item> items) {
         this.type = type;
         this.name = name;
         this.items = items;

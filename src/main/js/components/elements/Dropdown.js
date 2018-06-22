@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ExpandedList extends React.Component{
+class Dropdown extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -32,7 +32,7 @@ class ExpandedList extends React.Component{
     }
 
     checkParent(element, oldHeight){
-        if(element.className === "expanded-list-items"){
+        if(element.className === "dropdown-items"){
             let height = element.style.height;
             height = +height.slice(0, height.length-2);
             element.style.height = height + oldHeight + "px";
@@ -45,11 +45,11 @@ class ExpandedList extends React.Component{
         const {name} = config;
 
         return (
-                <div className={"expanded-list"}>
-                    <div className="expanded-list-title" onClick={() => this.toggleMenu()}>
+                <div className={"dropdown"}>
+                    <div className="dropdown-title" onClick={() => this.toggleMenu()}>
                         {name}
                     </div>
-                    <div className={"expanded-list-items"} id={"e"+index}>
+                    <div className={"dropdown-items"} id={"e"+index}>
                         <div className="wrapper" id={"w"+index}>
                             {component}
                         </div>
@@ -59,4 +59,4 @@ class ExpandedList extends React.Component{
     }
 }
 
-export default ExpandedList;
+export default Dropdown;

@@ -40,16 +40,16 @@ public class WebPageEstimatingGrowthStocksCompleted {
             for (Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()) {
                 industry.add(element.getValue());
             }
-            List<Item> expandedList = new ArrayList<>();
+            List<Item> dropdown = new ArrayList<>();
 
             for (String i : industry) {
                 List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), i);
                 List<Item> nameList = new ArrayList<>();
                 nameList.add(new Item<>(new StaticList("list", name)));
-                expandedList.add(new Item<>(new ExpandedList("expanded-list", i, nameList)));
+                dropdown.add(new Item<>(new Dropdown("dropdown", i, nameList)));
 
             }
-            body.add(new Item<>(new ExpandedList("expanded-list", sector, expandedList)));
+            body.add(new Item<>(new Dropdown("dropdown", sector, dropdown)));
         }
 
 
