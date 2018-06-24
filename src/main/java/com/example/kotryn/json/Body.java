@@ -8,13 +8,13 @@ import java.util.List;
 public class Body {
 
     @JsonView(View.Summary.class)
-    private List<Item> items;
+    private List<Entity> entities;
 
-    public Body(Item ...items) {
-        this.items = Arrays.asList(items);
+    public Body(Entity... entities) {
+        this.entities = Arrays.asList(entities);
     }
 
-    public Body(List<Item> items) {
-        this.items = items;
+    public Body(List<Entity> entities) {
+        this.entities = entities;
     }
 }

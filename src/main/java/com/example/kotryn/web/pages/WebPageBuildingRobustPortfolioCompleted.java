@@ -24,17 +24,17 @@ public class WebPageBuildingRobustPortfolioCompleted {
     public Page show() {
         Job job = jobRepository.findOne(jobId);
 
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         //List<String> share = Optional.ofNullable(job.getPortfolioShare()).orElse(Collections.singletonList("none"));
 
-        body.add(new Item<>(new Text("text", "Portfolio optimization completed successful")));
+        body.add(new Entity<>(new Text("text", "Portfolio optimization completed successful")));
 
-        body.add(new Item<>(new Text("text", "Composition of the optimal portfolio")));
+        body.add(new Entity<>(new Text("text", "Composition of the optimal portfolio")));
 
 
         List<List<String>> list = new ArrayList<>();
@@ -49,13 +49,13 @@ public class WebPageBuildingRobustPortfolioCompleted {
         list.add(company);
         list.add(share);
 
-        body.add(new Item<>(new Table("table", list)));
+        body.add(new Entity<>(new Table("table", list)));
 
 
 
 
-        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button-form", "/calculating_statistic/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "/building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-form", "/calculating_statistic/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

@@ -2,12 +2,12 @@ package com.example.kotryn.json;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-public class Item<T> {
+public class Entity<T> {
 
     @JsonView(View.Summary.class)
-    private T item;
+    private T entity;
 
-    public Item(T item) {
-        this.item = item;
+    public Entity(T entity) {
+        this.entity = entity;
     }
 }

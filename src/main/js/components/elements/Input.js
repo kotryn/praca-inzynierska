@@ -25,10 +25,15 @@ class Input extends React.Component{
         }
 
         return (
-            <label>
-                <div>{name}</div>
-                <input type={t} name="value" value={this.props.values[id]} onChange={this.handle.bind(this)} />
-            </label>
+            <div className="form-group row">
+                <label className="col-sm-auto col-form-label">
+                    {name}
+                </label>
+                <div className="col-sm-auto">
+                    <input type={t} className="form-control" name="value" value={this.props.values[id]} onChange={this.handle.bind(this)} />
+                </div>
+
+            </div>
         );
     }
 }

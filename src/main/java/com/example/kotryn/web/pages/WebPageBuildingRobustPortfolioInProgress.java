@@ -13,15 +13,15 @@ public class WebPageBuildingRobustPortfolioInProgress {
     }
 
     public Page show() {
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Portfolio optimization in progress")));
-        body.add(new Item<>(new Button("button-back", "/building_robust_portfolio_in_progress_back/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button", "/building_robust_portfolio_in_progress/"+jobId, "Refresh")));
+        body.add(new Entity<>(new Title("title", "h3", "Portfolio optimization in progress")));
+        body.add(new Entity<>(new Button("button-back", "/building_robust_portfolio_in_progress_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "/building_robust_portfolio_in_progress/"+jobId, "Refresh")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

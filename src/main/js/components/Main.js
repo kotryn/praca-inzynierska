@@ -25,7 +25,11 @@ class Main extends React.Component{
     render() {
         const {fetching, error, config, status} = this.props;
         if(fetching){
-            return <div>loading...</div>
+            return (
+                <div className={'container'}>
+                    <main><i className="fas fa-spinner fa-spin spinner"></i></main>
+                </div>
+            )
         }
 
         if(error){
@@ -88,8 +92,8 @@ class Main extends React.Component{
                     break;
                 case "dropdown":
                     let componentName = [];
-                    element.items.map((e, i)=>{
-                        setComponentType(e.item, componentName, i);
+                    element.entities.map((e, i)=>{
+                        setComponentType(e.entity, componentName, i);
                     });
                     component.push(<Dropdown config={element} key={index} component={componentName} index={dropdownIndex} />);
                     dropdownIndex++;
@@ -104,13 +108,13 @@ class Main extends React.Component{
         }
 
         let components = [];
-        config.body && config.body.items.map((element, index)=>{
-            setComponentType(element.item, components, index);
+        config.body && config.body.entities.map((element, index)=>{
+            setComponentType(element.entity, components, index);
         });
 
         let navbarComponents = [];
-        config.navbar && config.navbar.items.map((element, index)=>{
-            setComponentType(element.item, navbarComponents, index);
+        config.navbar && config.navbar.entities.map((element, index)=>{
+            setComponentType(element.entity, navbarComponents, index);
         });
 
         return (
@@ -119,6 +123,7 @@ class Main extends React.Component{
                 <main>{components}</main>
             </div>
         )
+
     }
 }
 

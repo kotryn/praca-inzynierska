@@ -21,11 +21,11 @@ public class WebPageCalculatingStatisticCompleted {
     public Page show() {
         Job job = jobRepository.findOne(jobId);
 
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
 
         List<String> x = Optional.ofNullable(job.getX()).orElse(Collections.singletonList("none"));
         List<Double> y = Optional.ofNullable(job.getY()).orElse(Collections.singletonList(null));
@@ -37,11 +37,11 @@ public class WebPageCalculatingStatisticCompleted {
         List<Map<String,Double>> data = new ArrayList<>();
         data.add(xy);
 
-        body.add(new Item<>(new Text("text", "Producing out-of sample portfolio graph completed successful")));
+        body.add(new Entity<>(new Text("text", "Producing out-of sample portfolio graph completed successful")));
 
-        body.add(new Item<>(new Graph("graph", new String[]{"robust portfolio"}, data)));
+        body.add(new Entity<>(new Graph("graph", new String[]{"robust portfolio"}, data)));
 
-        body.add(new Item<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-back", "/calculating_statistic_in_progress_completed_back/"+jobId, "Back")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

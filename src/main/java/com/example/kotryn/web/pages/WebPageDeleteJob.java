@@ -14,18 +14,18 @@ public class WebPageDeleteJob {
     }
 
     public Page show() {
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
 
-        body.add(new Item<>(new Text("text", "Delete job")));
+        body.add(new Entity<>(new Text("text", "Delete job")));
         if(error != null){
-            body.add(new Item<>(new Text("text", error)));
+            body.add(new Entity<>(new Text("text", error)));
         }
-        body.add(new Item<>(new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"})));
-        body.add(new Item<>(new Button("button-back", "/start_page", "Back")));
-        body.add(new Item<>(new Button("button-delete", "/delete_job", "Delete")));
+        body.add(new Entity<>(new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"})));
+        body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
+        body.add(new Entity<>(new Button("button-delete", "/delete_job", "Delete")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

@@ -12,12 +12,12 @@ public class Dropdown {
     private String name;
 
     @JsonView(View.Summary.class)
-    private List<Item> items;
+    private List<Entity> entities;
 
-    public Dropdown(String type, String name, List<Item> items) {
+    public Dropdown(String type, String name, List<Entity> entities) {
         this.type = type;
         this.name = name;
-        this.items = items;
+        this.entities = entities;
     }
 }
 

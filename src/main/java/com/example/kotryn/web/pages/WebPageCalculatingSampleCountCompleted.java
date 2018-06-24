@@ -3,7 +3,6 @@ package com.example.kotryn.web.pages;
 import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.json.*;
-import com.example.kotryn.lib.Tools;
 import com.example.kotryn.repository.JobRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 
@@ -26,18 +25,18 @@ public class WebPageCalculatingSampleCountCompleted {
         //String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Calculating sample count completed successfully")));
-        body.add(new Item<>(new Text("text", "In-sample: "+job.getInSample())));
-        body.add(new Item<>( new Text("text", "Out-of-sample: "+job.getOutOfSample())));
+        body.add(new Entity<>(new Text("text", "Calculating sample count completed successfully")));
+        body.add(new Entity<>(new Text("text", "In-sample: "+job.getInSample())));
+        body.add(new Entity<>( new Text("text", "Out-of-sample: "+job.getOutOfSample())));
 
-        body.add(new Item<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button", "/estimating_worst_case_distributions_setup/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "/estimating_worst_case_distributions_setup/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

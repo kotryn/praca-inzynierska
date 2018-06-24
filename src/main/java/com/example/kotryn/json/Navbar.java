@@ -8,13 +8,13 @@ import java.util.List;
 public class Navbar {
 
     @JsonView(View.Summary.class)
-    private List<Item> items;
+    private List<Entity> entities;
 
-    public Navbar(Item ...items) {
-        this.items = Arrays.asList(items);
+    public Navbar(Entity... entities) {
+        this.entities = Arrays.asList(entities);
     }
 
-    public Navbar(List<Item> items) {
-        this.items = items;
+    public Navbar(List<Entity> entities) {
+        this.entities = entities;
     }
 }

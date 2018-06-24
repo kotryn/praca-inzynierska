@@ -7,9 +7,9 @@ function Title ({config}){
         case "h2":
             return <h2>{config.text}</h2>
         case "h3":
-            return <h3 style={{textAlign: "left"}}>{config.text}</h3>
+            return <h3>{config.text}</h3>
         case "h4":
-            return <h4 style={{textAlign: "left"}}>{config.text}</h4>
+            return <h4>{config.text}</h4>
         case "h5":
             return <h5>{config.text}</h5>
         case "h6":

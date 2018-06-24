@@ -13,9 +13,9 @@ public class WebPagePromptUser {
         Button btnConnectJob = new Button("button", "/connect_to_job", "Connect to a job");
         Button btnDeleteJob = new Button("button", "/delete_job", "Delete job");
 
-        Item<Button> itemBtnNewJob = new Item<>(btnNewJob);
-        Item<Button> itemBtnConnectJob = new Item<>(btnConnectJob);
-        Item<Button> itemBtnDeleteJob = new Item<>(btnDeleteJob);
+        Entity<Button> itemBtnNewJob = new Entity<>(btnNewJob);
+        Entity<Button> itemBtnConnectJob = new Entity<>(btnConnectJob);
+        Entity<Button> itemBtnDeleteJob = new Entity<>(btnDeleteJob);
 
         return new Page(new Body(itemBtnNewJob, itemBtnConnectJob, itemBtnDeleteJob));
     }

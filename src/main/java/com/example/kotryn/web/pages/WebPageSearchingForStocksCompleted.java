@@ -34,37 +34,40 @@ public class WebPageSearchingForStocksCompleted {
             previouslySelectedStocksText = "Previously selected stocks: none";
         }
 
-        List<Item> navbar = new ArrayList<>();
-        List<Item> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Searching for stocks completed successfully")));
-        body.add(new Item<>(new Text("text", "Elapsed time: "+formattedDuration)));
-        body.add(new Item<>(new Text("text", previouslySelectedStocksText)));
+        body.add(new Entity<>(new Text("text", "Searching for stocks completed successfully")));
+        body.add(new Entity<>(new Text("text", "Elapsed time: "+formattedDuration)));
+        body.add(new Entity<>(new Text("text", previouslySelectedStocksText)));
 
-        body.add(new Item<>(new Text("text", "Available stocks: ")));
+        body.add(new Entity<>(new Text("text", "Available stocks: ")));
 
         Map<String, Sector> map = new HashMap<>(job.getStocks());
 
         for (Map.Entry<String, Sector> entry : map.entrySet()){
-            body.add(new Item<>(new Title("title", "h3", entry.getKey())));//Sector
+            String sector = entry.getKey();
             Set<String> industry = new HashSet<>();
 
             for(Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()){
                 industry.add(element.getValue());
             }
+            List<Entity> dropdown = new ArrayList<>();
 
             for(String i: industry){
-                body.add(new Item<>(new Title("title", "h4", i)));//Industry
                 List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), i);
-                body.add(new Item<>(new Checkbox("checkbox", name, name)));//Stocks
+                List<Entity> nameList = new ArrayList<>();
+                nameList.add(new Entity<>(new Checkbox("checkbox", name, name)));
+                dropdown.add(new Entity<>(new Dropdown("dropdown", i, nameList)));
             }
+            body.add(new Entity<>(new Dropdown("dropdown", sector, dropdown)));
         }
 
-        body.add(new Item<>(new Button("button-back", "/jobsPOST/"+jobId, "Back")));
-        body.add(new Item<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "/jobsPOST/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Next")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

@@ -16,13 +16,13 @@ public class WebPageCalculatingStatisticFailed {
     }
 
     public Page show() {//TODO: failed
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Item<>(new Text("text-navbar", "Job ID: "+jobId)));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
 
-        body.add(new Item<>(new Text("text", "Calculating out-of sample statistic failed")));
+        body.add(new Entity<>(new Text("text", "Calculating out-of sample statistic failed")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }

@@ -14,14 +14,14 @@ public class WebPageBeginJob {
     }
 
     public Page show() {
-        List<Item> body = new ArrayList<>();
-        List<Item> navbar = new ArrayList<>();
+        List<Entity> body = new ArrayList<>();
+        List<Entity> navbar = new ArrayList<>();
 
-        navbar.add(new Item<>(new Button("button-start-page", "/start_page", "Start page")));
+        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
 
-        body.add(new Item<>(new Text("text", "New job id: "+ jobId)));
-        body.add(new Item<>(new Button("button-back", "/start_page", "Back")));
-        body.add(new Item<>(new Button("button", "/jobsPOST/"+jobId, "Connect")));
+        body.add(new Entity<>(new Text("text", "New job id: "+ jobId)));
+        body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
+        body.add(new Entity<>(new Button("button", "/jobsPOST/"+jobId, "Connect")));
 
         return new Page(new Navbar(navbar), new Body(body));
     }
