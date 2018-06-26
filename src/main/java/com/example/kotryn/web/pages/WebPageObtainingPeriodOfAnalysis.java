@@ -21,12 +21,12 @@ public class WebPageObtainingPeriodOfAnalysis {
         Job job = jobRepository.getOne(jobId);
 
         List<Entity> body = new ArrayList<>();
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
-        body.add(new Entity<>(new Text("text", "Supply the period of analysis")));
+        body.add(new Entity<>(new Title("title", "h3", "Supply the period of analysis")));
         body.add(new Entity<>(new Text("text", "Previous start date: " + job.getStartDate())));
         body.add(new Entity<>(new Text("text", "Previous end date: " + job.getEndDate())));
         body.add(new Entity<>(new Input("input-date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
@@ -34,6 +34,6 @@ public class WebPageObtainingPeriodOfAnalysis {
         body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
         body.add(new Entity<>(new Button("button", "/period_of_analysis/"+jobId, "Next")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

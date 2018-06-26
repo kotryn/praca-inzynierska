@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 import java.util.Arrays;
 import java.util.List;
 
-public class Navbar {
+public class Header {
 
     @JsonView(View.Summary.class)
     private List<Entity> entities;
 
-    public Navbar(Entity... entities) {
+    public Header(Entity... entities) {
         this.entities = Arrays.asList(entities);
     }
 
-    public Navbar(List<Entity> entities) {
+    public Header(List<Entity> entities) {
         this.entities = entities;
     }
 }

@@ -23,15 +23,15 @@ public class WebPageEstimatingWorstCaseDistributionsFailed {
         String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
 
         List<Entity> body = new ArrayList<>();
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Estimating worst case distributions failed. Reason: " + processDescriptor.getErrorMessage())));
         body.add(new Entity<>(new Text("text", "Elapsed time: "+formattedDuration)));
         body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

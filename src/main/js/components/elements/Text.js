@@ -1,8 +1,8 @@
 import React from 'react';
 
 function Text({config}){
-    if(config.type === "text-navbar"){
-        return <div className={"text text-navbar"}>{config.text}</div>
+    if(config.type === "text-header"){
+        return <div className={"text text-header"}>{config.text}</div>
     }
     return <div className={"text"}>{config.text}</div>
 }

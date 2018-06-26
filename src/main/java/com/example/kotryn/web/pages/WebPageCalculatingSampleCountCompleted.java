@@ -26,10 +26,10 @@ public class WebPageCalculatingSampleCountCompleted {
         Job job = jobRepository.findOne(jobId);
 
         List<Entity> body = new ArrayList<>();
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Calculating sample count completed successfully")));
         body.add(new Entity<>(new Text("text", "In-sample: "+job.getInSample())));
@@ -38,6 +38,6 @@ public class WebPageCalculatingSampleCountCompleted {
         body.add(new Entity<>(new Button("button-back", "/calculating_sample_count_completed_back/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button", "/estimating_worst_case_distributions_setup/"+jobId, "Next")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

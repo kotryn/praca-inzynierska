@@ -28,14 +28,14 @@ class Button extends React.Component{
         const {title, type} = this.props.config;
         if(type === 'button-start-page'){
             return (
-                <button className={"btn btn-primary home"} onClick={this.next}>
+                <button className={"btn home dark-blue"} onClick={this.next}>
                     <i className="fas fa-home"></i>
                 </button>
             )}
 
         return (
             <div className={'my-button'}>
-                <button className={"btn btn-primary"} onClick={this.next}>{title}</button>
+                <button className={"btn dark-blue"} onClick={this.next}>{title}</button>
             </div>
         );
     }

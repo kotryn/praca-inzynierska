@@ -47,7 +47,8 @@ class Dropdown extends React.Component{
         return (
                 <div className={"dropdown"}>
                     <div className="dropdown-title" onClick={() => this.toggleMenu()}>
-                        {name}
+                        {name}<i className={this.state.isOpen ? "fas fa-caret-up" : "fas fa-caret-down"}></i>
+
                     </div>
                     <div className={"dropdown-items"} id={"e"+index}>
                         <div className="wrapper" id={"w"+index}>

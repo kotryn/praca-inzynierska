@@ -26,17 +26,17 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         Job job = jobRepository.findOne(jobId);
 
         List<Entity> body = new ArrayList<>();
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
-        body.add(new Entity<>(new Text("text", "Estimating worst case distributions completed successfully")));
+        body.add(new Entity<>(new Title("title", "h2", "Estimating worst case distributions completed successfully")));
 
         Map<String, WorstCaseDistributionSector> map = new HashMap<>(job.getWorstCaseDistributionStocks());
 
         for (Map.Entry<String, WorstCaseDistributionSector> entry : map.entrySet()) {
-            body.add(new Entity<>(new Title("title", "h3", entry.getKey())));//Sector
+            body.add(new Entity<>(new Title("title", "h3-left", entry.getKey())));//Sector
             Set<String> industry = new HashSet<>();
 
             for (Map.Entry<String, String> element : entry.getValue().getIndustriesStocks().entrySet()) {
@@ -44,7 +44,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
             }
 
             for (String i : industry) {
-                body.add(new Entity<>(new Title("title", "h4", i)));//Industry
+                body.add(new Entity<>(new Title("title", "h4-left", i)));//Industry
                 List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), i);
                 body.add(new Entity<>(new StaticList("list", name)));//Stocks
             }
@@ -53,6 +53,6 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         body.add(new Entity<>(new Button("button-back", "/estimating_worst_case_distributions_completed_back/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button", "/estimating_growth_stocks_setup/"+jobId, "Next")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

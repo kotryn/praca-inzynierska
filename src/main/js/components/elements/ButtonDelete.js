@@ -28,7 +28,7 @@ class ButtonDelete extends React.Component{
 
         return (
             <div className={'my-button'}>
-                <button className={"btn btn-danger"} onClick={this.delete}>{title}</button>
+                <button className={"btn dark-red"} onClick={this.delete}>{title}</button>
             </div>
         );
     }

@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 public class Page {
     @JsonView(View.Summary.class)
-    private Navbar navbar;
+    private Header header;
     @JsonView(View.Summary.class)
     private Body body;
 
-    public Page(Navbar navbar, Body body) {
-        this.navbar = navbar;
+    public Page(Header header, Body body) {
+        this.header = header;
         this.body = body;
     }
 
@@ -25,11 +25,11 @@ public class Page {
         return body;
     }
 
-    public Navbar getNavbar() {
-        return navbar;
+    public Header getHeader() {
+        return header;
     }
 
-    public void setNavbar(Navbar navbar) {
-        this.navbar = navbar;
+    public void setHeader(Header header) {
+        this.header = header;
     }
 }

@@ -28,7 +28,7 @@ class ButtonForm extends React.Component{
         const {title} = this.props.config;
 
         return (
-            <button className={'btn btn-success'} onClick={this.add}>{title}</button>
+            <button className={'btn dark-green'} onClick={this.add}>{title}</button>
         );
     }
 }

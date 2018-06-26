@@ -15,9 +15,9 @@ public class WebPageDeleteJob {
 
     public Page show() {
         List<Entity> body = new ArrayList<>();
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
 
         body.add(new Entity<>(new Text("text", "Delete job")));
         if(error != null){
@@ -27,6 +27,6 @@ public class WebPageDeleteJob {
         body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
         body.add(new Entity<>(new Button("button-delete", "/delete_job", "Delete")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

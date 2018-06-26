@@ -45,7 +45,7 @@ class Main extends React.Component{
                 case "text":
                     component.push(<Text config={element} key={index} />);
                     break;
-                case "text-navbar":
+                case "text-header":
                     component.push(<Text config={element} key={index} />);
                     break;
                 case "line":
@@ -112,15 +112,17 @@ class Main extends React.Component{
             setComponentType(element.entity, components, index);
         });
 
-        let navbarComponents = [];
-        config.navbar && config.navbar.entities.map((element, index)=>{
-            setComponentType(element.entity, navbarComponents, index);
+        let headerComponents = [];
+        config.header && config.header.entities.map((element, index)=>{
+            setComponentType(element.entity, headerComponents, index);
         });
 
         return (
-            <div className={'container'}>
-                <header>{navbarComponents}</header>
-                <main>{components}</main>
+            <div className={'container-fluid'}>
+                <div className={'col col-lg-6 col-md-10 col-sm-12 col-12 offset-lg-3 offset-md-1 m-container -center'}>
+                    <header>{headerComponents}</header>
+                    <main>{components}</main>
+                </div>
             </div>
         )
 

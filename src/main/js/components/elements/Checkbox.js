@@ -11,13 +11,16 @@ class Checkbox extends React.Component{
         const {name, id, values} = this.props;
 
         return (
-            <label className={'checkbox'}>
-                <input
-                    type="checkbox"
-                    checked={values[id]}
-                    onChange={this.handle.bind(this)} />
-                {name}
-            </label>
+            <div className="checkbox">
+                <label className={'checkbox-container checkbox'}>
+                    <input
+                        type="checkbox"
+                        checked={values[id]}
+                        onChange={this.handle.bind(this)} />
+                    {name}
+                    <span className="checkbox-checkmark"></span>
+                </label>
+            </div>
         );
     }
 }

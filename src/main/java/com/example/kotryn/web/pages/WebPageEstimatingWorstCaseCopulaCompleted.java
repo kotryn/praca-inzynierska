@@ -23,10 +23,10 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
         Job job = jobRepository.findOne(jobId);
 
         List<Entity> body = new ArrayList<>();
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Estimating worst case copula completed successful")));
 
@@ -40,6 +40,6 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
         body.add(new Entity<>(new Button("button-back", "/estimating_worst_case_copula_completed_back/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button", "/building_robust_portfolio_setup/"+jobId, "Next")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

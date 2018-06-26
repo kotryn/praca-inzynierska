@@ -34,11 +34,11 @@ public class WebPageSearchingForStocksCompleted {
             previouslySelectedStocksText = "Previously selected stocks: none";
         }
 
-        List<Entity> navbar = new ArrayList<>();
+        List<Entity> header = new ArrayList<>();
         List<Entity> body = new ArrayList<>();
 
-        navbar.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
-        navbar.add(new Entity<>(new Text("text-navbar", "Job ID: "+jobId)));
+        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Searching for stocks completed successfully")));
         body.add(new Entity<>(new Text("text", "Elapsed time: "+formattedDuration)));
@@ -69,6 +69,6 @@ public class WebPageSearchingForStocksCompleted {
         body.add(new Entity<>(new Button("button-back", "/jobsPOST/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button-form", "/calculating_sample_count_setup/"+jobId, "Next")));
 
-        return new Page(new Navbar(navbar), new Body(body));
+        return new Page(new Header(header), new Body(body));
     }
 }

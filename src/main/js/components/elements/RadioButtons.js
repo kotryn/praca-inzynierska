@@ -29,13 +29,15 @@ class RadioButtons extends React.Component{
         const {names} = this.props;
 
         const component = names.map((element, index) => (
-            <label className={'radio-button'} key={index}>
+            <label className={'radio-button radio-container'} key={index}>
                 <input
                     type="radio"
+                    name="radio"
                     value={element}
                     checked={this.state.name === element}
                     onChange={this.onButtonChange.bind(this)}/>
                 {element}
+                <span className="radio-checkmark"></span>
             </label>
         ));
 
