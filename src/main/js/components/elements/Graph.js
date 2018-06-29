@@ -21,8 +21,8 @@ class Graph extends React.Component{
         });
 
         return (
-            <div className={'chart'}>
-                <ResponsiveContainer width="100%" height={450} >
+            <div className={'graph'}>
+                <ResponsiveContainer className={'graph-container'} >
                     <LineChart width={730} height={400} data={graphData}
                                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />

@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 
 import {getPageDataInfo} from './../actions/data'
 import Text from './elements/Text'
-import Line from './elements/Line'
 import Button from './elements/Button'
 import ButtonBack from './elements/ButtonBack'
 import ButtonDelete from './elements/ButtonDelete'
 import ButtonForm from './elements/ButtonForm'
 import Table from './elements/Table'
 import Title from './elements/Title'
-import Image from "./elements/Image"
 import Form from "./elements/Form"
 import List from "./elements/List"
 import Graph from "./elements/Graph"
@@ -48,9 +46,6 @@ class Main extends React.Component{
                 case "text-header":
                     component.push(<Text config={element} key={index} />);
                     break;
-                case "line":
-                    component.push(<Line config={element} key={index} />);
-                    break;
                 case "button":
                     component.push(<Button config={element} key={index}  />);
                     break;
@@ -77,9 +72,6 @@ class Main extends React.Component{
                     break;
                 case "input-number":
                     component.push(<Form config={element} key={index} />);
-                    break;
-                case "image":
-                    component.push(<Image config={element} key={index}  />);
                     break;
                 case "checkbox":
                     component.push(<Form config={element} key={index}  />);

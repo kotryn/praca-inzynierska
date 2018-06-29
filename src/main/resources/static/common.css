@@ -180,10 +180,20 @@ input[type="radio"] {
     border: none;
     padding: 0.4rem 1rem;
 }
-.chart{
+.graph-container{
+    width: 100%!important;
+    height: 450px!important;
+}
+.graph{
     width: 100%;
     margin-top: 50px;
 }
+@media (max-width:425px)  {
+    .graph-container{
+        height: 300px!important;
+    }
+}
+
 .dropdown{
     text-align: left;
     margin-bottom: 10px;
