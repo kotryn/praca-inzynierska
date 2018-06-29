@@ -24,12 +24,10 @@ class ButtonDelete extends React.Component{
     }
 
     render() {
-        const {title} = this.props.config;
+        const {name} = this.props.config;
 
         return (
-            <div className={'my-button'}>
-                <button className={"btn dark-red"} onClick={this.delete}>{title}</button>
-            </div>
+                <button className={"btn dark-red"} onClick={this.delete}>{name}</button>
         );
     }
 }

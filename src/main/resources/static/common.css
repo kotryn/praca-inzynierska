@@ -60,12 +60,24 @@ main {
 .dark-red:focus{
     box-shadow: 0 0 0 0.2rem rgba(119, 25, 34, 0.82);
 }
+.grey{
+    background-color: #e3e9ef;
+    border-color: #e3e9ef;
+    color: #212529;
+}
+.grey:active,
+.grey:hover{
+    background-color: #c8ced4;
+    border-color: #d3d9df;
+    color: #212529;
+}
+.grey:focus{
+    box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.5);
+}
 .home{
     display: inline-block;
     margin-right: 10px;
-}
-.my-button{
-    display: inline-block;
+    margin-top: 5px!important;
 }
 th {
     padding: 5px 20px;
@@ -73,13 +85,10 @@ th {
 td {
     padding: 5px 20px;
 }
-.my-button {
-    padding: 5px 10px;
+.btn {
+    margin: 35px 10px 5px;
     font-size: 18px;
-    color: green;
-    margin-top: 30px;
 }
-
 a {
     top: 30px;
     font-size: 1.5em;
@@ -125,7 +134,7 @@ tr.article{
     padding: 10px;
     width: 60%;
 }
-.article .title{
+.article .name{
     font-size: 1.2em;
     font-weight: bold;
     display: block;
@@ -150,7 +159,7 @@ tr.article{
 li.list{
     text-align: left;
 }
-label.radio-button {
+label.radio {
     display: block;
     text-align: left;
 }
@@ -162,7 +171,7 @@ input[type="radio"] {
     margin: 20px 0;
     overflow-x: auto;
 }
-.table-title {
+.table-name {
     border-bottom: 1px solid black;
     padding: 0 0 1% 0;
 }
@@ -177,14 +186,15 @@ input[type="radio"] {
 }
 .dropdown{
     text-align: left;
+    margin-bottom: 10px;
 }
-.dropdown-title{
+.dropdown-name{
     font-size: 18px;
     position: relative;
     padding: 10px;
     cursor: pointer;
 }
-.dropdown-title .fas{
+.dropdown-name .fas{
     padding-left: 20px;
 }
 .dropdown-items{
@@ -202,7 +212,7 @@ input[type="radio"] {
 }
 .spinner{
     font-size: 5rem;
-    margin-bottom: 4%;
+    margin-top: 6%;
 }
 
 .radio-container {

@@ -25,10 +25,10 @@ class ButtonBack extends React.Component{
     }
 
     render() {
-        const {title} = this.props.config;
+        const {name} = this.props.config;
 
         return (
-            <button className={'btn btn-light'} onClick={this.back}>{title}</button>
+            <button className={'btn grey'} onClick={this.back}>{name}</button>
         );
     }
 }

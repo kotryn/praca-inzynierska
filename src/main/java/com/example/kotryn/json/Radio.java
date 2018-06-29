@@ -2,7 +2,7 @@ package com.example.kotryn.json;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-public class RadioButton {
+public class Radio {
     @JsonView(View.Summary.class)
     private String type;
 
@@ -15,7 +15,7 @@ public class RadioButton {
     @JsonView(View.Summary.class)
     private String[] names;
 
-    public RadioButton(String type, String[] values, String[] names, String value) {
+    public Radio(String type, String[] values, String[] names, String value) {
         this.type = type;
         this.values = values;
         this.names = names;

@@ -75,7 +75,7 @@ class Main extends React.Component{
                 case "input-date":
                     component.push(<Form config={element} key={index} />);
                     break;
-                case "input-integer":
+                case "input-number":
                     component.push(<Form config={element} key={index} />);
                     break;
                 case "image":
@@ -84,7 +84,7 @@ class Main extends React.Component{
                 case "checkbox":
                     component.push(<Form config={element} key={index}  />);
                     break;
-                case "radio-button":
+                case "radio":
                     component.push(<Form config={element} key={index}  />);
                     break;
                 case "list":

@@ -46,7 +46,7 @@ class Dropdown extends React.Component{
 
         return (
                 <div className={"dropdown"}>
-                    <div className="dropdown-title" onClick={() => this.toggleMenu()}>
+                    <div className="dropdown-name" onClick={() => this.toggleMenu()}>
                         {name}<i className={this.state.isOpen ? "fas fa-caret-up" : "fas fa-caret-down"}></i>
 
                     </div>

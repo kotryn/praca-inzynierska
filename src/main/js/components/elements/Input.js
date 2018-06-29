@@ -14,7 +14,7 @@ class Input extends React.Component{
 
         let t;
         switch(type){
-            case "input-integer":
+            case "input-number":
                 t = "number";
                 break;
             case "input-date":

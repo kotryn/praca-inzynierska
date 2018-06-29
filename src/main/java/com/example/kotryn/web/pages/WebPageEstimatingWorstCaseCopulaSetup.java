@@ -30,12 +30,12 @@ public class WebPageEstimatingWorstCaseCopulaSetup {
         if(job.getCopulaWindowSize() != null){
             body.add(new Entity<>(new Text("text", "Previously selected window size: " + job.getCopulaWindowSize())));
         }
-        body.add(new Entity<>(new Input("input-integer", new String[]{"copulaWindowSize"}, new String[]{"Window size:"})));
+        body.add(new Entity<>(new Input("input-number", new String[]{"copulaWindowSize"}, new String[]{"Window size:"})));
 
         body.add(new Entity<>(new Text("text", "Previously selected type: " + job.getCopulaType())));
 
         body.add(new Entity<>(new Text("text", "Copula type:")));
-        body.add(new Entity<>(new RadioButton("radio-button", new String[]{"Clayton copula", "t copula"}, new String[]{"Clayton copula", "t copula"}, "copulaType")));
+        body.add(new Entity<>(new Radio("radio", new String[]{"Clayton copula", "t copula"}, new String[]{"Clayton copula", "t copula"}, "copulaType")));
 
 
         body.add(new Entity<>(new Button("button-back", "/estimating_worst_case_copula_setup_back/"+jobId, "Back")));

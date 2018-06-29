@@ -6,7 +6,7 @@ class Table extends React.Component{
 
         let width = 100 / data.length + "%";
 
-         const title = data.map((element, index)=>(
+         const name = data.map((element, index)=>(
             <th key={index}>
                 {element[0]}
             </th>
@@ -41,8 +41,8 @@ class Table extends React.Component{
         return (
             <div className={"table m-table"}>
                 <table>
-                    <tr style={{minWidth: width}} className={'table-title'}>
-                        {title}
+                    <tr style={{minWidth: width}} className={'table-name'}>
+                        {name}
                     </tr>
                     {tableData}
                 </table>

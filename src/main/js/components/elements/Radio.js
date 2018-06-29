@@ -2,7 +2,7 @@ import React from 'react';
 import {editInputValue} from "../../actions/formData";
 import {connect} from "react-redux";
 
-class RadioButtons extends React.Component{
+class Radio extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ class RadioButtons extends React.Component{
         const {names} = this.props;
 
         const component = names.map((element, index) => (
-            <label className={'radio-button radio-container'} key={index}>
+            <label className={'radio radio-container'} key={index}>
                 <input
                     type="radio"
                     name="radio"
@@ -42,14 +42,14 @@ class RadioButtons extends React.Component{
         ));
 
         return (
-            <form className={"radio-button"}>{component}</form>
+            <form className={"radio"}>{component}</form>
         );
     }
 }
 
-RadioButtons = connect(
+Radio = connect(
     state =>  state.formData,
     { editInputValue }
-)(RadioButtons)
+)(Radio)
 
-export default RadioButtons;
+export default Radio;

@@ -11,7 +11,7 @@
       },
       {
         "type": "button-back",
-        "title": "back",
+        "name": "back",
         "url": "/"
       }
     ]

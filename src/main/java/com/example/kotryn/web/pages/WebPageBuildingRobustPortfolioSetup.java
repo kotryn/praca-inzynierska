@@ -30,22 +30,22 @@ public class WebPageBuildingRobustPortfolioSetup {
         if(job.getNumberOfSamples() != null){
             body.add(new Entity<>(new Text("text", "Previously selected number of samples: " + job.getNumberOfSamples())));
         }
-        body.add(new Entity<>(new Input("input-integer", new String[]{"numberOfSamples"}, new String[]{"Number of samples:"})));
+        body.add(new Entity<>(new Input("input-number", new String[]{"numberOfSamples"}, new String[]{"Number of samples:"})));
 
         if(job.getYearRateOfReturn() != null){
             body.add(new Entity<>(new Text("text", "Previously selected required year rate of return: " + job.getYearRateOfReturn())));
         }
-        body.add(new Entity<>(new Input("input-integer", new String[]{"yearRateOfReturn"}, new String[]{"Required year rate of return:"})));
+        body.add(new Entity<>(new Input("input-number", new String[]{"yearRateOfReturn"}, new String[]{"Required year rate of return:"})));
 
         if(job.getToleranceLevel() != null){
             body.add(new Entity<>(new Text("text", "Previously selected CVaR (Conditional Value At Risk) tolerance level (ß): " + job.getToleranceLevel())));
         }
-        body.add(new Entity<>(new Input("input-integer", new String[]{"toleranceLevel"}, new String[]{"CVaR tolerance level (ß):"})));
+        body.add(new Entity<>(new Input("input-number", new String[]{"toleranceLevel"}, new String[]{"CVaR tolerance level (ß):"})));
 
         if(job.getMaxShare() != null){
             body.add(new Entity<>(new Text("text", "Previously selected required maximum number of shares: " + job.getMaxShare())));
         }
-        body.add(new Entity<>(new Input("input-integer", new String[]{"maxShare"}, new String[]{"Required maximum number of shares:"})));
+        body.add(new Entity<>(new Input("input-number", new String[]{"maxShare"}, new String[]{"Required maximum number of shares:"})));
 
         body.add(new Entity<>(new Button("button-back", "/building_robust_portfolio_setup_back/"+jobId, "Back")));//TODO
         body.add(new Entity<>(new Button("button-form", "/building_robust_portfolio/"+jobId, "Next")));

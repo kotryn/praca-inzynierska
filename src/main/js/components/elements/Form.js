@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import Checkbox from './Checkbox'
-import RadioButtons from './RadioButtons'
+import Radio from './Radio'
 import Input from "./Input"
 import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData, changeRadioData } from "../../actions/formData";
 
@@ -22,7 +22,7 @@ class Form extends React.Component{
             case "checkbox":
                 formData = values.map(()=> false);
                 break;
-            case "radio-button":
+            case "radio":
                 formData = values.map((e, i)=> {
                     if(i === 0){
                         return names[i]
@@ -32,7 +32,7 @@ class Form extends React.Component{
             case "input":
                 formData = values.map(()=> "");
                 break;
-            case "input-integer":
+            case "input-number":
                 formData = values.map(()=> "");
                 break;
             case "input-date":
@@ -76,7 +76,7 @@ class Form extends React.Component{
                         }
                 });
                 return null;
-            case "radio-button":
+            case "radio":
                 output.values.forEach((e, i)=>{
                     output[e] = this.props.values[id+i];
                     if(output[e] !== false){
@@ -89,7 +89,7 @@ class Form extends React.Component{
                     output[e] = this.props.values[id+i];
                 });
                 return JSON.parse(JSON.stringify(output));
-            case "input-integer":
+            case "input-number":
                 output.values.forEach((e, i)=>{
                     output[e] = this.props.values[id+i];
                 });
@@ -116,15 +116,15 @@ class Form extends React.Component{
                 ComponentName = Checkbox;
                 style = "form-checkbox";
                 break;
-            case "radio-button":
+            case "radio":
                 return (
-                    <RadioButtons names={names} id={id} value={value} />
+                    <Radio names={names} id={id} />
                 );
             case "input":
                 ComponentName = Input;
                 style = "form-text";
                 break;
-            case "input-integer":
+            case "input-number":
                 ComponentName = Input;
                 style = "form-text";
                 break;

@@ -10,11 +10,11 @@ public class Button {
     private String url;
 
     @JsonView(View.Summary.class)
-    private String title;
+    private String name;
 
-    public Button(String type, String url, String title) {
+    public Button(String type, String url, String name) {
         this.type = type;
         this.url = url;
-        this.title = title;
+        this.name = name;
     }
 }

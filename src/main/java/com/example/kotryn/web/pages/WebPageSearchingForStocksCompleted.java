@@ -27,12 +27,8 @@ public class WebPageSearchingForStocksCompleted {
         String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
-        List<String> previouslySelectedStocks = Optional.ofNullable(job.getSelectedStocks()).orElse(Collections.singletonList("none"));
-
-        String previouslySelectedStocksText = "Previously selected stocks: " + previouslySelectedStocks;
-        if(previouslySelectedStocks.size() <= 0){
-            previouslySelectedStocksText = "Previously selected stocks: none";
-        }
+        List<String> previouslySelectedStocks = new ArrayList<>();
+        previouslySelectedStocks.addAll(job.getSelectedStocks());
 
         List<Entity> header = new ArrayList<>();
         List<Entity> body = new ArrayList<>();
@@ -42,9 +38,16 @@ public class WebPageSearchingForStocksCompleted {
 
         body.add(new Entity<>(new Text("text", "Searching for stocks completed successfully")));
         body.add(new Entity<>(new Text("text", "Elapsed time: "+formattedDuration)));
-        body.add(new Entity<>(new Text("text", previouslySelectedStocksText)));
+        if(previouslySelectedStocks.size() <= 0){
+            body.add(new Entity<>(new Text("text", "Previously selected stocks: none")));
+        }else{
+            List<Entity> list = new ArrayList<>();
+            list.add(new Entity<>(new StaticList("list", previouslySelectedStocks)));
 
-        body.add(new Entity<>(new Text("text", "Available stocks: ")));
+            body.add(new Entity<>(new Dropdown("dropdown", "Previously selected stocks", list)));
+        }
+
+        body.add(new Entity<>(new Title("title", "h4", "Available stocks")));
 
         Map<String, Sector> map = new HashMap<>(job.getStocks());
 
