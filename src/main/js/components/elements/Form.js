@@ -142,7 +142,7 @@ class Form extends React.Component{
         ));
 
         return (
-            <form className={style}>
+            <form className={style} autoComplete={"off"}>
                 {component}
             </form>
         );
