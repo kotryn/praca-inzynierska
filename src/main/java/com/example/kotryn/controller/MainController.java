@@ -194,7 +194,7 @@ public class MainController {
         }
     }
 
-    @RequestMapping(value = "/jobSetDate/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/job_set_date/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void jobSetDatePOST(@PathVariable Long id, @RequestBody Job addJobRequest) {
         Job job = jobRepository.findOne(id);

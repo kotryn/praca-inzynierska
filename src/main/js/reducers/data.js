@@ -1,9 +1,8 @@
-import {GET_DATA, GET_DATA_SUCCESS, GET_DATA_FAILURE} from './../actions/data'
+import {GET_DATA, GET_DATA_SUCCESS, GET_DATA_FAILURE, SET_ERROR} from './../actions/data'
 
 const defaultState = {
     config: [],
     fetching: true
-
 };
 
 function dataReducer(state = defaultState, action) {
@@ -31,6 +30,12 @@ function dataReducer(state = defaultState, action) {
                 error: action.error,
                 config: [],
                 status: action.status
+            }
+        case SET_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                error: action.error,
             }
         default:
             return state;

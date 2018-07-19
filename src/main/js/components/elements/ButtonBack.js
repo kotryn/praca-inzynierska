@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios';
 
-import { getPageDataInfo } from '../../actions/data'
+import { getPageDataInfo, setError } from '../../actions/data'
 
 class ButtonBack extends React.Component{
 
@@ -19,9 +19,11 @@ class ButtonBack extends React.Component{
             .then(response => {
                 if(response.status === 200){
                     this.props.getPageDataInfo();
+                }else{
+                    this.props.setError("server error")
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {console.log(error); this.props.setError("server error")})
     }
 
     render() {
@@ -35,7 +37,7 @@ class ButtonBack extends React.Component{
 
 ButtonBack = connect(
     null,
-    { getPageDataInfo }
+    { getPageDataInfo, setError }
 )(ButtonBack)
 
 export default ButtonBack;

@@ -332,3 +332,6 @@ input[type="radio"] {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg) translate(-50%, -50%);
 }
+.server-error {
+    text-align: center;
+}

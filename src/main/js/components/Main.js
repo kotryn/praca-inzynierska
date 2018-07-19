@@ -13,6 +13,7 @@ import Form from "./elements/Form"
 import List from "./elements/List"
 import Graph from "./elements/Graph"
 import Dropdown from "./elements/Dropdown"
+import ServerError from "./ServerError"
 
 
 class Main extends React.Component{
@@ -31,7 +32,13 @@ class Main extends React.Component{
         }
 
         if(error){
-            return <div>{status}</div>
+            return (
+                <div className={'container-fluid'}>
+                    <div className={'col col-lg-6 col-md-10 col-sm-12 col-12 offset-lg-3 offset-md-1 m-container -center'}>
+                        <ServerError error={error} url={config.startPage} />
+                    </div>
+                </div>
+            )
         }
 
         let dropdownIndex = 0;
