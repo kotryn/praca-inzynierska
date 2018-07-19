@@ -178,12 +178,12 @@ public class MainController {
             Long id = requestJob.getId();
             this.checkState(id, Action.INTERRUPT);
 
-            growthStockSectorRepository.removeByJobId(id);
+            /*growthStockSectorRepository.removeByJobId(id);
             growthStockSectorRepository.flush();
             worstCaseDistributionSectorRepository.removeByJobId(id);
             worstCaseDistributionSectorRepository.flush();
             sectorRepository.removeByJobId(id);
-            sectorRepository.flush();
+            sectorRepository.flush();*/
             jobRepository.delete(id);
             jobRepository.flush();
             contextRepository.delete(id);

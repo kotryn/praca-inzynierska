@@ -23,14 +23,14 @@ public class WebPageObtainingPeriodOfAnalysis {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-start-page", "http://localhost:8080/start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Title("title", "h3", "Supply the period of analysis")));
         body.add(new Entity<>(new Text("text", "Previous start date: " + job.getStartDate())));
         body.add(new Entity<>(new Text("text", "Previous end date: " + job.getEndDate())));
         body.add(new Entity<>(new Input("input-date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
-        body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/start_page", "Back")));
         body.add(new Entity<>(new Button("button-form", "/job_set_date/"+jobId, "Submit")));
         body.add(new Entity<>(new Button("button", "/period_of_analysis/"+jobId, "Next")));
 

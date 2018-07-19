@@ -22,7 +22,7 @@ public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase i
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        return "/estimating_worst_case_distributions_in_progress/"+context.getJobId();
+        return "http://localhost:8080/estimating_worst_case_distributions_in_progress/"+context.getJobId();
     }
 
     private void ifCalculatingDoneMoveToNextStateAndSave(Context context) {

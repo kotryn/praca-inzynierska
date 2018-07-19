@@ -8,16 +8,16 @@ public class Page {
     @JsonView(View.Summary.class)
     private Body body;
     @JsonView(View.Summary.class)
-    private String startPage;
+    private MainPage mainPage;
 
     public Page(Header header, Body body) {
-        this.startPage = "/start_page";
+        this.mainPage = new MainPage("Start Page", "http://localhost:8080/start_page");
         this.header = header;
         this.body = body;
     }
 
     public Page(Body body) {
-        this.startPage = "/start_page";
+        this.mainPage = new MainPage("Start Page", "http://localhost:8080/start_page");
         this.body = body;
     }
 

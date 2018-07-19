@@ -17,12 +17,12 @@ public class WebPageCalculatingSampleCountInProgress {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-start-page", "/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-start-page", "http://localhost:8080/start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Title("title", "h3", "Calculating Sample Count in progress")));
-        body.add(new Entity<>(new Button("button-back", "/calculating_sample_count_in_progress_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button", "/calculating_sample_count_in_progress/"+jobId, "Refresh")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/calculating_sample_count_in_progress_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "http://localhost:8080/calculating_sample_count_in_progress/"+jobId, "Refresh")));
 
         return new Page(new Header(header), new Body(body));
     }

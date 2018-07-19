@@ -2,7 +2,7 @@ import axios from "axios/index";
 
 export function getPageData(){
     return axios
-        .get('/data', {
+        .get('http://localhost:8080/data', {
             headers: {
                 'Content-type': 'application/json'
             }

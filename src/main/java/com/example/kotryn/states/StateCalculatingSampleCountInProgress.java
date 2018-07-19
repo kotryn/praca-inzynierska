@@ -23,7 +23,7 @@ public class StateCalculatingSampleCountInProgress extends StateBase implements 
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        return "/calculating_sample_count_in_progress/"+context.getJobId();
+        return "http://localhost:8080/calculating_sample_count_in_progress/"+context.getJobId();
     }
 
     private void ifCalculatingDoneMoveToNextStateAndSave(Context context) {
