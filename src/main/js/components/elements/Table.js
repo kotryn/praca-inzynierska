@@ -12,9 +12,12 @@ class Table extends React.Component{
             </th>
         ));
 
+        var min = Number.MAX_SAFE_INTEGER;
+
         var test = [];
         data.map((element, index)=>{
             test.push([]);
+            min = element.length < min ? element.length : min;
             element.map((e, i)=>{
                 if(i !== 0){
                     test[index].push(<td key={i}>{e}</td>);
@@ -34,7 +37,7 @@ class Table extends React.Component{
             }
         }
 
-        for(let k in test[0]){
+        for(let k = 0; k < min-1; k++){
             tableData.push(tempTableData[k]);
         }
 
