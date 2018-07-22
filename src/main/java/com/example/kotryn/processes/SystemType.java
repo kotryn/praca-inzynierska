@@ -1,7 +1,11 @@
 package com.example.kotryn.processes;
 
 public enum SystemType {
-    UNKNOWN,
+    WINDOWS,
     LINUX,
-    WINDOWS
+    UNIX,
+    POSIX_UNIX,
+    MAC,
+    OTHER,
+    UNKNOWN
 }

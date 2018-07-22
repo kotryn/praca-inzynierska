@@ -9,8 +9,6 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataEstimatingWorstCaseDistributionsInProgress;
 
-import java.util.Map;
-
 public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase implements IState {
     private final ContextRepository contextRepository;
     private final ProcessDescriptorRepository processDescriptorRepository;
@@ -22,7 +20,7 @@ public class StateEstimatingWorstCaseDistributionsInProgress extends StateBase i
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        return "http://localhost:8080/estimating_worst_case_distributions_in_progress/"+context.getJobId();
+        return "estimating_worst_case_distributions_in_progress/"+context.getJobId();
     }
 
     private void ifCalculatingDoneMoveToNextStateAndSave(Context context) {

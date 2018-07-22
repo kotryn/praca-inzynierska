@@ -3,10 +3,8 @@ package com.example.kotryn.states;
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context;
 import com.example.kotryn.entity.Job;
-import com.example.kotryn.processes.ProcessType;
 import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.JobRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataSearchingForStocksCompleted;
 
@@ -14,12 +12,10 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
 
     private final JobRepository jobRepository;
     private final ContextRepository contextRepository;
-    private final ProcessDescriptorRepository processDescriptorRepository;
 
-    public StateSearchingForStocksCompleted(JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public StateSearchingForStocksCompleted(JobRepository jobRepository, ContextRepository contextRepository) {
         this.jobRepository = jobRepository;
         this.contextRepository = contextRepository;
-        this.processDescriptorRepository = processDescriptorRepository;
     }
 
     @Override
@@ -39,10 +35,6 @@ public class StateSearchingForStocksCompleted extends StateBase implements IStat
         switch (input.getAction()) {
             case NEXT:
                 saveSelectedStocks(input);
-                /*createProcessDescriptorAndSave(ProcessType.CALCULATING_SAMPLE_COUNT, input.getJobId(),
-                        processDescriptorRepository);*/
-                /*moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_IN_PROGRESS, context, contextRepository);*/
-                /*startProcess(input.getJobId());*/
                 moveToNextStateAndSave(State.CALCULATING_SAMPLE_COUNT_SETUP, context, contextRepository);
                 break;
             default:

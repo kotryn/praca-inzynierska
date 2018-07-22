@@ -37,7 +37,7 @@ public class WebPageSearchingForStocksCompleted {
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Searching for stocks completed successfully")));
-        body.add(new Entity<>(new Text("text", "Elapsed time: "+formattedDuration)));
+
         if(previouslySelectedStocks.size() <= 0){
             body.add(new Entity<>(new Text("text", "Previously selected stocks: none")));
         }else{

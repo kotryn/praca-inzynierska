@@ -10,7 +10,7 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataBuildingRobustPortfolioInProgress;
 
-public class StateBuildingRobustPortfolioInProgress extends StateBase implements IState {
+public class  StateBuildingRobustPortfolioInProgress extends StateBase implements IState {
     private final ContextRepository contextRepository;
     private final ProcessDescriptorRepository processDescriptorRepository;
 

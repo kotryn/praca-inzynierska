@@ -9,7 +9,6 @@ import com.example.kotryn.repository.ContextRepository;
 import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataCalculatingSampleCountInProgress;
-import com.example.kotryn.web.data.WebDataSearchingForStocksInProgress;
 
 public class StateCalculatingSampleCountInProgress extends StateBase implements IState {
 
@@ -23,7 +22,7 @@ public class StateCalculatingSampleCountInProgress extends StateBase implements 
 
     @Override
     public String redirectToWebPage(Context context, MainController controller) {
-        return "http://localhost:8080/calculating_sample_count_in_progress/"+context.getJobId();
+        return "calculating_sample_count_in_progress/"+context.getJobId();
     }
 
     private void ifCalculatingDoneMoveToNextStateAndSave(Context context) {

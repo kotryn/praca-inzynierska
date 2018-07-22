@@ -75,25 +75,30 @@ public class ProcessSearchingForStocks implements IProcess {
             try {
                 ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
                 processDescriptor.setHost("localhost");
-                //processDescriptor.setSystemType(SystemType.WINDOWS);
-                //String command = "cmd.exe /c start /w cmd.exe /c \"echo Searching for stocks for job ID: "
-                //        + jobId + "&& timeout 15\"";
-                processDescriptor.setSystemType(SystemType.LINUX);
-                String command = "xterm  -e ./file.sh " + jobId;
-                Process process = Runtime.getRuntime().exec(command);
-
+                processDescriptor.setSystemType(OSInfo.getOs());
                 int pid = -1;
+                Process process;
+                if(processDescriptor.getSystemType() == SystemType.LINUX){
+                    String command = "xterm  -e ./file.sh " + jobId;
+                    process = Runtime.getRuntime().exec(command);
 
-                try {
-                    if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
-                        Field f = process.getClass().getDeclaredField("pid");
-                        f.setAccessible(true);
-                        pid = (int) f.getLong(process);
-                        f.setAccessible(false);
+                    try {
+                        if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
+                            Field f = process.getClass().getDeclaredField("pid");
+                            f.setAccessible(true);
+                            pid = (int) f.getLong(process);
+                            f.setAccessible(false);
+                        }
+                    } catch (Exception e) {
+                        pid = -1;
                     }
-                } catch (Exception e) {
-                    pid = -1;
                 }
+                /*else if(processDescriptor.getSystemType() == SystemType.WINDOWS){
+                    command = "cmd.exe /c start /w cmd.exe /c \"echo Searching for stocks for job ID: " + jobId + "&& timeout 15\"";
+                }*/else{
+                    throw new InterruptedException();
+                }
+
 
 
                 toBeDoneInsideProcessAtBegin(pid);

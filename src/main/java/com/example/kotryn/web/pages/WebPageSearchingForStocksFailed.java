@@ -29,7 +29,7 @@ public class WebPageSearchingForStocksFailed {//TODO: failed
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Searching for stocks failed. Reason: " + processDescriptor.getErrorMessage())));
-        body.add(new Entity<>(new Text("text", "Elapsed time: "+formattedDuration)));
+
         body.add(new Entity<>(new Button("button-back", "http://localhost:8080/jobsPOST/"+jobId, "Back")));
 
         return new Page(new Header(header), new Body(body));

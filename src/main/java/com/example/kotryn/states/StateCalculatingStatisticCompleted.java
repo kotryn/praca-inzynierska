@@ -2,10 +2,7 @@ package com.example.kotryn.states;
 
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context;
-import com.example.kotryn.entity.Job;
 import com.example.kotryn.repository.ContextRepository;
-import com.example.kotryn.repository.JobRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataCalculatingStatisticCompleted;
 

@@ -23,6 +23,7 @@ public class WebPageBuildingRobustPortfolioFailed {
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Building robust portfolio failed")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/building_robust_portfolio_failed_back/"+jobId, "Start page")));
 
         return new Page(new Header(header), new Body(body));
     }

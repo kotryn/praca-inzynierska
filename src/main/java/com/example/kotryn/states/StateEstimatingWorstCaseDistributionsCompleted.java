@@ -3,18 +3,15 @@ package com.example.kotryn.states;
 import com.example.kotryn.controller.MainController;
 import com.example.kotryn.entity.Context;
 import com.example.kotryn.repository.ContextRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
 import com.example.kotryn.web.data.IWebData;
 import com.example.kotryn.web.data.WebDataEstimatingWorstCaseDistributionsCompleted;
 
 public class StateEstimatingWorstCaseDistributionsCompleted extends StateBase implements IState {
 
     private final ContextRepository contextRepository;
-    private final ProcessDescriptorRepository processDescriptorRepository;
 
-    public StateEstimatingWorstCaseDistributionsCompleted(ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public StateEstimatingWorstCaseDistributionsCompleted(ContextRepository contextRepository) {
         this.contextRepository = contextRepository;
-        this.processDescriptorRepository = processDescriptorRepository;
     }
 
     @Override

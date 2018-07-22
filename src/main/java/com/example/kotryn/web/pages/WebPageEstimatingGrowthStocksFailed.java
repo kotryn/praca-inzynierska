@@ -23,6 +23,7 @@ public class WebPageEstimatingGrowthStocksFailed {
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Estimating growth stocks failed")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/estimating_growth_stocks_failed_back/"+jobId, "Back")));
 
         return new Page(new Header(header), new Body(body));
     }
