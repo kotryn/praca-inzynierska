@@ -736,10 +736,9 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_statistic/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void calculatingStatisticPOST(@PathVariable Long id, @RequestBody Job jobRequest) {
+    @ResponseStatus(HttpStatus.OK)
+    public void calculatingStatisticPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
-
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(job.getId());
 
         processJob(webData);

@@ -37,8 +37,8 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
             body.add(new Entity<>(new Text("text", "Correlation matrix - number degrees of freedom: "+job.getCorrelationMatrix())));
         }
 
-        body.add(new Entity<>(new Button("button-back", "/estimating_worst_case_copula_completed_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button", "/building_robust_portfolio_setup/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/estimating_worst_case_copula_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "http://localhost:8080/building_robust_portfolio_setup/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }

@@ -47,8 +47,8 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Entity<>(new Text("text", "Select periodicity:")));
         body.add(new Entity<>(new Radio("radio", new String[]{"weekly", "quarterly", "daily"}, new String[]{"weekly", "quarterly", "daily"}, "periodicity")));
 
-        body.add(new Entity<>(new Button("button-back", "/calculating_sample_count_setup_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button-form", "/calculating_sample_count/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/calculating_sample_count_setup_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-form", "http://localhost:8080/calculating_sample_count/"+jobId, "Next")));
 
 
 
