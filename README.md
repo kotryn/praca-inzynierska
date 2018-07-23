@@ -22,8 +22,16 @@ Linux:
 3. Aplication will be run on `http://localhost:8080`
 
 #### Intellij Idea (development)
-1. Configure mvn install (or compile) to execute *before build*.
-2. Run
+1. For the first time: `npm install`
+2. Configure mvn install (or compile) to execute *before build*.
+3. Run
+
+#### Ubuntu Terminal (development)
+1. For the first time: `npm install`
+2. Run aplication `mvn spring-boot:run`
+
+##### Build only frontend
+`mpm start`
 
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
