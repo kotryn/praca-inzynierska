@@ -16,9 +16,17 @@ Linux:
 
 ### Running project
 
-#### Intellij Idea
+#### Linux (production)
+1. Copy `kotryn-0.0.1-SNAPSHOT.jar` and all bash files (`file.sh, file2.sh...`) to one folder
+2. Enter this folder and run `java -jar kotryn-0.0.1-SNAPSHOT.jar`
+3. Aplication will be run on `http://localhost:8080`
+
+#### Intellij Idea (development)
 1. Configure mvn install (or compile) to execute *before build*.
 2. Run
 
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
+
+#### Build (Intellij Idea)
+1. Run maven build -> package
