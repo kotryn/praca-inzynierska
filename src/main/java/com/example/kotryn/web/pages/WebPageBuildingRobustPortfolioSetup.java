@@ -47,7 +47,7 @@ public class WebPageBuildingRobustPortfolioSetup {
         }
         body.add(new Entity<>(new Input("input-number", new String[]{"maxShare"}, new String[]{"Required maximum number of shares:"})));
 
-        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/building_robust_portfolio_setup_back/"+jobId, "Back")));//TODO
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/building_robust_portfolio_setup_back/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button-form", "http://localhost:8080/building_robust_portfolio/"+jobId, "Next")));
 
         return new Page(new Header(header) ,new Body(body));

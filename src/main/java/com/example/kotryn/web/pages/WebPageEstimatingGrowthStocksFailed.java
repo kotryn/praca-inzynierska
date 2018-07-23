@@ -15,7 +15,7 @@ public class WebPageEstimatingGrowthStocksFailed {
         this.jobId = jobId;
     }
 
-    public Page show() {//TODO: failed
+    public Page show() {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 

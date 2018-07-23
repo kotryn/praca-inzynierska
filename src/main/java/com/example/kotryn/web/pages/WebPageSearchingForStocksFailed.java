@@ -8,7 +8,7 @@ import com.example.kotryn.repository.ProcessDescriptorRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WebPageSearchingForStocksFailed {//TODO: failed
+public class WebPageSearchingForStocksFailed {
 
     private final ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;

@@ -42,7 +42,7 @@ public class WebPageEstimatingGrowthStocksSetup {
         }
         body.add(new Entity<>(new Input("input-number", new String[]{"maxCoefficient"}, new String[]{"Maximum correlation coefficient:"})));
 
-        body.add(new Entity<>(new Button("button-back", "/estimating_growth_stocks_setup_back/"+jobId, "Back")));//TODO
+        body.add(new Entity<>(new Button("button-back", "/estimating_growth_stocks_setup_back/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Next")));
 
         return new Page(new Header(header) ,new Body(body));
