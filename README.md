@@ -25,6 +25,12 @@ Linux:
 1. Configure mvn install (or compile) to execute *before build*.
 2. Run
 
+#### Ubuntu Terminal (development)
+Run aplication `mvn spring-boot:run`
+
+##### Build only frontend
+`mpm start`
+
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
 
