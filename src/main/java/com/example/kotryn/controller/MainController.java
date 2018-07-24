@@ -87,6 +87,12 @@ public class MainController {
         return redirectView;
     }
 
+    @RequestMapping(value = "/data", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    void refreshData()  {
+        url = "/start_page";
+    }
+
     @RequestMapping(value = "/start_page", method = RequestMethod.GET)
     public Page promptUserGET() {
         WebPagePromptUser page = new WebPagePromptUser();
