@@ -7,17 +7,13 @@ public class Page {
     private Header header;
     @JsonView(View.Summary.class)
     private Body body;
-    @JsonView(View.Summary.class)
-    private MainPage mainPage;
 
     public Page(Header header, Body body) {
-        this.mainPage = new MainPage("Start Page", "http://localhost:8080/start_page");
         this.header = header;
         this.body = body;
     }
 
     public Page(Body body) {
-        this.mainPage = new MainPage("Start Page", "http://localhost:8080/start_page");
         this.body = body;
     }
 

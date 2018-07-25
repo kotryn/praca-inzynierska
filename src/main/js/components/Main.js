@@ -35,7 +35,7 @@ class Main extends React.Component{
             return (
                 <div className={'container-fluid'}>
                     <div className={'col col-lg-6 col-md-10 col-sm-12 col-12 offset-lg-3 offset-md-1 m-container -center'}>
-                        <ServerError error={error} config={config.mainPage} />
+                        <ServerError error={error} />
                     </div>
                 </div>
             )
