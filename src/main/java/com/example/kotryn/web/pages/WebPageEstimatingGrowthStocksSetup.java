@@ -30,17 +30,17 @@ public class WebPageEstimatingGrowthStocksSetup {
         if(job.getMaxNumberSector() != null){
             body.add(new Entity<>(new Text("text", "Previously selected maximum number in sector: " + job.getMaxNumberSector())));
         }
-        body.add(new Entity<>(new Input("input-number", new String[]{"maxNumberSector"}, new String[]{"Maximum number in sector:"})));
+        body.add(new Entity<>(new Input("input", "number", new String[]{"maxNumberSector"}, new String[]{"Maximum number in sector:"})));
 
         if(job.getMaxNumberIndustry() != null){
             body.add(new Entity<>(new Text("text", "Previously selected maximum number in industry: " + job.getMaxNumberIndustry())));
         }
-        body.add(new Entity<>(new Input("input-number", new String[]{"maxNumberIndustry"}, new String[]{"Maximum number in industry:"})));
+        body.add(new Entity<>(new Input("input", "number", new String[]{"maxNumberIndustry"}, new String[]{"Maximum number in industry:"})));
 
         if(job.getMaxCoefficient() != null){
             body.add(new Entity<>(new Text("text", "Previously selected maximum correlation coefficient: " + job.getMaxCoefficient())));
         }
-        body.add(new Entity<>(new Input("input-number", new String[]{"maxCoefficient"}, new String[]{"Maximum correlation coefficient:"})));
+        body.add(new Entity<>(new Input("input", "number", new String[]{"maxCoefficient"}, new String[]{"Maximum correlation coefficient:"})));
 
         body.add(new Entity<>(new Button("button-back", "/estimating_growth_stocks_setup_back/"+jobId, "Back")));
         body.add(new Entity<>(new Button("button-form", "/estimating_growth_stocks/"+jobId, "Next")));

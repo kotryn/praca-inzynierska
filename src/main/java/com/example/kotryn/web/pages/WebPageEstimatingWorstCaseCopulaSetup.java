@@ -30,7 +30,7 @@ public class WebPageEstimatingWorstCaseCopulaSetup {
         if(job.getCopulaWindowSize() != null){
             body.add(new Entity<>(new Text("text", "Previously selected window size: " + job.getCopulaWindowSize())));
         }
-        body.add(new Entity<>(new Input("input-number", new String[]{"copulaWindowSize"}, new String[]{"Window size:"})));
+        body.add(new Entity<>(new Input("input", "number", new String[]{"copulaWindowSize"}, new String[]{"Window size:"})));
 
         body.add(new Entity<>(new Text("text", "Previously selected type: " + job.getCopulaType())));
 

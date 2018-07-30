@@ -36,12 +36,12 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Entity<>(new Text("text", "Supply in-sample periods")));
         body.add(new Entity<>(new Text("text", "Previous in-sample start date: " + startInSampleDate)));
         body.add(new Entity<>(new Text("text", "Previous in-sample end date: " + endInSampleDate)));
-        body.add(new Entity<>(new Input("input-date", new String[]{"startInSampleDate", "endInSampleDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
+        body.add(new Entity<>(new Input("input", "date", new String[]{"startInSampleDate", "endInSampleDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
 
         body.add(new Entity<>(new Text("text", "Supply out-of-sample periods")));
         body.add(new Entity<>(new Text("text", "Previous out-of-sample start date: " + startOutOfSampleDate)));
         body.add(new Entity<>(new Text("text", "Previous out-of-sample end date: " + endOutOfSampleDate)));
-        body.add(new Entity<>(new Input("input-date", new String[]{"startOutOfSampleDate", "endOutOfSampleDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
+        body.add(new Entity<>(new Input("input", "date", new String[]{"startOutOfSampleDate", "endOutOfSampleDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
 
         body.add(new Entity<>(new Text("text", "Previous periodicity: " + job.getPeriodicity())));
         body.add(new Entity<>(new Text("text", "Select periodicity:")));

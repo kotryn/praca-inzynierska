@@ -23,7 +23,7 @@ public class WebPageDeleteJob {
         if(error != null){
             body.add(new Entity<>(new Text("text", error)));
         }
-        body.add(new Entity<>(new Input("input", new String[]{"id"}, new String[]{"Supply job ID:"})));
+        body.add(new Entity<>(new Input("input", "integer", new String[]{"id"}, new String[]{"Supply job ID:"})));
         body.add(new Entity<>(new Button("button-back", "http://localhost:8080/start_page", "Back")));
         body.add(new Entity<>(new Button("button-delete", "http://localhost:8080/delete_job", "Delete")));
 

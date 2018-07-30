@@ -8,20 +8,54 @@ class Input extends React.Component{
         this.props.editInputValue(e.target.value,  this.props.id);
     }
 
-    render() {
+    handleInteger(e) {
+        if(e.target.validity.valid){
+            this.props.editInputValue(e.target.value,  this.props.id);
+        }
 
-        const {name, id, type} = this.props;
+    }
+
+    render() {
+        const {name, id, kind} = this.props;
 
         let t;
-        switch(type){
-            case "input-number":
-                t = "number";
+        switch(kind){
+            case "integer":
+                t = (<input
+                        type={"text"}
+                        pattern="[0-9]*"
+                        className="form-control"
+                        name="value"
+                        value={this.props.values[id]}
+                        onChange={this.handleInteger.bind(this)}
+                    />);
                 break;
-            case "input-date":
-                t = "date";
+            case "number":
+                t = (<input
+                        type={"number"}
+                        className="form-control"
+                        name="value"
+                        value={this.props.values[id]}
+                        onChange={this.handle.bind(this)}
+                    />);
+                break;
+            case "date":
+                t = (<input
+                        type={"date"}
+                        className="form-control"
+                        name="value"
+                        value={this.props.values[id]}
+                        onChange={this.handle.bind(this)}
+                    />);
                 break;
             default:
-                t = "text";
+                t = (<input
+                        type={"text"}
+                        className="form-control"
+                        name="value"
+                        value={this.props.values[id]}
+                        onChange={this.handle.bind(this)}
+                    />);
         }
 
         return (
@@ -30,7 +64,7 @@ class Input extends React.Component{
                     {name}
                 </label>
                 <div className="col-sm-auto">
-                    <input type={t} className="form-control" name="value" value={this.props.values[id]} onChange={this.handle.bind(this)} />
+                    {t}
                 </div>
 
             </div>

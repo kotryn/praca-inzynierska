@@ -9,7 +9,7 @@ public class StateFactory  {
     public static IState getState(State state, JobRepository jobRepository, ContextRepository contextRepository, ProcessDescriptorRepository processDescriptorRepository) {
         switch(state) {
             case NEW_JOB:
-                return null;
+                return new StateObtainingPeriodOfAnalysis(jobRepository, contextRepository, processDescriptorRepository);
 
             case CALCULATING_SAMPLE_COUNT_SETUP:
                 return new StateCalculatingSampleCountSetup(jobRepository, contextRepository, processDescriptorRepository);
@@ -18,8 +18,8 @@ public class StateFactory  {
             case CALCULATING_SAMPLE_COUNT_FAILED:
                 return new StateCalculatingSampleCountFailed(contextRepository);
             case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
-
                 return new StateCalculatingSampleCountInProgress(contextRepository, processDescriptorRepository);
+
             case OBTAINING_STOCKS:
                 return new StateObtainingStocks(jobRepository, contextRepository, processDescriptorRepository);
 

@@ -32,12 +32,6 @@ class Form extends React.Component{
             case "input":
                 formData = values.map(()=> "");
                 break;
-            case "input-number":
-                formData = values.map(()=> "");
-                break;
-            case "input-date":
-                formData = values.map(()=> "");
-                break;
             default:
                 console.log("Form: unknown type - formData!!!");
                 return;
@@ -89,16 +83,6 @@ class Form extends React.Component{
                     output[e] = this.props.values[id+i];
                 });
                 return JSON.parse(JSON.stringify(output));
-            case "input-number":
-                output.values.forEach((e, i)=>{
-                    output[e] = this.props.values[id+i];
-                });
-                return JSON.parse(JSON.stringify(output));
-            case "input-date":
-                output.values.forEach((e, i)=>{
-                    output[e] = this.props.values[id+i];
-                });
-                return JSON.parse(JSON.stringify(output));
             default:
                 console.log("Form: unknown type - jsonData!!!");
                 return;
@@ -106,7 +90,7 @@ class Form extends React.Component{
     }
 
     render() {
-        const {names, type, value} = this.props.config;
+        const {names, type, value, kind} = this.props.config;
         const id = this.state.id;
 
         let ComponentName = "";
@@ -124,21 +108,13 @@ class Form extends React.Component{
                 ComponentName = Input;
                 style = "form-text";
                 break;
-            case "input-number":
-                ComponentName = Input;
-                style = "form-text";
-                break;
-            case "input-date":
-                ComponentName = Input;
-                style = "form-text";
-                break;
             default:
                 console.log("Form: unknown type - componentName!!!");
                 return;
         }
 
         const component = names.map((element, index) => (
-            <ComponentName key={index} name={element} id={id+index} type={type}/>
+            <ComponentName key={index} name={element} id={id+index} kind={kind}/>
         ));
 
         return (

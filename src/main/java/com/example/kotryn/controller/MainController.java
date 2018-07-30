@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import static com.example.kotryn.states.State.*;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class MainController {
 
@@ -184,12 +184,12 @@ public class MainController {
             Long id = requestJob.getId();
             this.checkState(id, Action.INTERRUPT);
 
-            /*growthStockSectorRepository.removeByJobId(id);
+            growthStockSectorRepository.removeByJobId(id);
             growthStockSectorRepository.flush();
             worstCaseDistributionSectorRepository.removeByJobId(id);
             worstCaseDistributionSectorRepository.flush();
             sectorRepository.removeByJobId(id);
-            sectorRepository.flush();*/
+            sectorRepository.flush();
             jobRepository.delete(id);
             jobRepository.flush();
             contextRepository.delete(id);
@@ -253,6 +253,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/stocks_search_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void searchingForStocksInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
@@ -301,6 +302,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_sample_count_setup_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingSampleCountSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingSampleCountSetup webData = new WebDataCalculatingSampleCountSetup(id);
@@ -361,6 +363,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_sample_count_failed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingSampleCountFailedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingSampleCountFailed webData = new WebDataCalculatingSampleCountFailed(id);
@@ -369,6 +372,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_sample_count_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingSampleCountInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingSampleCountInProgress webData = new WebDataCalculatingSampleCountInProgress(id);
@@ -378,6 +382,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_sample_count_completed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingSampleCountCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
@@ -409,7 +414,6 @@ public class MainController {
         job.setGrowthRate(jobRequest.getGrowthRate());
         job = jobRepository.save(job);
         WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
-        //webData.setGrowthRate(job.getGrowthRate());
 
         processJob(webData);
         url = this.jobsGET(job.getId());
@@ -445,6 +449,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_failed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseDistributionsFailedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseDistributionsFailed webData = new WebDataEstimatingWorstCaseDistributionsFailed(id);
@@ -453,6 +458,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_setup_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseDistributionsSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
@@ -462,6 +468,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_completed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseDistributionsCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(id);
@@ -471,6 +478,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseDistributionsInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
 
@@ -480,7 +488,6 @@ public class MainController {
         url = this.jobsGET(job.getId());
     }
 
-    /****************************/
     @RequestMapping(value = "/estimating_growth_stocks_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void estimatingGrowthStocksSetupPOST(@PathVariable Long id) {
@@ -547,6 +554,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_failed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingGrowthStocksFailedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksFailed webData = new WebDataEstimatingGrowthStocksFailed(id);
@@ -555,6 +563,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_setup_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingGrowthStocksSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksSetup webData = new WebDataEstimatingGrowthStocksSetup(id);
@@ -564,6 +573,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingGrowthStocksInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksInProgress webData = new WebDataEstimatingGrowthStocksInProgress(id);
@@ -573,6 +583,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_completed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingGrowthStocksCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(id);
@@ -597,6 +608,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_setup_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseCopulaSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseCopulaSetup webData = new WebDataEstimatingWorstCaseCopulaSetup(id);
@@ -651,6 +663,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "estimating_worst_case_copula_failed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseCopulaFailedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseCopulaFailed webData = new WebDataEstimatingWorstCaseCopulaFailed(id);
@@ -659,6 +672,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseCopulaInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseCopulaInProgress webData = new WebDataEstimatingWorstCaseCopulaInProgress(id);
@@ -668,6 +682,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_completed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void estimatingWorstCaseCopulaCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(id);
@@ -675,8 +690,6 @@ public class MainController {
         processJob(webData);
         url = this.jobsGET(job.getId());
     }
-
-    /**/
 
     @RequestMapping(value = "/building_robust_portfolio_setup/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -745,6 +758,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "building_robust_portfolio_failed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void buildingRobustPortfolioFailedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataBuildingRobustPortfolioFailed webData = new WebDataBuildingRobustPortfolioFailed(id);
@@ -753,6 +767,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/building_robust_portfolio_setup_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void buildingRobustPortfolioSetupBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataBuildingRobustPortfolioSetup webData = new WebDataBuildingRobustPortfolioSetup(id);
@@ -763,6 +778,7 @@ public class MainController {
 
 
     @RequestMapping(value = "/building_robust_portfolio_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void buildingRobustPortfolioInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataBuildingRobustPortfolioInProgress webData = new WebDataBuildingRobustPortfolioInProgress(id);
@@ -772,6 +788,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/building_robust_portfolio_in_progress_completed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void buildingRobustPortfolioCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(id);
@@ -820,6 +837,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "calculating_statistic_failed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingStatisticFailedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingStatisticFailed webData = new WebDataCalculatingStatisticFailed(id);
@@ -828,6 +846,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_statistic_in_progress_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingStatisticInProgressBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingStatisticInProgress webData = new WebDataCalculatingStatisticInProgress(id);
@@ -837,6 +856,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/calculating_statistic_in_progress_completed_back/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public void calculatingStatisticCompletedBackPOST(@PathVariable Long id) {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingStatisticCompleted webData = new WebDataCalculatingStatisticCompleted(id);

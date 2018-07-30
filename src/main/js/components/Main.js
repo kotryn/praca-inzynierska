@@ -74,12 +74,6 @@ class Main extends React.Component{
                 case "input":
                     component.push(<Form config={element} key={index} />);
                     break;
-                case "input-date":
-                    component.push(<Form config={element} key={index} />);
-                    break;
-                case "input-number":
-                    component.push(<Form config={element} key={index} />);
-                    break;
                 case "checkbox":
                     component.push(<Form config={element} key={index}  />);
                     break;
