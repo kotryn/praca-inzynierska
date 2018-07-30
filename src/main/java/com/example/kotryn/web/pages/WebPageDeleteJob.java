@@ -19,7 +19,7 @@ public class WebPageDeleteJob {
 
         header.add(new Entity<>(new Button("button-start-page", "http://localhost:8080/start_page", "Start page")));
 
-        body.add(new Entity<>(new Text("text", "Delete job")));
+        body.add(new Entity<>(new Title("title", "h3", "Delete job")));
         if(error != null){
             body.add(new Entity<>(new Text("text", error)));
         }
