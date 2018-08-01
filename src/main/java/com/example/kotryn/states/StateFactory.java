@@ -20,9 +20,6 @@ public class StateFactory  {
             case CALCULATING_SAMPLE_COUNT_IN_PROGRESS:
                 return new StateCalculatingSampleCountInProgress(contextRepository, processDescriptorRepository);
 
-            case OBTAINING_STOCKS:
-                return new StateObtainingStocks(jobRepository, contextRepository, processDescriptorRepository);
-
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_COMPLETED:
                 return new StateEstimatingWorstCaseDistributionsCompleted(contextRepository);
             case ESTIMATING_WORST_CASE_DISTRIBUTIONS_FAILED:
