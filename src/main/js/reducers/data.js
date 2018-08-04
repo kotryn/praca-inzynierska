@@ -1,4 +1,4 @@
-import {GET_DATA, GET_DATA_SUCCESS, GET_DATA_FAILURE, SET_ERROR} from './../actions/data'
+import {GET_DATA, GET_DATA_SUCCESS, GET_DATA_FAILURE, SET_ERROR, FETCHING} from './../actions/data'
 
 const defaultState = {
     config: [],
@@ -36,6 +36,11 @@ function dataReducer(state = defaultState, action) {
                 ...state,
                 fetching: false,
                 error: action.error,
+            }
+        case FETCHING:
+            return {
+                ...state,
+                fetching: true,
             }
         default:
             return state;

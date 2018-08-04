@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios';
 
-import { getPageDataInfo, setError } from '../../actions/data'
+import { getPageDataInfo, setError, fetching } from '../../actions/data'
 
 class ButtonDelete extends React.Component{
 
@@ -14,6 +14,8 @@ class ButtonDelete extends React.Component{
     delete(event) {
         event.preventDefault();
         const {url} = this.props.config;
+        this.props.fetching();
+
         axios.delete(url, {data:this.props.jsonData})
             .then(response => {
                 if(response.status === 200){
@@ -36,7 +38,7 @@ class ButtonDelete extends React.Component{
 
 ButtonDelete = connect(
     state =>  state.formData,
-    { getPageDataInfo, setError }
+    { getPageDataInfo, setError, fetching }
 )(ButtonDelete)
 
 export default ButtonDelete;

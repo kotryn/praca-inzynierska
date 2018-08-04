@@ -209,7 +209,7 @@ public class MainController {
         jobRepository.save(job);
     }
 
-    private String jobsGET(Long id) {
+    private String getPageUrl(Long id) {
         Context context = contextRepository.getOne(id);
         return context.redirectToWebPage(this, jobRepository, contextRepository, processDescriptorRepository);
     }
@@ -229,7 +229,7 @@ public class MainController {
         webData.setEndDate(job.getEndDate());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     private void processJob(IWebData webData) {
@@ -249,7 +249,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/stocks_search_in_progress_back/{id}", method = RequestMethod.POST)
@@ -259,7 +259,7 @@ public class MainController {
         WebDataSearchingForStocksInProgress webData = new WebDataSearchingForStocksInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
 
@@ -292,7 +292,7 @@ public class MainController {
         webData.setSelectedStocks(job.getSelectedStocks());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_sample_count_setup/{id}", method = RequestMethod.GET)
@@ -308,7 +308,7 @@ public class MainController {
         WebDataCalculatingSampleCountSetup webData = new WebDataCalculatingSampleCountSetup(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_sample_count/{id}", method = RequestMethod.POST)
@@ -330,7 +330,7 @@ public class MainController {
         webData.setPeriodicity(job.getPeriodicity());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.POST)
@@ -341,7 +341,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_sample_count_in_progress/{id}", method = RequestMethod.GET)
@@ -368,7 +368,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingSampleCountFailed webData = new WebDataCalculatingSampleCountFailed(id);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_sample_count_in_progress_back/{id}", method = RequestMethod.POST)
@@ -378,7 +378,7 @@ public class MainController {
         WebDataCalculatingSampleCountInProgress webData = new WebDataCalculatingSampleCountInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_sample_count_completed_back/{id}", method = RequestMethod.POST)
@@ -388,7 +388,7 @@ public class MainController {
         WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_setup/{id}", method = RequestMethod.POST)
@@ -397,7 +397,7 @@ public class MainController {
         WebDataCalculatingSampleCountCompleted webData = new WebDataCalculatingSampleCountCompleted(id);
 
         processJob(webData);
-        url = this.jobsGET(id);
+        url = this.getPageUrl(id);
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions/{id}", method = RequestMethod.GET)
@@ -416,7 +416,7 @@ public class MainController {
         WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_in_progress/{id}", method = RequestMethod.POST)
@@ -427,7 +427,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_in_progress/{id}", method = RequestMethod.GET)
@@ -454,7 +454,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseDistributionsFailed webData = new WebDataEstimatingWorstCaseDistributionsFailed(id);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_setup_back/{id}", method = RequestMethod.POST)
@@ -464,7 +464,7 @@ public class MainController {
         WebDataEstimatingWorstCaseDistributionsSetup webData = new WebDataEstimatingWorstCaseDistributionsSetup(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_completed_back/{id}", method = RequestMethod.POST)
@@ -474,7 +474,7 @@ public class MainController {
         WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_distributions_in_progress_back/{id}", method = RequestMethod.POST)
@@ -485,7 +485,7 @@ public class MainController {
         WebDataEstimatingWorstCaseDistributionsInProgress webData = new WebDataEstimatingWorstCaseDistributionsInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_setup/{id}", method = RequestMethod.POST)
@@ -496,7 +496,7 @@ public class MainController {
         WebDataEstimatingWorstCaseDistributionsCompleted webData = new WebDataEstimatingWorstCaseDistributionsCompleted(job.getId());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks/{id}", method = RequestMethod.GET)
@@ -521,7 +521,7 @@ public class MainController {
         webData.setMaxCoefficient(job.getMaxCoefficient());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_in_progress/{id}", method = RequestMethod.POST)
@@ -532,7 +532,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_in_progress/{id}", method = RequestMethod.GET)
@@ -559,7 +559,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksFailed webData = new WebDataEstimatingGrowthStocksFailed(id);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_setup_back/{id}", method = RequestMethod.POST)
@@ -569,7 +569,7 @@ public class MainController {
         WebDataEstimatingGrowthStocksSetup webData = new WebDataEstimatingGrowthStocksSetup(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_in_progress_back/{id}", method = RequestMethod.POST)
@@ -579,7 +579,7 @@ public class MainController {
         WebDataEstimatingGrowthStocksInProgress webData = new WebDataEstimatingGrowthStocksInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_completed_back/{id}", method = RequestMethod.POST)
@@ -589,7 +589,7 @@ public class MainController {
         WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_setup/{id}", method = RequestMethod.POST)
@@ -598,7 +598,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingGrowthStocksCompleted webData = new WebDataEstimatingGrowthStocksCompleted(job.getId());
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.GET)
@@ -614,7 +614,7 @@ public class MainController {
         WebDataEstimatingWorstCaseCopulaSetup webData = new WebDataEstimatingWorstCaseCopulaSetup(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula/{id}", method = RequestMethod.POST)
@@ -630,7 +630,7 @@ public class MainController {
         webData.setCopulaType(job.getCopulaType());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_in_progress/{id}", method = RequestMethod.POST)
@@ -641,7 +641,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_in_progress/{id}", method = RequestMethod.GET)
@@ -668,7 +668,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataEstimatingWorstCaseCopulaFailed webData = new WebDataEstimatingWorstCaseCopulaFailed(id);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_in_progress_back/{id}", method = RequestMethod.POST)
@@ -678,7 +678,7 @@ public class MainController {
         WebDataEstimatingWorstCaseCopulaInProgress webData = new WebDataEstimatingWorstCaseCopulaInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_completed_back/{id}", method = RequestMethod.POST)
@@ -688,7 +688,7 @@ public class MainController {
         WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/building_robust_portfolio_setup/{id}", method = RequestMethod.POST)
@@ -699,7 +699,7 @@ public class MainController {
         WebDataEstimatingWorstCaseCopulaCompleted webData = new WebDataEstimatingWorstCaseCopulaCompleted(job.getId());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/building_robust_portfolio/{id}", method = RequestMethod.GET)
@@ -725,7 +725,7 @@ public class MainController {
         webData.setMaxShare(job.getMaxShare());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/building_robust_portfolio_in_progress/{id}", method = RequestMethod.POST)
@@ -736,7 +736,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/building_robust_portfolio_in_progress/{id}", method = RequestMethod.GET)
@@ -763,7 +763,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataBuildingRobustPortfolioFailed webData = new WebDataBuildingRobustPortfolioFailed(id);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/building_robust_portfolio_setup_back/{id}", method = RequestMethod.POST)
@@ -773,7 +773,7 @@ public class MainController {
         WebDataBuildingRobustPortfolioSetup webData = new WebDataBuildingRobustPortfolioSetup(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
 
@@ -784,7 +784,7 @@ public class MainController {
         WebDataBuildingRobustPortfolioInProgress webData = new WebDataBuildingRobustPortfolioInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/building_robust_portfolio_in_progress_completed_back/{id}", method = RequestMethod.POST)
@@ -794,7 +794,7 @@ public class MainController {
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_statistic/{id}", method = RequestMethod.POST)
@@ -804,7 +804,7 @@ public class MainController {
         WebDataBuildingRobustPortfolioCompleted webData = new WebDataBuildingRobustPortfolioCompleted(job.getId());
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_statistic_in_progress/{id}", method = RequestMethod.POST)
@@ -815,7 +815,7 @@ public class MainController {
         webData.setAction(Action.REFRESH);
 
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_statistic_in_progress/{id}", method = RequestMethod.GET)
@@ -842,7 +842,7 @@ public class MainController {
         Job job = jobRepository.findOne(id);
         WebDataCalculatingStatisticFailed webData = new WebDataCalculatingStatisticFailed(id);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_statistic_in_progress_back/{id}", method = RequestMethod.POST)
@@ -852,7 +852,7 @@ public class MainController {
         WebDataCalculatingStatisticInProgress webData = new WebDataCalculatingStatisticInProgress(id);
         webData.setAction(Action.INTERRUPT);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 
     @RequestMapping(value = "/calculating_statistic_in_progress_completed_back/{id}", method = RequestMethod.POST)
@@ -862,6 +862,6 @@ public class MainController {
         WebDataCalculatingStatisticCompleted webData = new WebDataCalculatingStatisticCompleted(id);
         webData.setAction(Action.PREVIOUS);
         processJob(webData);
-        url = this.jobsGET(job.getId());
+        url = this.getPageUrl(job.getId());
     }
 }

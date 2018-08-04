@@ -41,3 +41,10 @@ export function setError(error) {
         error
     }
 }
+
+export const FETCHING = 'FETCHING'
+export function fetching() {
+    return {
+        type: FETCHING
+    }
+}

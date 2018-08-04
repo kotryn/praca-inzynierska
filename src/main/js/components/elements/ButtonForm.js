@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios';
 
-import { getPageDataInfo, setError } from '../../actions/data'
+import { getPageDataInfo, setError, fetching } from '../../actions/data'
 
 class ButtonForm extends React.Component{
 
@@ -14,16 +14,17 @@ class ButtonForm extends React.Component{
     add(event) {
         event.preventDefault();
         const {url} = this.props.config;
+        this.props.fetching();
 
         axios.post(url, this.props.jsonData)
             .then(response => {
                 if(response.status === 201){
                     this.props.getPageDataInfo();
                 }else{
-                    this.props.setError("server error")
+                    this.props.setError("server error");
                 }
             })
-            .catch(error => {console.log(error); this.props.setError("server error")})
+            .catch(error => {console.log(error); this.props.setError("server error")});
     }
 
     render() {
@@ -37,7 +38,7 @@ class ButtonForm extends React.Component{
 
 ButtonForm = connect(
     state =>  state.formData,
-    { getPageDataInfo, setError }
-)(ButtonForm)
+    { getPageDataInfo, setError, fetching }
+)(ButtonForm);
 
 export default ButtonForm;

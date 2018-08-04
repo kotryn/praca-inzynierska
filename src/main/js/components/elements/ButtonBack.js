@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios';
 
-import { getPageDataInfo, setError } from '../../actions/data'
+import { getPageDataInfo, setError, fetching } from '../../actions/data'
 
 class ButtonBack extends React.Component{
 
@@ -14,6 +14,7 @@ class ButtonBack extends React.Component{
     back(event) {
         event.preventDefault();
         const {url} = this.props.config;
+        this.props.fetching();
 
         axios.post(url, '')
             .then(response => {
@@ -37,7 +38,7 @@ class ButtonBack extends React.Component{
 
 ButtonBack = connect(
     null,
-    { getPageDataInfo, setError }
+    { getPageDataInfo, setError, fetching }
 )(ButtonBack)
 
 export default ButtonBack;
