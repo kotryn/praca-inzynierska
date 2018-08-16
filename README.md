@@ -19,7 +19,7 @@ Linux:
 #### Linux (production)
 1. Copy `kotryn-0.0.1-SNAPSHOT.jar` and all bash files (`file.sh, file2.sh...`) to one folder
 2. Enter this folder and run `java -jar kotryn-0.0.1-SNAPSHOT.jar`
-3. Aplication will be run on `http://localhost:8080`
+3. Aplication will be run on `http://192.168.31.106:8081/`
 
 #### Intellij Idea (development)
 1. For the first time: `npm install`

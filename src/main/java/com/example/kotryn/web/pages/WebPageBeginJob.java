@@ -17,11 +17,11 @@ public class WebPageBeginJob {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-start-page", "http://localhost:8080/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "/start_page", "Start page")));
 
         body.add(new Entity<>(new Title("title", "h3","New job id: "+ jobId)));
-        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/start_page", "Back")));
-        body.add(new Entity<>(new Button("button", "http://localhost:8080/jobsPOST/"+jobId, "Connect")));
+        body.add(new Entity<>(new Button("button-back", "/start_page", "Back")));
+        body.add(new Entity<>(new Button("button", "/jobsPOST/"+jobId, "Connect")));
 
         return new Page(new Header(header), new Body(body));
     }

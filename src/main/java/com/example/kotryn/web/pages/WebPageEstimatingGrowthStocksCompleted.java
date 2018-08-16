@@ -26,7 +26,7 @@ public class WebPageEstimatingGrowthStocksCompleted {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-start-page", "http://localhost:8080/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://192.168.31.106:8081//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
         body.add(new Entity<>(new Text("text", "Estimating growth stocks completed successful")));
 
@@ -53,8 +53,8 @@ public class WebPageEstimatingGrowthStocksCompleted {
 
 
 
-        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/estimating_growth_stocks_completed_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button", "http://localhost:8080/estimating_worst_case_copula_setup/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://192.168.31.106:8081//estimating_growth_stocks_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "http://192.168.31.106:8081//estimating_worst_case_copula_setup/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }

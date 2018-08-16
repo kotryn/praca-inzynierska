@@ -56,7 +56,7 @@ class Main extends React.Component{
                 case "button":
                     component.push(<Button config={element} key={index}  />);
                     break;
-                case "button-start-page":
+                case "button-home":
                     component.push(<Button config={element} key={index}  />);
                     break;
                 case "button-back":

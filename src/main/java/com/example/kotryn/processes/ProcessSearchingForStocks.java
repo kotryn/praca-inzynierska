@@ -74,7 +74,7 @@ public class ProcessSearchingForStocks implements IProcess {
         new Thread(() -> {
             try {
                 ProcessDescriptor processDescriptor = processDescriptorRepository.findOne(jobId);
-                processDescriptor.setHost("localhost");
+                processDescriptor.setHost("192.168.31.106");
                 processDescriptor.setSystemType(OSInfo.getOs());
                 int pid = -1;
                 Process process;

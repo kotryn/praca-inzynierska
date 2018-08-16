@@ -2,7 +2,7 @@ import axios from "axios/index";
 
 export function getPageData(){
     return axios
-        .get('/data', {
+        .get('http://192.168.31.106:8081/data', {
             headers: {
                 'Content-type': 'application/json'
             }

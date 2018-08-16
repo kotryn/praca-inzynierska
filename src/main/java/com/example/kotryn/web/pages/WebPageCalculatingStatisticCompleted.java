@@ -24,7 +24,7 @@ public class WebPageCalculatingStatisticCompleted {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-start-page", "http://localhost:8080/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://192.168.31.106:8081//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         List<String> x = Optional.ofNullable(job.getX()).orElse(Collections.singletonList("none"));
