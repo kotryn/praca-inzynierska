@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import static com.example.kotryn.states.State.*;
 
-//@CrossOrigin(origins = "http://192.168.31.106:8081/", maxAge = 3600)
+//@CrossOrigin(origins = "http://Lenovo-320:8081/", maxAge = 3600)
 @RestController
 public class MainController {
 

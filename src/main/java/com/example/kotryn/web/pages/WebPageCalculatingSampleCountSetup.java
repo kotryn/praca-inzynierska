@@ -23,7 +23,7 @@ public class WebPageCalculatingSampleCountSetup {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://192.168.31.106:8081//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://Lenovo-320:8081//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "In-sample and out-of-sample periods")));
@@ -47,8 +47,8 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Entity<>(new Text("text", "Select periodicity:")));
         body.add(new Entity<>(new Radio("radio", new String[]{"weekly", "quarterly", "daily"}, new String[]{"weekly", "quarterly", "daily"}, "periodicity")));
 
-        body.add(new Entity<>(new Button("button-back", "http://192.168.31.106:8081//calculating_sample_count_setup_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button-form", "http://192.168.31.106:8081//calculating_sample_count/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://Lenovo-320:8081//calculating_sample_count_setup_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-form", "http://Lenovo-320:8081//calculating_sample_count/"+jobId, "Next")));
 
 
 

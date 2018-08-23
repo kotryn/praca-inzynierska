@@ -27,7 +27,7 @@ public class WebPageBuildingRobustPortfolioCompleted {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://192.168.31.106:8081//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://Lenovo-320:8081//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         //List<String> share = Optional.ofNullable(job.getPortfolioShare()).orElse(Collections.singletonList("none"));
@@ -55,8 +55,8 @@ public class WebPageBuildingRobustPortfolioCompleted {
 
 
 
-        body.add(new Entity<>(new Button("button-back", "http://192.168.31.106:8081//building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button", "http://192.168.31.106:8081//calculating_statistic/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://Lenovo-320:8081//building_robust_portfolio_in_progress_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "http://Lenovo-320:8081//calculating_statistic/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }

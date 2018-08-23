@@ -23,16 +23,16 @@ public class WebPageObtainingPeriodOfAnalysis {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://192.168.31.106:8081//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://Lenovo-320:8081//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Title("title", "h3", "Supply the period of analysis")));
         body.add(new Entity<>(new Text("text", "Previous start date: " + job.getStartDate())));
         body.add(new Entity<>(new Text("text", "Previous end date: " + job.getEndDate())));
         body.add(new Entity<>(new Input("input", "date", new String[]{"startDate", "endDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
-        body.add(new Entity<>(new Button("button-back", "http://192.168.31.106:8081//start_page", "Back")));
-        body.add(new Entity<>(new Button("button-form", "http://192.168.31.106:8081//job_set_date/"+jobId, "Submit")));
-        body.add(new Entity<>(new Button("button", "http://192.168.31.106:8081//period_of_analysis/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://Lenovo-320:8081//start_page", "Back")));
+        body.add(new Entity<>(new Button("button-form", "http://Lenovo-320:8081//job_set_date/"+jobId, "Submit")));
+        body.add(new Entity<>(new Button("button", "http://Lenovo-320:8081//period_of_analysis/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }
