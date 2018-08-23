@@ -17,14 +17,14 @@ public class WebPageConnectToJob {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://Lenovo-320:8081//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://localhost:8080//start_page", "Start page")));
 
         if(error != null){
             body.add(new Entity<>(new Text("text", error)));
         }
         body.add(new Entity<>(new Input("input", "integer", new String[]{"id"}, new String[]{"Supply job ID:"})));
-        body.add(new Entity<>(new Button("button-back", "http://Lenovo-320:8081//start_page", "Back")));
-        body.add(new Entity<>(new Button("button-form", "http://Lenovo-320:8081//jobsPOST", "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080//start_page", "Back")));
+        body.add(new Entity<>(new Button("button-form", "http://localhost:8080//jobsPOST", "Next")));
 
         return new Page(new Header(header), new Body(body));
     }

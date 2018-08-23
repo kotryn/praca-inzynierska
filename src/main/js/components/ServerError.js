@@ -5,7 +5,7 @@ import Button from "./elements/Button"
 function ServerError({error}){
     const config = {
         "name": "Refresh",
-        "url": "http://Lenovo-320:8081//data"
+        "url": "http://localhost:8080//data"
     };
     return (
         <div className={"server-error"}>

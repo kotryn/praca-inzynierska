@@ -22,7 +22,7 @@ public class WebPageBuildingRobustPortfolioSetup {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://Lenovo-320:8081//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://localhost:8080//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Portfolio optimisation setup")));
@@ -47,8 +47,8 @@ public class WebPageBuildingRobustPortfolioSetup {
         }
         body.add(new Entity<>(new Input("input", "number", new String[]{"maxShare"}, new String[]{"Required maximum number of shares:"})));
 
-        body.add(new Entity<>(new Button("button-back", "http://Lenovo-320:8081//building_robust_portfolio_setup_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button-form", "http://Lenovo-320:8081//building_robust_portfolio/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080//building_robust_portfolio_setup_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-form", "http://localhost:8080//building_robust_portfolio/"+jobId, "Next")));
 
         return new Page(new Header(header) ,new Body(body));
     }

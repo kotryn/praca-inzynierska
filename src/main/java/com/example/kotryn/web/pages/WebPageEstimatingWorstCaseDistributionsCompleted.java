@@ -28,7 +28,7 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://Lenovo-320:8081//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://localhost:8080//start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Title("title", "h2", "Estimating worst case distributions completed successfully")));
