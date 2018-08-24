@@ -18,6 +18,7 @@ public class KotrynApplicationTests {
 	public void contextLoads() {
 		System.setProperty("webdriver.chrome.driver", "/usr/lib/chromium-browser/chromedriver");
 		WebDriver driver=new ChromeDriver();
+		driver.manage().deleteAllCookies();
 		driver.get("http://localhost:8080");
 
 		//driver.findElement(By.name("Begin a new job")).click();
@@ -31,6 +32,13 @@ public class KotrynApplicationTests {
 
 		//driver.findElement(By.xpath("//button[contains(text(),'Connect')]")).click();
 		element.click();
+
+		By input = By.name("startDate");
+		WebElement element2 = wait.until(ExpectedConditions.presenceOfElementLocated(input));
+
+		element2.sendKeys("02","08","2010");
+		driver.findElement(By.name("endDate")).sendKeys("02","08","2018");
+		driver.findElement(By.xpath("//button[contains(text(),'Submit')]")).click();
 	}
 
 }

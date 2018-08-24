@@ -16,7 +16,7 @@ class Input extends React.Component{
     }
 
     render() {
-        const {name, id, kind} = this.props;
+        const {name, id, kind, value} = this.props;
 
         let t;
         switch(kind){
@@ -25,7 +25,7 @@ class Input extends React.Component{
                         type={"text"}
                         pattern="[0-9]*"
                         className="form-control"
-                        name="value"
+                        name={value}
                         value={this.props.values[id]}
                         onChange={this.handleInteger.bind(this)}
                     />);
@@ -34,7 +34,7 @@ class Input extends React.Component{
                 t = (<input
                         type={"number"}
                         className="form-control"
-                        name="value"
+                        name={value}
                         value={this.props.values[id]}
                         onChange={this.handle.bind(this)}
                     />);
@@ -43,7 +43,7 @@ class Input extends React.Component{
                 t = (<input
                         type={"date"}
                         className="form-control"
-                        name="value"
+                        name={value}
                         value={this.props.values[id]}
                         onChange={this.handle.bind(this)}
                     />);
@@ -52,7 +52,7 @@ class Input extends React.Component{
                 t = (<input
                         type={"text"}
                         className="form-control"
-                        name="value"
+                        name={value}
                         value={this.props.values[id]}
                         onChange={this.handle.bind(this)}
                     />);

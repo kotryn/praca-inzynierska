@@ -90,7 +90,7 @@ class Form extends React.Component{
     }
 
     render() {
-        const {names, type, value, kind} = this.props.config;
+        const {names, type, kind, values} = this.props.config;
         const id = this.state.id;
 
         let ComponentName = "";
@@ -114,7 +114,7 @@ class Form extends React.Component{
         }
 
         const component = names.map((element, index) => (
-            <ComponentName key={index} name={element} id={id+index} kind={kind}/>
+            <ComponentName key={index} name={element} id={id+index} kind={kind} value={values[index]}/>
         ));
 
         return (
