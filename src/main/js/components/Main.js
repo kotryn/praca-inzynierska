@@ -84,11 +84,11 @@ class Main extends React.Component{
                     component.push(<List config={element} key={index}  />);
                     break;
                 case "dropdown":
-                    let componentName = [];
+                    let dropdownComponent = [];
                     element.entities.map((e, i)=>{
-                        setComponentType(e.entity, componentName, i);
+                        setComponentType(e.entity, dropdownComponent, i);
                     });
-                    component.push(<Dropdown config={element} key={index} component={componentName} index={dropdownIndex} />);
+                    component.push(<Dropdown config={element} key={index} component={dropdownComponent} index={dropdownIndex} />);
                     dropdownIndex++;
                     break;
                 case "graph":

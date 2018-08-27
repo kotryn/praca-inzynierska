@@ -16,7 +16,7 @@ public class WebPageCalculatingStatisticInProgress {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://localhost:8080//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://localhost:8080/start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Title("title", "h3", "Producing out-of sample portfolio graph in progress")));

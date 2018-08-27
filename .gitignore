@@ -26,3 +26,6 @@ nbdist/
 node_modules/
 src/main/resources/static/built
 target/
+
+### My test files
+src/main/js/components/elements/test.json

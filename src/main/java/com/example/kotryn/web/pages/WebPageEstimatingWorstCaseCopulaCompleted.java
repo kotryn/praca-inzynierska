@@ -25,7 +25,7 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://localhost:8080//start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://localhost:8080/start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Estimating worst case copula completed successful")));
@@ -37,8 +37,8 @@ public class WebPageEstimatingWorstCaseCopulaCompleted {
             body.add(new Entity<>(new Text("text", "Correlation matrix - number degrees of freedom: "+job.getCorrelationMatrix())));
         }
 
-        body.add(new Entity<>(new Button("button-back", "http://localhost:8080//estimating_worst_case_copula_completed_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button", "http://localhost:8080//building_robust_portfolio_setup/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/estimating_worst_case_copula_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "http://localhost:8080/building_robust_portfolio_setup/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }
