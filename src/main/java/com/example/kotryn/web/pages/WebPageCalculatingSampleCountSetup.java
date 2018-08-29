@@ -43,9 +43,9 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Entity<>(new Text("text", "Previous out-of-sample end date: " + endOutOfSampleDate)));
         body.add(new Entity<>(new Input("input", "date", new String[]{"startOutOfSampleDate", "endOutOfSampleDate"}, new String[]{"Enter Start Date:", "Enter end date:"})));
 
-        body.add(new Entity<>(new Text("integer", "Previous periodicity (days): " + job.getPeriodicity())));
+        body.add(new Entity<>(new Text("text", "Previous periodicity (days): " + job.getPeriodicity())));
         //body.add(new Entity<>(new Text("text", "Select periodicity:")));
-        body.add(new Entity<>(new Input("input", "text", new String[]{"periodicity"}, new String[]{"Enter periodicity:"})));
+        body.add(new Entity<>(new Input("input", "integer", new String[]{"periodicity"}, new String[]{"Enter periodicity in days:"})));
         //body.add(new Entity<>(new Radio("radio", new String[]{"weekly", "quarterly", "daily"}, new String[]{"weekly", "quarterly", "daily"}, "periodicity")));
 
         body.add(new Entity<>(new Button("button-back", "http://localhost:8080/calculating_sample_count_setup_back/"+jobId, "Back")));
