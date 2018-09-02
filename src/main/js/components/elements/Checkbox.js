@@ -8,7 +8,7 @@ class Checkbox extends React.Component{
     }
 
     render() {
-        const {name, id, values} = this.props;
+        const {name, id, values, value} = this.props;
 
         return (
             <div className="checkbox">
@@ -16,7 +16,10 @@ class Checkbox extends React.Component{
                     <input
                         type="checkbox"
                         checked={values[id]}
-                        onChange={this.handle.bind(this)} />
+                        onChange={this.handle.bind(this)}
+                        value={value}
+                        name={value}
+                    />
                     {name}
                     <span className="checkbox-checkmark"></span>
                 </label>
