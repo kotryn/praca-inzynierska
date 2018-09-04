@@ -17,7 +17,7 @@ Linux:
 ### Running project
 
 #### Linux (production)
-1. Copy `kotryn-0.0.1-SNAPSHOT.jar` and all bash files (`file.sh, file2.sh...`) to one folder
+1. Copy `target/kotryn-0.0.1-SNAPSHOT.jar` and all bash files (`file.sh, file2.sh...`) to one folder
 2. Enter this folder and run `java -jar kotryn-0.0.1-SNAPSHOT.jar`
 3. Aplication will be run on `http://localhost:8080/`
 
