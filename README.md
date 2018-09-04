@@ -37,5 +37,9 @@ Linux:
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
 
+#### Run Selenium Tests
+1. Start server: `mvn spring-boot:run`
+2. Run test: `mvn test`
+
 #### Build (Intellij Idea)
 1. Run maven build -> package
