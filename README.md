@@ -22,9 +22,10 @@ Linux:
 3. Aplication will be run on `http://localhost:8080/`
 
 #### Intellij Idea (development)
-1. For the first time: `npm install`
-2. Configure mvn install (or compile) to execute *before build*.
-3. Run
+1. Change variable *PATH* to project path in file: `/src/main/java/com/kotryn/csv/FileFactory`
+2. For the first time: `npm install`
+3. Configure mvn install (or compile) to execute *before build*.
+4. Run
 
 #### Ubuntu Terminal (development)
 1. For the first time: `npm install`
