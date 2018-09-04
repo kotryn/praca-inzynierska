@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line  } from 'recharts';
+import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import {getRandomColor} from "../../getRandomColor"
 
 class Graph extends React.Component{

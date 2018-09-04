@@ -4,7 +4,15 @@ import {connect} from "react-redux";
 import Checkbox from './Checkbox'
 import Radio from './Radio'
 import Input from "./Input"
-import { createInputData, clear, createOutputData, deleteOutputElement, changeNextId, changeCheckboxData, changeRadioData } from "../../actions/formData";
+import {
+    changeCheckboxData,
+    changeNextId,
+    changeRadioData,
+    clear,
+    createInputData,
+    createOutputData,
+    deleteOutputElement
+} from "../../actions/formData";
 
 class Form extends React.Component{
 

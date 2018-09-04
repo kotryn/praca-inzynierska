@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import axios from 'axios';
 
-import { getPageDataInfo, setError, fetching } from '../../actions/data'
+import {fetching, getPageDataInfo, setError} from '../../actions/data'
 
 class ButtonDelete extends React.Component{
 

@@ -1,4 +1,13 @@
-import {EDIT_INPUT_VALUE, CLEAR, CREATE_INPUT_DATA, CREATE_OUTPUT_DATA, DELETE_OUTPUT_ELEMENT, CHANGE_ID, EDIT_CHECKBOX_DATA, EDIT_RADIO_DATA} from '../actions/formData'
+import {
+    CHANGE_ID,
+    CLEAR,
+    CREATE_INPUT_DATA,
+    CREATE_OUTPUT_DATA,
+    DELETE_OUTPUT_ELEMENT,
+    EDIT_CHECKBOX_DATA,
+    EDIT_INPUT_VALUE,
+    EDIT_RADIO_DATA
+} from '../actions/formData'
 
 const defaultState = {
     currentId: 0,

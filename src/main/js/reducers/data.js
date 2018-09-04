@@ -1,4 +1,4 @@
-import {GET_DATA, GET_DATA_SUCCESS, GET_DATA_FAILURE, SET_ERROR, FETCHING} from './../actions/data'
+import {FETCHING, GET_DATA, GET_DATA_FAILURE, GET_DATA_SUCCESS, SET_ERROR} from './../actions/data'
 
 const defaultState = {
     config: [],
