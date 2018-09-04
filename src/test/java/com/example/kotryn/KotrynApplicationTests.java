@@ -88,6 +88,7 @@ public class KotrynApplicationTests {
 
 		waitUntilPageIsLoadByElement(By.xpath("//h3[contains(text(),'Searching for stocks in progress')]"));
 		refreshPage(By.xpath("//h3[contains(text(),'Searching for stocks in progress')]"));
+		driver.findElement(By.xpath("//div[contains(text(),'Searching for stocks completed successfully')]"));
 
 		driver.findElement(By.xpath("//div[contains(text(),'Services')]")).click();
 		driver.findElement(By.xpath("//div[contains(text(),'Discount')]")).click();
@@ -184,7 +185,7 @@ public class KotrynApplicationTests {
 	private void refreshPage(By element){
 		while(!driver.findElements(element).isEmpty()){
 			waitUntilPageIsLoadByElement(By.xpath("//button[contains(text(),'Refresh')]")).click();
-			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		}
 	}
 }
