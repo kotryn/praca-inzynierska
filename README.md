@@ -28,7 +28,8 @@ Linux:
 
 #### Ubuntu Terminal (development)
 1. For the first time: `npm install`
-2. Run aplication `mvn spring-boot:run`
+2. Build frontend: `npm start`
+3. Run aplication `mvn spring-boot:run`
 
 ##### Build only frontend
 `mpm start`
