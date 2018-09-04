@@ -1,5 +1,5 @@
 # Praca inzynierska :honeybee:
-Interfejs użytkownika oparty na koncepcji REST (representational state transfer) dla systemu wyboru odpornego portfela inwestycyjnego
+Interfejs użytkownika oparty na wzorcu REST (representational state transfer) dla systemu wyboru odpornego portfela inwestycyjnego
 
 ## Getting Started
 
