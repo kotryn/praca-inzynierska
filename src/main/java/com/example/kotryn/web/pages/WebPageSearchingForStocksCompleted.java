@@ -1,30 +1,23 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.entity.Job;
-import com.example.kotryn.entity.ProcessDescriptor;
 import com.example.kotryn.entity.Sector;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
-import com.example.kotryn.lib.Tools;
 
 import java.util.*;
 
 public class WebPageSearchingForStocksCompleted {
 
     private JobRepository jobRepository;
-    private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageSearchingForStocksCompleted(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public WebPageSearchingForStocksCompleted(Long jobId, JobRepository jobRepository) {
         this.jobRepository = jobRepository;
-        this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
     }
 
     public Page show() {
-        ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
-        String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
         List<String> previouslySelectedStocks = new ArrayList<>();

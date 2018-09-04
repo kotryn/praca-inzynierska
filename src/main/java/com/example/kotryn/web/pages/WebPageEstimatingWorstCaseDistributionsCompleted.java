@@ -4,25 +4,20 @@ import com.example.kotryn.entity.Job;
 import com.example.kotryn.entity.WorstCaseDistributionSector;
 import com.example.kotryn.json.*;
 import com.example.kotryn.repository.JobRepository;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
 
 import java.util.*;
 
 public class WebPageEstimatingWorstCaseDistributionsCompleted {
 
     private JobRepository jobRepository;
-    private ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageEstimatingWorstCaseDistributionsCompleted(Long jobId, JobRepository jobRepository, ProcessDescriptorRepository processDescriptorRepository) {
+    public WebPageEstimatingWorstCaseDistributionsCompleted(Long jobId, JobRepository jobRepository) {
         this.jobRepository = jobRepository;
-        this.processDescriptorRepository = processDescriptorRepository;
         this.jobId = jobId;
     }
 
     public Page show() {
-        //ProcessDescriptor processDescriptor = processDescriptorRepository.getOne(jobId);
-        //String formattedDuration = Tools.formatDuration(processDescriptor.getDuration());
         Job job = jobRepository.findOne(jobId);
 
         List<Entity> body = new ArrayList<>();
@@ -37,7 +32,6 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
         Map<String, WorstCaseDistributionSector> map = new HashMap<>(job.getWorstCaseDistributionStocks());
 
         for (Map.Entry<String, WorstCaseDistributionSector> entry : map.entrySet()) {
-            //body.add(new Entity<>(new Title("title", "h3-left", entry.getKey())));//Sector
             dropdown.add(new Entity<>(new Title("title", "h3-left", entry.getKey())));
             Set<String> industry = new HashSet<>();
 
@@ -46,10 +40,8 @@ public class WebPageEstimatingWorstCaseDistributionsCompleted {
             }
 
             for (String i : industry) {
-                //body.add(new Entity<>(new Title("title", "h4-left", i)));//Industry
                 dropdown.add(new Entity<>(new Title("title", "h4-left", i)));//Industry
                 List<String> name = job.getAllKeysForValue(entry.getValue().getIndustriesStocks(), i);
-                //body.add(new Entity<>(new StaticList("list", name)));//Stocks
                 dropdown.add(new Entity<>(new StaticList("list", name)));//Stocks
             }
         }

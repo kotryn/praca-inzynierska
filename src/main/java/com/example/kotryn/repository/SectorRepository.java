@@ -17,6 +17,5 @@ public interface SectorRepository extends Repository<Sector, Long> {
 
     @Transactional
     List<Sector> removeByJobId(Long jobId);
-    //void deleteByJobId(Long jobId);
     Page<Sector> findAll(Pageable pageable);
 }

@@ -31,7 +31,6 @@ public class StateFactory  {
 
             case OBTAINING_PERIOD_OF_ANALYSIS:
                 return new StateObtainingPeriodOfAnalysis(jobRepository, contextRepository, processDescriptorRepository);
-
             case SEARCHING_FOR_STOCKS_COMPLETED:
                 return new StateSearchingForStocksCompleted(jobRepository, contextRepository);
             case SEARCHING_FOR_STOCKS_FAILED:

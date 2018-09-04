@@ -120,7 +120,7 @@ public class ProcessCalculatingSampleCount implements IProcess {
                 String command = "kill -9 "+processDescriptor.getPid();
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException();
             }
         }).start();
     }

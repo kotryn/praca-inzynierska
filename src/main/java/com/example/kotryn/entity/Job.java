@@ -68,21 +68,21 @@ public class Job {
         this.startOutOfSampleDate = "not set";
         this.endOutOfSampleDate = "not set";
         this.periodicity = "not set";
-        this.windowSize = null; //TODO
-        this.growthRate = null; //TODO
+        this.windowSize = null; 
+        this.growthRate = null;
         this.inSample = "not set";
         this.outOfSample = "not set";
-        this.maxNumberSector = null; //TODO
-        this.maxNumberIndustry = null; //TODO
-        this.maxCoefficient = null; //TODO
-        this.copulaWindowSize = null; //TODO
+        this.maxNumberSector = null; 
+        this.maxNumberIndustry = null; 
+        this.maxCoefficient = null;
+        this.copulaWindowSize = null;
         this.copulaType = "not set";
-        this.correlationMatrix = null; //TODO
-        this.numberOfSamples = null; //TODO
-        this.yearRateOfReturn = null; //TODO
-        this.toleranceLevel = null; //TODO
-        this.maxShare = null; //TODO
-        this.theta = null; //TODO
+        this.correlationMatrix = null; 
+        this.numberOfSamples = null; 
+        this.yearRateOfReturn = null; 
+        this.toleranceLevel = null; 
+        this.maxShare = null; 
+        this.theta = null;
 
         this.selectedStocks = null;
     }

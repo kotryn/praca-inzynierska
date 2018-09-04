@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import static com.example.kotryn.states.State.*;
 
-//@CrossOrigin(origins = "http://localhost:8080/", maxAge = 3600)
 @RestController
 public class MainController {
 
@@ -265,7 +264,7 @@ public class MainController {
 
     @RequestMapping(value = "/stocks_search_completed/{id}", method = RequestMethod.GET)
     public Page searchingForStocksCompletedGET(@PathVariable Long id) {
-        WebPageSearchingForStocksCompleted page = new WebPageSearchingForStocksCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageSearchingForStocksCompleted page = new WebPageSearchingForStocksCompleted(id, jobRepository);
         return page.show();
     }
 
@@ -352,7 +351,7 @@ public class MainController {
 
     @RequestMapping(value = "/calculating_sample_count_completed/{id}", method = RequestMethod.GET)
     public Page calculatingSampleCountCompletedGET(@PathVariable Long id) {
-        WebPageCalculatingSampleCountCompleted page = new WebPageCalculatingSampleCountCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageCalculatingSampleCountCompleted page = new WebPageCalculatingSampleCountCompleted(id, jobRepository);
         return page.show();
     }
 
@@ -438,7 +437,7 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_worst_case_distributions_completed/{id}", method = RequestMethod.GET)
     public Page estimatingWorstCaseDistributionsCompletedGET(@PathVariable Long id) {
-        WebPageEstimatingWorstCaseDistributionsCompleted page = new WebPageEstimatingWorstCaseDistributionsCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageEstimatingWorstCaseDistributionsCompleted page = new WebPageEstimatingWorstCaseDistributionsCompleted(id, jobRepository);
         return page.show();
     }
 
@@ -543,13 +542,13 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_growth_stocks_completed/{id}", method = RequestMethod.GET)
     public Page estimatingGrowthStocksCompletedGET(@PathVariable Long id) {
-        WebPageEstimatingGrowthStocksCompleted page = new WebPageEstimatingGrowthStocksCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageEstimatingGrowthStocksCompleted page = new WebPageEstimatingGrowthStocksCompleted(id, jobRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/estimating_growth_stocks_failed/{id}", method = RequestMethod.GET)
     public Page estimatingGrowthStocksFailedGET(@PathVariable Long id) {
-        WebPageEstimatingGrowthStocksFailed page = new WebPageEstimatingGrowthStocksFailed(id, processDescriptorRepository);
+        WebPageEstimatingGrowthStocksFailed page = new WebPageEstimatingGrowthStocksFailed(id);
         return page.show();
     }
 
@@ -652,13 +651,13 @@ public class MainController {
 
     @RequestMapping(value = "/estimating_worst_case_copula_completed/{id}", method = RequestMethod.GET)
     public Page estimatingWorstCaseCopulaCompletedGET(@PathVariable Long id) {
-        WebPageEstimatingWorstCaseCopulaCompleted page = new WebPageEstimatingWorstCaseCopulaCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageEstimatingWorstCaseCopulaCompleted page = new WebPageEstimatingWorstCaseCopulaCompleted(id, jobRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/estimating_worst_case_copula_failed/{id}", method = RequestMethod.GET)
     public Page estimatingWorstCaseCopulaFailedGET(@PathVariable Long id) {
-        WebPageEstimatingWorstCaseCopulaFailed page = new WebPageEstimatingWorstCaseCopulaFailed(id, processDescriptorRepository);
+        WebPageEstimatingWorstCaseCopulaFailed page = new WebPageEstimatingWorstCaseCopulaFailed(id);
         return page.show();
     }
 
@@ -747,13 +746,13 @@ public class MainController {
 
     @RequestMapping(value = "/building_robust_portfolio_completed/{id}", method = RequestMethod.GET)
     public Page buildingRobustPortfolioCompletedGET(@PathVariable Long id) {
-        WebPageBuildingRobustPortfolioCompleted page = new WebPageBuildingRobustPortfolioCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageBuildingRobustPortfolioCompleted page = new WebPageBuildingRobustPortfolioCompleted(id, jobRepository);
         return page.show();
     }
 
     @RequestMapping(value = "/building_robust_portfolio_failed/{id}", method = RequestMethod.GET)
     public Page buildingRobustPortfolioFailedGET(@PathVariable Long id) {
-        WebPageBuildingRobustPortfolioFailed page = new WebPageBuildingRobustPortfolioFailed(id, processDescriptorRepository);
+        WebPageBuildingRobustPortfolioFailed page = new WebPageBuildingRobustPortfolioFailed(id);
         return page.show();
     }
 
@@ -826,7 +825,7 @@ public class MainController {
 
     @RequestMapping(value = "/calculating_statistic_completed/{id}", method = RequestMethod.GET)
     public Page calculatingStatisticCompletedGET(@PathVariable Long id) {
-        WebPageCalculatingStatisticCompleted page = new WebPageCalculatingStatisticCompleted(id, jobRepository, processDescriptorRepository);
+        WebPageCalculatingStatisticCompleted page = new WebPageCalculatingStatisticCompleted(id, jobRepository);
         return page.show();
     }
 

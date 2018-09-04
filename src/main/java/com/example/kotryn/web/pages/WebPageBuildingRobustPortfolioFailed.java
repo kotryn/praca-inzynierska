@@ -1,17 +1,14 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WebPageBuildingRobustPortfolioFailed {
-    private final ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageBuildingRobustPortfolioFailed(Long jobId, ProcessDescriptorRepository processDescriptorRepository) {
-        this.processDescriptorRepository = processDescriptorRepository;
+    public WebPageBuildingRobustPortfolioFailed(Long jobId) {
         this.jobId = jobId;
     }
 

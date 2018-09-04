@@ -5,7 +5,7 @@ public class FileFactory  {
     public static String getFile(File file) {
         switch(file) {
             case FIRST_STOCK:
-                return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/dane2.csv";
+                return "../praca-inzynierska/src/main/resources/static/mock/dane2.csv";
             case CALCULATING_SAMPLE_COUNT:
                 return "/home/kotryn/IdeaProjects/praca-inzynierska/src/main/resources/static/mock/calculatingSampleCount.csv";
             case ESTIMATING_WORST_CASE_DISTRIBUTION:

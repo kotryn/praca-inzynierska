@@ -1,17 +1,14 @@
 package com.example.kotryn.web.pages;
 
 import com.example.kotryn.json.*;
-import com.example.kotryn.repository.ProcessDescriptorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WebPageEstimatingGrowthStocksFailed {
-    private final ProcessDescriptorRepository processDescriptorRepository;
     private final Long jobId;
 
-    public WebPageEstimatingGrowthStocksFailed(Long jobId, ProcessDescriptorRepository processDescriptorRepository) {
-        this.processDescriptorRepository = processDescriptorRepository;
+    public WebPageEstimatingGrowthStocksFailed(Long jobId) {
         this.jobId = jobId;
     }
 

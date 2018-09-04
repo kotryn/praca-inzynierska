@@ -118,8 +118,7 @@ public class ProcessBuildingRobustPortfolio implements IProcess {
                 String command = "kill -9 "+processDescriptor.getPid();
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
-                //toBeDoneInsideProcessAtEndWhenFailure();
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException();
             }
         }).start();
     }
