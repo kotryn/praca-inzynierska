@@ -13,6 +13,7 @@ Linux:
 `sudo apt-get install nodejs`
 3. Npm (3.9.2 or higher)
 `sudo apt-get install npm`
+4. Java (8 or higher)
 
 ### Running project
 
