@@ -33,9 +33,6 @@ Linux:
 2. Build frontend: `npm start`
 3. Run aplication `mvn spring-boot:run`
 
-##### Build only frontend
-`mpm start`
-
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
 
