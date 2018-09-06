@@ -1,14 +1,14 @@
-import React from 'react';
-import {editInputValue} from "../../actions/formData";
-import {connect} from "react-redux";
+import React from 'react'
+import {editInputValue} from "../../actions/formData"
+import {connect} from "react-redux"
 
 class Checkbox extends React.Component{
     handle(e) {
-        this.props.editInputValue(e.target.checked,  this.props.id);
+        this.props.editInputValue(e.target.checked,  this.props.id)
     }
 
     render() {
-        const {name, id, values, value} = this.props;
+        const {name, id, values, value} = this.props
 
         return (
             <div className="checkbox">
@@ -24,7 +24,7 @@ class Checkbox extends React.Component{
                     <span className="checkbox-checkmark"></span>
                 </label>
             </div>
-        );
+        )
     }
 }
 
@@ -33,4 +33,4 @@ Checkbox = connect(
     { editInputValue }
 )(Checkbox)
 
-export default Checkbox;
+export default Checkbox

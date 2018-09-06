@@ -1,24 +1,24 @@
-import React from 'react';
-import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import React from 'react'
+import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts'
 import {getRandomColor} from "../../getRandomColor"
 
 class Graph extends React.Component{
     render() {
-        const {data, name} = this.props.config;
+        const {data, name} = this.props.config
 
-        let graphData = [];
+        let graphData = []
         const LineComponent = data.map((element, index) => {
-            let i = 0;
+            let i = 0
             for (let k in element) {
                 if (element.hasOwnProperty(k)) {
-                    let obj = {};
-                    obj[name[index]] = element[k];
-                    let newObj = Object.assign(obj, {name: k});
-                    graphData[i] = Object.assign(newObj,  graphData[i++]);
+                    let obj = {}
+                    obj[name[index]] = element[k]
+                    let newObj = Object.assign(obj, {name: k})
+                    graphData[i] = Object.assign(newObj,  graphData[i++])
                 }
             }
-            return (<Line type="monotone" dataKey={name[index]} stroke={getRandomColor()} key={index} />);
-        });
+            return (<Line type="monotone" dataKey={name[index]} stroke={getRandomColor()} key={index} />)
+        })
 
         return (
             <div className={'graph'}>
@@ -34,8 +34,8 @@ class Graph extends React.Component{
                     </LineChart>
                 </ResponsiveContainer>
             </div>
-        );
+        )
     }
 }
 
-export default Graph;
+export default Graph

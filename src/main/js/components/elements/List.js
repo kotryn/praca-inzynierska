@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 class List extends React.Component{
     render() {
-        const {items} = this.props.config;
+        const {items} = this.props.config
         const component = items.map((e, i) => (
             <li key={i} className={"list"}>{e}</li>
         ))
@@ -11,8 +11,8 @@ class List extends React.Component{
             <ul>
                 {component}
             </ul>
-        );
+        )
     }
 }
 
-export default List;
+export default List

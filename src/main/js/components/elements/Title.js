@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Title ({config}){
     switch (config.tag){
@@ -31,4 +31,4 @@ function Title ({config}){
     }
 }
 
-export default Title;
+export default Title

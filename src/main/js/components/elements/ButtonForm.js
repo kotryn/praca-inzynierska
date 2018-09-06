@@ -1,44 +1,44 @@
-import React from 'react';
+import React from 'react'
 import {connect} from 'react-redux'
-import axios from 'axios';
+import axios from 'axios'
 
 import {fetching, getPageDataInfo, setError} from '../../actions/data'
 
 class ButtonForm extends React.Component{
 
     constructor(props) {
-        super(props);
-        this.add = this.add.bind(this);
+        super(props)
+        this.add = this.add.bind(this)
     }
 
     add(event) {
-        event.preventDefault();
-        const {url} = this.props.config;
-        this.props.fetching();
+        event.preventDefault()
+        const {url} = this.props.config
+        this.props.fetching()
 
         axios.post(url, this.props.jsonData)
             .then(response => {
                 if(response.status === 201){
-                    this.props.getPageDataInfo();
+                    this.props.getPageDataInfo()
                 }else{
-                    this.props.setError("server error");
+                    this.props.setError("server error")
                 }
             })
-            .catch(error => {console.log(error); this.props.setError("server error")});
+            .catch(error => {console.log(error); this.props.setError("server error")})
     }
 
     render() {
-        const {name} = this.props.config;
+        const {name} = this.props.config
 
         return (
             <button className={'btn dark-green'} onClick={this.add}>{name}</button>
-        );
+        )
     }
 }
 
 ButtonForm = connect(
     state =>  state.formData,
     { getPageDataInfo, setError, fetching }
-)(ButtonForm);
+)(ButtonForm)
 
-export default ButtonForm;
+export default ButtonForm

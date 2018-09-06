@@ -3,7 +3,7 @@ import {FETCHING, GET_DATA, GET_DATA_FAILURE, GET_DATA_SUCCESS, SET_ERROR} from 
 const defaultState = {
     config: [],
     fetching: true
-};
+}
 
 function dataReducer(state = defaultState, action) {
     switch (action.type) {
@@ -43,7 +43,7 @@ function dataReducer(state = defaultState, action) {
                 fetching: true,
             }
         default:
-            return state;
+            return state
     }
 }
 

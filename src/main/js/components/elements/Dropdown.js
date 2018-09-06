@@ -1,48 +1,48 @@
-import React from 'react';
+import React from 'react'
 
 class Dropdown extends React.Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             isOpen: false
         }
     }
 
     toggleMenu(){
-        this.setState({isOpen: !this.state.isOpen});
-        this.setHeight();
+        this.setState({isOpen: !this.state.isOpen})
+        this.setHeight()
     }
 
     setHeight(){
-        let items = document.getElementById('e'+this.props.index);
+        let items = document.getElementById('e'+this.props.index)
         //console.log(items.parentNode.parentNode.parentNode)
         if(!this.state.isOpen){
-            let wrapper = document.getElementById('w'+this.props.index);
-            items.style.height = wrapper.clientHeight + "px";
+            let wrapper = document.getElementById('w'+this.props.index)
+            items.style.height = wrapper.clientHeight + "px"
 
             this.checkParent(items.parentNode.parentNode.parentNode, wrapper.clientHeight)
 
 
 
         }else{
-            let wrapper = document.getElementById('w'+this.props.index);
-            items.style.height = "0px";
+            let wrapper = document.getElementById('w'+this.props.index)
+            items.style.height = "0px"
             this.checkParent(items.parentNode.parentNode.parentNode, -wrapper.clientHeight)
         }
     }
 
     checkParent(element, oldHeight){
         if(element.className === "dropdown-items"){
-            let height = element.style.height;
-            height = +height.slice(0, height.length-2);
-            element.style.height = height + oldHeight + "px";
+            let height = element.style.height
+            height = +height.slice(0, height.length-2)
+            element.style.height = height + oldHeight + "px"
             this.checkParent(element.parentNode.parentNode.parentNode, oldHeight)
         }
     }
 
     render() {
-        const {component, config, index} = this.props;
-        const {name} = config;
+        const {component, config, index} = this.props
+        const {name} = config
 
         return (
                 <div className={"dropdown"}>
@@ -56,8 +56,8 @@ class Dropdown extends React.Component{
                         </div>
                     </div>
                 </div>
-        );
+        )
     }
 }
 
-export default Dropdown;
+export default Dropdown

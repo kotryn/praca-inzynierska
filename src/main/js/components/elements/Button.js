@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 import {connect} from 'react-redux'
-import axios from 'axios';
+import axios from 'axios'
 
 import {fetching, getPageDataInfo, setError} from '../../actions/data'
 
 class Button extends React.Component{
 
     constructor(props) {
-        super(props);
-        this.next = this.next.bind(this);
+        super(props)
+        this.next = this.next.bind(this)
     }
 
     next(event) {
-        event.preventDefault();
-        const {url} = this.props.config;
-        this.props.fetching();
+        event.preventDefault()
+        const {url} = this.props.config
+        this.props.fetching()
 
         axios.post(url, '')
             .then(response => {
                 if(response.status === 200){
-                    this.props.getPageDataInfo();
+                    this.props.getPageDataInfo()
                 }else{
                     this.props.setError("server error")
                 }
@@ -28,7 +28,7 @@ class Button extends React.Component{
     }
 
     render() {
-        const {name, type} = this.props.config;
+        const {name, type} = this.props.config
         if(type === 'button-home'){
             return (
                 <button className={"btn dark-blue home"} onClick={this.next}>
@@ -38,7 +38,7 @@ class Button extends React.Component{
 
         return (
                 <button className={"btn dark-blue"} onClick={this.next}>{name}</button>
-        );
+        )
     }
 }
 
@@ -47,4 +47,4 @@ Button = connect(
     { getPageDataInfo, setError, fetching }
 )(Button)
 
-export default Button;
+export default Button

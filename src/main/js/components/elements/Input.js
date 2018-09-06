@@ -1,24 +1,24 @@
-import React from 'react';
-import {connect} from "react-redux";
+import React from 'react'
+import {connect} from "react-redux"
 
-import {editInputValue} from "../../actions/formData";
+import {editInputValue} from "../../actions/formData"
 
 class Input extends React.Component{
     handle(e) {
-        this.props.editInputValue(e.target.value,  this.props.id);
+        this.props.editInputValue(e.target.value,  this.props.id)
     }
 
     handleInteger(e) {
         if(e.target.validity.valid){
-            this.props.editInputValue(e.target.value,  this.props.id);
+            this.props.editInputValue(e.target.value,  this.props.id)
         }
 
     }
 
     render() {
-        const {name, id, kind, value} = this.props;
+        const {name, id, kind, value} = this.props
 
-        let t;
+        let t
         switch(kind){
             case "integer":
                 t = (<input
@@ -28,8 +28,8 @@ class Input extends React.Component{
                         name={value}
                         value={this.props.values[id]}
                         onChange={this.handleInteger.bind(this)}
-                    />);
-                break;
+                    />)
+                break
             case "number":
                 t = (<input
                         type={"number"}
@@ -37,8 +37,8 @@ class Input extends React.Component{
                         name={value}
                         value={this.props.values[id]}
                         onChange={this.handle.bind(this)}
-                    />);
-                break;
+                    />)
+                break
             case "date":
                 t = (<input
                         type={"date"}
@@ -46,8 +46,8 @@ class Input extends React.Component{
                         name={value}
                         value={this.props.values[id]}
                         onChange={this.handle.bind(this)}
-                    />);
-                break;
+                    />)
+                break
             default:
                 t = (<input
                         type={"text"}
@@ -55,7 +55,7 @@ class Input extends React.Component{
                         name={value}
                         value={this.props.values[id]}
                         onChange={this.handle.bind(this)}
-                    />);
+                    />)
         }
 
         return (
@@ -68,7 +68,7 @@ class Input extends React.Component{
                 </div>
 
             </div>
-        );
+        )
     }
 }
 
@@ -77,4 +77,4 @@ Input = connect(
     { editInputValue }
 )(Input)
 
-export default Input;
+export default Input

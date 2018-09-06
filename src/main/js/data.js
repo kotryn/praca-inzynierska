@@ -1,4 +1,4 @@
-import axios from "axios/index";
+import axios from "axios/index"
 
 export function getPageData(){
     return axios
@@ -16,7 +16,7 @@ export function sentInputData(url, jsonData, getPageDataInfo) {
     .post(url, jsonData)
         .then(response => {
             if(response.status === 201){
-                getPageDataInfo();
+                getPageDataInfo()
             }
         })
         .catch(error => console.log(error))

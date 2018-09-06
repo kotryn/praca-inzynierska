@@ -2,7 +2,7 @@ import {getPageData} from './../getPageData'
 
 export function getPageDataInfo() {
     return function(dispatch) {
-        dispatch(getData());
+        dispatch(getData())
         getPageData()
             .then(data => dispatch(getPageDataSuccess(data)))
             .catch(error => dispatch(getPageDataFailure(error)))

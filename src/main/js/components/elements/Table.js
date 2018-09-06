@@ -1,44 +1,44 @@
-import React from 'react';
+import React from 'react'
 
 class Table extends React.Component{
     render() {
-        const {data} = this.props.config;
+        const {data} = this.props.config
 
-        let width = 100 / data.length + "%";
+        let width = 100 / data.length + "%"
 
          const name = data.map((element, index)=>(
             <th key={index}>
                 {element[0]}
             </th>
-        ));
+        ))
 
-        var min = Number.MAX_SAFE_INTEGER;
+        var min = Number.MAX_SAFE_INTEGER
 
-        var test = [];
+        var test = []
         data.map((element, index)=>{
-            test.push([]);
-            min = element.length < min ? element.length : min;
+            test.push([])
+            min = element.length < min ? element.length : min
             element.map((e, i)=>{
                 if(i !== 0){
-                    test[index].push(<td key={i}>{e}</td>);
+                    test[index].push(<td key={i}>{e}</td>)
                 }
-            });
-        });
+            })
+        })
 
-        let tableData = [];
-        let tempTableData = [];
+        let tableData = []
+        let tempTableData = []
         for(let i in test){
             for (let j in test[i]){
-                let temp = [];
+                let temp = []
                 for(let n in test){
-                    temp.push(test[n][j]);
+                    temp.push(test[n][j])
                 }
                 tempTableData.push(<tr style={{minWidth: width}}>{temp}</tr>)
             }
         }
 
         for(let k = 0; k < min-1; k++){
-            tableData.push(tempTableData[k]);
+            tableData.push(tempTableData[k])
         }
 
         return (
@@ -50,8 +50,8 @@ class Table extends React.Component{
                     {tableData}
                 </table>
             </div>
-        );
+        )
     }
 }
 
-export default Table;
+export default Table

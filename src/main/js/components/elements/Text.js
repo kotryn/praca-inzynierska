@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Text({config}){
     if(config.type === "text-header"){
@@ -7,4 +7,4 @@ function Text({config}){
     return <div className={"text"}>{config.text}</div>
 }
 
-export default Text;
+export default Text

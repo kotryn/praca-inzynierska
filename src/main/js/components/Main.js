@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {connect} from 'react-redux'
 
 import {getPageDataInfo} from './../actions/data'
@@ -22,7 +22,7 @@ class Main extends React.Component{
     }
 
     render() {
-        const {fetching, error, config, status} = this.props;
+        const {fetching, error, config, status} = this.props
         if(fetching){
             return (
                 <div className={'container'}>
@@ -41,74 +41,74 @@ class Main extends React.Component{
             )
         }
 
-        let dropdownIndex = 0;
+        let dropdownIndex = 0
         function setComponentType(element, component, index){
             switch(element.type){
                 case "title":
-                    component.push(<Title config={element} key={index} />);
-                    break;
+                    component.push(<Title config={element} key={index} />)
+                    break
                 case "text":
-                    component.push(<Text config={element} key={index} />);
-                    break;
+                    component.push(<Text config={element} key={index} />)
+                    break
                 case "text-header":
-                    component.push(<Text config={element} key={index} />);
-                    break;
+                    component.push(<Text config={element} key={index} />)
+                    break
                 case "button":
-                    component.push(<Button config={element} key={index}  />);
-                    break;
+                    component.push(<Button config={element} key={index}  />)
+                    break
                 case "button-home":
-                    component.push(<Button config={element} key={index}  />);
-                    break;
+                    component.push(<Button config={element} key={index}  />)
+                    break
                 case "button-back":
-                    component.push(<ButtonBack config={element} key={index}  />);
-                    break;
+                    component.push(<ButtonBack config={element} key={index}  />)
+                    break
                 case "button-delete":
-                    component.push(<ButtonDelete config={element} key={index}  />);
-                    break;
+                    component.push(<ButtonDelete config={element} key={index}  />)
+                    break
                 case "button-form":
-                    component.push(<ButtonForm config={element} key={index}  />);
-                    break;
+                    component.push(<ButtonForm config={element} key={index}  />)
+                    break
                 case "table":
-                    component.push(<Table config={element} key={index} />);
-                    break;
+                    component.push(<Table config={element} key={index} />)
+                    break
                 case "input":
-                    component.push(<Form config={element} key={index} />);
-                    break;
+                    component.push(<Form config={element} key={index} />)
+                    break
                 case "checkbox":
-                    component.push(<Form config={element} key={index}  />);
-                    break;
+                    component.push(<Form config={element} key={index}  />)
+                    break
                 case "radio":
-                    component.push(<Form config={element} key={index}  />);
-                    break;
+                    component.push(<Form config={element} key={index}  />)
+                    break
                 case "list":
-                    component.push(<List config={element} key={index}  />);
-                    break;
+                    component.push(<List config={element} key={index}  />)
+                    break
                 case "dropdown":
-                    let dropdownComponent = [];
+                    let dropdownComponent = []
                     element.entities.map((e, i)=>{
-                        setComponentType(e.entity, dropdownComponent, i);
-                    });
-                    component.push(<Dropdown config={element} key={index} component={dropdownComponent} index={dropdownIndex} />);
-                    dropdownIndex++;
-                    break;
+                        setComponentType(e.entity, dropdownComponent, i)
+                    })
+                    component.push(<Dropdown config={element} key={index} component={dropdownComponent} index={dropdownIndex} />)
+                    dropdownIndex++
+                    break
                 case "graph":
-                    component.push(<Graph config={element} key={index}  />);
-                    break;
+                    component.push(<Graph config={element} key={index}  />)
+                    break
                 default:
-                    console.log('unknown type of component');
-                    break;
+                    console.log('unknown type of component')
+                    break
             }
         }
 
-        let components = [];
+        let components = []
         config.body && config.body.entities.map((element, index)=>{
-            setComponentType(element.entity, components, index);
-        });
+            setComponentType(element.entity, components, index)
+        })
 
-        let headerComponents = [];
+        let headerComponents = []
         config.header && config.header.entities.map((element, index)=>{
-            setComponentType(element.entity, headerComponents, index);
-        });
+            setComponentType(element.entity, headerComponents, index)
+        })
 
         return (
             <div className={'container-fluid'}>
@@ -127,4 +127,4 @@ Main = connect(
     { getPageDataInfo }
 )(Main)
 
-export default Main;
+export default Main
