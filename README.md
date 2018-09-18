@@ -16,7 +16,7 @@ Linux:
 
 ### Running project
 
-#### Intellij Idea (development)
+#### Intellij Idea (development) 
 1. Change variable *PATH* to project path in file: `/src/main/java/com/kotryn/csv/FileFactory`
 2. For the first time: `npm install`
 3. Configure mvn install (or compile) to execute *before build*.
