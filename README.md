@@ -33,6 +33,3 @@ Linux:
 
 ##### Build only frontend
 `mpm start`
-
-##### If failed, delete: 
-`/.m2/repository/com/github/eirslett`
