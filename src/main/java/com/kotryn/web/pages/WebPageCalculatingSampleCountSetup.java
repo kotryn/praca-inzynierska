@@ -23,7 +23,7 @@ public class WebPageCalculatingSampleCountSetup {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://localhost:8080/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://kotryn.localtunnel.me/start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "In-sample and out-of-sample periods")));
@@ -46,8 +46,8 @@ public class WebPageCalculatingSampleCountSetup {
         body.add(new Entity<>(new Text("text", "Previous periodicity (days): " + job.getPeriodicity())));
         body.add(new Entity<>(new Input("input", "integer", new String[]{"periodicity"}, new String[]{"Enter periodicity in days:"})));
 
-        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/calculating_sample_count_setup_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button-form", "http://localhost:8080/calculating_sample_count/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://kotryn.localtunnel.me/calculating_sample_count_setup_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button-form", "http://kotryn.localtunnel.me/calculating_sample_count/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }

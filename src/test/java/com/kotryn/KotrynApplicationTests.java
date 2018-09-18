@@ -23,7 +23,7 @@ public class KotrynApplicationTests {
 		System.setProperty("webdriver.chrome.driver", "/usr/lib/chromium-browser/chromedriver");
 		driver = new ChromeDriver();
 		driver.manage().deleteAllCookies();
-		driver.get("http://localhost:8080");
+		driver.get("http://kotryn.localtunnel.me");
 	}
 
 	@Test

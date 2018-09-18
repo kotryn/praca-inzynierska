@@ -5,7 +5,7 @@ import Button from "./elements/Button"
 function ServerError({error}){
     const config = {
         "name": "Refresh",
-        "url": "http://localhost:8080/data"
+        "url": "http://kotryn.localtunnel.me/data"
     }
     return (
         <div className={"server-error"}>

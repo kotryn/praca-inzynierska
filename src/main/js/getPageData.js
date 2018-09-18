@@ -2,7 +2,7 @@ import axios from "axios/index"
 
 export function getPageData(){
     return axios
-        .get('http://localhost:8080/data', {
+        .get('http://kotryn.localtunnel.me/data', {
             headers: {
                 'Content-type': 'application/json'
             }

@@ -16,31 +16,23 @@ Linux:
 
 ### Running project
 
-#### Linux (production)
-1. Copy `target/kotryn-0.0.1-SNAPSHOT.jar` and all bash files (`file.sh, file2.sh...`) to one folder
-2. Enter this folder and run `java -jar kotryn-0.0.1-SNAPSHOT.jar`
-3. Aplication will be run on `http://localhost:8080/`
-
 #### Intellij Idea (development)
 1. Change variable *PATH* to project path in file: `/src/main/java/com/kotryn/csv/FileFactory`
 2. For the first time: `npm install`
 3. Configure mvn install (or compile) to execute *before build*.
 4. Run
+5. Run localtunnel: `lt --subdomain kotryn --port 8080`
+6. Application will be run on `http://kotryn.localtunnel.me/`
 
 #### Ubuntu Terminal (development)
 1. For the first time: `npm install`
 2. Build frontend: `npm start`
-3. Run aplication `mvn spring-boot:run`
+3. Run application `mvn spring-boot:run`
+4. Run localtunnel: `lt --subdomain kotryn --port 8080`
+5. Application will be run on `http://kotryn.localtunnel.me/`
 
 ##### Build only frontend
 `mpm start`
 
 ##### If failed, delete: 
 `/.m2/repository/com/github/eirslett`
-
-#### Run Selenium Tests
-1. Start server: `mvn spring-boot:run`
-2. Run test: `mvn test`
-
-#### Build (Intellij Idea)
-1. Run maven build -> package

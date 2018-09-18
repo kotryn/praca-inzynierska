@@ -23,15 +23,15 @@ public class WebPageCalculatingSampleCountCompleted {
         List<Entity> body = new ArrayList<>();
         List<Entity> header = new ArrayList<>();
 
-        header.add(new Entity<>(new Button("button-home", "http://localhost:8080/start_page", "Start page")));
+        header.add(new Entity<>(new Button("button-home", "http://kotryn.localtunnel.me/start_page", "Start page")));
         header.add(new Entity<>(new Text("text-header", "Job ID: "+jobId)));
 
         body.add(new Entity<>(new Text("text", "Calculating sample count completed successfully")));
         body.add(new Entity<>(new Text("text", "In-sample: "+job.getInSample())));
         body.add(new Entity<>( new Text("text", "Out-of-sample: "+job.getOutOfSample())));
 
-        body.add(new Entity<>(new Button("button-back", "http://localhost:8080/calculating_sample_count_completed_back/"+jobId, "Back")));
-        body.add(new Entity<>(new Button("button", "http://localhost:8080/estimating_worst_case_distributions_setup/"+jobId, "Next")));
+        body.add(new Entity<>(new Button("button-back", "http://kotryn.localtunnel.me/calculating_sample_count_completed_back/"+jobId, "Back")));
+        body.add(new Entity<>(new Button("button", "http://kotryn.localtunnel.me/estimating_worst_case_distributions_setup/"+jobId, "Next")));
 
         return new Page(new Header(header), new Body(body));
     }
